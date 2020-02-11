@@ -12,7 +12,15 @@
 */
 
 Route::get('/', function () {
+    App::setLocale('DK');
+
     $socrates = new App\Socrates\Socrates();
 
-    return $socrates->getCitizenData('251195-1448');
+    //251195-1448
+
+    if ($socrates->validateId('251195-5632')) {
+        return ':)';
+    }
+
+    return 'Elton Pastilha';
 });

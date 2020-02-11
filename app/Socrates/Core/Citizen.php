@@ -19,6 +19,11 @@ class Citizen
         $this->gender = $gender;
     }
 
+    public function getDateOfBirth(): DateTimeInterface
+    {
+        return $this->dateOfBirth;
+    }
+
     public function setDateOfBirth(DateTimeInterface $dateOfBirth): void
     {
         $this->dateOfBirth = $dateOfBirth;
