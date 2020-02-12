@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Socrates\Core;
+namespace App\Socrates\Constants;
 
 class Gender
 {

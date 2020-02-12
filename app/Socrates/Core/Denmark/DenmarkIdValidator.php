@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Socrates\Core;
+namespace App\Socrates\Core\Denmark;
 
 use App\Socrates\Contracts\IdValidator;
 use App\Socrates\Exceptions\Denmark\InvalidCprLengthException;

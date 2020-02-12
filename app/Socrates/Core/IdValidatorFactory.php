@@ -3,6 +3,7 @@
 namespace App\Socrates\Core;
 
 use App\Socrates\Contracts\IdValidator;
+use App\Socrates\Core\Denmark\DenmarkIdValidator;
 use RuntimeException;
 
 abstract class IdValidatorFactory

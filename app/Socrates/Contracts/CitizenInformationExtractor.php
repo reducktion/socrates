@@ -2,7 +2,7 @@
 
 namespace App\Socrates\Contracts;
 
-use App\Socrates\Core\Citizen;
+use App\Socrates\Models\Citizen;
 
 interface CitizenInformationExtractor
 {

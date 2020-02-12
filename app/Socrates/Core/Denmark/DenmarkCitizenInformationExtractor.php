@@ -1,11 +1,11 @@
 <?php
 
+namespace App\Socrates\Core\Denmark;
 
-namespace App\Socrates\Core;
-
-
+use App\Socrates\Constants\Gender;
 use App\Socrates\Contracts\CitizenInformationExtractor;
 use App\Socrates\Exceptions\Denmark\InvalidCprLengthException;
+use App\Socrates\Models\Citizen;
 use DateTime;
 use DateTimeInterface;
 
