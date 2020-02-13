@@ -20,12 +20,15 @@ class DenmarkIdValidator implements IdValidator
 
         $multipliers = [4, 3, 2, 7, 6, 5, 4, 3, 2, 1];
 
-        $sum = 0;
-        foreach ($cprArray as $i => $digit) {
-            $sum += ($digit * $multipliers[$i]);
-        }
-
-        return $sum % 11 === 0;
+        return array_sum(
+            array_map(
+                function ($digit, $multiplier) {
+                    return $digit * $multiplier;
+                },
+                $cprArray,
+                $multipliers
+            )
+        ) % 11 === 0;
     }
 
     private function sanitize(string $id): string
