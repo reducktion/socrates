@@ -1,7 +1,9 @@
 <?php
 
+use Reducktion\Socrates\Core\Belgium\BelgiumIdValidator;
 use Reducktion\Socrates\Core\Denmark\DenmarkIdValidator;
 
 return [
-  'DK' => new DenmarkIdValidator()
+  'DK' => DenmarkIdValidator::class,
+  'BE' => BelgiumIdValidator::class
 ];

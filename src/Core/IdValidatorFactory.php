@@ -21,6 +21,6 @@ abstract class IdValidatorFactory
             throw new RuntimeException("Unknown or unsupported country code '$countryCode'");
         }
 
-        return $validators[$countryCode];
+        return new $validators[$countryCode];
     }
 }

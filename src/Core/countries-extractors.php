@@ -1,7 +1,9 @@
 <?php
 
+use Reducktion\Socrates\Core\Belgium\BelgiumCitizenInformationExtractor;
 use Reducktion\Socrates\Core\Denmark\DenmarkCitizenInformationExtractor;
 
 return [
-  'DK' => new DenmarkCitizenInformationExtractor()
+  'DK' => DenmarkCitizenInformationExtractor::class,
+  'BE' => BelgiumCitizenInformationExtractor::class
 ];

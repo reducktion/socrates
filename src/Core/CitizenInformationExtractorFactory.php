@@ -16,11 +16,11 @@ abstract class CitizenInformationExtractorFactory
         // On boot the config files must be publish to the Laravel configs file
         // And the extractors like this
         // $extractors = config('countries-extractors');
-
+        
         if (! array_key_exists($countryCode, $extractors)) {
             throw new RuntimeException("Unknown or unsupported country code '$countryCode'");
         }
 
-        return $extractors[$countryCode];
+        return new $extractors[$countryCode];
     }
 }

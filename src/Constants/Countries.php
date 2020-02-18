@@ -258,5 +258,6 @@ class Countries
 
     public const COUNTRIES_THAT_SUPPORT_CITIZEN_DATA = [
         'DK',
+        'BE'
     ];
 }

@@ -8,11 +8,11 @@ Create a new Laravel project:
 composer create-project — prefer-dist laravel/laravel package-tester
 ```
 
-Mimic the following directory structure:
+Create `packages/reducktion` folders in the root of the project:
 
 ![alt text](docs/folder_structure.png "Directory Structure")
 
-Now navigate to the package directory (`packages/reducktion/socrates`) and git clone the package:
+Now navigate to the package directory (`packages/reducktion`) and git clone the package:
 
 ```bash
 git clone https://github.com/AlexOlival/socrates.git
