@@ -2,11 +2,27 @@
     "name": "reducktion/socrates",
     "autoload": {
         "psr-4": {
-            "Reduction\\Socrates\\": "src/"
+            "Reducktion\\Socrates\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Reducktion\\Socrates\\Tests\\": "tests"
         }
     },
     "require": {},
     "require-dev": {
-        "phpunit/phpunit": "^8.5"
+        "phpunit/phpunit": "^8.5",
+        "orchestra/testbench": "^4.6"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Reducktion\\Socrates\\SocratesServiceProvider"
+            ],
+            "aliases": {
+                "Socrates": "Reducktion\\Socrates\\Facades\\Socrates"
+            }
+        }
     }
 }

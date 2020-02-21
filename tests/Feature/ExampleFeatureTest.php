@@ -1,7 +1,10 @@
 <?php
 
 
-use PHPUnit\Framework\TestCase;
+namespace Reducktion\Socrates\Tests\Feature;
+
+
+use Orchestra\Testbench\TestCase;
 
 class ExampleFeatureTest extends TestCase
 {

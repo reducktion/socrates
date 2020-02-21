@@ -4,7 +4,7 @@
 namespace Reducktion\Socrates\Tests\Feature;
 
 
-use PHPUnit\Framework\TestCase;
+use Orchestra\Testbench\TestCase;
 use Reducktion\Socrates\Socrates;
 
 class DenmarkTest extends TestCase
@@ -16,7 +16,7 @@ class DenmarkTest extends TestCase
 
         $citizen = $socrates->getCitizenDataFromId("251195-1448", "DK");
 
-        $this->assertEquals("Male", $citizen->getGender());
+        $this->assertEquals("Female", $citizen->getGender());
     }
 
     /** @test */

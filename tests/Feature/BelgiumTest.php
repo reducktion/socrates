@@ -4,7 +4,7 @@
 namespace Reducktion\Socrates\Tests\Feature;
 
 
-use PHPUnit\Framework\TestCase;
+use Orchestra\Testbench\TestCase;
 use Reducktion\Socrates\Socrates;
 
 class BelgiumTest extends TestCase
