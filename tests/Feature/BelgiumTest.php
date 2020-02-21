@@ -5,16 +5,14 @@ namespace Reducktion\Socrates\Tests\Feature;
 
 
 use Orchestra\Testbench\TestCase;
-use Reducktion\Socrates\Socrates;
+use Reducktion\Socrates\Facades\Socrates;
 
 class BelgiumTest extends TestCase
 {
     /** @test */
     public function extract_test(): void
     {
-        $socrates = new Socrates();
-
-        $citizen = $socrates->getCitizenDataFromId("93.05.18-223.61", "BE");
+        $citizen = Socrates::getCitizenDataFromId("93.05.18-223.61", "BE");
 
         $this->assertEquals("Male", $citizen->getGender());
     }
@@ -22,10 +20,8 @@ class BelgiumTest extends TestCase
     /** @test */
     public function id_validator_test(): void
     {
-        $socrates = new Socrates();
-
         $this->assertTrue(
-          $socrates->validateId("93.05.18-223.61", "BE")
+          Socrates::validateId("93.05.18-223.61", "BE")
         );
     }
 }
