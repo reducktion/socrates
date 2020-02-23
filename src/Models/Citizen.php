@@ -2,7 +2,8 @@
 
 namespace Reducktion\Socrates\Models;
 
-use DateTimeInterface;
+use Carbon\Carbon;
+use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
 
 class Citizen
 {
@@ -14,17 +15,26 @@ class Citizen
         return $this->gender;
     }
 
+    public function getDateOfBirth(): Carbon
+    {
+        return $this->dateOfBirth;
+    }
+
+    public function getAge(): int
+    {
+        if (!$this->dateOfBirth) {
+            throw new UnsupportedOperationException('Citizen date of birth is null.');
+        }
+
+    return $this->dateOfBirth->age;
+    }
+
     public function setGender($gender): void
     {
         $this->gender = $gender;
     }
 
-    public function getDateOfBirth(): DateTimeInterface
-    {
-        return $this->dateOfBirth;
-    }
-
-    public function setDateOfBirth(DateTimeInterface $dateOfBirth): void
+    public function setDateOfBirth(Carbon $dateOfBirth): void
     {
         $this->dateOfBirth = $dateOfBirth;
     }
