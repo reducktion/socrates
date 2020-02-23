@@ -1,10 +1,29 @@
 <?php
 
-namespace Tests;
+namespace Reducktion\Socrates\Tests;
 
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Orchestra\Testbench\TestCase as Orchestra;
+use Reducktion\Socrates\Facades\Socrates;
+use Reducktion\Socrates\SocratesServiceProvider;
 
-abstract class TestCase extends BaseTestCase
+class TestCase extends Orchestra
 {
-    use CreatesApplication;
+    protected function setUp(): void
+    {
+        parent::setUp();
+    }
+
+    protected function getPackageProviders($app)
+    {
+        return [
+            SocratesServiceProvider::class
+        ];
+    }
+
+    protected function getPackageAliases($app)
+    {
+        return [
+            'Socrates' => Socrates::class
+        ];
+    }
 }
