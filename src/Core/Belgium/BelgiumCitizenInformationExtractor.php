@@ -14,10 +14,10 @@ class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
 
     public function extract(string $id): Citizen
     {
-        $nrn = $this->sanitize($id);
+        $id = $this->sanitize($id);
 
-        $gender = $this->getGender($nrn);
-        $dateOfBirth = $this->getDateOfBirth($nrn);
+        $gender = $this->getGender($id);
+        $dateOfBirth = $this->getDateOfBirth($id);
 
         $citizen = new Citizen();
         $citizen->setGender($gender);
@@ -28,43 +28,43 @@ class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
 
     private function sanitize(string $id): string
     {
-        $nrn = str_replace('-', '', $id);
-        $nrn = str_replace('.', '', $nrn);
+        $id = str_replace('-', '', $id);
+        $id = str_replace('.', '', $id);
 
-        $nrnLength = strlen($nrn);
+        $idLength = strlen($id);
 
-        if ($nrnLength !== 11) {
-            throw new InvalidNrnLengthException("Belgium NRN must have 11 digits, got $nrnLength");
+        if ($idLength !== 11) {
+            throw new InvalidNrnLengthException("Belgium NRN must have 11 digits, got $idLength");
         }
 
-        return $nrn;
+        return $id;
     }
 
-    private function getGender(int $nrn): string
+    private function getGender(int $id): string
     {
-        return (substr($nrn, 6, 3) % 2) ? Gender::MALE : Gender::FEMALE;
+        return (substr($id, 6, 3) % 2) ? Gender::MALE : Gender::FEMALE;
     }
 
-    private function getDateOfBirth(string $nrn): Carbon
+    private function getDateOfBirth(string $id): Carbon
     {
-        $dateDigits = substr($nrn, 0, 6);
+        $dateDigits = substr($id, 0, 6);
         [$year, $month, $day] = str_split($dateDigits, 2);
 
-        $year = $this->isAfter2000($nrn) ? $year + 2000 : $year + 1900;
+        $year = $this->isAfter2000($id) ? $year + 2000 : $year + 1900;
 
         return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
     }
 
-    private function isAfter2000($nrn): bool
+    private function isAfter2000($id): bool
     {
-        $checksumFromNrn = (int) substr($nrn, -2);
+        $checksumFromId = (int) substr($id, -2);
         $after2000 = false;
-        $checksum = $this->calculateChecksum($nrn, $after2000);
+        $checksum = $this->calculateChecksum($id, $after2000);
 
-        if ($checksum !== $checksumFromNrn) {
+        if ($checksum !== $checksumFromId) {
             $after2000 = true;
-            $checksum = $this->calculateChecksum($nrn, $after2000);
-            if ($checksum !== $checksumFromNrn) {
+            $checksum = $this->calculateChecksum($id, $after2000);
+            if ($checksum !== $checksumFromId) {
                 throw new InvalidNrnException("The NRN introduced is invalid.");
             }
         }
@@ -72,13 +72,13 @@ class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
         return $after2000;
     }
 
-    private function calculateChecksum(string $nrn, bool $after2000): int
+    private function calculateChecksum(string $id, bool $after2000): int
     {
         if ($after2000) {
-            $nrn = '2' . $nrn;
+            $id = '2' . $id;
         }
 
-        $number = (int) substr($nrn, 0, -2);
+        $number = (int) substr($id, 0, -2);
 
         return 97 - ($number % 97);
     }

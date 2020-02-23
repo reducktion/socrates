@@ -4,6 +4,7 @@
 namespace Reducktion\Socrates\Core\Belgium;
 
 
+use Carbon\Carbon;
 use Reducktion\Socrates\Contracts\IdValidator;
 use Reducktion\Socrates\Exceptions\Belgium\InvalidNrnLengthException;
 
@@ -12,21 +13,21 @@ class BelgiumIdValidator implements IdValidator
 
     public function validate(string $id): bool
     {
-        $nrn = $this->sanitize($id);
+        $id = $this->sanitize($id);
 
-        $checksumFromNrn = (int) substr($nrn, -2);
+        $checksumFromId = (int) substr($id, -2);
         $after2000 = false;
-        $checksum = $this->calculateChecksum($nrn, $after2000);
+        $checksum = $this->calculateChecksum($id, $after2000);
 
-        if ($checksum !== $checksumFromNrn) {
+        if ($checksum !== $checksumFromId) {
             $after2000 = true;
-            $checksum = $this->calculateChecksum($nrn, $after2000);
-            if ($checksum !== $checksumFromNrn) {
+            $checksum = $this->calculateChecksum($id, $after2000);
+            if ($checksum !== $checksumFromId) {
                 return false;
             }
         }
 
-        if (! $this->validDateOfBirth($nrn, $after2000)) {
+        if (! $this->validDateOfBirth($id, $after2000)) {
             return false;
         }
 
@@ -35,32 +36,32 @@ class BelgiumIdValidator implements IdValidator
 
     private function sanitize(string $id): string
     {
-        $nrn = str_replace('-', '', $id);
-        $nrn = str_replace('.', '', $nrn);
+        $id = str_replace('-', '', $id);
+        $id = str_replace('.', '', $id);
 
-        $nrnLength = strlen($nrn);
+        $idLength = strlen($id);
 
-        if ($nrnLength !== 11) {
-            throw new InvalidNrnLengthException("Belgium NRN must have 11 digits, got $nrnLength");
+        if ($idLength !== 11) {
+            throw new InvalidNrnLengthException("Belgium NRN must have 11 digits, got $idLength");
         }
 
-        return $nrn;
+        return $id;
     }
 
-    private function calculateChecksum(string $nrn, bool $after2000): int
+    private function calculateChecksum(string $id, bool $after2000): int
     {
         if ($after2000) {
-            $nrn = '2' . $nrn;
+            $id = '2' . $id;
         }
 
-        $number = (int) substr($nrn, 0, -2);
+        $number = (int) substr($id, 0, -2);
 
         return 97 - ($number % 97);
     }
 
-    private function validDateOfBirth(string $nrn, bool $after2000): bool
+    private function validDateOfBirth(string $id, bool $after2000): bool
     {
-        $dateDigits = substr($nrn, 0, 6);
+        $dateDigits = substr($id, 0, 6);
         [$year, $month, $day] = str_split($dateDigits, 2);
 
         if ($month < 1 || $month > 12 || $day < 1 || $day > 31) {
@@ -69,7 +70,9 @@ class BelgiumIdValidator implements IdValidator
 
         $year = $after2000 ? $year + 2000 : $year + 1900;
 
-        if (strtotime("$year-$month-$day") > strtotime("-12 years")) {
+        $dob =Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+
+        if ($dob->greaterThan($dob->subYears(12))) {
             return false;
         }
 

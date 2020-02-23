@@ -25,8 +25,7 @@ class Citizen
         if (!$this->dateOfBirth) {
             throw new UnsupportedOperationException('Citizen date of birth is null.');
         }
-
-    return $this->dateOfBirth->age;
+        return $this->dateOfBirth->age;
     }
 
     public function setGender($gender): void
