@@ -1,11 +1,8 @@
 <?php
 
-
 namespace Reducktion\Socrates\Core\Belgium;
 
-
-use DateTime;
-use DateTimeInterface;
+use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 use Reducktion\Socrates\Exceptions\Belgium\InvalidNrnException;
@@ -48,14 +45,14 @@ class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
         return (substr($nrn, 6, 3) % 2) ? Gender::MALE : Gender::FEMALE;
     }
 
-    private function getDateOfBirth(string $nrn): DateTimeInterface
+    private function getDateOfBirth(string $nrn): Carbon
     {
         $dateDigits = substr($nrn, 0, 6);
         [$year, $month, $day] = str_split($dateDigits, 2);
 
         $year = $this->isAfter2000($nrn) ? $year + 2000 : $year + 1900;
 
-        return DateTime::createFromFormat('Y-m-d', "$year-$month-$day");
+        return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
     }
 
     private function isAfter2000($nrn): bool
