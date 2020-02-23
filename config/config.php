@@ -1,10 +1,8 @@
 <?php
 
-namespace Reducktion\Socrates\Constants;
+return [
 
-class Countries
-{
-    public const ALL_COUNTRIES = [
+    'all' => [
         'AF',
         'AX',
         'AL',
@@ -254,10 +252,21 @@ class Countries
         'YE',
         'ZM',
         'ZW',
-    ];
+    ],
 
-    public const COUNTRIES_THAT_SUPPORT_CITIZEN_DATA = [
+    'supports-citizen-data' => [
         'DK',
-        'BE'
-    ];
-}
+        'BE',
+    ],
+
+    'extractors' => [
+        'BE' => Reducktion\Socrates\Core\Belgium\BelgiumCitizenInformationExtractor::class,
+        'DK' => Reducktion\Socrates\Core\Denmark\DenmarkCitizenInformationExtractor::class,
+    ],
+
+    'validators' => [
+        'BE' => Reducktion\Socrates\Core\Belgium\BelgiumIdValidator::class,
+        'DK' => Reducktion\Socrates\Core\Denmark\DenmarkIdValidator::class,
+    ],
+
+];

@@ -10,7 +10,13 @@
             "Reducktion\\Socrates\\Tests\\": "tests/"
         }
     },
-    "require": {},
+    "require": {
+        "illuminate/bus": "~5.8.35|^6.0|^7.0",
+        "illuminate/console": "~5.8.35|^6.0|^7.0",
+        "illuminate/database": "~5.8.35|^6.0|^7.0",
+        "illuminate/pipeline": "~5.8.35|^6.0|^7.0",
+        "illuminate/support": "~5.8.35|^6.0|^7.0"
+    },
     "require-dev": {
         "phpunit/phpunit": "^8.5",
         "orchestra/testbench": "^4.6"

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Reducktion\Socrates\Tests;
-
 
 use Orchestra\Testbench\TestCase as Orchestra;
 use Reducktion\Socrates\Facades\Socrates;
@@ -13,15 +11,14 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-          SocratesServiceProvider::class
+            SocratesServiceProvider::class
         ];
     }
 
     protected function getPackageAliases($app)
     {
         return [
-          'Socrates' => Socrates::class
-//          'Socrates' => 'Reducktion\Socrates\Facades\Socrates'
+            'Socrates' => Socrates::class
         ];
     }
 }

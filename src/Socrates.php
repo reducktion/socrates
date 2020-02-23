@@ -4,7 +4,6 @@ namespace Reducktion\Socrates;
 
 use Illuminate\Support\Facades\App;
 use Locale;
-use Reducktion\Socrates\Constants\Countries;
 use Reducktion\Socrates\Core\CitizenInformationExtractorFactory;
 use Reducktion\Socrates\Core\IdValidatorFactory;
 use Reducktion\Socrates\Exceptions\InvalidCountryCodeException;
@@ -56,7 +55,7 @@ class Socrates
 
         $countryCode = strtoupper($countryCode);
 
-        if (!in_array($countryCode, Countries::ALL_COUNTRIES, true)){
+        if (!in_array($countryCode, config('socrates.all'), true)){
             throw new UnrecognisedCountryException("Could not find the country with the code '$countryCode'.");
         }
 
@@ -65,7 +64,7 @@ class Socrates
 
     private function checkIfCountrySupportsCitizenData(string $countryCode): void
     {
-        if (!in_array($countryCode, Countries::COUNTRIES_THAT_SUPPORT_CITIZEN_DATA, true)) {
+        if (!in_array($countryCode, config('socrates.supports-citizen-data'), true)) {
             $countryName = Locale::getDisplayRegion("-$countryCode", 'en');
 
             throw new UnsupportedOperationException("$countryName does not support extracting citizen data from the ID.");

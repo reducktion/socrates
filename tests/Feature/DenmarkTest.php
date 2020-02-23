@@ -1,31 +1,28 @@
 <?php
 
-
 namespace Reducktion\Socrates\Tests\Feature;
 
-
 use Orchestra\Testbench\TestCase;
-use Reducktion\Socrates\Socrates;
+use Reducktion\Socrates\Constants\Gender;
+use Reducktion\Socrates\Facades\Socrates;
 
 class DenmarkTest extends TestCase
 {
     /** @test */
     public function extract_test(): void
     {
-        $socrates = new Socrates();
+        dd(config('socrates'));
 
-        $citizen = $socrates->getCitizenDataFromId("251195-1448", "DK");
-
-        $this->assertEquals("Female", $citizen->getGender());
+//        $citizen = Socrates::getCitizenDataFromId("251195-1448", "DK");
+//
+//        $this->assertEquals(Gender::FEMALE, $citizen->getGender());
     }
 
     /** @test */
     public function id_validator_test(): void
     {
-        $socrates = new Socrates();
-
-        $this->assertTrue(
-          $socrates->validateId("251195-1448", "DK")
-        );
+//        $this->assertTrue(
+//            Socrates::validateId("251195-1448", "DK")
+//        );
     }
 }
