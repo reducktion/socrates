@@ -267,6 +267,7 @@ return [
     'validators' => [
         'BE' => Reducktion\Socrates\Core\Belgium\BelgiumIdValidator::class,
         'DK' => Reducktion\Socrates\Core\Denmark\DenmarkIdValidator::class,
+        'PT' => Reducktion\Socrates\Core\Portugal\PortugalIdValidator::class,
     ],
 
 ];

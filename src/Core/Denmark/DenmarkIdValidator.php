@@ -3,26 +3,26 @@
 namespace Reducktion\Socrates\Core\Denmark;
 
 use Reducktion\Socrates\Contracts\IdValidator;
-use Reducktion\Socrates\Exceptions\Denmark\InvalidCprLengthException;
+use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class DenmarkIdValidator implements IdValidator
 {
     public function validate(string $id): bool
     {
-        $cpr = $this->sanitize($id);
+        $id = $this->sanitize($id);
 
         $cprArray = array_map(
             static function ($digit) {
                 return (int) $digit;
             },
-            str_split($cpr)
+            str_split($id)
         );
 
         $multipliers = [4, 3, 2, 7, 6, 5, 4, 3, 2, 1];
 
         return array_sum(
             array_map(
-                function ($digit, $multiplier) {
+                static function ($digit, $multiplier) {
                     return $digit * $multiplier;
                 },
                 $cprArray,
@@ -33,14 +33,14 @@ class DenmarkIdValidator implements IdValidator
 
     private function sanitize(string $id): string
     {
-        $cpr = str_replace('-', '', $id);
+        $cleanId = str_replace('-', '', $id);
 
-        $cprLength = strlen($cpr);
+        $length = strlen($cleanId);
 
-        if ($cprLength !== 10) {
-            throw new InvalidCprLengthException("Danish CPR must have 10 digits, got $cprLength");
+        if ($length !== 10) {
+            throw new InvalidLengthException("Danish CPR must have 10 digits, got $length");
         }
 
-        return $cpr;
+        return $cleanId;
     }
 }

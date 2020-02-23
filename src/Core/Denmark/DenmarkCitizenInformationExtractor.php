@@ -5,17 +5,17 @@ namespace Reducktion\Socrates\Core\Denmark;
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
-use Reducktion\Socrates\Exceptions\Denmark\InvalidCprLengthException;
+use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Models\Citizen;
 
 class DenmarkCitizenInformationExtractor implements CitizenInformationExtractor
 {
     public function extract(string $id): Citizen
     {
-        $cpr = $this->sanitize($id);
+        $id = $this->sanitize($id);
 
-        $gender = $this->getGender((int) $cpr);
-        $dateOfBirth = $this->getDateOfBirth($cpr);
+        $gender = $this->getGender((int) $id);
+        $dateOfBirth = $this->getDateOfBirth($id);
 
         $citizen = new Citizen();
         $citizen->setGender($gender);
@@ -26,15 +26,15 @@ class DenmarkCitizenInformationExtractor implements CitizenInformationExtractor
 
     private function sanitize(string $id): string
     {
-        $cpr = str_replace('-', '', $id);
+        $cleanId = str_replace('-', '', $id);
 
-        $cprLength = strlen($cpr);
+        $length = strlen($cleanId);
 
-        if ($cprLength !== 10) {
-            throw new InvalidCprLengthException("Danish CPR must have 10 digits, got $cprLength");
+        if ($length !== 10) {
+            throw new InvalidLengthException("Danish CPR must have 10 digits, got $length");
         }
 
-        return $cpr;
+        return $cleanId;
     }
 
     private function getGender(int $cpr): string
