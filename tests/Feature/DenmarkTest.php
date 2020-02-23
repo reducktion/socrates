@@ -77,5 +77,9 @@ class DenmarkTest extends FeatureTest
                 Socrates::validateId($cpr, 'DK')
             );
         }
+
+        $this->expectException(InvalidCprLengthException::class);
+
+        Socrates::validateId('21442-2411', 'DK');
     }
 }
