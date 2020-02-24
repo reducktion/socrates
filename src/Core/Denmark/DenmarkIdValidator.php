@@ -33,14 +33,14 @@ class DenmarkIdValidator implements IdValidator
 
     private function sanitize(string $id): string
     {
-        $cleanId = str_replace('-', '', $id);
+        $id = str_replace('-', '', $id);
 
-        $length = strlen($cleanId);
+        $idLength = strlen($id);
 
-        if ($length !== 10) {
-            throw new InvalidLengthException("Danish CPR must have 10 digits, got $length");
+        if ($idLength !== 10) {
+            throw new InvalidLengthException("Danish CPR must have 10 digits, got $idLength");
         }
 
-        return $cleanId;
+        return $id;
     }
 }

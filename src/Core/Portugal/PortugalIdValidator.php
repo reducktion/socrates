@@ -35,17 +35,17 @@ class PortugalIdValidator implements IdValidator
 
     private function sanitize(string $id): string
     {
-        $cleanId = str_replace(' ', '', $id);
+        $id = str_replace(' ', '', $id);
 
-        $cleanId = strtoupper($cleanId);
+        $id = strtoupper($id);
 
-        $length = strlen($cleanId);
+        $idLength = strlen($id);
 
-        if ($length !== 12) {
-            throw new InvalidLengthException("Portuguese ID Number must have 12 digits, got $length");
+        if ($idLength !== 12) {
+            throw new InvalidLengthException("Portuguese ID Number must have 12 digits, got $idLength");
         }
 
-        return $cleanId;
+        return $id;
     }
 
     private function getCharacterValue(string $character): int

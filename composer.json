@@ -10,6 +10,9 @@
             "Reducktion\\Socrates\\Tests\\": "tests/"
         }
     },
+    "require": {
+        "ext-intl": "*"
+    },
     "require-dev": {
         "phpunit/phpunit": "^8.5",
         "orchestra/testbench": "^4.6"

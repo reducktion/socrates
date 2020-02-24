@@ -1,16 +1,13 @@
 <?php
 
-
 namespace Reducktion\Socrates\Core\Belgium;
-
 
 use Carbon\Carbon;
 use Reducktion\Socrates\Contracts\IdValidator;
-use Reducktion\Socrates\Exceptions\Belgium\InvalidNrnLengthException;
+use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class BelgiumIdValidator implements IdValidator
 {
-
     public function validate(string $id): bool
     {
         $id = $this->sanitize($id);
@@ -36,13 +33,12 @@ class BelgiumIdValidator implements IdValidator
 
     private function sanitize(string $id): string
     {
-        $id = str_replace('-', '', $id);
-        $id = str_replace('.', '', $id);
+        $id = str_replace(['-', '.'], '', $id);
 
         $idLength = strlen($id);
 
         if ($idLength !== 11) {
-            throw new InvalidNrnLengthException("Belgium NRN must have 11 digits, got $idLength");
+            throw new InvalidLengthException("Belgium NRN must have 11 digits, got $idLength");
         }
 
         return $id;
@@ -70,7 +66,7 @@ class BelgiumIdValidator implements IdValidator
 
         $year = $after2000 ? $year + 2000 : $year + 1900;
 
-        $dob =Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+        $dob = Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
 
         if ($dob->greaterThan($dob->subYears(12))) {
             return false;
@@ -78,5 +74,4 @@ class BelgiumIdValidator implements IdValidator
 
         return true;
     }
-
 }
