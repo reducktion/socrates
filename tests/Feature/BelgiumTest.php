@@ -4,7 +4,7 @@ namespace Reducktion\Socrates\Tests\Feature;
 
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
-use Reducktion\Socrates\Exceptions\Belgium\InvalidNrnLengthException;
+use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Facades\Socrates;
 
 class BelgiumTest extends FeatureTest
@@ -68,7 +68,7 @@ class BelgiumTest extends FeatureTest
             $this->assertEquals($person['age'], $citizen->getAge());
         }
 
-        $this->expectException(InvalidNrnLengthException::class);
+        $this->expectException(InvalidLengthException::class);
 
         Socrates::getCitizenDataFromId('12.12.12-1323.32', 'BE');
     }

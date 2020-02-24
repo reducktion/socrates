@@ -35,10 +35,10 @@ class BelgiumIdValidator implements IdValidator
     {
         $id = str_replace(['-', '.'], '', $id);
 
-        $idLength = strlen($id);
+        $length = strlen($id);
 
-        if ($idLength !== 11) {
-            throw new InvalidLengthException("Belgium NRN must have 11 digits, got $idLength");
+        if ($length !== 11) {
+            throw new InvalidLengthException("Belgium NRN must have 11 digits, got $length");
         }
 
         return $id;
