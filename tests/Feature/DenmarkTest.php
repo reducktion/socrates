@@ -4,7 +4,7 @@ namespace Reducktion\Socrates\Tests\Feature;
 
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
-use Reducktion\Socrates\Exceptions\Denmark\InvalidCprLengthException;
+use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Facades\Socrates;
 
 class DenmarkTest extends FeatureTest
@@ -59,7 +59,7 @@ class DenmarkTest extends FeatureTest
             $this->assertEquals($person['age'], $citizen->getAge());
         }
 
-        $this->expectException(InvalidCprLengthException::class);
+        $this->expectException(InvalidLengthException::class);
 
         Socrates::getCitizenDataFromId('324432-343', 'DK');
     }
@@ -78,7 +78,7 @@ class DenmarkTest extends FeatureTest
             );
         }
 
-        $this->expectException(InvalidCprLengthException::class);
+        $this->expectException(InvalidLengthException::class);
 
         Socrates::validateId('21442-2411', 'DK');
     }
