@@ -1,12 +1,10 @@
 <?php
 
-
 namespace Reducktion\Socrates\Core\Belgium;
-
 
 use Carbon\Carbon;
 use Reducktion\Socrates\Contracts\IdValidator;
-use Reducktion\Socrates\Exceptions\Belgium\InvalidNrnLengthException;
+use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class BelgiumIdValidator implements IdValidator
 {
@@ -42,7 +40,7 @@ class BelgiumIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 11) {
-            throw new InvalidNrnLengthException("Belgium NRN must have 11 digits, got $idLength");
+            throw new InvalidLengthException("Belgium NRN must have 11 digits, got $idLength");
         }
 
         return $id;
