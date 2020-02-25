@@ -13,6 +13,16 @@ use Reducktion\Socrates\Models\Citizen;
 
 class Socrates
 {
+
+    /**
+     * Extracts the Citizen Data related to the Id provided according to the
+     * country provided.
+     *
+     * @param  string  $id
+     * @param  string  $countryCode
+     *
+     * @return \Reducktion\Socrates\Models\Citizen
+     */
     public function getCitizenDataFromId(string $id, string $countryCode = ''): Citizen
     {
         $id = trim($id);
@@ -26,6 +36,14 @@ class Socrates
         return $citizenInformationExtractor->extract($id);
     }
 
+    /**
+     * Validates the Id provided according to the country provided.
+     *
+     * @param  string  $id
+     * @param  string  $countryCode
+     *
+     * @return bool
+     */
     public function validateId(string $id, string $countryCode = ''): bool
     {
         $id = trim($id);
@@ -37,6 +55,13 @@ class Socrates
         return $idValidator->validate($id);
     }
 
+    /**
+     * Transforms the country code provided in a two letter code.
+     *
+     * @param  string  $countryCode
+     *
+     * @return string
+     */
     private function formatCountryCode(string $countryCode): string
     {
         if ($countryCode === '') {
@@ -62,6 +87,11 @@ class Socrates
         return $countryCode;
     }
 
+    /**
+     * Verifies if a given country supports Citizen data extraction.
+     *
+     * @param  string  $countryCode
+     */
     private function checkIfCountrySupportsCitizenData(string $countryCode): void
     {
         if (! isset(config('socrates.extractors')[$countryCode])) {
