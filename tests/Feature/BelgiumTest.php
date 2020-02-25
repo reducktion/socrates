@@ -11,7 +11,7 @@ class BelgiumTest extends FeatureTest
 {
     private $people;
 
-    private $wrongIds;
+    private $invalidIds;
 
     public function setUp(): void
     {
@@ -50,7 +50,7 @@ class BelgiumTest extends FeatureTest
             ],
         ];
 
-        $this->wrongIds = [
+        $this->invalidIds = [
             '12.12.12-132.32',
             '97.12.03-123.12',
             '01.06.18-468.99',
@@ -81,7 +81,7 @@ class BelgiumTest extends FeatureTest
             );
         }
 
-        foreach ($this->wrongIds as $id) {
+        foreach ($this->invalidIds as $id) {
             $this->assertFalse(
                 Socrates::validateId($id, 'BE')
             );

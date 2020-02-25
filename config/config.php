@@ -254,12 +254,6 @@ return [
         'ZW',
     ],
 
-    'supports-citizen-data' => [
-        'DK',
-        'BE',
-        'FI',
-    ],
-
     'extractors' => [
         'BE' => Reducktion\Socrates\Core\Belgium\BelgiumCitizenInformationExtractor::class,
         'DK' => Reducktion\Socrates\Core\Denmark\DenmarkCitizenInformationExtractor::class,
