@@ -257,16 +257,19 @@ return [
     'supports-citizen-data' => [
         'DK',
         'BE',
+        'FI',
     ],
 
     'extractors' => [
         'BE' => Reducktion\Socrates\Core\Belgium\BelgiumCitizenInformationExtractor::class,
         'DK' => Reducktion\Socrates\Core\Denmark\DenmarkCitizenInformationExtractor::class,
+        'FI' => Reducktion\Socrates\Core\Finland\FinlandCitizenInformationExtractor::class,
     ],
 
     'validators' => [
         'BE' => Reducktion\Socrates\Core\Belgium\BelgiumIdValidator::class,
         'DK' => Reducktion\Socrates\Core\Denmark\DenmarkIdValidator::class,
+        'FI' => Reducktion\Socrates\Core\Finland\FinlandIdValidator::class,
         'PT' => Reducktion\Socrates\Core\Portugal\PortugalIdValidator::class,
     ],
 

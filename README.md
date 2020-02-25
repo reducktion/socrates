@@ -1,21 +1,11 @@
 # Socrates
 
-## Contributing
+## Finland
 
-Create a new Laravel project:
+Finland uses a 11 digit number for the Personal Identity Code with the format `DDMMYYCZZZQ`.
 
-```bash
-composer create-project — prefer-dist laravel/laravel package-tester
-```
-
-Create `packages/reducktion` folders in the root of the project:
-
-![alt text](docs/folder_structure.png "Directory Structure")
-
-Now navigate to the package directory (`packages/reducktion`) and git clone the package:
-
-```bash
-git clone https://github.com/AlexOlival/socrates.git
-```
-
-All good to go! :grin:
+Explaining the format by each section:
+* `DDMMYY` represents the date of birth
+* `C` represents the century (`+` for people born in 1800-1899, `-` for people born in 1900-1999, and `A` for people born in 2000-2099)
+* `ZZZ` is the personal identification number (odd for males and even for females)
+* `Q` is a checksum character
