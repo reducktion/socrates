@@ -15,8 +15,7 @@ class Socrates
 {
 
     /**
-     * Extracts the Citizen Data related to the Id provided according to the
-     * country provided.
+     * Extracts the Citizen data related to the provided Personal Identification Number.
      *
      * @param  string  $id
      * @param  string  $countryCode
@@ -37,7 +36,7 @@ class Socrates
     }
 
     /**
-     * Validates the Id provided according to the country provided.
+     * Checks if the provided Personal Identification Number is valid.
      *
      * @param  string  $id
      * @param  string  $countryCode
@@ -56,7 +55,7 @@ class Socrates
     }
 
     /**
-     * Transforms the country code provided in a two letter code.
+     * Transforms the provided country code to the ISO 3166-2 format.
      *
      * @param  string  $countryCode
      *
