@@ -50,7 +50,7 @@ class FinlandTest extends FeatureTest
         ];
 
         $this->invalidIds = [
-            '040403+2676',
+            '050403+2676',
             '110414-479W',
             '653416A549B',
             '122417-456T',
@@ -81,14 +81,14 @@ class FinlandTest extends FeatureTest
             );
         }
 
-//        foreach ($this->invalidIds as $id) {
-//            $this->assertFalse(
-//                Socrates::validateId($id, 'FI')
-//            );
-//        }
-//
-//        $this->expectException(InvalidLengthException::class);
-//
-//        Socrates::validateId('21344-6451');
+        foreach ($this->invalidIds as $id) {
+            $this->assertFalse(
+                Socrates::validateId($id, 'FI')
+            );
+        }
+
+        $this->expectException(InvalidLengthException::class);
+
+        Socrates::validateId('21344-6451', 'FI');
     }
 }

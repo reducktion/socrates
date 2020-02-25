@@ -2,7 +2,6 @@
 
 namespace Reducktion\Socrates\Core\Finland;
 
-use InvalidArgumentException;
 use Reducktion\Socrates\Contracts\IdValidator;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
@@ -21,7 +20,8 @@ class FinlandIdValidator implements IdValidator
 
         $result = ((int) $id % 31);
 
-         $controlCharacters = '0123456789ABCDEFHJKLMNPRSTUVWXY';
-         return $controlCharacters[$result] === $control;
+        $controlCharacters = '0123456789ABCDEFHJKLMNPRSTUVWXY';
+
+        return $controlCharacters[$result] === $control;
     }
 }
