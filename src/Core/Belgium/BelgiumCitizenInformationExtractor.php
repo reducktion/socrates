@@ -29,10 +29,10 @@ class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
     {
         $id = str_replace(['-', '.'], '', $id);
 
-        $length = strlen($id);
+        $idLength = strlen($id);
 
-        if ($length !== 11) {
-            throw new InvalidLengthException("Belgium NRN must have 11 digits, got $length");
+        if ($idLength !== 11) {
+            throw new InvalidLengthException("Belgium NRN must have 11 digits, got $idLength");
         }
 
         return $id;
