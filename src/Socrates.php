@@ -55,7 +55,7 @@ class Socrates
 
         $countryCode = strtoupper($countryCode);
 
-        if (!in_array($countryCode, config('socrates.all'), true)){
+        if (! in_array($countryCode, config('socrates.all'), true)){
             throw new UnrecognisedCountryException("Could not find the country with the code '$countryCode'.");
         }
 
@@ -64,7 +64,7 @@ class Socrates
 
     private function checkIfCountrySupportsCitizenData(string $countryCode): void
     {
-        if (!in_array($countryCode, config('socrates.supports-citizen-data'), true)) {
+        if (! isset(config('socrates.extractors')[$countryCode])) {
             $countryName = Locale::getDisplayRegion("-$countryCode", 'en');
 
             throw new UnsupportedOperationException("$countryName does not support extracting citizen data from the ID.");

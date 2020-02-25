@@ -11,7 +11,7 @@ abstract class CitizenInformationExtractorFactory
 
         $extractors = config('socrates.extractors');
 
-        if (! array_key_exists($countryCode, $extractors)) {
+        if (! isset($extractors[$countryCode])) {
             throw new RuntimeException("Unknown or unsupported country code '$countryCode'");
         }
 
