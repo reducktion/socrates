@@ -11,23 +11,19 @@ class SpainIdValidator implements IdValidator
     {
         $id = $this->sanitize($id);
 
-        if (!$this->isNIF($id) && !$this->isNIE($id)) {
-            return false;
+        $position = strpos('XYZ', $id[0]);
+
+        if (is_numeric($position)) {
+            $id = substr_replace($id, $position, 0, 1);
         }
 
-        $f = strpos('XYZ', $id[0]) === false
-            ? -1
-            : strpos('XYZ', $id[0]) % 3;
+        $control = substr($id, -1);
 
-        $s = $f;
+        $result = ((int) $id) % 23;
 
-        if ($f === -1) {
-            $s = $id[0];
-        }
+        $controlCharacters = 'TRWAGMYFPDXBNJZSQVHLCKET';
 
-        $i = ($s + substr($id, 1, 7)) % 23;
-
-        return strpos('TRWAGMYFPDXBNJZSQVHLCKET', $id[8]) === $i;
+        return $controlCharacters[$result] === $control;
     }
 
     private function sanitize(string $id): string
@@ -43,15 +39,5 @@ class SpainIdValidator implements IdValidator
         }
 
         return $id;
-    }
-
-    private function isNIF(string $id): bool
-    {
-        return preg_match('/^\d{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/', $id, $matches);
-    }
-
-    private function isNIE(string $id): bool
-    {
-        return preg_match('/^[XYZ]\d{7}[TRWAGMYFPDXBNJZSQVHLCKE]$/', $id, $matches);
     }
 }

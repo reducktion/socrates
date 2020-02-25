@@ -15,11 +15,11 @@ class SpainTest extends FeatureTest
         parent::setUp();
 
         $this->validIds = [
-            //'84345642L',
-            //'Y3338121F',
-            //'40298386V',
+            '84345642L',
+            'Y3338121F',
+            '40298386V',
             'Y0597591L',
-            //'09730915Y',
+            '09730915Y',
         ];
     }
 
