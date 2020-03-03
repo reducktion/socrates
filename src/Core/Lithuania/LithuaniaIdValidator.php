@@ -9,13 +9,6 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class LithuaniaIdValidator implements IdValidator
 {
-    // 3 840915 201
-    // G YYMMDD NNN C
-    // G => gender
-    // YYMMDD => dob
-    // NNN =>
-    // C => control
-
     public function validate(string $id): bool
     {
         $idLength = strlen($id);

@@ -12,12 +12,6 @@ use Reducktion\Socrates\Models\Citizen;
 
 class LithuaniaCitizenInformationExtractor implements CitizenInformationExtractor
 {
-    // 3 840915 201
-    // G YYMMDD NNN C
-    // G => gender
-    // YYMMDD => dob
-    // NNN =>
-    // C => control
     public function extract(string $id): Citizen
     {
         $idLength = strlen($id);
@@ -45,10 +39,14 @@ class LithuaniaCitizenInformationExtractor implements CitizenInformationExtracto
         $dateDigits = substr($id, 1, 6);
         [$year, $month, $day] = str_split($dateDigits, 2);
 
-        $firstDigit = $id[0];
-        $year = ($firstDigit % 2) ?
-            (($firstDigit + 16) * 100) + $year:
-            (($firstDigit + 15) * 100) + $year;
+        $firstDigit = (int) $id[0];
+        $calc = (int) floor(($firstDigit + 34) / 2);
+
+        $century = ($firstDigit % 2) ?
+            $firstDigit + $calc - ($firstDigit - 2) :
+            $firstDigit + $calc - ($firstDigit - 1);
+
+        $year = (($century - 1) * 100) + $year;
 
         return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
     }
