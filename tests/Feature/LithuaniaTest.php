@@ -64,7 +64,7 @@ class LithuaniaTest extends FeatureTest
     public function test_extract_behaviour(): void
     {
         foreach ($this->people as $person) {
-            $citizen = Socrates::getCitizenDataFromId($person['pc'], 'LI');
+            $citizen = Socrates::getCitizenDataFromId($person['pc'], 'LT');
             $this->assertEquals($person['gender'], $citizen->getGender());
             $this->assertEquals($person['dob'], $citizen->getDateOfBirth());
             $this->assertEquals($person['age'], $citizen->getAge());
@@ -72,26 +72,26 @@ class LithuaniaTest extends FeatureTest
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::getCitizenDataFromId('3050811811', 'LI');
+        Socrates::getCitizenDataFromId('3050811811', 'LT');
     }
 
     public function test_validation_behaviour(): void
     {
         foreach ($this->people as $person)  {
             $this->assertTrue(
-                Socrates::validateId($person['pc'], 'LI')
+                Socrates::validateId($person['pc'], 'LT')
             );
         }
 
         foreach ($this->invalidIds as $pc) {
             $this->assertFalse(
-                Socrates::validateId($pc, 'LI')
+                Socrates::validateId($pc, 'LT')
             );
         }
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::validateId('3050811811123', 'LI');
+        Socrates::validateId('3050811811123', 'LT');
     }
 
 }
