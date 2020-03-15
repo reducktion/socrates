@@ -25,6 +25,10 @@ class SwedenIdValidator implements IdValidator
             return false;
         }
 
+        if (strlen($id) === 12) {
+            $id = $this->convertToTenDigitId($id);
+        }
+
         $dateString = substr($id, 0, 6);
 
         if (!$this->validateDate($dateString)) {
@@ -54,10 +58,24 @@ class SwedenIdValidator implements IdValidator
 
         $idLength = strlen($id);
 
-        if ($idLength !== 10) {
-            throw new InvalidLengthException("Swedish Personnummer must have 10 digits, got $idLength");
+        if ($idLength !== 10 && $idLength !== 12) {
+            throw new InvalidLengthException("Swedish Personnummer must have 10 or 12 digits, got $idLength");
         }
 
+        return $id;
+    }
+
+    private function convertToTenDigitId(string $id): string
+    {
+        $tenDigitId = '';
+
+        for ($i = 0; $i < strlen($id); $i++) {
+            if ($i > 1) {
+                $tenDigitId .= $id[$i];
+            }
+        }
+
+        $id = $tenDigitId;
         return $id;
     }
 

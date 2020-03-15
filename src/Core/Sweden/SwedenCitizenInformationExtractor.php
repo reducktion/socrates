@@ -14,7 +14,11 @@ class SwedenCitizenInformationExtractor implements CitizenInformationExtractor
     {
         $id = $this->sanitize($id);
 
-        $gender = $this->getGender((int) $id);
+        if (strlen($id) === 12) {
+            $id = $this->convertToTenDigitId($id);
+        }
+
+        $gender = $this->getGender($id);
         $dateOfBirth = $this->getDateOfBirth($id);
 
         $citizen = new Citizen();
@@ -26,37 +30,42 @@ class SwedenCitizenInformationExtractor implements CitizenInformationExtractor
 
     private function sanitize(string $id): string
     {
-        $cleanId = str_replace('-', '', $id);
+        $id = str_replace('-', '', $id);
 
-        $length = strlen($cleanId);
+        $idLength = strlen($id);
 
-        if ($length !== 10) {
-            throw new InvalidLengthException("Danish CPR must have 10 digits, got $length");
+        if ($idLength !== 10 && $idLength !== 12) {
+            throw new InvalidLengthException("Swedish Personnummer must have 10 or 12 digits, got $idLength");
         }
 
-        return $cleanId;
+        return $id;
     }
 
-    private function getGender(int $cpr): string
+    private function convertToTenDigitId(string $id): string
     {
-        return ($cpr % 2) ? Gender::MALE : Gender::FEMALE;
-    }
+        $tenDigitId = '';
 
-    private function getDateOfBirth(string $cpr): Carbon
-    {
-        $seventhDigit = (int) $cpr[6];
-        $dateDigits = substr($cpr, 0, 6);
-        [$day, $month, $twoDigitYear] = str_split($dateDigits, 2);
-
-        $year = $twoDigitYear < 70
-            ? Carbon::createFromFormat('Y', "19$twoDigitYear")->format('Y')
-            : Carbon::createFromFormat('y', (string) $twoDigitYear)->format('Y');
-
-        if (($seventhDigit === 4 || $seventhDigit === 9) && $year <= 1936) {
-            $year += 100;
-        } else if ($seventhDigit > 4) {
-            $year > 1957 ? $year -= 100 : $year += 100;
+        for ($i = 0; $i < strlen($id); $i++) {
+            if ($i > 1) {
+                $tenDigitId .= $id[$i];
+            }
         }
+
+        $id = $tenDigitId;
+        return $id;
+    }
+
+    private function getGender(string $id): string
+    {
+        return $id[8] % 2 == 0 ? Gender::FEMALE : Gender::MALE;
+    }
+
+    private function getDateOfBirth(string $id): Carbon
+    {
+        $dateDigits = substr($id, 0, 6);
+        [$twoDigitYear, $month, $day] = str_split($dateDigits, 2);
+
+        $year = '19' . $twoDigitYear;
 
         return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
     }
