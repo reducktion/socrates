@@ -27,7 +27,9 @@ class SwedenIdValidator implements IdValidator
 
         $dateString = substr($id, 0, 6);
 
-        $this->validateDate($dateString);
+        if (!$this->validateDate($dateString)) {
+            return false;
+        }
 
         $psn = array_reverse(str_split($id));
         $sum = 0;
