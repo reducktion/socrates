@@ -44,7 +44,7 @@ class LithuaniaTest extends FeatureTest
                 'dob' => Carbon::createFromFormat('Y-m-d', '2006-07-27'),
                 'age' => Carbon::createFromFormat('Y-m-d', '2006-07-27')->age
             ],
-            'gintas' => [
+            'domynikas' => [
                 'pc' => '50508199254',
                 'gender' => Gender::MALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '2005-08-19'),

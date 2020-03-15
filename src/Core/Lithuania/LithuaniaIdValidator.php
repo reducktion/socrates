@@ -41,7 +41,7 @@ class LithuaniaIdValidator implements IdValidator
             if ($c === 10) {
                 $c = 1;
             }
-         }
+        }
         $d %= 11;
         $e %= 11;
         if ($d < 10) {
