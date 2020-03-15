@@ -11,7 +11,7 @@ abstract class IdValidatorFactory
 
         $validators = config('socrates.validators');
 
-        if (! array_key_exists($countryCode, $validators)) {
+        if (! isset($validators[$countryCode])) {
             throw new RuntimeException("Unknown or unsupported country code '$countryCode'");
         }
 

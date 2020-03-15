@@ -254,17 +254,11 @@ return [
         'ZW',
     ],
 
-    'supports-citizen-data' => [
-        'DK',
-        'BE',
-        'FI',
-        'SE'
-    ],
-
     'extractors' => [
         'BE' => Reducktion\Socrates\Core\Belgium\BelgiumCitizenInformationExtractor::class,
         'DK' => Reducktion\Socrates\Core\Denmark\DenmarkCitizenInformationExtractor::class,
         'FI' => Reducktion\Socrates\Core\Finland\FinlandCitizenInformationExtractor::class,
+        'LT' => Reducktion\Socrates\Core\Lithuania\LithuaniaCitizenInformationExtractor::class,
         'SE' => Reducktion\Socrates\Core\Sweden\SwedenCitizenInformationExtractor::class,
     ],
 
@@ -273,6 +267,7 @@ return [
         'DK' => Reducktion\Socrates\Core\Denmark\DenmarkIdValidator::class,
         'ES' => Reducktion\Socrates\Core\Spain\SpainIdValidator::class,
         'FI' => Reducktion\Socrates\Core\Finland\FinlandIdValidator::class,
+        'LT' => Reducktion\Socrates\Core\Lithuania\LithuaniaIdValidator::class,
         'PT' => Reducktion\Socrates\Core\Portugal\PortugalIdValidator::class,
         'SE' => Reducktion\Socrates\Core\Sweden\SwedenIdValidator::class,
     ],

@@ -10,6 +10,7 @@ use Reducktion\Socrates\Facades\Socrates;
 class DenmarkTest extends FeatureTest
 {
     private $people;
+    private $invalidIds;
 
     protected function setUp(): void
     {
@@ -47,6 +48,14 @@ class DenmarkTest extends FeatureTest
                 'age' => Carbon::createFromFormat('Y-m-d', '2004-04-04')->age,
             ],
         ];
+
+        $this->invalidIds = [
+            '234321-2454',
+            '333694-0034',
+            '088383-2313',
+            '133232-1323',
+            '040404-7054'
+        ];
     }
 
     public function test_extract_behaviour(): void
@@ -72,7 +81,7 @@ class DenmarkTest extends FeatureTest
             );
         }
 
-        foreach (['234321-2454', '333694-0034', '088383-2313', '133232-1323', '040404-7054'] as $cpr) {
+        foreach ($this->invalidIds as $cpr) {
             $this->assertFalse(
                 Socrates::validateId($cpr, 'DK')
             );

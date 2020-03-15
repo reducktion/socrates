@@ -13,6 +13,15 @@ use Reducktion\Socrates\Models\Citizen;
 
 class Socrates
 {
+
+    /**
+     * Extracts the Citizen data related to the provided Personal Identification Number.
+     *
+     * @param  string  $id
+     * @param  string  $countryCode
+     *
+     * @return \Reducktion\Socrates\Models\Citizen
+     */
     public function getCitizenDataFromId(string $id, string $countryCode = ''): Citizen
     {
         $id = trim($id);
@@ -26,6 +35,14 @@ class Socrates
         return $citizenInformationExtractor->extract($id);
     }
 
+    /**
+     * Checks if the provided Personal Identification Number is valid.
+     *
+     * @param  string  $id
+     * @param  string  $countryCode
+     *
+     * @return bool
+     */
     public function validateId(string $id, string $countryCode = ''): bool
     {
         $id = trim($id);
@@ -37,6 +54,13 @@ class Socrates
         return $idValidator->validate($id);
     }
 
+    /**
+     * Transforms the provided country code to the ISO 3166-2 format.
+     *
+     * @param  string  $countryCode
+     *
+     * @return string
+     */
     private function formatCountryCode(string $countryCode): string
     {
         if ($countryCode === '') {
@@ -55,16 +79,21 @@ class Socrates
 
         $countryCode = strtoupper($countryCode);
 
-        if (!in_array($countryCode, config('socrates.all'), true)){
+        if (! in_array($countryCode, config('socrates.all'), true)){
             throw new UnrecognisedCountryException("Could not find the country with the code '$countryCode'.");
         }
 
         return $countryCode;
     }
 
+    /**
+     * Verifies if a given country supports Citizen data extraction.
+     *
+     * @param  string  $countryCode
+     */
     private function checkIfCountrySupportsCitizenData(string $countryCode): void
     {
-        if (!in_array($countryCode, config('socrates.supports-citizen-data'), true)) {
+        if (! isset(config('socrates.extractors')[$countryCode])) {
             $countryName = Locale::getDisplayRegion("-$countryCode", 'en');
 
             throw new UnsupportedOperationException("$countryName does not support extracting citizen data from the ID.");
