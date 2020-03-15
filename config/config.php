@@ -265,6 +265,7 @@ return [
         'DK' => Reducktion\Socrates\Core\Denmark\DenmarkIdValidator::class,
         'ES' => Reducktion\Socrates\Core\Spain\SpainIdValidator::class,
         'FI' => Reducktion\Socrates\Core\Finland\FinlandIdValidator::class,
+        'IT' => Reducktion\Socrates\Core\Italy\ItalyIdValidator::class,
         'PT' => Reducktion\Socrates\Core\Portugal\PortugalIdValidator::class,
     ],
 
