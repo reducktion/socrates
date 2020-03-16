@@ -65,7 +65,9 @@ class SwedenCitizenInformationExtractor implements CitizenInformationExtractor
         $dateDigits = substr($id, 0, 6);
         [$twoDigitYear, $month, $day] = str_split($dateDigits, 2);
 
-        $year = '19' . $twoDigitYear;
+        $year = $twoDigitYear[0] === '0'
+            ? '20' . $twoDigitYear
+            : '19' . $twoDigitYear;
 
         return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
     }

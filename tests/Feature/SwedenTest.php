@@ -24,10 +24,10 @@ class SwedenTest extends FeatureTest
                 'age' => Carbon::createFromFormat('Y-m-d', '1955-03-09')->age,
             ],
             'otto' => [
-                'psn' => '960704-4519',
+                'psn' => '001020-1895',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1996-07-04'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1996-07-04')->age,
+                'dob' => Carbon::createFromFormat('Y-m-d', '2000-10-20'),
+                'age' => Carbon::createFromFormat('Y-m-d', '2000-10-20')->age,
             ],
             'lowa' => [
                 'psn' => '751208-0222',
