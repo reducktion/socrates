@@ -66,7 +66,13 @@ class ItalyTest extends FeatureTest
 
     public function test_extract_behaviour(): void
     {
-        $this->assertTrue(true);
+        foreach ($this->people as $person) {
+            $citizen = Socrates::getCitizenDataFromId($person['fc'], 'IT');
+
+            $this->assertEquals($person['gender'], $citizen->getGender());
+            $this->assertEquals($person['dob'], $citizen->getDateOfBirth());
+            $this->assertEquals($person['age'], $citizen->getAge());
+        }
     }
 
     public function test_validation_behaviour(): void

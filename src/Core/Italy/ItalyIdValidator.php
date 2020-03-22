@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Reducktion\Socrates\Core\Italy;
-
 
 use Reducktion\Socrates\Contracts\IdValidator;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
@@ -40,7 +38,7 @@ class ItalyIdValidator implements IdValidator
             8 => 'U',
             9 => 'V'
         ];
-        $numericalCharactersPosition = [ 6, 7, 9, 10, 12, 13, 14];
+        $numericalCharactersPosition = [6, 7, 9, 10, 12, 13, 14];
 
         foreach ($numericalCharactersPosition as $characterPosition) {
             if (! is_numeric($id[$characterPosition])) {
