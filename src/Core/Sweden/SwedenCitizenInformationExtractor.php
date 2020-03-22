@@ -18,12 +18,13 @@ class SwedenCitizenInformationExtractor implements CitizenInformationExtractor
 
         $id = str_replace(['-', '+'], '', $id);
 
-        $idInTwelveCharacterFormat = strlen($id) === 13;
+        $idInTwelveCharacterFormat = strlen($id) === 12;
         if ($idInTwelveCharacterFormat) {
             $id = $this->convertToTenDigitId($id);
         }
 
         $gender = $this->getGender($id);
+
         $dateOfBirth = $this->getDateOfBirth($id, $isOverOneHundredYearsOld);
 
         $citizen = new Citizen();
@@ -75,9 +76,15 @@ class SwedenCitizenInformationExtractor implements CitizenInformationExtractor
         $dateDigits = substr($id, 0, 6);
         [$twoDigitYear, $month, $day] = str_split($dateDigits, 2);
 
-        $year = $twoDigitYear < 70
-            ? Carbon::createFromFormat('Y', "19$twoDigitYear")->format('Y')
-            : Carbon::createFromFormat('y', (string) $twoDigitYear)->format('Y');
+        if ($isOverOneHundredYearsOld) {
+            $year = Carbon::createFromFormat('Y', "19$twoDigitYear")->format('Y');
+        } else {
+            $presentTwoDigitYear = (int) now()->format('y');
+
+            $year = $twoDigitYear < $presentTwoDigitYear
+                ? Carbon::createFromFormat('y', (string) $twoDigitYear)->format('Y')
+                : Carbon::createFromFormat('Y', "19$twoDigitYear")->format('Y');
+        }
 
         return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
     }

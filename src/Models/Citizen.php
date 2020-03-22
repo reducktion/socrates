@@ -37,9 +37,4 @@ class Citizen
     {
         $this->dateOfBirth = $dateOfBirth;
     }
-
-    public function __toString()
-    {
-        return 'Gender - ' . $this->gender . ' DoB - ' . $this->dateOfBirth->format('Y-m-d');
-    }
 }
