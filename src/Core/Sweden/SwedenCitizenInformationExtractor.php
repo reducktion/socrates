@@ -12,14 +12,19 @@ class SwedenCitizenInformationExtractor implements CitizenInformationExtractor
 {
     public function extract(string $id): Citizen
     {
-        $id = $this->sanitize($id);
+        $this->validateLength($id);
 
-        if (strlen($id) === 12) {
+        $isOverOneHundredYearsOld = $this->checkIfCitizenIsOverOneHundredYearsOld($id);
+
+        $id = str_replace(['-', '+'], '', $id);
+
+        $idInTwelveCharacterFormat = strlen($id) === 13;
+        if ($idInTwelveCharacterFormat) {
             $id = $this->convertToTenDigitId($id);
         }
 
         $gender = $this->getGender($id);
-        $dateOfBirth = $this->getDateOfBirth($id);
+        $dateOfBirth = $this->getDateOfBirth($id, $isOverOneHundredYearsOld);
 
         $citizen = new Citizen();
         $citizen->setGender($gender);
@@ -28,17 +33,22 @@ class SwedenCitizenInformationExtractor implements CitizenInformationExtractor
         return $citizen;
     }
 
-    private function sanitize(string $id): string
+    private function validateLength(string $id): void
     {
-        $id = str_replace('-', '', $id);
-
         $idLength = strlen($id);
 
-        if ($idLength !== 10 && $idLength !== 12) {
+        if ($idLength !== 11 && $idLength !== 13) {
             throw new InvalidLengthException("Swedish Personnummer must have 10 or 12 digits, got $idLength");
         }
+    }
 
-        return $id;
+    private function checkIfCitizenIsOverOneHundredYearsOld(string $id): bool
+    {
+        $idLength = strlen($id);
+
+        $separatorIndex = $idLength === 13 ? 8 : 6;
+
+        return $id[$separatorIndex] === '+';
     }
 
     private function convertToTenDigitId(string $id): string
@@ -60,14 +70,14 @@ class SwedenCitizenInformationExtractor implements CitizenInformationExtractor
         return $id[8] % 2 == 0 ? Gender::FEMALE : Gender::MALE;
     }
 
-    private function getDateOfBirth(string $id): Carbon
+    private function getDateOfBirth(string $id, bool $isOverOneHundredYearsOld): Carbon
     {
         $dateDigits = substr($id, 0, 6);
         [$twoDigitYear, $month, $day] = str_split($dateDigits, 2);
 
-        $year = $twoDigitYear[0] === '0'
-            ? '20' . $twoDigitYear
-            : '19' . $twoDigitYear;
+        $year = $twoDigitYear < 70
+            ? Carbon::createFromFormat('Y', "19$twoDigitYear")->format('Y')
+            : Carbon::createFromFormat('y', (string) $twoDigitYear)->format('Y');
 
         return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
     }
