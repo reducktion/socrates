@@ -259,6 +259,7 @@ return [
         'DK' => Reducktion\Socrates\Core\Denmark\DenmarkCitizenInformationExtractor::class,
         'FI' => Reducktion\Socrates\Core\Finland\FinlandCitizenInformationExtractor::class,
         'LT' => Reducktion\Socrates\Core\Lithuania\LithuaniaCitizenInformationExtractor::class,
+        'SE' => Reducktion\Socrates\Core\Sweden\SwedenCitizenInformationExtractor::class,
     ],
 
     'validators' => [
@@ -268,6 +269,7 @@ return [
         'FI' => Reducktion\Socrates\Core\Finland\FinlandIdValidator::class,
         'LT' => Reducktion\Socrates\Core\Lithuania\LithuaniaIdValidator::class,
         'PT' => Reducktion\Socrates\Core\Portugal\PortugalIdValidator::class,
+        'SE' => Reducktion\Socrates\Core\Sweden\SwedenIdValidator::class,
     ],
 
 ];
