@@ -9,26 +9,51 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class ItalyIdValidator implements IdValidator
 {
-
     public function validate(string $id): bool
     {
-        // SSS NNN YYMDD ZZZZ X
-        // SSS => first three consonants in the family name
-        // NNN => the first name consonants
-        // YYMDD => dob (M => (A to E, H, L, M, P, R to T), DD => (Add 40 to day of month when female)
-        // ZZZZ => are code where person was born
-        // X => checksum
-
         $idLength = strlen($id);
-
         if ($idLength !== 16) {
             throw new InvalidLengthException("Italian FC must have 16 digits, got $idLength");
         }
 
+        $id = $this->omocodiaSwap($id);
+
         $control = substr($id, -1);
         $id = substr($id, 0, -1);
-        $numbers = '0123456789'; // 0 - 9 (duh)
-        $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // 0 - 25
+
+        $checksum = $this->calculateChecksum($id);
+
+        return $control === $checksum;
+    }
+
+    private function omocodiaSwap(string $id): string
+    {
+        $omocodia = [
+            0 => 'L',
+            1 => 'M',
+            2 => 'N',
+            3 => 'P',
+            4 => 'Q',
+            5 => 'R',
+            6 => 'S',
+            7 => 'T',
+            8 => 'U',
+            9 => 'V'
+        ];
+        $numericalCharactersPosition = [ 6, 7, 9, 10, 12, 13, 14];
+
+        foreach ($numericalCharactersPosition as $characterPosition) {
+            if (! is_numeric($id[$characterPosition])) {
+                $id[$characterPosition] = array_search($id[$characterPosition], $omocodia, true);
+            }
+        }
+        return $id;
+    }
+
+    private function calculateChecksum(string $id): string
+    {
+        $numbers = '0123456789';
+        $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $odd = [
             0 => 1,
             1 => 0,
@@ -67,22 +92,17 @@ class ItalyIdValidator implements IdValidator
             'Y' => 24,
             'Z' => 23
         ];
-
+        $idLength = strlen($id);
         $result = 0;
-        for ($position = 1; $position < $idLength; $position++) {
-            if ($position % 2) {
-                // odd
-                $result += $odd[$id[$position - 1]];
+        for ($position = 0; $position < $idLength; $position++) {
+            if (($position + 1) % 2 === 0) {
+                $result += is_numeric($id[$position]) ?
+                    (int) $numbers[$id[$position]] :
+                    strpos($alphabet, $id[$position]);
             } else {
-                //even
-                $result += is_numeric($id[$position - 1]) ?
-                    (int) $numbers[$id[$position - 1]] :
-                    strpos($alphabet, $id[$position - 1]);
+                $result += $odd[$id[$position]];
             }
         }
-
-        $remainder = $result % 26;
-        dd($result, $remainder, $alphabet[$remainder], $control);
+        return $alphabet[$result % 26];
     }
-
 }
