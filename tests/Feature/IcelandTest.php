@@ -20,33 +20,33 @@ class IcelandTest extends FeatureTest
             'andi' => [
                 'kt' => '0902862349',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1992-07-09'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1992-07-09')->age,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1986-02-09'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1986-02-09')->age,
             ],
             'freyja' => [
                 'kt' => '120174-3399',
                 'gender' => Gender::FEMALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1993-05-07'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1993-05-07')->age,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1974-01-12'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1974-01-12')->age,
             ],
-//            'nair' => [
-//                'kt' => '150437-3068',
-//                'gender' => Gender::FEMALE,
-//                'dob' => Carbon::createFromFormat('Y-m-d', '1990-08-18'),
-//                'age' => Carbon::createFromFormat('Y-m-d', '1990-08-18')->age,
-//            ],
-//            'eva' => [
-//                'kt' => '040404-7094',
-//                'gender' => Gender::FEMALE,
-//                'dob' => Carbon::createFromFormat('Y-m-d', '2004-04-04'),
-//                'age' => Carbon::createFromFormat('Y-m-d', '2004-04-04')->age,
-//            ],
-//            'hrafn' => [
-//                'kt' => '160888-1995',
-//                'gender' => Gender::MALE,
-//                'dob' => Carbon::createFromFormat('Y-m-d', '1988-08-16'),
-//                'age' => Carbon::createFromFormat('Y-m-d', '1988-08-16')->age,
-//            ],
+            'nair' => [
+                'kt' => '1808905059',
+                'gender' => Gender::FEMALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1990-08-18'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1990-08-18')->age,
+            ],
+            'eva' => [
+                'kt' => '2008108569',
+                'gender' => Gender::FEMALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1910-07-20'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1910-07-20')->age,
+            ],
+            'hrafn' => [
+                'kt' => '100303-4930',
+                'gender' => Gender::MALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '2003-03-10'),
+                'age' => Carbon::createFromFormat('Y-m-d', '2003-03-10')->age,
+            ],
         ];
 
         $this->invalidIds = [
