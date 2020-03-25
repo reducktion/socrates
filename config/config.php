@@ -258,6 +258,7 @@ return [
         'BE' => Reducktion\Socrates\Core\Belgium\BelgiumCitizenInformationExtractor::class,
         'DK' => Reducktion\Socrates\Core\Denmark\DenmarkCitizenInformationExtractor::class,
         'FI' => Reducktion\Socrates\Core\Finland\FinlandCitizenInformationExtractor::class,
+        'IS' => Reducktion\Socrates\Core\Iceland\IcelandCitizenInformationExtractor::class,
         'LT' => Reducktion\Socrates\Core\Lithuania\LithuaniaCitizenInformationExtractor::class,
         'SE' => Reducktion\Socrates\Core\Sweden\SwedenCitizenInformationExtractor::class,
     ],

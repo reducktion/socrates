@@ -19,31 +19,26 @@ class IcelandTest extends FeatureTest
         $this->people = [
             'andi' => [
                 'kt' => '0902862349',
-                'gender' => Gender::MALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '1986-02-09'),
                 'age' => Carbon::createFromFormat('Y-m-d', '1986-02-09')->age,
             ],
             'freyja' => [
                 'kt' => '120174-3399',
-                'gender' => Gender::FEMALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '1974-01-12'),
                 'age' => Carbon::createFromFormat('Y-m-d', '1974-01-12')->age,
             ],
             'nair' => [
                 'kt' => '1808905059',
-                'gender' => Gender::FEMALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '1990-08-18'),
                 'age' => Carbon::createFromFormat('Y-m-d', '1990-08-18')->age,
             ],
             'eva' => [
                 'kt' => '2008108569',
-                'gender' => Gender::FEMALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1910-07-20'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1910-07-20')->age,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1910-08-20'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1910-08-20')->age,
             ],
             'hrafn' => [
                 'kt' => '100303-4930',
-                'gender' => Gender::MALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '2003-03-10'),
                 'age' => Carbon::createFromFormat('Y-m-d', '2003-03-10')->age,
             ],
@@ -60,17 +55,16 @@ class IcelandTest extends FeatureTest
 
     public function test_extract_behaviour(): void
     {
-//        foreach ($this->people as $person) {
-//            $citizen = Socrates::getCitizenDataFromId($person['kt'], 'IS');
-//
-//            $this->assertEquals($person['gender'], $citizen->getGender());
-//            $this->assertEquals($person['dob'], $citizen->getDateOfBirth());
-//            $this->assertEquals($person['age'], $citizen->getAge());
-//        }
-//
-//        $this->expectException(InvalidLengthException::class);
-//
-//        Socrates::getCitizenDataFromId('324432-343', 'IS');
+        foreach ($this->people as $person) {
+            $citizen = Socrates::getCitizenDataFromId($person['kt'], 'IS');
+
+            $this->assertEquals($person['dob'], $citizen->getDateOfBirth());
+            $this->assertEquals($person['age'], $citizen->getAge());
+        }
+
+        $this->expectException(InvalidLengthException::class);
+
+        Socrates::getCitizenDataFromId('324432-343', 'IS');
     }
 
     public function test_validation_behaviour(): void
