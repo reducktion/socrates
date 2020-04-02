@@ -9,6 +9,7 @@ class Citizen
 {
     private $gender;
     private $dateOfBirth;
+    private $placeOfBirth;
 
     public function getGender(): string
     {
@@ -28,6 +29,11 @@ class Citizen
         return $this->dateOfBirth->age;
     }
 
+    public function getPlaceOfBirth(): string
+    {
+        return $this->placeOfBirth;
+    }
+
     public function setGender($gender): void
     {
         $this->gender = $gender;
@@ -38,8 +44,13 @@ class Citizen
         $this->dateOfBirth = $dateOfBirth;
     }
 
+    public function setPlaceOfBirth($placeOfBirth): void
+    {
+        $this->placeOfBirth = $placeOfBirth;
+    }
+
     public function __toString()
     {
-        return 'Gender - ' . $this->gender . ' DoB - ' . $this->dateOfBirth->format('Y-m-d');
+        return 'Gender - ' . $this->gender . ' DoB - ' . $this->dateOfBirth->format('Y-m-d') . ' PoB - ' . $this->getPlaceOfBirth();
     }
 }

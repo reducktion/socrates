@@ -4,8 +4,8 @@ namespace Reducktion\Socrates\Tests\Feature;
 
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
-use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Facades\Socrates;
+use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class ItalyTest extends FeatureTest
 {
@@ -21,37 +21,43 @@ class ItalyTest extends FeatureTest
                 'fc' => 'MRTMTT25D09F205Z',
                 'gender' => Gender::MALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '1925-04-09'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1925-04-09')->age
+                'age' => Carbon::createFromFormat('Y-m-d', '1925-04-09')->age,
+                'pob' => 'MILANO (MI)'
             ],
             'samantha miller' => [
                 'fc' => 'MLLSNT82P65Z404U',
                 'gender' => Gender::FEMALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '1982-09-25'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1982-09-25')->age
+                'age' => Carbon::createFromFormat('Y-m-d', '1982-09-25')->age,
+                'pob' => 'STATI UNITI D\'AMERICA'
             ],
             'delmo castiglione' => [
-                'fc' => 'CSTDLM75B07C035K',
+                'fc' => 'DLMCTG75B07H227Y',
                 'gender' => Gender::MALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '1975-02-07'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1975-02-07')->age
+                'age' => Carbon::createFromFormat('Y-m-d', '1975-02-07')->age,
+                'pob' => 'REINO (BN)'
             ],
             'elsa barese' => [
                 'fc' => 'BRSLSE08D50H987B',
                 'gender' => Gender::FEMALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '2008-04-10'),
-                'age' => Carbon::createFromFormat('Y-m-d', '2008-04-10')->age
+                'age' => Carbon::createFromFormat('Y-m-d', '2008-04-10')->age,
+                'pob' => 'SAN MARTINO ALFIERI (AT)'
             ],
             'dario marcelo' => [
                 'fc' => 'MRCDRA01A13A065E',
                 'gender' => Gender::MALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '2001-01-13'),
-                'age' => Carbon::createFromFormat('Y-m-d', '2001-01-13')->age
+                'age' => Carbon::createFromFormat('Y-m-d', '2001-01-13')->age,
+                'pob' => 'AFRICO (RC)'
             ],
             'dario marchesani' => [
                 'fc' => 'MRCDRALMAMPALSRE',
                 'gender' => Gender::MALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '2001-01-13'),
-                'age' => Carbon::createFromFormat('Y-m-d', '2001-01-13')->age
+                'age' => Carbon::createFromFormat('Y-m-d', '2001-01-13')->age,
+                'pob' => 'AFRICO (RC)'
             ]
         ];
 
@@ -72,6 +78,7 @@ class ItalyTest extends FeatureTest
             $this->assertEquals($person['gender'], $citizen->getGender());
             $this->assertEquals($person['dob'], $citizen->getDateOfBirth());
             $this->assertEquals($person['age'], $citizen->getAge());
+            $this->assertEquals($person['pob'], $citizen->getPlaceOfBirth());
         }
     }
 

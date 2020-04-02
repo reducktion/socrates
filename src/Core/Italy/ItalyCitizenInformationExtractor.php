@@ -3,24 +3,15 @@
 namespace Reducktion\Socrates\Core\Italy;
 
 use Carbon\Carbon;
-use Reducktion\Socrates\Constants\Gender;
-use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
-use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Models\Citizen;
+use Reducktion\Socrates\Constants\Gender;
+use Reducktion\Socrates\Exceptions\InvalidLengthException;
+use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 
 class ItalyCitizenInformationExtractor implements CitizenInformationExtractor
 {
     public function extract(string $id): Citizen
     {
-        // SSS NNN YYMDD ZZZZ X
-        // MRC DRA 01A13 A065 E
-        // MRC DRA 01A13 A06R E
-        // SSS => first three consonants in the family name
-        // NNN => the first name consonants
-        // YYMDD => dob (M => (A to E, H, L, M, P, R to T), DD => (Add 40 to day of month when female)
-        // ZZZZ => are code where person was born
-        // X => checksum
-
         $idLength = strlen($id);
         if ($idLength !== 16) {
             throw new InvalidLengthException("Italian FC must have 16 digits, got $idLength");
@@ -30,10 +21,12 @@ class ItalyCitizenInformationExtractor implements CitizenInformationExtractor
 
         $gender = $this->getGender($id);
         $dateOfBirth = $this->getDateOfBirth($id);
+        $placeOfBirth = $this->getPlaceOfBirth($id);
 
         $citizen = new Citizen();
         $citizen->setGender($gender);
         $citizen->setDateOfBirth($dateOfBirth);
+        $citizen->setPlaceOfBirth($placeOfBirth);
 
         return $citizen;
     }
@@ -57,6 +50,20 @@ class ItalyCitizenInformationExtractor implements CitizenInformationExtractor
         $year = (int) $yearDigits > $currentYear ? (int) $yearDigits + 1900 : (int) $yearDigits + 2000;
 
         return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+    }
+
+    private function getPlaceOfBirth(string $id): string
+    {
+        $pobCode = substr($id, 11, 4);
+        $pob = null;
+
+        if (strpos($pobCode, 'Z') === 0) {
+            $pob = ItalyRegionsList::$countries[$pobCode];
+        } else {
+            $pob = ItalyRegionsList::$counties[$pobCode];
+        }
+
+        return $pob;
     }
 
     private function omocodiaSwap(string $id): string
