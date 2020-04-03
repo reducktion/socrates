@@ -4,7 +4,7 @@ namespace Reducktion\Socrates\Core\Italy;
 
 class ItalyRegionsList
 {
-    static public $countries = [
+    static public $regions = [
         "Z100" => "ALBANIA",
         "Z101" => "ANDORRA",
         "Z102" => "AUSTRIA",
@@ -275,9 +275,6 @@ class ItalyRegionsList
         "Z904" => "DIPENDEZE NORVEGESI (ANTARTICHE)",
         "Z905" => "DIPENDEZE STATUNITENSI",
         "Z906" => "DIPENDENZE SUDAFRICANE",
-    ];
-
-    static public $counties = [
         "A001" => "ABANO TERME (PD)",
         "A004" => "ABBADIA CERRETO (LO)",
         "A005" => "ABBADIA LARIANA (LC)",
