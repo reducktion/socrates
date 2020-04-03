@@ -258,7 +258,10 @@ return [
         'BE' => Reducktion\Socrates\Core\Belgium\BelgiumCitizenInformationExtractor::class,
         'DK' => Reducktion\Socrates\Core\Denmark\DenmarkCitizenInformationExtractor::class,
         'FI' => Reducktion\Socrates\Core\Finland\FinlandCitizenInformationExtractor::class,
+        'IS' => Reducktion\Socrates\Core\Iceland\IcelandCitizenInformationExtractor::class,
         'IT' => Reducktion\Socrates\Core\Italy\ItalyCitizenInformationExtractor::class,
+        'LT' => Reducktion\Socrates\Core\Lithuania\LithuaniaCitizenInformationExtractor::class,
+        'SE' => Reducktion\Socrates\Core\Sweden\SwedenCitizenInformationExtractor::class,
     ],
 
     'validators' => [
@@ -266,8 +269,11 @@ return [
         'DK' => Reducktion\Socrates\Core\Denmark\DenmarkIdValidator::class,
         'ES' => Reducktion\Socrates\Core\Spain\SpainIdValidator::class,
         'FI' => Reducktion\Socrates\Core\Finland\FinlandIdValidator::class,
+        'IS' => Reducktion\Socrates\Core\Iceland\IcelandIdValidator::class,
         'IT' => Reducktion\Socrates\Core\Italy\ItalyIdValidator::class,
+        'LT' => Reducktion\Socrates\Core\Lithuania\LithuaniaIdValidator::class,
         'PT' => Reducktion\Socrates\Core\Portugal\PortugalIdValidator::class,
+        'SE' => Reducktion\Socrates\Core\Sweden\SwedenIdValidator::class,
     ],
 
 ];
