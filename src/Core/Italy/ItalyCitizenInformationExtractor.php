@@ -3,6 +3,7 @@
 namespace Reducktion\Socrates\Core\Italy;
 
 use Carbon\Carbon;
+use Reducktion\Socrates\Exceptions\UnrecognisedPlaceOfBirthException;
 use Reducktion\Socrates\Models\Citizen;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
@@ -59,8 +60,10 @@ class ItalyCitizenInformationExtractor implements CitizenInformationExtractor
 
         if (strpos($pobCode, 'Z') === 0) {
             $pob = ItalyRegionsList::$countries[$pobCode];
-        } else {
+        } elseif (isset(ItalyRegionsList::$counties[$pobCode])) {
             $pob = ItalyRegionsList::$counties[$pobCode];
+        } else {
+            throw new UnrecognisedPlaceOfBirthException("The place of birth code provided doesn't match any registered codes");
         }
 
         return $pob;

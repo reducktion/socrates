@@ -4,6 +4,7 @@ namespace Reducktion\Socrates\Tests\Feature;
 
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
+use Reducktion\Socrates\Exceptions\UnrecognisedPlaceOfBirthException;
 use Reducktion\Socrates\Facades\Socrates;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
@@ -80,6 +81,10 @@ class ItalyTest extends FeatureTest
             $this->assertEquals($person['age'], $citizen->getAge());
             $this->assertEquals($person['pob'], $citizen->getPlaceOfBirth());
         }
+
+        $this->expectException(UnrecognisedPlaceOfBirthException::class);
+
+        Socrates::getCitizenDataFromId('MRCDRA01A13C035E', 'IT');
     }
 
     public function test_validation_behaviour(): void
