@@ -4,7 +4,7 @@ namespace Reducktion\Socrates\Core\Italy;
 
 class ItalyRegionsList
 {
-    static public $regions = [
+    public static $regions = [
         "Z100" => "ALBANIA",
         "Z101" => "ANDORRA",
         "Z102" => "AUSTRIA",

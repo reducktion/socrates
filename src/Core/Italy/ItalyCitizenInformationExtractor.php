@@ -58,10 +58,10 @@ class ItalyCitizenInformationExtractor implements CitizenInformationExtractor
         $pobCode = substr($id, 11, 4);
 
         if (! isset(ItalyRegionsList::$regions[$pobCode])) {
-            throw new UnrecognisedPlaceOfBirthException("The place of birth code provided doesn't match any registered codes");
+            throw new UnrecognisedPlaceOfBirthException("The place of birth code provided '$pobCode' - doesn't match any registered codes.");
         }
 
-        return ItalyRegionsList::$regions[$pobCode];;
+        return ItalyRegionsList::$regions[$pobCode];
     }
 
     private function omocodiaSwap(string $id): string
