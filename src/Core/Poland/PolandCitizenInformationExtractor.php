@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Reducktion\Socrates\Core\Poland;
-
 
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
