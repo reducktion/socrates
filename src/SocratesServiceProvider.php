@@ -7,6 +7,15 @@ use Illuminate\Support\ServiceProvider;
 
 class SocratesServiceProvider extends ServiceProvider
 {
+    public function register()
+    {
+        $this->app->bind('socrates', static function($app) {
+            return new Socrates();
+        });
+
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'socrates');
+    }
+
     public function boot()
     {
         Validator::extend('national_id', function ($attribute, $value, $parameters, $validator) {
@@ -22,14 +31,5 @@ class SocratesServiceProvider extends ServiceProvider
                 return false;
             }
         }, 'National ID number is invalid.');
-    }
-
-    public function register()
-    {
-        $this->app->bind('socrates', static function($app) {
-            return new Socrates();
-        });
-
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'socrates');
     }
 }
