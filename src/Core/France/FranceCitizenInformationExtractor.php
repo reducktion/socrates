@@ -60,11 +60,13 @@ class FranceCitizenInformationExtractor implements CitizenInformationExtractor
     private function getPlaceOfBirth(string $id): string
     {
         $twoDigitPob = substr($id, 5, 2);
+        $threeDigitPob = substr($id, 5, 3);
 
-        if (! isset(FranceRegionsList::$departments[$twoDigitPob])) {
-            throw new UnrecognisedPlaceOfBirthException("The place of birth code provided '$twoDigitPob' does not match any registered codes.");
+        if (! isset(FranceRegionsList::$departments[$twoDigitPob]) && ! isset(FranceRegionsList::$departments[$threeDigitPob])) {
+            throw new UnrecognisedPlaceOfBirthException("The place of birth code provided '$twoDigitPob' and '$threeDigitPob' does not match any registered codes.");
         }
 
-        return FranceRegionsList::$departments[$twoDigitPob];
+        return FranceRegionsList::$departments[$twoDigitPob] ??
+            FranceRegionsList::$departments[$threeDigitPob];
     }
 }

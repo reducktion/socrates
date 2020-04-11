@@ -51,6 +51,20 @@ class FranceTest extends FeatureTest
                 'dob' => Carbon::createFromFormat('Y-m', '2003-03'),
                 'age' => Carbon::createFromFormat('Y-m', '2003-03')->age,
                 'pob' => 'Ardèche'
+            ],
+            'Geoffrey' => [
+                'nir' => '1820897401154 75',
+                'gender' => Gender::MALE,
+                'dob' => Carbon::createFromFormat('Y-m', '1982-08'),
+                'age' => Carbon::createFromFormat('Y-m', '1982-08')->age,
+                'pob' => 'Réunion'
+            ],
+            'Galatee' => [
+                'nir' => '2041098718061 61',
+                'gender' => Gender::FEMALE,
+                'dob' => Carbon::createFromFormat('Y-m', '2004-10'),
+                'age' => Carbon::createFromFormat('Y-m', '2004-10')->age,
+                'pob' => 'French Polynesia'
             ]
         ];
 

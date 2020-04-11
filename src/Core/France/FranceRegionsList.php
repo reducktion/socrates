@@ -102,5 +102,13 @@ class FranceRegionsList
         '93' =>	'Seine-Saint-Denis',
         '94' =>	'Val-de-Marne',
         '95' =>	'Val-d\'Oise',
+        '971' => 'Guadeloupe',
+        '972' => 'Martinique',
+        '973' => 'Guyane',
+        '974' => 'Réunion',
+        '975' => 'Saint Pierre and Miquelon',
+        '976' => 'Mayotte',
+        '987' => 'French Polynesia',
+        '988' => 'New Caledonia'
     ];
 }
