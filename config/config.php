@@ -282,6 +282,7 @@ return [
         'IT' => Reducktion\Socrates\Core\Italy\ItalyIdValidator::class,
         'LT' => Reducktion\Socrates\Core\Lithuania\LithuaniaIdValidator::class,
         'LV' => Reducktion\Socrates\Core\Latvia\LatviaIdValidator::class,
+        'NO' => Reducktion\Socrates\Core\Norway\NorwayIdValidator::class,
         'PL' => Reducktion\Socrates\Core\Poland\PolandIdValidator::class,
         'PT' => Reducktion\Socrates\Core\Portugal\PortugalIdValidator::class,
         'RO' => Reducktion\Socrates\Core\Romania\RomaniaIdValidator::class,

@@ -3,8 +3,6 @@
 namespace Reducktion\Socrates\Tests;
 
 use Illuminate\Support\Facades\App;
-use Reducktion\Socrates\Core\CitizenInformationExtractorFactory;
-use Reducktion\Socrates\Core\Denmark\DenmarkCitizenInformationExtractor;
 use Reducktion\Socrates\Exceptions\InvalidCountryCodeException;
 use Reducktion\Socrates\Exceptions\UnrecognisedCountryException;
 use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
