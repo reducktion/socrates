@@ -37,16 +37,16 @@ class BelgiumTest extends FeatureTest
                 'age' => Carbon::createFromFormat('Y-m-d', '1975-12-05')->age,
             ],
             'ute' => [
-              'id' => '09.08.24-282.48',
-              'gender' => Gender::FEMALE,
-              'dob' => Carbon::createFromFormat('Y-m-d', '2009-08-24'),
-              'age' => Carbon::createFromFormat('Y-m-d', '2009-08-24')->age,
+                'id' => '09.08.24-282.48',
+                'gender' => Gender::FEMALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '2009-08-24'),
+                'age' => Carbon::createFromFormat('Y-m-d', '2009-08-24')->age,
             ],
             'kurt' => [
-              'id' => '71.09.07-213.64',
-              'gender' => Gender::MALE,
-              'dob' => Carbon::createFromFormat('Y-m-d', '1971-09-07'),
-              'age' => Carbon::createFromFormat('Y-m-d', '1971-09-07')->age,
+                'id' => '71.09.07-213.64',
+                'gender' => Gender::MALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1971-09-07'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1971-09-07')->age,
             ],
         ];
 
