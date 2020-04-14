@@ -21,31 +21,31 @@ class NorwayTest extends FeatureTest
                 'fn' => '05080176785',
                 'gender' => Gender::MALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '2001-08-05'),
-                'age' => Carbon::createFromFormat('Y-m-d', '2001-08-05')->age, //18
+                'age' => Carbon::createFromFormat('Y-m-d', '2001-08-05')->age,
             ],
             'astrid' => [
                 'fn' => '20050761232',
                 'gender' => Gender::FEMALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1993-05-07'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1993-05-07')->age, //12
+                'dob' => Carbon::createFromFormat('Y-m-d', '2007-05-20'),
+                'age' => Carbon::createFromFormat('Y-m-d', '2007-05-20')->age,
             ],
             'linn' => [
                 'fn' => '28094949248',
                 'gender' => Gender::FEMALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1937-04-15'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1937-04-15')->age, //70
+                'dob' => Carbon::createFromFormat('Y-m-d', '1949-09-28'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1949-09-28')->age,
             ],
             'terje' => [
                 'fn' => '14019513913',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1988-08-16'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1988-08-16')->age, //25
+                'dob' => Carbon::createFromFormat('Y-m-d', '1995-01-14'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1995-01-14')->age,
             ],
             'heidi' => [
                 'fn' => '01090749036',
                 'gender' => Gender::FEMALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '2004-04-04'),
-                'age' => Carbon::createFromFormat('Y-m-d', '2004-04-04')->age, //112
+                'dob' => Carbon::createFromFormat('Y-m-d', '1907-09-01'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1907-09-01')->age,
             ],
         ];
 
@@ -64,8 +64,8 @@ class NorwayTest extends FeatureTest
             $citizen = Socrates::getCitizenDataFromId($person['fn'], 'NO');
 
             $this->assertEquals($person['gender'], $citizen->getGender());
-//            $this->assertEquals($person['dob'], $citizen->getDateOfBirth());
-//            $this->assertEquals($person['age'], $citizen->getAge());
+            $this->assertEquals($person['dob'], $citizen->getDateOfBirth());
+            $this->assertEquals($person['age'], $citizen->getAge());
         }
 
         $this->expectException(InvalidLengthException::class);
