@@ -70,7 +70,7 @@ class NorwayTest extends FeatureTest
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::getCitizenDataFromId('324432-343', 'NO');
+        Socrates::getCitizenDataFromId('324432343', 'NO');
     }
 
     public function test_validation_behaviour(): void
