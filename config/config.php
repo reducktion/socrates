@@ -265,6 +265,7 @@ return [
         'IT' => Reducktion\Socrates\Core\Italy\ItalyCitizenInformationExtractor::class,
         'LT' => Reducktion\Socrates\Core\Lithuania\LithuaniaCitizenInformationExtractor::class,
         'LV' => Reducktion\Socrates\Core\Latvia\LatviaCitizenInformationExtractor::class,
+        'NO' => Reducktion\Socrates\Core\Norway\NorwayCitizenInformationExtractor::class,
         'PL' => Reducktion\Socrates\Core\Poland\PolandCitizenInformationExtractor::class,
         'RO' => Reducktion\Socrates\Core\Romania\RomaniaCitizenInformationExtractor::class,
         'SE' => Reducktion\Socrates\Core\Sweden\SwedenCitizenInformationExtractor::class,
