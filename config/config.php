@@ -255,6 +255,7 @@ return [
     ],
 
     'extractors' => [
+        'BA' => Reducktion\Socrates\Core\BosniaAndHerzegovina\BosniaAndHerzegovinaCitizenInformationExtractor::class,
         'BE' => Reducktion\Socrates\Core\Belgium\BelgiumCitizenInformationExtractor::class,
         'BG' => Reducktion\Socrates\Core\Bulgaria\BulgariaCitizenInformationExtractor::class,
         'DK' => Reducktion\Socrates\Core\Denmark\DenmarkCitizenInformationExtractor::class,
@@ -265,12 +266,17 @@ return [
         'IT' => Reducktion\Socrates\Core\Italy\ItalyCitizenInformationExtractor::class,
         'LT' => Reducktion\Socrates\Core\Lithuania\LithuaniaCitizenInformationExtractor::class,
         'LV' => Reducktion\Socrates\Core\Latvia\LatviaCitizenInformationExtractor::class,
+        'ME' => Reducktion\Socrates\Core\Montenegro\MontenegroCitizenInformationExtractor::class,
+        'MK' => Reducktion\Socrates\Core\Macedonia\MacedoniaCitizenInformationExtractor::class,
         'PL' => Reducktion\Socrates\Core\Poland\PolandCitizenInformationExtractor::class,
         'RO' => Reducktion\Socrates\Core\Romania\RomaniaCitizenInformationExtractor::class,
+        'RS' => Reducktion\Socrates\Core\Serbia\SerbiaCitizenInformationExtractor::class,
         'SE' => Reducktion\Socrates\Core\Sweden\SwedenCitizenInformationExtractor::class,
+        'SI' => Reducktion\Socrates\Core\Slovenia\SloveniaCitizenInformationExtractor::class,
     ],
 
     'validators' => [
+        'BA' => Reducktion\Socrates\Core\BosniaAndHerzegovina\BosniaAndHerzegovinaIdValidator::class,
         'BE' => Reducktion\Socrates\Core\Belgium\BelgiumIdValidator::class,
         'BG' => Reducktion\Socrates\Core\Bulgaria\BulgariaIdValidator::class,
         'DK' => Reducktion\Socrates\Core\Denmark\DenmarkIdValidator::class,
@@ -282,10 +288,14 @@ return [
         'IT' => Reducktion\Socrates\Core\Italy\ItalyIdValidator::class,
         'LT' => Reducktion\Socrates\Core\Lithuania\LithuaniaIdValidator::class,
         'LV' => Reducktion\Socrates\Core\Latvia\LatviaIdValidator::class,
+        'ME' => Reducktion\Socrates\Core\Montenegro\MontenegroIdValidator::class,
+        'MK' => Reducktion\Socrates\Core\Macedonia\MacedoniaIdValidator::class,
         'PL' => Reducktion\Socrates\Core\Poland\PolandIdValidator::class,
         'PT' => Reducktion\Socrates\Core\Portugal\PortugalIdValidator::class,
         'RO' => Reducktion\Socrates\Core\Romania\RomaniaIdValidator::class,
+        'RS' => Reducktion\Socrates\Core\Serbia\SerbiaIdValidator::class,
         'SE' => Reducktion\Socrates\Core\Sweden\SwedenIdValidator::class,
+        'SI' => Reducktion\Socrates\Core\Slovenia\SloveniaIdValidator::class,
     ],
 
 ];
