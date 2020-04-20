@@ -5,7 +5,7 @@ namespace Reducktion\Socrates\Core\Romania;
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
-use Reducktion\Socrates\Exceptions\InvalidLengthException;
+use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Exceptions\UnrecognisedPlaceOfBirthException;
 use Reducktion\Socrates\Models\Citizen;
 
@@ -13,9 +13,8 @@ class RomaniaCitizenInformationExtractor implements CitizenInformationExtractor
 {
     public function extract(string $id): Citizen
     {
-        $idLength = strlen($id);
-        if ($idLength !== 13) {
-            throw new InvalidLengthException("Romanian CNP must have 13 digits, got $idLength");
+        if (! (new RomaniaIdValidator())->validate($id)) {
+            throw new InvalidIdException("Provided ID is invalid.");
         }
 
         $gender = $this->getGender($id);
@@ -37,7 +36,7 @@ class RomaniaCitizenInformationExtractor implements CitizenInformationExtractor
 
     private function getDateOfBirth(string $id): Carbon
     {
-        $yearCode = ($id[1] * 10) + $id[2];
+        $yearCode = ((int) $id[1] * 10) + (int) $id[2];
         switch ((int) $id[0]) {
             case 1:
             case 2:

@@ -4,8 +4,8 @@ namespace Reducktion\Socrates\Core\Poland;
 
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
+use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Models\Citizen;
-use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 
 class PolandCitizenInformationExtractor implements CitizenInformationExtractor
@@ -13,10 +13,8 @@ class PolandCitizenInformationExtractor implements CitizenInformationExtractor
 
     public function extract(string $id): Citizen
     {
-        $idLength = strlen($id);
-
-        if ($idLength !== 11) {
-            throw new InvalidLengthException("The Polish PESEL must have 11 digits, got $idLength");
+        if (! (new PolandIdValidator())->validate($id)) {
+            throw new InvalidIdException("Provided ID is invalid.");
         }
 
         $gender = $this->getGender($id);
