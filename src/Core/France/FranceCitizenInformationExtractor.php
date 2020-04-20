@@ -5,7 +5,7 @@ namespace Reducktion\Socrates\Core\France;
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
-use Reducktion\Socrates\Exceptions\InvalidLengthException;
+use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Exceptions\UnrecognisedPlaceOfBirthException;
 use Reducktion\Socrates\Models\Citizen;
 
@@ -15,6 +15,10 @@ class FranceCitizenInformationExtractor implements CitizenInformationExtractor
     public function extract(string $id): Citizen
     {
         $id = $this->sanitize($id);
+
+        if (! (new FranceIdValidator())->validate($id)) {
+            throw new InvalidIdException("Provided ID is invalid.");
+        }
 
         $gender = $this->getGender($id);
         $dob = $this->getDateOfBirth($id);
@@ -31,12 +35,6 @@ class FranceCitizenInformationExtractor implements CitizenInformationExtractor
     private function sanitize(string $id): string
     {
         $id = str_replace(' ', '', $id);
-
-        $idLength = strlen($id);
-
-        if ($idLength !== 15) {
-            throw new InvalidLengthException("The French NIR must have 15 digits, got $idLength");
-        }
 
         return $id;
     }

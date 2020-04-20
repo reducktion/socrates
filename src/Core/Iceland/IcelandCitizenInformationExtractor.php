@@ -4,7 +4,7 @@ namespace Reducktion\Socrates\Core\Iceland;
 
 use Carbon\Carbon;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
-use Reducktion\Socrates\Exceptions\InvalidLengthException;
+use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Models\Citizen;
 
 class IcelandCitizenInformationExtractor implements CitizenInformationExtractor
@@ -12,6 +12,10 @@ class IcelandCitizenInformationExtractor implements CitizenInformationExtractor
     public function extract(string $id): Citizen
     {
         $id = $this->sanitize($id);
+
+        if (! (new IcelandIdValidator())->validate($id)) {
+            throw new InvalidIdException("Provided ID is invalid.");
+        }
 
         $dateOfBirth = $this->getDateOfBirth($id);
 
@@ -24,12 +28,6 @@ class IcelandCitizenInformationExtractor implements CitizenInformationExtractor
     private function sanitize(string $id): string
     {
         $id = str_replace('-', '', $id);
-
-        $idLength = strlen($id);
-
-        if ($idLength !== 10) {
-            throw new InvalidLengthException("Icelandic KR must have 10 digits, got $idLength");
-        }
 
         return $id;
     }

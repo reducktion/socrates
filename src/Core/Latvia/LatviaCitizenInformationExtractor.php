@@ -3,8 +3,8 @@
 namespace Reducktion\Socrates\Core\Latvia;
 
 use Carbon\Carbon;
+use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Models\Citizen;
-use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
 
@@ -14,6 +14,10 @@ class LatviaCitizenInformationExtractor implements CitizenInformationExtractor
     public function extract(string $id): Citizen
     {
         $id = $this->sanitize($id);
+
+        if (! (new LatviaIdValidator())->validate($id)) {
+            throw new InvalidIdException("Provided ID is invalid.");
+        }
 
         $citizen = new Citizen();
 
@@ -31,12 +35,6 @@ class LatviaCitizenInformationExtractor implements CitizenInformationExtractor
     private function sanitize(string $id): string
     {
         $id = str_replace('-', '', $id);
-
-        $idLength = strlen($id);
-
-        if ($idLength !== 11) {
-            throw new InvalidLengthException("The Latvian PC must have 11 digits, got $idLength");
-        }
 
         return $id;
     }
