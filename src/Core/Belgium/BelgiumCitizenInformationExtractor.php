@@ -5,8 +5,7 @@ namespace Reducktion\Socrates\Core\Belgium;
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
-use Reducktion\Socrates\Exceptions\Belgium\InvalidNrnException;
-use Reducktion\Socrates\Exceptions\InvalidLengthException;
+use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Models\Citizen;
 
 class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
@@ -14,6 +13,10 @@ class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
     public function extract(string $id): Citizen
     {
         $id = $this->sanitize($id);
+
+        if (! (new BelgiumIdValidator())->validate($id)) {
+            throw new InvalidIdException("Provided ID is invalid.");
+        }
 
         $gender = $this->getGender($id);
         $dateOfBirth = $this->getDateOfBirth($id);
@@ -28,12 +31,6 @@ class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
     private function sanitize(string $id): string
     {
         $id = str_replace(['-', '.'], '', $id);
-
-        $idLength = strlen($id);
-
-        if ($idLength !== 11) {
-            throw new InvalidLengthException("Belgium NRN must have 11 digits, got $idLength");
-        }
 
         return $id;
     }
@@ -61,10 +58,6 @@ class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
 
         if ($checksum !== $checksumFromId) {
             $after2000 = true;
-            $checksum = $this->calculateChecksum($id, $after2000);
-            if ($checksum !== $checksumFromId) {
-                throw new InvalidNrnException('The NRN is invalid.');
-            }
         }
 
         return $after2000;

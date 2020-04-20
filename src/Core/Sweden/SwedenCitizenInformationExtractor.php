@@ -5,14 +5,16 @@ namespace Reducktion\Socrates\Core\Sweden;
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
-use Reducktion\Socrates\Exceptions\InvalidLengthException;
+use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Models\Citizen;
 
 class SwedenCitizenInformationExtractor implements CitizenInformationExtractor
 {
     public function extract(string $id): Citizen
     {
-        $this->validateLength($id);
+        if (! (new SwedenIdValidator())->validate($id)) {
+            throw new InvalidIdException("Provided ID is invalid.");
+        }
 
         $isOverOneHundredYearsOld = $this->checkIfCitizenIsOverOneHundredYearsOld($id);
 
@@ -32,15 +34,6 @@ class SwedenCitizenInformationExtractor implements CitizenInformationExtractor
         $citizen->setDateOfBirth($dateOfBirth);
 
         return $citizen;
-    }
-
-    private function validateLength(string $id): void
-    {
-        $idLength = strlen($id);
-
-        if ($idLength !== 11 && $idLength !== 13) {
-            throw new InvalidLengthException("Swedish Personnummer must have 10 or 12 digits, got $idLength");
-        }
     }
 
     private function checkIfCitizenIsOverOneHundredYearsOld(string $id): bool

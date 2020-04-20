@@ -5,7 +5,7 @@ namespace Reducktion\Socrates\Core\Norway;
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
-use Reducktion\Socrates\Exceptions\InvalidLengthException;
+use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Models\Citizen;
 
 class NorwayCitizenInformationExtractor implements CitizenInformationExtractor
@@ -13,10 +13,8 @@ class NorwayCitizenInformationExtractor implements CitizenInformationExtractor
 
     public function extract(string $id): Citizen
     {
-        $idLength = strlen($id);
-
-        if ($idLength !== 11) {
-            throw new InvalidLengthException("Norwegian fødselsnummer must have 11 digits, got $idLength");
+        if (! (new NorwayIdValidator())->validate($id)) {
+            throw new InvalidIdException("Provided ID is invalid.");
         }
 
         $individualNumber = (int) substr($id, 6, 3);

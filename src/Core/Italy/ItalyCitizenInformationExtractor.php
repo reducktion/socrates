@@ -3,19 +3,18 @@
 namespace Reducktion\Socrates\Core\Italy;
 
 use Carbon\Carbon;
+use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Exceptions\UnrecognisedPlaceOfBirthException;
 use Reducktion\Socrates\Models\Citizen;
 use Reducktion\Socrates\Constants\Gender;
-use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 
 class ItalyCitizenInformationExtractor implements CitizenInformationExtractor
 {
     public function extract(string $id): Citizen
     {
-        $idLength = strlen($id);
-        if ($idLength !== 16) {
-            throw new InvalidLengthException("Italian FC must have 16 digits, got $idLength");
+        if (! (new ItalyIdValidator())->validate($id)) {
+            throw new InvalidIdException("Provided ID is invalid.");
         }
 
         $id = $this->omocodiaSwap($id);
