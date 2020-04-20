@@ -7,7 +7,7 @@ use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Facades\Socrates;
 
-class BosniaAndHerzegovinaTest extends FeatureTest
+class NorthMacedoniaTest extends FeatureTest
 {
     private $people;
     private $invalidIds;
@@ -17,45 +17,45 @@ class BosniaAndHerzegovinaTest extends FeatureTest
         parent::setUp();
 
         $this->people = [
-            'Naser' => [
-                'jmbg' => '1502957172694',
-                'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1957-02-15'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1957-02-15')->age,
-                'pob' => 'Sarajevo - Bosnia and Herzegovina'
-            ],
-            'Imran' => [
-                'jmbg' => '2508995191483',
-                'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1995-08-25'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1995-08-25')->age,
-                'pob' => 'Zenica - Bosnia and Herzegovina'
-            ],
-            'Ajdin' => [
-                'jmbg' => '1012980163603',
-                'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1980-12-10'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1980-12-10')->age,
-                'pob' => 'Prijedor - Bosnia and Herzegovina'
-            ],
-            'Merjem' => [
-                'jmbg' => '1310963145538',
+            'Marko' => [
+                'jmbg' => '2408944448442',
                 'gender' => Gender::FEMALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1963-10-13'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1963-10-13')->age,
-                'pob' => 'Livno - Bosnia and Herzegovina'
+                'dob' => Carbon::createFromFormat('Y-m-d', '1944-08-24'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1944-08-24')->age,
+                'pob' => 'Prilep - North Macedonia'
             ],
-            'Eman' => [
-                'jmbg' => '1806998154160',
+            'Stefan' => [
+                'jmbg' => '0705957463421',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1998-06-18'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1998-06-18')->age,
-                'pob' => 'Mostar - Bosnia and Herzegovina'
+                'dob' => Carbon::createFromFormat('Y-m-d', '1957-05-07'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1957-05-07')->age,
+                'pob' => 'Strumica - North Macedonia'
+            ],
+            'Amyntas' => [
+                'jmbg' => '1610936414199',
+                'gender' => Gender::MALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1936-10-16'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1936-10-16')->age,
+                'pob' => 'Bitola - North Macedonia'
+            ],
+            'Dimitrov' => [
+                'jmbg' => '1207942491481',
+                'gender' => Gender::MALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1942-07-12'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1942-07-12')->age,
+                'pob' => 'Štip - North Macedonia'
+            ],
+            'Kleitus' => [
+                'jmbg' => '2808928401264',
+                'gender' => Gender::MALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1928-08-28'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1928-08-28')->age,
+                'pob' => 'North Macedonia'
             ]
         ];
 
         $this->invalidIds = [
-            '1108291065212'
+            '2408987648442'
         ];
     }
 

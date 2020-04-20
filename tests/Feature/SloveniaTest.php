@@ -17,13 +17,41 @@ class SloveniaTest extends FeatureTest
         parent::setUp();
 
         $this->people = [
-            'luka' => [
-                'umcn' => '0101006500006',
+            'Luka' => [
+                'jmbg' => '0101006500006',
                 'gender' => Gender::MALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '2006-01-01'),
                 'age' => Carbon::createFromFormat('Y-m-d', '2006-01-01')->age,
                 'pob' => 'Slovenia'
-            ]
+            ],
+            'Zoja' => [
+                'jmbg' => '0310933507830',
+                'gender' => Gender::FEMALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1933-10-03'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1933-10-03')->age,
+                'pob' => 'Slovenia'
+            ],
+            'Jaka' => [
+                'jmbg' => '1408984500257',
+                'gender' => Gender::MALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1984-08-14'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1984-08-14')->age,
+                'pob' => 'Slovenia'
+            ],
+            'Lana' => [
+                'jmbg' => '0205962509348',
+                'gender' => Gender::FEMALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1962-05-02'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1962-05-02')->age,
+                'pob' => 'Slovenia'
+            ],
+            'Mia' => [
+                'jmbg' => '1201962509788',
+                'gender' => Gender::FEMALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1962-01-12'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1962-01-12')->age,
+                'pob' => 'Slovenia'
+            ],
         ];
 
         $this->invalidIds = [
@@ -34,7 +62,7 @@ class SloveniaTest extends FeatureTest
     public function test_extract_behaviour(): void
     {
         foreach ($this->people as $person) {
-            $citizen = Socrates::getCitizenDataFromId($person['umcn'], 'SI');
+            $citizen = Socrates::getCitizenDataFromId($person['jmbg'], 'SI');
 
             $this->assertEquals($person['gender'], $citizen->getGender());
             $this->assertEquals($person['dob'], $citizen->getDateOfBirth());
@@ -51,13 +79,13 @@ class SloveniaTest extends FeatureTest
     {
         foreach ($this->people as $person) {
             $this->assertTrue(
-                Socrates::validateId($person['umcn'], 'SI')
+                Socrates::validateId($person['jmbg'], 'SI')
             );
         }
 
-        foreach ($this->invalidIds as $umcn) {
+        foreach ($this->invalidIds as $jmbg) {
             $this->assertFalse(
-                Socrates::validateId($umcn, 'SI')
+                Socrates::validateId($jmbg, 'SI')
             );
         }
     }

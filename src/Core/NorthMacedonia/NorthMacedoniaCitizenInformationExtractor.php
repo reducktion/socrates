@@ -1,13 +1,13 @@
 <?php
 
-namespace Reducktion\Socrates\Core\Macedonia;
+namespace Reducktion\Socrates\Core\NorthMacedonia;
 
 use Reducktion\Socrates\Models\Citizen;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 use Reducktion\Socrates\Core\Yugoslavia\YugoslaviaCitizenInformationExtractor;
 
-class MacedoniaCitizenInformationExtractor implements CitizenInformationExtractor
+class NorthMacedoniaCitizenInformationExtractor implements CitizenInformationExtractor
 {
 
     public function extract(string $id): Citizen

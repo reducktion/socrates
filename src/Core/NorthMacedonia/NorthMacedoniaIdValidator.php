@@ -1,12 +1,12 @@
 <?php
 
-namespace Reducktion\Socrates\Core\Macedonia;
+namespace Reducktion\Socrates\Core\NorthMacedonia;
 
 use Reducktion\Socrates\Contracts\IdValidator;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Core\Yugoslavia\YugoslaviaIdValidator;
 
-class MacedoniaIdValidator implements IdValidator
+class NorthMacedoniaIdValidator implements IdValidator
 {
 
     public function validate(string $id): bool

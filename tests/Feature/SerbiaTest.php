@@ -17,12 +17,40 @@ class SerbiaTest extends FeatureTest
         parent::setUp();
 
         $this->people = [
-            'nikola' => [
+            'Nikola' => [
                 'umcn' => '0101100710006',
                 'gender' => Gender::MALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '2100-01-01'),
                 'age' => Carbon::createFromFormat('Y-m-d', '2100-01-01')->age,
                 'pob' => 'Belgrade region (City of Belgrade) - Central Serbia'
+            ],
+            'Miloje' => [
+                'umcn' => '0110951074616',
+                'gender' => Gender::MALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1951-10-01'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1951-10-01')->age,
+                'pob' => 'foreigners in Serbian province of Vojvodina'
+            ],
+            'Teodora' => [
+                'umcn' => '2702937737434',
+                'gender' => Gender::FEMALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1937-02-27'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1937-02-27')->age,
+                'pob' => 'Niš region (Nišava District, Pirot District and Toplica District) - Central Serbia'
+            ],
+            'Jana' => [
+                'umcn' => '2606936778324',
+                'gender' => Gender::FEMALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1936-06-26'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1936-06-26')->age,
+                'pob' => 'Podrinje and Kolubara regions (Mačva District and Kolubara District) - Central Serbia'
+            ],
+            'Petra' => [
+                'umcn' => '1209992745266',
+                'gender' => Gender::FEMALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1992-09-12'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1992-09-12')->age,
+                'pob' => 'Southern Morava region (Jablanica District and Pčinja District) - Central Serbia'
             ]
         ];
 
