@@ -14,7 +14,7 @@ class MontenegroIdValidator implements IdValidator
         try {
             $result = YugoslaviaIdValidator::validate($id);
         } catch (InvalidLengthException $e) {
-            throw new InvalidLengthException('The Bosnian JMBG must have 13 digits, ' . $e->getMessage());
+            throw new InvalidLengthException('The Montenegrin JMBG must have 13 digits, ' . $e->getMessage());
         }
 
         $regionDigits = (int) substr($id, 7, 2);
