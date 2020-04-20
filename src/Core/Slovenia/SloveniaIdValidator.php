@@ -14,7 +14,7 @@ class SloveniaIdValidator implements IdValidator
         try {
             $result = YugoslaviaIdValidator::validate($id);
         } catch (InvalidLengthException $e) {
-            throw new InvalidLengthException('The Slovenian UMCN must have 13 digits, ' . $e->getMessage());
+            throw new InvalidLengthException('The Slovenian JMBG must have 13 digits, ' . $e->getMessage());
         }
 
         return $result;

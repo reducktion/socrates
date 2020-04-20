@@ -62,7 +62,7 @@ class MontenegroTest extends FeatureTest
     public function test_extract_behaviour(): void
     {
         foreach ($this->people as $person) {
-            $citizen = Socrates::getCitizenDataFromId($person['jmbg'], 'BA');
+            $citizen = Socrates::getCitizenDataFromId($person['jmbg'], 'ME');
 
             $this->assertEquals($person['gender'], $citizen->getGender());
             $this->assertEquals($person['dob'], $citizen->getDateOfBirth());
@@ -72,20 +72,20 @@ class MontenegroTest extends FeatureTest
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::getCitizenDataFromId('010597850041', 'BA');
+        Socrates::getCitizenDataFromId('010597850041', 'ME');
     }
 
     public function test_validation_behaviour(): void
     {
         foreach ($this->people as $person) {
             $this->assertTrue(
-                Socrates::validateId($person['jmbg'], 'BA')
+                Socrates::validateId($person['jmbg'], 'ME')
             );
         }
 
         foreach ($this->invalidIds as $jmbg) {
             $this->assertFalse(
-                Socrates::validateId($jmbg, 'BA')
+                Socrates::validateId($jmbg, 'ME')
             );
         }
     }

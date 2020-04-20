@@ -15,7 +15,7 @@ class BosniaAndHerzegovinaCitizenInformationExtractor implements CitizenInformat
         try {
             $citizen = YugoslaviaCitizenInformationExtractor::extract($id);
         } catch (InvalidLengthException $e) {
-            throw new InvalidLengthException('The Bosnian UMCN must have 13 digits, ' . $e->getMessage());
+            throw new InvalidLengthException('The Bosnian JMBG must have 13 digits, ' . $e->getMessage());
         }
 
         return $citizen;
