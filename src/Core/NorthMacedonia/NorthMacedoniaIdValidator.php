@@ -17,6 +17,12 @@ class NorthMacedoniaIdValidator implements IdValidator
             throw new InvalidLengthException('The Macedonian JMBG must have 13 digits, ' . $e->getMessage());
         }
 
+        $regionDigits = (int) substr($id, 7, 2);
+
+        if (($regionDigits < 40 || $regionDigits > 49) && $regionDigits !== 4) {
+            return false;
+        }
+
         return $result;
     }
 

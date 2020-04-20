@@ -55,7 +55,11 @@ class NorthMacedoniaTest extends FeatureTest
         ];
 
         $this->invalidIds = [
-            '2408987648442'
+            '2408987648442',
+            '0205962509348',
+            '2007950274591',
+            '2702937737434',
+            '2102898012311'
         ];
     }
 

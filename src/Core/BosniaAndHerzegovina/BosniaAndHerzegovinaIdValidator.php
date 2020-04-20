@@ -17,6 +17,12 @@ class BosniaAndHerzegovinaIdValidator implements IdValidator
             throw new InvalidLengthException('The Bosnian JMBG must have 13 digits, ' . $e->getMessage());
         }
 
+        $regionDigits = (int) substr($id, 7, 2);
+
+        if (($regionDigits < 10 || $regionDigits > 19) && $regionDigits !== 1) {
+            return false;
+        }
+
         return $result;
     }
 

@@ -55,7 +55,11 @@ class BosniaAndHerzegovinaTest extends FeatureTest
         ];
 
         $this->invalidIds = [
-            '1108291065212'
+            '1108291065212',
+            '2808928401264',
+            '2007950274591',
+            '2801826817261',
+            '1012999121239',
         ];
     }
 

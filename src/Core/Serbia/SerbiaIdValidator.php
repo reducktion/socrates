@@ -17,6 +17,12 @@ class SerbiaIdValidator implements IdValidator
             throw new InvalidLengthException('The Serbian JMBG must have 13 digits, ' . $e->getMessage());
         }
 
+        $regionDigits = (int) substr($id, 7, 2);
+
+        if (($regionDigits < 70 || $regionDigits > 89) && ($regionDigits !== 6 && $regionDigits !== 7)) {
+            return false;
+        }
+
         return $result;
     }
 

@@ -56,6 +56,10 @@ class SerbiaTest extends FeatureTest
 
         $this->invalidIds = [
             '2104108291012',
+            '2808928401264',
+            '2508995191483',
+            '1201962509788',
+            '1101987092078'
         ];
     }
 
