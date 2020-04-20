@@ -2,6 +2,7 @@
 
 namespace Reducktion\Socrates\Core\NorthMacedonia;
 
+use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Models\Citizen;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
@@ -12,6 +13,10 @@ class NorthMacedoniaCitizenInformationExtractor implements CitizenInformationExt
 
     public function extract(string $id): Citizen
     {
+        if (! (new NorthMacedoniaIdValidator())->validate($id)) {
+            throw new InvalidIdException('Provided JMBG is invalid');
+        }
+
         try {
             $citizen = YugoslaviaCitizenInformationExtractor::extract($id);
         } catch (InvalidLengthException $e) {
