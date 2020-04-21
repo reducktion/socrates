@@ -92,6 +92,10 @@ class SerbiaTest extends FeatureTest
                 Socrates::validateId($jmbg, 'RS')
             );
         }
+
+        $this->expectException(InvalidLengthException::class);
+
+        Socrates::getCitizenDataFromId('010597850041', 'RS');
     }
 
 }

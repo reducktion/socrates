@@ -92,6 +92,10 @@ class MontenegroTest extends FeatureTest
                 Socrates::validateId($jmbg, 'ME')
             );
         }
+
+        $this->expectException(InvalidLengthException::class);
+
+        Socrates::getCitizenDataFromId('010597850041', 'ME');
     }
 
 }

@@ -86,6 +86,10 @@ class KosovoTest extends FeatureTest
                 Socrates::validateId($jmbg, 'XK')
             );
         }
+
+        $this->expectException(InvalidLengthException::class);
+
+        Socrates::validateId('2103921983', 'HR');
     }
 
 }

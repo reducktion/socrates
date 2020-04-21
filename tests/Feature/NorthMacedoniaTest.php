@@ -92,6 +92,10 @@ class NorthMacedoniaTest extends FeatureTest
                 Socrates::validateId($jmbg, 'MK')
             );
         }
+
+        $this->expectException(InvalidLengthException::class);
+
+        Socrates::getCitizenDataFromId('010597850041', 'MK');
     }
 
 }

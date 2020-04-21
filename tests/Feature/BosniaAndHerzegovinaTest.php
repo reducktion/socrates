@@ -92,6 +92,10 @@ class BosniaAndHerzegovinaTest extends FeatureTest
                 Socrates::validateId($jmbg, 'BA')
             );
         }
+
+        $this->expectException(InvalidLengthException::class);
+
+        Socrates::validateId('1012999121', 'BA');
     }
 
 }
