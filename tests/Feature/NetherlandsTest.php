@@ -2,9 +2,9 @@
 
 namespace Reducktion\Socrates\Tests\Feature;
 
+use Reducktion\Socrates\Facades\Socrates;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
-use Reducktion\Socrates\Facades\Socrates;
 
 class NetherlandsTest extends FeatureTest
 {
