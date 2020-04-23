@@ -289,6 +289,7 @@ return [
         'FI' => Reducktion\Socrates\Core\Finland\FinlandIdValidator::class,
         'FR' => Reducktion\Socrates\Core\France\FranceIdValidator::class,
         'HR' => Reducktion\Socrates\Core\Croatia\CroatiaIdValidator::class,
+        'IE' => Reducktion\Socrates\Core\Ireland\IrelandIdValidator::class,
         'IS' => Reducktion\Socrates\Core\Iceland\IcelandIdValidator::class,
         'IT' => Reducktion\Socrates\Core\Italy\ItalyIdValidator::class,
         'LT' => Reducktion\Socrates\Core\Lithuania\LithuaniaIdValidator::class,
