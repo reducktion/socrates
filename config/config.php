@@ -283,6 +283,7 @@ return [
         'BA' => Reducktion\Socrates\Core\BosniaAndHerzegovina\BosniaAndHerzegovinaIdValidator::class,
         'BE' => Reducktion\Socrates\Core\Belgium\BelgiumIdValidator::class,
         'BG' => Reducktion\Socrates\Core\Bulgaria\BulgariaIdValidator::class,
+        'CH' => Reducktion\Socrates\Core\Switzerland\SwitzerlandIdValidator::class,
         'DK' => Reducktion\Socrates\Core\Denmark\DenmarkIdValidator::class,
         'EE' => Reducktion\Socrates\Core\Estonia\EstoniaIdValidator::class,
         'ES' => Reducktion\Socrates\Core\Spain\SpainIdValidator::class,
