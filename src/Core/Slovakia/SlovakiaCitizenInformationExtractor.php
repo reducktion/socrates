@@ -1,14 +1,15 @@
 <?php
 
-namespace Reducktion\Socrates\Core\CzechRepublic;
+namespace Reducktion\Socrates\Core\Slovakia;
 
 use Reducktion\Socrates\Models\Citizen;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
+use Reducktion\Socrates\Core\CzechRepublic\CzechRepublicIdValidator;
 use Reducktion\Socrates\Core\Czechoslovakia\CzechoslovakiaCitizenInformationExtractor;
 
-class CzechRepublicCitizenInformationExtractor implements CitizenInformationExtractor
+class SlovakiaCitizenInformationExtractor implements CitizenInformationExtractor
 {
 
     public function extract(string $id): Citizen
@@ -20,7 +21,7 @@ class CzechRepublicCitizenInformationExtractor implements CitizenInformationExtr
         try {
             $result = CzechoslovakiaCitizenInformationExtractor::extract($id);
         } catch (InvalidLengthException $e) {
-            throw new InvalidLengthException('The Czech RC must have 10 digits, ' . $e->getMessage());
+            throw new InvalidLengthException('The Slovakian RC must have 10 digits, ' . $e->getMessage());
         }
 
         return $result;

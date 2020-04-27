@@ -277,6 +277,7 @@ return [
         'RS' => Reducktion\Socrates\Core\Serbia\SerbiaCitizenInformationExtractor::class,
         'SE' => Reducktion\Socrates\Core\Sweden\SwedenCitizenInformationExtractor::class,
         'SI' => Reducktion\Socrates\Core\Slovenia\SloveniaCitizenInformationExtractor::class,
+        'SK' => Reducktion\Socrates\Core\Slovakia\SlovakiaCitizenInformationExtractor::class,
         'XK' => Reducktion\Socrates\Core\Kosovo\KosovoCitizenInformationExtractor::class,
     ],
 
@@ -307,6 +308,7 @@ return [
         'RS' => Reducktion\Socrates\Core\Serbia\SerbiaIdValidator::class,
         'SE' => Reducktion\Socrates\Core\Sweden\SwedenIdValidator::class,
         'SI' => Reducktion\Socrates\Core\Slovenia\SloveniaIdValidator::class,
+        'SK' => Reducktion\Socrates\Core\Slovakia\SlovakiaIdValidator::class,
         'TR' => Reducktion\Socrates\Core\Turkey\TurkeyIdValidator::class,
         'XK' => Reducktion\Socrates\Core\Kosovo\KosovoIdValidator::class,
     ],

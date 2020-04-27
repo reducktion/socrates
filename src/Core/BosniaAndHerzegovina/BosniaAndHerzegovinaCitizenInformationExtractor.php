@@ -2,8 +2,8 @@
 
 namespace Reducktion\Socrates\Core\BosniaAndHerzegovina;
 
-use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Models\Citizen;
+use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 use Reducktion\Socrates\Core\Yugoslavia\YugoslaviaCitizenInformationExtractor;

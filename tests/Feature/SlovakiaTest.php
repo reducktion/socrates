@@ -7,7 +7,7 @@ use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Facades\Socrates;
 
-class CzechRepublicTest extends FeatureTest
+class SlovakiaTest extends FeatureTest
 {
     private $people;
     private $invalidIds;
@@ -17,35 +17,35 @@ class CzechRepublicTest extends FeatureTest
         parent::setUp();
 
         $this->people = [
-            'Michal' => [
-                'rc' => '990224/9258',
+            'Boris' => [
+                'rc' => '931027/3951',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1999-02-24'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1999-02-24')->age,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1993-10-27'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1993-10-27')->age,
             ],
-            'Tereza' => [
-                'rc' => '0157155328',
-                'gender' => Gender::FEMALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '2001-07-15'),
-                'age' => Carbon::createFromFormat('Y-m-d', '2001-07-15')->age,
-            ],
-            'Adéla' => [
-                'rc' => '975406/2494',
-                'gender' => Gender::FEMALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1997-04-06'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1997-04-06')->age,
-            ],
-            'Lucie' => [
-                'rc' => '956022/6027',
-                'gender' => Gender::FEMALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1995-10-22'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1995-10-22')->age,
-            ],
-            'Petr' => [
-                'rc' => '960326/2955',
+            'Miroslav' => [
+                'rc' => '000816/9733',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1996-03-26'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1996-03-26')->age,
+                'dob' => Carbon::createFromFormat('Y-m-d', '2000-08-16'),
+                'age' => Carbon::createFromFormat('Y-m-d', '2000-08-16')->age,
+            ],
+            'Natalia' => [
+                'rc' => '015612/5552',
+                'gender' => Gender::FEMALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '2001-06-12'),
+                'age' => Carbon::createFromFormat('Y-m-d', '2001-06-12')->age,
+            ],
+            'Victoria' => [
+                'rc' => '935103/6189',
+                'gender' => Gender::FEMALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1993-01-03'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1993-01-03')->age,
+            ],
+            'Jožko' => [
+                'rc' => '010722/4634',
+                'gender' => Gender::MALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '2001-07-22'),
+                'age' => Carbon::createFromFormat('Y-m-d', '2001-07-22')->age,
             ],
         ];
 
@@ -61,7 +61,7 @@ class CzechRepublicTest extends FeatureTest
     public function test_extract_behaviour(): void
     {
         foreach ($this->people as $person) {
-            $citizen = Socrates::getCitizenDataFromId($person['rc'], 'CZ');
+            $citizen = Socrates::getCitizenDataFromId($person['rc'], 'SK');
 
             $this->assertEquals($person['gender'], $citizen->getGender());
             $this->assertEquals($person['dob'], $citizen->getDateOfBirth());
@@ -70,20 +70,20 @@ class CzechRepublicTest extends FeatureTest
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::validateId('88606/875', 'CZ');
+        Socrates::validateId('88606/875', 'SK');
     }
 
     public function test_validation_behaviour(): void
     {
         foreach ($this->people as $person) {
             $this->assertTrue(
-                Socrates::validateId($person['rc'], 'CZ')
+                Socrates::validateId($person['rc'], 'SK')
             );
         }
 
         foreach ($this->invalidIds as $rc) {
             $this->assertFalse(
-                Socrates::validateId($rc, 'CZ')
+                Socrates::validateId($rc, 'SK')
             );
         }
 
