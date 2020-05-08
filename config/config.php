@@ -278,6 +278,7 @@ return [
         'SE' => Reducktion\Socrates\Core\Sweden\SwedenCitizenInformationExtractor::class,
         'SI' => Reducktion\Socrates\Core\Slovenia\SloveniaCitizenInformationExtractor::class,
         'SK' => Reducktion\Socrates\Core\Slovakia\SlovakiaCitizenInformationExtractor::class,
+        'UA' => Reducktion\Socrates\Core\Ukraine\UkraineCitizenInformationExtractor::class,
         'XK' => Reducktion\Socrates\Core\Kosovo\KosovoCitizenInformationExtractor::class,
     ],
 

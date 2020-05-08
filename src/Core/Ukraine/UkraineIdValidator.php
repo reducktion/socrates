@@ -13,7 +13,7 @@ class UkraineIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 10) {
-            throw new InvalidLengthException("Ukrainian TIN must have 10 digits, got $idLength");
+            throw new InvalidLengthException("Ukrainian INN must have 10 digits, got $idLength");
         }
 
         if (!is_numeric($id)) {
