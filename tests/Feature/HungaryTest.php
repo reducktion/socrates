@@ -23,7 +23,7 @@ class HungaryTest extends FeatureTest
                 'dob' => Carbon::createFromFormat('Y-m-d', '1972-02-16'),
                 'age' => Carbon::createFromFormat('Y-m-d', '1972-02-16')->age
             ],
-            'Ilona' => [
+            'Dora' => [
                 'pin' => '2-690609-5528',
                 'gender' => Gender::FEMALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '1969-06-09'),

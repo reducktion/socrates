@@ -45,7 +45,7 @@ class HungaryIdValidator implements IdValidator
         return $id;
     }
 
-    private function oldChecksum(array $nipArray): int
+    private function oldChecksum(array $pinArray): int
     {
         $multipliers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -54,7 +54,7 @@ class HungaryIdValidator implements IdValidator
                 static function ($digit, $weight) {
                     return $digit * $weight;
                 },
-                $nipArray,
+                $pinArray,
                 $multipliers
             )
         );
