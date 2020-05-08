@@ -35,10 +35,8 @@ class UkraineCitizenInformationExtractor implements CitizenInformationExtractor
 
     private function getDateOfBirth(string $id): Carbon
     {
-        $birthDateDigits = (int) substr($id, 0, 5 );
+        $birthDateDigits = (int) substr($id, 0, 5) - 1;
 
-        $days = $birthDateDigits - 2;
-
-        return Carbon::createFromFormat('Y-m-d', '1900-01-01')->addDays($days);
+        return Carbon::createFromFormat('Y-m-d', '1900-01-01')->addDays($birthDateDigits);
     }
 }
