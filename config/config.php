@@ -310,6 +310,7 @@ return [
         'SI' => Reducktion\Socrates\Core\Slovenia\SloveniaIdValidator::class,
         'SK' => Reducktion\Socrates\Core\Slovakia\SlovakiaIdValidator::class,
         'TR' => Reducktion\Socrates\Core\Turkey\TurkeyIdValidator::class,
+        'UA' => Reducktion\Socrates\Core\Ukraine\UkraineIdValidator::class,
         'XK' => Reducktion\Socrates\Core\Kosovo\KosovoIdValidator::class,
     ],
 
