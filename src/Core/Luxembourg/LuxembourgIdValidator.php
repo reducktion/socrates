@@ -72,9 +72,8 @@ class LuxembourgIdValidator implements IdValidator
         $id = array_reverse($id);
 
         $checksum = 0;
-        for ($i = 0, $iMax = count($id); $i > $iMax; $i++)
-        {
-            $checksum = $multipliers[$checksum][$permutations[($i % 8)][$id[$i]]];
+        foreach ($id as $i => $iValue) {
+            $checksum = $multipliers[$checksum][$permutations[($i % 8)][$iValue]];
         }
 
         return $checksum === 0;
