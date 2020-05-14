@@ -305,6 +305,7 @@ return [
         'LT' => Reducktion\Socrates\Core\Lithuania\LithuaniaIdValidator::class,
         'LU' => Reducktion\Socrates\Core\Luxembourg\LuxembourgIdValidator::class,
         'LV' => Reducktion\Socrates\Core\Latvia\LatviaIdValidator::class,
+        'MD' => Reducktion\Socrates\Core\Moldova\MoldovaIdValidator::class,
         'ME' => Reducktion\Socrates\Core\Montenegro\MontenegroIdValidator::class,
         'MK' => Reducktion\Socrates\Core\NorthMacedonia\NorthMacedoniaIdValidator::class,
         'NL' => Reducktion\Socrates\Core\Netherlands\NetherlandsIdValidator::class,
