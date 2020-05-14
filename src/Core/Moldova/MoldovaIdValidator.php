@@ -31,8 +31,6 @@ class MoldovaIdValidator implements IdValidator
             return false;
         }
 
-        //2012002003163
-
         $firstTwelveDigits = array_slice($id, 0, 12);
 
         $multipliers = [7, 3, 1, 7, 3, 1, 7, 3, 1, 7, 3, 1];
