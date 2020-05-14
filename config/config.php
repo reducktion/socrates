@@ -256,6 +256,7 @@ return [
     ],
 
     'extractors' => [
+        'AL' => Reducktion\Socrates\Core\Albania\AlbaniaCitizenInformationExtractor::class,
         'BA' => Reducktion\Socrates\Core\BosniaAndHerzegovina\BosniaAndHerzegovinaCitizenInformationExtractor::class,
         'BE' => Reducktion\Socrates\Core\Belgium\BelgiumCitizenInformationExtractor::class,
         'BG' => Reducktion\Socrates\Core\Bulgaria\BulgariaCitizenInformationExtractor::class,
@@ -285,6 +286,7 @@ return [
     ],
 
     'validators' => [
+        'AL' => Reducktion\Socrates\Core\Albania\AlbaniaIdValidator::class,
         'BA' => Reducktion\Socrates\Core\BosniaAndHerzegovina\BosniaAndHerzegovinaIdValidator::class,
         'BE' => Reducktion\Socrates\Core\Belgium\BelgiumIdValidator::class,
         'BG' => Reducktion\Socrates\Core\Bulgaria\BulgariaIdValidator::class,
