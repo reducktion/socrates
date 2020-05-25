@@ -20,7 +20,11 @@ class GreeceIdValidator implements IdValidator
 
         $greekLetters = [ 'Α', 'Β', 'Γ', 'Δ', 'Ε', 'Ζ', 'Η', 'Ι', 'Κ', 'Λ', 'Μ', 'Ν', 'Ξ', 'Ο', 'Π', 'Ρ', 'Σ', 'Τ', 'Υ', 'Φ', 'Ω'];
 
-        return in_array(mb_substr($id, 0, 1), $greekLetters, true) && in_array(mb_substr($id, 1, 1), $greekLetters, true);
+        $digits = mb_substr($id, 2, 6);
+
+        return in_array(mb_substr($id, 0, 1), $greekLetters, true)
+            && in_array(mb_substr($id, 1, 1), $greekLetters, true)
+            && is_numeric($digits);
     }
 
 }

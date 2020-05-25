@@ -30,6 +30,8 @@ class GreeceTest extends FeatureTest
             'ΒΖΜ-98912',
             'ΧΘ-543971',
             'ΛΨ-087125',
+            'ΑΜ-81A13I',
+            '12-123123',
         ];
     }
 
