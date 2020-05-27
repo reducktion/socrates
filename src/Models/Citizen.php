@@ -11,17 +11,17 @@ class Citizen
     private $dateOfBirth;
     private $placeOfBirth;
 
-    public function getGender(): string
+    public function getGender(): ?string
     {
         return $this->gender;
     }
 
-    public function getDateOfBirth(): Carbon
+    public function getDateOfBirth(): ?Carbon
     {
         return $this->dateOfBirth;
     }
 
-    public function getAge(): int
+    public function getAge(): ?int
     {
         if (!$this->dateOfBirth) {
             throw new UnsupportedOperationException('Citizen date of birth is null.');
@@ -30,7 +30,7 @@ class Citizen
         return $this->dateOfBirth->age;
     }
 
-    public function getPlaceOfBirth(): string
+    public function getPlaceOfBirth(): ?string
     {
         return $this->placeOfBirth;
     }
