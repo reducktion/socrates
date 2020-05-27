@@ -2,19 +2,18 @@
 
 namespace Reducktion\Socrates\Core;
 
-use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 use RuntimeException;
+use Reducktion\Socrates\Config\Countries;
+use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 
 abstract class CitizenInformationExtractorFactory
 {
     public static function getExtractor(string $countryCode): CitizenInformationExtractor {
 
-        $extractors = config('socrates.extractors');
-
-        if (! isset($extractors[$countryCode])) {
+        if (! isset(Countries::$extractors[$countryCode])) {
             throw new RuntimeException("Unknown or unsupported country code '$countryCode'");
         }
 
-        return new $extractors[$countryCode];
+        return new Countries::$extractors[$countryCode];
     }
 }

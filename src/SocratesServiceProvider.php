@@ -2,8 +2,9 @@
 
 namespace Reducktion\Socrates;
 
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
+use Reducktion\Socrates\Config\Countries;
+use Illuminate\Support\Facades\Validator;
 
 class SocratesServiceProvider extends ServiceProvider
 {
@@ -12,8 +13,6 @@ class SocratesServiceProvider extends ServiceProvider
         $this->app->bind('socrates', static function($app) {
             return new Socrates();
         });
-
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'socrates');
     }
 
     public function boot()
@@ -21,7 +20,7 @@ class SocratesServiceProvider extends ServiceProvider
         Validator::extend('national_id', function ($attribute, $value, $parameters, $validator) {
             $countryCode = strtoupper($parameters[0]);
 
-            if (! in_array($countryCode, config('socrates.all'), true)){
+            if (! in_array($countryCode, Countries::$all, true)){
                 return false;
             }
 
