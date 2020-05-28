@@ -25,5 +25,4 @@ class BosniaAndHerzegovinaCitizenInformationExtractor implements CitizenInformat
 
         return $citizen;
     }
-
 }

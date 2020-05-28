@@ -32,5 +32,4 @@ class LuxembourgCitizenInformationExtractor implements CitizenInformationExtract
 
         return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
     }
-
 }

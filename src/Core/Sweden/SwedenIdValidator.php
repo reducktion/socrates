@@ -38,7 +38,7 @@ class SwedenIdValidator implements IdValidator
         $psn = array_reverse(str_split($id));
         $sum = 0;
 
-        foreach($psn as $key => $value) {
+        foreach ($psn as $key => $value) {
             if (!is_numeric($value)) {
                 return false;
             }

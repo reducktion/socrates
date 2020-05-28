@@ -25,5 +25,4 @@ class CzechRepublicCitizenInformationExtractor implements CitizenInformationExtr
 
         return $result;
     }
-
 }

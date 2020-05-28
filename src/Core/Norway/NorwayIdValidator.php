@@ -39,12 +39,12 @@ class NorwayIdValidator implements IdValidator
         $secondTest = 11 - (((5 * $firstDayDigit) + (4 * $secondDayDigit)
                     + (3 * $firstMonthDigit) + (2 * $secondMonthDigit)
                     + (7 * $firstYearDigit) + (6 * $secondYearDigit)
-                    + (5 * $firstPersonalDigit) + (4 * $secondPersonalDigit) + (3 * $thirdPersonalDigit) + (2 * $firstControlResult)) % 11);
+                    + (5 * $firstPersonalDigit) + (4 * $secondPersonalDigit)
+                    + (3 * $thirdPersonalDigit) + (2 * $firstControlResult)) % 11);
 
         $secondControlResult = $secondTest === 11 ? 0 : $secondTest;
 
         return $firstControlDigit === $firstControlResult
             && $secondControlDigit === $secondControlResult;
     }
-
 }

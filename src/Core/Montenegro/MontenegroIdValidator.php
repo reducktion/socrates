@@ -25,5 +25,4 @@ class MontenegroIdValidator implements IdValidator
 
         return $result;
     }
-
 }

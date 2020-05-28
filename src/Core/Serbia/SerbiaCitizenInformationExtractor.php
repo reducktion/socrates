@@ -25,5 +25,4 @@ class SerbiaCitizenInformationExtractor implements CitizenInformationExtractor
 
         return $citizen;
     }
-
 }

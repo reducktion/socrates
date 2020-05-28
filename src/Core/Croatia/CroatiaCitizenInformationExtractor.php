@@ -25,5 +25,4 @@ class CroatiaCitizenInformationExtractor implements CitizenInformationExtractor
 
         return $citizen;
     }
-
 }

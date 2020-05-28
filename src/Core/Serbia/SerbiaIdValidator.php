@@ -25,5 +25,4 @@ class SerbiaIdValidator implements IdValidator
 
         return $result;
     }
-
 }

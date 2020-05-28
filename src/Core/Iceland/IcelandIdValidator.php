@@ -18,7 +18,7 @@ class IcelandIdValidator implements IdValidator
             str_split($id)
         );
 
-        $multipliers = [3, 2, 7, 6, 5, 4, 3, 2, 0, 0];;
+        $multipliers = [3, 2, 7, 6, 5, 4, 3, 2, 0, 0];
 
         $sum = 0;
         foreach ($ktArray as $key => $digit) {

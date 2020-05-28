@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Reducktion\Socrates\Core\Lithuania;
-
 
 use Reducktion\Socrates\Contracts\IdValidator;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;

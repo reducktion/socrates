@@ -25,5 +25,4 @@ class SloveniaIdValidator implements IdValidator
 
         return $result;
     }
-
 }
