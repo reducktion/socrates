@@ -52,7 +52,7 @@ class DenmarkCitizenInformationExtractor implements CitizenInformationExtractor
 
         if (($seventhDigit === 4 || $seventhDigit === 9) && $year <= 1936) {
             $year += 100;
-        } else if ($seventhDigit > 4) {
+        } elseif ($seventhDigit > 4) {
             $year > 1957 ? $year -= 100 : $year += 100;
         }
 

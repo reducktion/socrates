@@ -19,5 +19,4 @@ class CzechRepublicIdValidator implements IdValidator
 
         return $result;
     }
-
 }

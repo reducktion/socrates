@@ -38,5 +38,4 @@ class PolandIdValidator implements IdValidator
             )
         ) % 10;
     }
-
 }

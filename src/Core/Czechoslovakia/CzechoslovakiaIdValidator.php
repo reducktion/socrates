@@ -24,5 +24,4 @@ class CzechoslovakiaIdValidator
 
         return $checksum === $result;
     }
-
 }

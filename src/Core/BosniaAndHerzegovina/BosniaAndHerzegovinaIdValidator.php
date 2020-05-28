@@ -25,5 +25,4 @@ class BosniaAndHerzegovinaIdValidator implements IdValidator
 
         return $result;
     }
-
 }

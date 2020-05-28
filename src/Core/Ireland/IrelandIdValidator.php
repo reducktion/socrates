@@ -52,5 +52,4 @@ class IrelandIdValidator implements IdValidator
 
         return is_numeric($checksum) ? (int) $checksum === $mod : ord($checksum) - 64 === $mod;
     }
-
 }

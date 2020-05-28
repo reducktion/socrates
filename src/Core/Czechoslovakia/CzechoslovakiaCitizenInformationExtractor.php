@@ -47,5 +47,4 @@ class CzechoslovakiaCitizenInformationExtractor
 
         return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
     }
-
 }
