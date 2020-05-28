@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\App;
 use Reducktion\Socrates\Exceptions\InvalidCountryCodeException;
 use Reducktion\Socrates\Exceptions\UnrecognisedCountryException;
 use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
-use Reducktion\Socrates\Facades\Socrates;
+use Reducktion\Socrates\Laravel\Facades\Socrates;
 
 class SocratesTest extends TestCase
 {

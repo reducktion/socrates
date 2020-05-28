@@ -4,7 +4,7 @@ namespace Reducktion\Socrates\Tests\Feature;
 
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
-use Reducktion\Socrates\Facades\Socrates;
+use Reducktion\Socrates\Laravel\Facades\Socrates;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class SloveniaTest extends FeatureTest

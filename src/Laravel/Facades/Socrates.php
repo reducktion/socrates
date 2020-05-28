@@ -1,6 +1,6 @@
 <?php
 
-namespace Reducktion\Socrates\Facades;
+namespace Reducktion\Socrates\Laravel\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

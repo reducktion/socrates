@@ -1,7 +1,8 @@
 <?php
 
-namespace Reducktion\Socrates;
+namespace Reducktion\Socrates\Laravel;
 
+use Reducktion\Socrates\Socrates;
 use Illuminate\Support\ServiceProvider;
 use Reducktion\Socrates\Config\Countries;
 use Illuminate\Support\Facades\Validator;
