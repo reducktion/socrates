@@ -20,10 +20,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Reducktion\\Socrates\\SocratesServiceProvider"
+                "Reducktion\\Socrates\\Laravel\\SocratesServiceProvider"
             ],
             "aliases": {
-                "Socrates": "Reducktion\\Socrates\\Facades\\Socrates"
+                "Socrates": "Reducktion\\Socrates\\Laravel\\Facades\\Socrates"
             }
         }
     }
