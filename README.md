@@ -95,9 +95,12 @@ echo $citizen->getPlaceOfBirth(); // null
 
 `composer test`
 
-## Credits & Considerations
-Socrates was a labour of love made by Alexandre Olival and João Cruz (Reducktion).
+## Credits
+Socrates was made with 💖 by [Alexandre Olival](https://github.com/AlexOlival)  and [João Cruz](https://github.com/JoaoFSCruz). 
+We are Reducktion.
 We hope to make someone's live easier after all the hard work compiling, researching, reverse-engineering and agonizing over ID validation algorithms - many of which were very obscure and hard to find.
+
+## Special thanks
 A big thanks goes to these people who helped us either test with real life IDs, or guide us in finding the algorithm for their countries:
 * Alexandra from 🇷🇴
 * Berilay from 🇹🇷
