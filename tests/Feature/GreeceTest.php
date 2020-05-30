@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Tests\Feature;
 
-use Reducktion\Socrates\Facades\Socrates;
+use Reducktion\Socrates\Laravel\Facades\Socrates;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
 

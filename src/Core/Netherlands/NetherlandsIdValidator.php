@@ -42,5 +42,4 @@ class NetherlandsIdValidator implements IdValidator
 
         return $sum % 11 === 0;
     }
-
 }

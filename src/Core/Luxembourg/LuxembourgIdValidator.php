@@ -13,7 +13,9 @@ class LuxembourgIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 13) {
-            throw new InvalidLengthException("The Luxembourger national identification number must have 11 digits, got $idLength");
+            throw new InvalidLengthException(
+                "The Luxembourger national identification number must have 11 digits, got $idLength"
+            );
         }
 
         $ninArray = array_map(
@@ -32,7 +34,7 @@ class LuxembourgIdValidator implements IdValidator
 
         $parity = count($id) % 2;
         $sum = 0;
-        foreach($id as $key => $value) {
+        foreach ($id as $key => $value) {
             if ($key % 2 === $parity) {
                 $value *= 2;
             }
@@ -78,5 +80,4 @@ class LuxembourgIdValidator implements IdValidator
 
         return $checksum === 0;
     }
-
 }

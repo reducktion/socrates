@@ -3,8 +3,8 @@
 namespace Reducktion\Socrates\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
-use Reducktion\Socrates\Facades\Socrates;
-use Reducktion\Socrates\SocratesServiceProvider;
+use Reducktion\Socrates\Laravel\Facades\Socrates;
+use Reducktion\Socrates\Laravel\SocratesServiceProvider;
 
 class TestCase extends Orchestra
 {

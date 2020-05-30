@@ -25,5 +25,4 @@ class NorthMacedoniaCitizenInformationExtractor implements CitizenInformationExt
 
         return $citizen;
     }
-
 }

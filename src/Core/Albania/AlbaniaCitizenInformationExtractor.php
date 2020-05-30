@@ -94,5 +94,4 @@ class AlbaniaCitizenInformationExtractor implements CitizenInformationExtractor
             ? $monthDigits - 50
             : $monthDigits;
     }
-
 }

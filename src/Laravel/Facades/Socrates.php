@@ -1,6 +1,6 @@
 <?php
 
-namespace Reducktion\Socrates\Facades;
+namespace Reducktion\Socrates\Laravel\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -10,5 +10,4 @@ class Socrates extends Facade
     {
         return \Reducktion\Socrates\Socrates::class;
     }
-
 }

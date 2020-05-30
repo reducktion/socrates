@@ -25,5 +25,4 @@ class KosovoIdValidator implements IdValidator
 
         return $result;
     }
-
 }

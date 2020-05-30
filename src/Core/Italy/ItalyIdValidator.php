@@ -95,7 +95,7 @@ class ItalyIdValidator implements IdValidator
         for ($position = 0; $position < $idLength; $position++) {
             if (($position + 1) % 2 === 0) {
                 $result += is_numeric($id[$position]) ?
-                    (int) $numbers[$id[$position]] :
+                    (int) $numbers[(int) $id[$position]] :
                     strpos($alphabet, $id[$position]);
             } else {
                 $result += $odd[$id[$position]];

@@ -2,14 +2,14 @@
 
 namespace Reducktion\Socrates;
 
-use Illuminate\Support\Facades\App;
 use Locale;
-use Reducktion\Socrates\Core\CitizenInformationExtractorFactory;
+use Reducktion\Socrates\Models\Citizen;
+use Reducktion\Socrates\Config\Countries;
 use Reducktion\Socrates\Core\IdValidatorFactory;
 use Reducktion\Socrates\Exceptions\InvalidCountryCodeException;
+use Reducktion\Socrates\Core\CitizenInformationExtractorFactory;
 use Reducktion\Socrates\Exceptions\UnrecognisedCountryException;
 use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
-use Reducktion\Socrates\Models\Citizen;
 
 class Socrates
 {
@@ -63,8 +63,14 @@ class Socrates
      */
     private function formatCountryCode(string $countryCode): string
     {
-        if ($countryCode === '') {
-            $countryCode = App::getLocale();
+        $runningLaravel = class_exists(\Illuminate\Support\Facades\App::class);
+
+        if (! $runningLaravel && $countryCode === '') {
+            throw new InvalidCountryCodeException('No country code provided.');
+        }
+
+        if ($runningLaravel && $countryCode === '') {
+            $countryCode = \Illuminate\Support\Facades\App::getLocale();
         }
 
         $countryCodeLength = strlen($countryCode);
@@ -79,7 +85,7 @@ class Socrates
 
         $countryCode = strtoupper($countryCode);
 
-        if (! in_array($countryCode, config('socrates.all'), true)){
+        if (! in_array($countryCode, Countries::$all, true)) {
             throw new UnrecognisedCountryException("Could not find the country with the code '$countryCode'.");
         }
 
@@ -93,10 +99,12 @@ class Socrates
      */
     private function checkIfCountrySupportsCitizenData(string $countryCode): void
     {
-        if (! isset(config('socrates.extractors')[$countryCode])) {
+        if (! isset(Countries::$extractors[$countryCode])) {
             $countryName = Locale::getDisplayRegion("-$countryCode", 'en');
 
-            throw new UnsupportedOperationException("$countryName does not support extracting citizen data from the ID.");
+            throw new UnsupportedOperationException(
+                "$countryName does not support extracting citizen data from the ID."
+            );
         }
     }
 }

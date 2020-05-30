@@ -6,8 +6,8 @@ namespace Reducktion\Socrates\Tests\Feature;
 
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
+use Reducktion\Socrates\Laravel\Facades\Socrates;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
-use Reducktion\Socrates\Facades\Socrates;
 
 class LithuaniaTest extends FeatureTest
 {
@@ -32,7 +32,7 @@ class LithuaniaTest extends FeatureTest
                 'dob' => Carbon::createFromFormat('Y-m-d', '1917-10-05'),
                 'age' => Carbon::createFromFormat('Y-m-d', '1917-10-05')->age
             ],
-            'aide' => [
+            'daiva' => [
                 'pc' => '44804129713',
                 'gender' => Gender::FEMALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '1948-04-12'),

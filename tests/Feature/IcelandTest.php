@@ -3,9 +3,8 @@
 namespace Reducktion\Socrates\Tests\Feature;
 
 use Carbon\Carbon;
-use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
-use Reducktion\Socrates\Facades\Socrates;
+use Reducktion\Socrates\Laravel\Facades\Socrates;
 
 class IcelandTest extends FeatureTest
 {

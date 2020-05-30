@@ -38,7 +38,7 @@ class LatviaIdValidator implements IdValidator
             )
         );
 
-        $result = ((1101-$sum) % 11) % 10;
+        $result = ((1101 - $sum) % 11) % 10;
 
         return $checksum === $result;
     }
