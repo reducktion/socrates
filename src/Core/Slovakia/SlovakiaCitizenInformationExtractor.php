@@ -26,5 +26,4 @@ class SlovakiaCitizenInformationExtractor implements CitizenInformationExtractor
 
         return $result;
     }
-
 }

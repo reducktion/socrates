@@ -34,7 +34,7 @@ class ItalyCitizenInformationExtractor implements CitizenInformationExtractor
     private function getGender(string $id): string
     {
         $dayOfBirth = (int) substr($id, 9, 2);
-        return $dayOfBirth > 31? Gender::FEMALE : Gender::MALE;
+        return $dayOfBirth > 31 ? Gender::FEMALE : Gender::MALE;
     }
 
     private function getDateOfBirth(string $id): Carbon
@@ -57,7 +57,9 @@ class ItalyCitizenInformationExtractor implements CitizenInformationExtractor
         $pobCode = substr($id, 11, 4);
 
         if (! isset(ItalyRegionsList::$regions[$pobCode])) {
-            throw new UnrecognisedPlaceOfBirthException("The place of birth code provided '$pobCode' does not match any registered codes.");
+            throw new UnrecognisedPlaceOfBirthException(
+                "The provided code '$pobCode' does not match any region codes."
+            );
         }
 
         return ItalyRegionsList::$regions[$pobCode];

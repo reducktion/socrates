@@ -8,12 +8,13 @@ use Reducktion\Socrates\Contracts\IdValidator;
 
 abstract class IdValidatorFactory
 {
-    public static function getValidator(string $countryCode): IdValidator {
+    public static function getValidator(string $countryCode): IdValidator
+    {
 
         if (! isset(Countries::$validators[$countryCode])) {
             throw new RuntimeException("Unknown or unsupported country code '$countryCode'");
         }
 
-        return new Countries::$validators[$countryCode];
+        return new Countries::$validators[$countryCode]();
     }
 }

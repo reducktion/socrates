@@ -49,5 +49,4 @@ class HungaryCitizenInformationExtractor implements CitizenInformationExtractor
 
         return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
     }
-
 }

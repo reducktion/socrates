@@ -96,5 +96,4 @@ class YugoslaviaRegions
             '98' => 'Kosovo',
             '99' => 'Kosovo',
         ];
-
 }

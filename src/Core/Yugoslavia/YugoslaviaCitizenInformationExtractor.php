@@ -58,7 +58,9 @@ class YugoslaviaCitizenInformationExtractor
         $pobCode = substr($id, 7, 2);
 
         if (! isset(YugoslaviaRegions::$regions[$pobCode])) {
-            throw new UnrecognisedPlaceOfBirthException("The place of birth code provided '$pobCode' does not match any registered codes.");
+            throw new UnrecognisedPlaceOfBirthException(
+                "The provided code '$pobCode' does not match any region codes."
+            );
         }
 
         return YugoslaviaRegions::$regions[$pobCode];

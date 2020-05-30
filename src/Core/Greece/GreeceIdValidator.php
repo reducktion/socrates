@@ -18,7 +18,29 @@ class GreeceIdValidator implements IdValidator
             throw new InvalidLengthException("Greek id card number must have 8 digits, got $idLength");
         }
 
-        $greekLetters = [ 'Α', 'Β', 'Γ', 'Δ', 'Ε', 'Ζ', 'Η', 'Ι', 'Κ', 'Λ', 'Μ', 'Ν', 'Ξ', 'Ο', 'Π', 'Ρ', 'Σ', 'Τ', 'Υ', 'Φ', 'Ω'];
+        $greekLetters = [
+            'Α',
+            'Β',
+            'Γ',
+            'Δ',
+            'Ε',
+            'Ζ',
+            'Η',
+            'Ι',
+            'Κ',
+            'Λ',
+            'Μ',
+            'Ν',
+            'Ξ',
+            'Ο',
+            'Π',
+            'Ρ',
+            'Σ',
+            'Τ',
+            'Υ',
+            'Φ',
+            'Ω'
+        ];
 
         $digits = mb_substr($id, 2, 6);
 
@@ -26,5 +48,4 @@ class GreeceIdValidator implements IdValidator
             && in_array(mb_substr($id, 1, 1), $greekLetters, true)
             && is_numeric($digits);
     }
-
 }

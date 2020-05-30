@@ -19,5 +19,4 @@ class SlovakiaIdValidator implements IdValidator
 
         return $result;
     }
-
 }
