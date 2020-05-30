@@ -1,5 +1,39 @@
 {
     "name": "reducktion/socrates",
+    "description": "A package to validate, and extract citizen information from, national identification numbers.",
+    "keywords": [
+        "php",
+        "laravel",
+        "validation",
+        "identification",
+        "citizen",
+        "passport",
+        "citizenship",
+        "nationality"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexandre Olival",
+            "email": "lex.olival@gmail.com",
+            "homepage": "https://www.alexandreolival.me",
+            "role": "Developer"
+        },
+        {
+            "name": "Joao Cruz",
+            "email": "joao.fs.cruz97@gmail.com",
+            "homepage": "https://joaofscruz.github.io",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "nesbot/carbon": "^2.35.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5",
+        "orchestra/testbench": "^4.6"
+    },
     "autoload": {
         "psr-4": {
             "Reducktion\\Socrates\\": "src/"
@@ -9,13 +43,6 @@
         "psr-4": {
             "Reducktion\\Socrates\\Tests\\": "tests/"
         }
-    },
-    "require": {
-        "nesbot/carbon": "^2.35.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^8.5",
-        "orchestra/testbench": "^4.6"
     },
     "extra": {
         "laravel": {
