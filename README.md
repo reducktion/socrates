@@ -14,7 +14,8 @@
 
 **Socrates** is a PHP Package that allows you to validate and retrieve personal data from most [National Identification Numbers](https://en.wikipedia.org/wiki/National_identification_number) in Europe, with the goal of eventually supporting as many countries in the world as possible.
 <p>Some countries also encode personal information of the citizen, such as gender or the place of birth. This package allows you to extract that information in a consistent way.</p>
-<p>For Laravel, a Facade and request Validator is also made available (see usage below)</p>
+For Laravel, a Facade and request Validator is also made available (see usage below).
+This package can be useful for many things, such as validating a user's ID for finance related applications or verifying a user's age without asking for it explicitly. However, we recommend you review your country's data protection laws before storing any information.
 
 Our goals:
 * Standardize and centralise what is usually very difficult and sparse information to find.
