@@ -22,8 +22,11 @@ Our goals:
 * Test each individual country validation and data extraction algorithm with a number of valid and invalid IDs.
 * Support as many countries as viably possible.
 
+## Installation
+`composer require reducktion/socrates`
+
 ## Usage
-Socrates provide two methods for working with IDs: `validateId` and `getCitizenDataFromId`. Both receive the ID and the country code in [ISO 3166-2 format](https://en.wikipedia.org/wiki/ISO_3166-2)  as the first and second parameters respectively. Simply instantiate the class, and call the method you wish:
+Socrates provide two methods: `validateId` and `getCitizenDataFromId`. Both receive the ID and the country code in [ISO 3166-2 format](https://en.wikipedia.org/wiki/ISO_3166-2)  as the first and second parameters respectively. Simply instantiate the class, and call the method you wish:
 
 ```php
 use Reducktion\Socrates\Socrates;
@@ -39,3 +42,23 @@ use Reducktion\Socrates\Laravel\Facades\Socrates;
 
 Socrates::getCitizenDataFromId('550309-6447', 'SE');
 ```
+
+You can also use the `national_id:[COUNTRY CODE]` request validation rule:
+
+```php
+$request->validate([
+    'id' => 'national_id:' . $request->get('country-code'),
+]);
+```
+Still in Laravel, the package will try to guess the country to be validated by the default locale:
+
+```php
+App::setLocale('PT');
+
+Socrates::validateId('11084129 8 ZX8');
+```
+ 
+However this is **not** recommended. The safest way is to always explicitly pass the country code as the second parameter.
+
+#### validateId
+Validate ID will
