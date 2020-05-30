@@ -1,7 +1,8 @@
 <?php
 
-namespace Reducktion\Socrates;
+namespace Reducktion\Socrates\Laravel;
 
+use Reducktion\Socrates\Socrates;
 use Illuminate\Support\ServiceProvider;
 use Reducktion\Socrates\Config\Countries;
 use Illuminate\Support\Facades\Validator;
@@ -10,7 +11,7 @@ class SocratesServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->bind('socrates', static function($app) {
+        $this->app->bind('socrates', static function ($app) {
             return new Socrates();
         });
     }
@@ -20,7 +21,7 @@ class SocratesServiceProvider extends ServiceProvider
         Validator::extend('national_id', function ($attribute, $value, $parameters, $validator) {
             $countryCode = strtoupper($parameters[0]);
 
-            if (! in_array($countryCode, Countries::$all, true)){
+            if (! in_array($countryCode, Countries::$all, true)) {
                 return false;
             }
 

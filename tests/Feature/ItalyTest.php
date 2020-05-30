@@ -4,8 +4,8 @@ namespace Reducktion\Socrates\Tests\Feature;
 
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
+use Reducktion\Socrates\Laravel\Facades\Socrates;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
-use Reducktion\Socrates\Facades\Socrates;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class ItalyTest extends FeatureTest

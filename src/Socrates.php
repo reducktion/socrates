@@ -63,7 +63,13 @@ class Socrates
      */
     private function formatCountryCode(string $countryCode): string
     {
-        if ($countryCode === '' && class_exists(\Illuminate\Support\Facades\App::class)) {
+        $runningLaravel = class_exists(\Illuminate\Support\Facades\App::class);
+
+        if (! $runningLaravel && $countryCode === '') {
+            throw new InvalidCountryCodeException('No country code provided.');
+        }
+
+        if ($runningLaravel && $countryCode === '') {
             $countryCode = \Illuminate\Support\Facades\App::getLocale();
         }
 
