@@ -60,5 +60,16 @@ Socrates::validateId('11084129 8 ZX8');
  
 However this is **not** recommended. The safest way is to always explicitly pass the country code as the second parameter.
 
-#### validateId
-Validate ID will
+### validateId
+This method will return true or false depending on the validity of the ID.
+In case the ID has the wrong character length, an `InvalidLengthException` will be thrown.
+
+```php
+if ($socrates->validateId('719102091', 'NL')) {
+    echo 'Valid ID.'
+} else {
+    echo 'Invalid ID.'
+}
+```
+
+### getCitizenDataFromId
