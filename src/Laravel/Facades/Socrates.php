@@ -10,5 +10,4 @@ class Socrates extends Facade
     {
         return \Reducktion\Socrates\Socrates::class;
     }
-
 }
