@@ -47,7 +47,7 @@ You can also use the `national_id:[COUNTRY CODE]` request validation rule:
 
 ```php
 $request->validate([
-    'id' => 'national_id:' . $request->get('country-code'),
+    'id' => 'national_id:lv'
 ]);
 ```
 Still in Laravel, the package will try to guess the country to be validated by the default locale:
@@ -73,3 +73,19 @@ if ($socrates->validateId('719102091', 'NL')) {
 ```
 
 ### getCitizenDataFromId
+This method will return an instance of `Citizen`. If the ID is invalid, an `InvalidIdException` will be thrown. If the country does not support data extraction, an `UnsupportedOperationException` will be thrown.
+
+```php
+$citizen = $socrates->getCitizenDataFromId('3860123012', 'EE'));
+```
+
+The `Citizen` class stores the extracted citizen data in a consistent format across all countries. It exposes the `getGender()`, `getDateOfBirth()`, `getAge()` and `getPlaceOfBirth()` methods.
+All will return a `string` (for the gender and place of birth), `int`(for age), a `Carbon` instance (for the date of birth) or `null` if the value is empty.
+Using the example above, Estonia only encodes the date of birth and gender of the citizen in their ID. So the above methods will return:
+ 
+```php
+echo $citizen->getGender(); // 'Male'
+echo $citizen->getDateOfBirth(); // Carbon Instance
+echo $citizen->getAge(); // 34 (as of June 2020)
+echo $citizen->getPlaceOfBirth(); // null
+```
