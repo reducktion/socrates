@@ -9,8 +9,13 @@
 </p>
 
 ------
+## Introduction
 >I am a **Citizen of the World**, and my Nationality is Goodwill.
 
-**Socrates** is a PHP Package that allows you to validate and retrieve personal data from most National Identification Numbers[National Identification Numbers](https://en.wikipedia.org/wiki/National_identification_number)  in Europe (for now).
+**Socrates** is a PHP Package that allows you to validate and retrieve personal data from most [National Identification Numbers](https://en.wikipedia.org/wiki/National_identification_number)  in Europe, with the goal of eventually supporting as many countries in the world as possible.
+Some countries also encode personal information on the citizen, such as gender or the place of birth. This package allows you to extract that information in a consistent way.
 
-The goal was to standardize and centralise what is usually very difficult information to find.
+Our goals:
+* Standardize and centralise what is usually very difficult and sparse information to find.
+* Have a consistent API for retrieving citizen information from an ID, if available.
+* Test each individual country validation and data extraction algorithm with a number of valid and invalid IDs.
