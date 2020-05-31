@@ -106,6 +106,7 @@ A big thanks goes to these people who helped us either test with real life IDs o
 * Berilay from 🇹🇷
 * Domynikas from 🇱🇹
 * Jeppe from 🇩🇰
+* Jeremy from 🇫🇷 
 * Lisa from 🇬🇷
 * Miguel from 🇪🇸
 
