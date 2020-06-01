@@ -32,6 +32,6 @@
 - Slovenia - EMŠO
 - Spain - DNI
 - Sweden - PSN
-- Switzerland - 
+- Switzerland - AVH/AVN
 - Turkey - TC
-- Ukraine -  
+- Ukraine - INN
