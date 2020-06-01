@@ -95,10 +95,10 @@ echo $citizen->getPlaceOfBirth(); // null
 Four european countries are currently unsupported: Austria, Belarus, Cyprus and Germany. This is because we could not find a reliable source for the algorithm, if at all. Help would be appreciated to get these countries supported.
 
 ## Contributing
-Any help is appreciated! Take a look at our [CONTRIBUTING.md](contributing file) for our contribution guidelines.
+Any help is appreciated! Take a look at our [contributing guidelines](CONTRIBUTING.md).
 
 ## Code of Conduct
-Our CoC is based on Ruby's. Check out [CODE_OF_CONDUCT.md](our code of conduct).
+Our CoC is based on Ruby's. Check out [our code of conduct](CODE_OF_CONDUCT.md).
 
 ## Testing
 `composer test`
