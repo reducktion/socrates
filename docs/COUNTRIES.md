@@ -1,0 +1,37 @@
+# List of supported countries
+
+- Albania - NID
+- Belgium - 
+- Bosnia and Herzegovina - JMBG and OIB
+- Bulgaria - EGN
+- Croatia - JMBG
+- Czech Republic - RČ
+- Denmark - CPR
+- Estonia - IK
+- Finland - HETU
+- France - INSEE
+- Greece - 
+- Hungary - 
+- Iceland - kennitala
+- Ireland - PPS
+- Italy - CF
+- Kosovo - JMBG
+- Latvia - PK
+- Lithuania - AK
+- Luxembourg - 
+- Moldova - IDNP
+- Montenegro - JMBG
+- Netherlands - BSN
+- North Macedonia - JMBG
+- Norway - FN
+- Poland - PESEL
+- Portugal - 
+- Romania - CNP
+- Serbia - JMBG
+- Slovakia - RČ
+- Slovenia - EMŠO
+- Spain - DNI
+- Sweden - PSN
+- Switzerland - 
+- Turkey - TC
+- Ukraine -  
