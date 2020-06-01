@@ -77,7 +77,7 @@ if ($socrates->validateId('719102091', 'NL')) {
 This method will return an instance of `Citizen`. If the ID is invalid, an `InvalidIdException` will be thrown. If the country does not support data extraction, an `UnsupportedOperationException` will be thrown.
 
 ```php
-$citizen = $socrates->getCitizenDataFromId('3860123012', 'EE'));
+$citizen = $socrates->getCitizenDataFromId('3860123012', 'EE');
 ```
 
 The `Citizen` class stores the extracted citizen data in a consistent format across all countries. It exposes the `getGender()`, `getDateOfBirth()`, `getAge()` and `getPlaceOfBirth()` methods.
@@ -91,8 +91,16 @@ echo $citizen->getAge(); // 34 (as of June 2020)
 echo $citizen->getPlaceOfBirth(); // null
 ```
 
-## Testing
+## Unsupported Countries
+Four european countries are currently unsupported: Austria, Belarus, Cyprus and Germany. This is because we could not find a reliable source for the algorithm, if at all. Help would be appreciated to get these countries supported.
 
+## Contributing
+Any help is appreciated! Take a look at our [CONTRIBUTING.md](contributing file) for our contribution guidelines.
+
+## Code of Conduct
+Our CoC is based on Ruby's. Check out [CODE_OF_CONDUCT.md](our code of conduct).
+
+## Testing
 `composer test`
 
 ## Credits
