@@ -269,6 +269,7 @@ class Countries
         'ES' => \Reducktion\Socrates\Core\Spain\SpainIdValidator::class,
         'FI' => \Reducktion\Socrates\Core\Finland\FinlandIdValidator::class,
         'FR' => \Reducktion\Socrates\Core\France\FranceIdValidator::class,
+        'GB' => \Reducktion\Socrates\Core\UnitedKingdom\UnitedKingdomIdValidator::class,
         'GR' => \Reducktion\Socrates\Core\Greece\GreeceIdValidator::class,
         'HR' => \Reducktion\Socrates\Core\Croatia\CroatiaIdValidator::class,
         'HU' => \Reducktion\Socrates\Core\Hungary\HungaryIdValidator::class,
