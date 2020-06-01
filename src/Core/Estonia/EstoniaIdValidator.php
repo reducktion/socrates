@@ -13,7 +13,7 @@ class EstoniaIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 11) {
-            throw new InvalidLengthException("The Estonian PIC must have 11 digits, got $idLength");
+            throw new InvalidLengthException("The Estonian IK must have 11 digits, got $idLength");
         }
 
         $checksum = (int) substr($id, -1);

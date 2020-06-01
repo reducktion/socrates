@@ -13,7 +13,7 @@ class BulgariaIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 10) {
-            throw new InvalidLengthException("The Bulgarian uniform civil number must have 10 digits, got $idLength");
+            throw new InvalidLengthException("The Bulgarian EGN must have 10 digits, got $idLength");
         }
 
         $checksum = (int) substr($id, -1);

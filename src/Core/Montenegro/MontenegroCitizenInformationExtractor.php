@@ -14,7 +14,7 @@ class MontenegroCitizenInformationExtractor implements CitizenInformationExtract
     public function extract(string $id): Citizen
     {
         if (! (new MontenegroIdValidator())->validate($id)) {
-            throw new InvalidIdException('Provided JMBG is invalid');
+            throw new InvalidIdException('Provided ID is invalid');
         }
 
         try {
