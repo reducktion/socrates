@@ -27,7 +27,7 @@ Our goals:
 `composer require reducktion/socrates`
 
 ## Usage
-Socrates provide two methods: `validateId` and `getCitizenDataFromId`. Both receive the ID and the country code in [ISO 3166-2 format](https://en.wikipedia.org/wiki/ISO_3166-2)  as the first and second parameters respectively. Simply instantiate the class and call the method you wish:
+Socrates provides two methods: `validateId` and `getCitizenDataFromId`. Both receive the ID and the country code in [ISO 3166-2 format](https://en.wikipedia.org/wiki/ISO_3166-2)  as the first and second parameters respectively. Simply instantiate the class and call the method you wish:
 
 ```php
 use Reducktion\Socrates\Socrates;
