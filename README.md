@@ -94,14 +94,17 @@ echo $citizen->getPlaceOfBirth(); // null
 ## Unsupported Countries
 Four european countries are currently unsupported: Austria, Belarus, Cyprus and Germany. This is because we could not find a reliable source for the algorithm, if at all. Help would be appreciated to get these countries supported.
 
+## Testing
+`composer test`
+
 ## Contributing
 Any help is appreciated! Take a look at our [contributing guidelines](CONTRIBUTING.md).
 
 ## Code of Conduct
 Our CoC is based on Ruby's. Check out [our code of conduct](CODE_OF_CONDUCT.md).
 
-## Testing
-`composer test`
+## License
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
 ## Credits
 Socrates was made with 💖 by [Alexandre Olival](https://github.com/AlexOlival)  and [João Cruz](https://github.com/JoaoFSCruz). 
