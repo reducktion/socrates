@@ -90,5 +90,4 @@ class EstoniaTest extends FeatureTest
 
         Socrates::validateId('6031027563', 'EE');
     }
-
 }

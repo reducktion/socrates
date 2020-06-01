@@ -105,5 +105,4 @@ class ItalyTest extends FeatureTest
 
         Socrates::validateId('MLCDTA01A12A06E', 'IT');
     }
-
 }

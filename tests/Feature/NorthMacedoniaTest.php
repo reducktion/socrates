@@ -97,5 +97,4 @@ class NorthMacedoniaTest extends FeatureTest
 
         Socrates::getCitizenDataFromId('010597850041', 'MK');
     }
-
 }

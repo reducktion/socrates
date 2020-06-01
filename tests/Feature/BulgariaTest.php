@@ -96,5 +96,4 @@ class BulgariaTest extends FeatureTest
 
         Socrates::validateId('754201103', 'BG');
     }
-
 }

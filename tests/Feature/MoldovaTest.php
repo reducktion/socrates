@@ -56,5 +56,4 @@ class MoldovaTest extends FeatureTest
             );
         }
     }
-
 }

@@ -58,5 +58,4 @@ class IrelandTest extends FeatureTest
             );
         }
     }
-
 }

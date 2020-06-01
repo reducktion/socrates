@@ -108,5 +108,4 @@ class LatviaTest extends FeatureTest
 
         Socrates::validateId('171210-2073', 'LV');
     }
-
 }

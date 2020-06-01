@@ -118,5 +118,4 @@ class CroatiaTest extends FeatureTest
 
         Socrates::validateId('010597850', 'HR');
     }
-
 }

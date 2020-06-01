@@ -81,7 +81,7 @@ class RomaniaTest extends FeatureTest
 
     public function test_validation_behaviour(): void
     {
-        foreach ($this->people as $person)  {
+        foreach ($this->people as $person) {
             $this->assertTrue(
                 Socrates::validateId($person['cnp'], 'RO')
             );
@@ -97,5 +97,4 @@ class RomaniaTest extends FeatureTest
 
         Socrates::validateId('30508118', 'RO');
     }
-
 }

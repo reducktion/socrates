@@ -49,10 +49,4 @@ class Citizen
     {
         $this->placeOfBirth = $placeOfBirth;
     }
-
-    // TODO remove
-    public function __toString()
-    {
-        return 'Gender - ' . $this->gender . ' DoB - ' . $this->dateOfBirth->format('Y-m-d') . ' PoB - ' . $this->getPlaceOfBirth();
-    }
 }

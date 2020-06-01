@@ -91,5 +91,4 @@ class KosovoTest extends FeatureTest
 
         Socrates::validateId('2103921983', 'HR');
     }
-
 }

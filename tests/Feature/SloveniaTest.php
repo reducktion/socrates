@@ -97,5 +97,4 @@ class SloveniaTest extends FeatureTest
 
         Socrates::getCitizenDataFromId('010597850041', 'SI');
     }
-
 }

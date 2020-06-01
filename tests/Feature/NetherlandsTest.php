@@ -58,5 +58,4 @@ class NetherlandsTest extends FeatureTest
             );
         }
     }
-
 }
