@@ -1,37 +1,38 @@
 # List of supported countries
 
-- Albania - NID
-- Belgium - 
-- Bosnia and Herzegovina - JMBG and OIB
-- Bulgaria - EGN
-- Croatia - JMBG
-- Czech Republic - RČ
-- Denmark - CPR
-- Estonia - IK
-- Finland - HETU
-- France - INSEE
-- Greece - 
-- Hungary - 
-- Iceland - kennitala
-- Ireland - PPS
-- Italy - CF
-- Kosovo - JMBG
-- Latvia - PK
-- Lithuania - AK
-- Luxembourg - 
-- Moldova - IDNP
-- Montenegro - JMBG
-- Netherlands - BSN
-- North Macedonia - JMBG
-- Norway - FN
-- Poland - PESEL
-- Portugal - 
-- Romania - CNP
-- Serbia - JMBG
-- Slovakia - RČ
-- Slovenia - EMŠO
-- Spain - DNI
-- Sweden - PSN
-- Switzerland - AVH/AVN
-- Turkey - TC
-- Ukraine - INN
+- Albania 🇦🇱
+- Belgium 🇧🇪 
+- Bosnia and Herzegovina 🇧🇦
+- Bulgaria 🇧🇬
+- Croatia 🇭🇷
+- Czech Republic 🇨🇿
+- Denmark 🇩🇰
+- Estonia 🇪🇪
+- Finland 🇫🇮
+- France 🇫🇷
+- Greece 🇬🇷
+- Hungary 🇭🇺
+- Iceland 🇮🇸
+- Ireland 🇮🇪
+- Italy 🇮🇹
+- Kosovo 🇽🇰
+- Latvia 🇱🇻
+- Lithuania 🇱🇹
+- Luxembourg 🇱🇺
+- Moldova 🇲🇩
+- Montenegro 🇲🇪
+- Netherlands 🇳🇱
+- North Macedonia 🇲🇰
+- Norway 🇳🇴
+- Poland 🇵🇱
+- Portugal 🇵🇹 
+- Romania 🇷🇴
+- Serbia 🇷🇸
+- Slovakia 🇸🇰
+- Slovenia 🇸🇮
+- Spain 🇪🇸
+- Sweden 🇸🇪
+- Switzerland 🇨🇭
+- Turkey 🇹🇷
+- Ukraine 🇺🇦
+- United Kingdom 🇬🇧
