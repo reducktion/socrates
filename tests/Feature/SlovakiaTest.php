@@ -91,5 +91,4 @@ class SlovakiaTest extends FeatureTest
 
         Socrates::validateId('88606/875', 'CZ');
     }
-
 }

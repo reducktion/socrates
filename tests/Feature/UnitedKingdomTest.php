@@ -66,5 +66,4 @@ class UnitedKingdomTest extends FeatureTest
             );
         }
     }
-
 }

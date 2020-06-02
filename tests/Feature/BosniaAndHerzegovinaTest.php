@@ -97,5 +97,4 @@ class BosniaAndHerzegovinaTest extends FeatureTest
 
         Socrates::validateId('1012999121', 'BA');
     }
-
 }

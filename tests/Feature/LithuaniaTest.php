@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Reducktion\Socrates\Tests\Feature;
-
 
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
@@ -77,7 +75,7 @@ class LithuaniaTest extends FeatureTest
 
     public function test_validation_behaviour(): void
     {
-        foreach ($this->people as $person)  {
+        foreach ($this->people as $person) {
             $this->assertTrue(
                 Socrates::validateId($person['pc'], 'LT')
             );
@@ -93,5 +91,4 @@ class LithuaniaTest extends FeatureTest
 
         Socrates::validateId('3050811811123', 'LT');
     }
-
 }

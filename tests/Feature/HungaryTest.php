@@ -84,5 +84,4 @@ class HungaryTest extends FeatureTest
 
         Socrates::validateId('26905528', 'HU');
     }
-
 }

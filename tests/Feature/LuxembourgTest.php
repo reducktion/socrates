@@ -83,5 +83,4 @@ class LuxembourgTest extends FeatureTest
 
         Socrates::validateId('1983046783', 'LU');
     }
-
 }

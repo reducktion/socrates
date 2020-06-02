@@ -110,5 +110,4 @@ class FranceTest extends FeatureTest
 
         Socrates::validateId('23127609898 01', 'FR');
     }
-
 }
