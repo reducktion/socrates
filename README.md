@@ -93,14 +93,21 @@ echo $citizen->getPlaceOfBirth(); // null
 
 ## Supported and Unsupported Countries
 
-[Here](./docs/COUNTRIES.md) you can find the supported countries and the methods available for each one. Whenever there is a cross it means the functionality is not implemented since we could not find any information about that matter for the given country. We would be grateful for any help in implementing those functionalities or providing information about those topics.
+[Here](./docs/COUNTRIES.md) you can see the full list of supported countries and whether they support data extraction.
 
-Four european countries are currently unsupported: **Austria**, **Belarus**, **Cyprus** and **Germany**. This is because we could not find a reliable source for the algorithm, if at all. Help would be appreciated to get these countries supported.
+Four european countries are currently unsupported: Austria 🇦🇹, Belarus 🇧🇾, Cyprus 🇨🇾 and Germany 🇩🇪. This is because we could not find a reliable source for the algorithm, if at all. Help would be appreciated to get these countries supported.
 
 ## Testing
 `composer test`
 
 ## Contributing
+
+Did you find a problem in any of the algorithms? 
+
+Do you know how to implement a country which we have missed?
+
+Are there any improvements that you think should be made to the codebase?
+
 Any help is appreciated! Take a look at our [contributing guidelines](CONTRIBUTING.md).
 
 ## Code of Conduct
