@@ -23,7 +23,7 @@ class LatviaCitizenInformationExtractor implements CitizenInformationExtractor
 
         if (substr($id, 0, 2) === '32') {
             throw new UnsupportedOperationException(
-                'Latvia does not support citizen information extraction for PC issued after July 2017.'
+                'Latvia does not support citizen information extraction for PK issued after July 2017.'
             );
         }
 

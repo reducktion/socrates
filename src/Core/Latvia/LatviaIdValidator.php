@@ -19,7 +19,7 @@ class LatviaIdValidator implements IdValidator
         $checksum = (int) substr($id, -1);
         $id = substr($id, 0, -1);
 
-        $pcArray = array_map(
+        $pkArray = array_map(
             static function ($digit) {
                 return (int) $digit;
             },
@@ -33,7 +33,7 @@ class LatviaIdValidator implements IdValidator
                 static function ($digit, $multiplier) {
                     return $digit * $multiplier;
                 },
-                $pcArray,
+                $pkArray,
                 $multipliers
             )
         );
@@ -50,7 +50,7 @@ class LatviaIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 11) {
-            throw new InvalidLengthException("The Latvian PC must have 11 digits, got $idLength");
+            throw new InvalidLengthException("The Latvian PK must have 11 digits, got $idLength");
         }
 
         return $id;

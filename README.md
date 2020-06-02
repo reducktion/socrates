@@ -91,13 +91,23 @@ echo $citizen->getAge(); // 34 (as of June 2020)
 echo $citizen->getPlaceOfBirth(); // null
 ```
 
-## Unsupported Countries
-Four european countries are currently unsupported: **Austria**, **Belarus**, **Cyprus** and **Germany**. This is because we could not find a reliable source for the algorithm, if at all. Help would be appreciated to get these countries supported.
+## Supported and Unsupported Countries
+
+[Here](./docs/COUNTRIES.md) you can see the full list of supported countries and whether they support data extraction.
+
+Four european countries are currently unsupported: Austria 🇦🇹, Belarus 🇧🇾, Cyprus 🇨🇾 and Germany 🇩🇪. This is because we could not find a reliable source for the algorithm, if at all. Help would be appreciated to get these countries supported.
 
 ## Testing
 `composer test`
 
 ## Contributing
+
+Did you find a problem in any of the algorithms? 
+
+Do you know how to implement a country which we have missed?
+
+Are there any improvements that you think should be made to the codebase?
+
 Any help is appreciated! Take a look at our [contributing guidelines](CONTRIBUTING.md).
 
 ## Code of Conduct

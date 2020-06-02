@@ -18,37 +18,37 @@ class BulgariaTest extends FeatureTest
 
         $this->people = [
             'Andrei' => [
-                'ucn' => '7523169263',
+                'egn' => '7523169263',
                 'gender' => Gender::MALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '1875-03-16'),
                 'age' => Carbon::createFromFormat('Y-m-d', '1875-03-16')->age,
             ],
             'Lyuben' => [
-                'ucn' => '8032056031',
+                'egn' => '8032056031',
                 'gender' => Gender::MALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '1880-12-05'),
                 'age' => Carbon::createFromFormat('Y-m-d', '1880-12-05')->age,
             ],
             'Bilyana' => [
-                'ucn' => '8001010008',
+                'egn' => '8001010008',
                 'gender' => Gender::FEMALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '1980-01-01'),
                 'age' => Carbon::createFromFormat('Y-m-d', '1980-01-01')->age,
             ],
             'Kalina' => [
-                'ucn' => '7501020018',
+                'egn' => '7501020018',
                 'gender' => Gender::FEMALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '1975-01-02'),
                 'age' => Carbon::createFromFormat('Y-m-d', '1975-01-02')->age,
             ],
             'Nedyalko' => [
-                'ucn' => '7552010005',
+                'egn' => '7552010005',
                 'gender' => Gender::MALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '2075-12-01'),
                 'age' => Carbon::createFromFormat('Y-m-d', '2075-12-01')->age,
             ],
             'Tsveta' => [
-                'ucn' => '7542011030',
+                'egn' => '7542011030',
                 'gender' => Gender::FEMALE,
                 'dob' => Carbon::createFromFormat('Y-m-d', '2075-02-01'),
                 'age' => Carbon::createFromFormat('Y-m-d', '2075-02-01')->age,
@@ -67,7 +67,7 @@ class BulgariaTest extends FeatureTest
     public function test_extract_behaviour(): void
     {
         foreach ($this->people as $person) {
-            $citizen = Socrates::getCitizenDataFromId($person['ucn'], 'BG');
+            $citizen = Socrates::getCitizenDataFromId($person['egn'], 'BG');
             $this->assertEquals($person['gender'], $citizen->getGender());
             $this->assertEquals($person['dob'], $citizen->getDateOfBirth());
             $this->assertEquals($person['age'], $citizen->getAge());
@@ -82,13 +82,13 @@ class BulgariaTest extends FeatureTest
     {
         foreach ($this->people as $person) {
             $this->assertTrue(
-                Socrates::validateId($person['ucn'], 'BG')
+                Socrates::validateId($person['egn'], 'BG')
             );
         }
 
-        foreach ($this->invalidIds as $ucn) {
+        foreach ($this->invalidIds as $egn) {
             $this->assertFalse(
-                Socrates::validateId($ucn, 'BG')
+                Socrates::validateId($egn, 'BG')
             );
         }
 

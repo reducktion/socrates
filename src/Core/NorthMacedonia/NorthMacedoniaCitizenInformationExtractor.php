@@ -14,7 +14,7 @@ class NorthMacedoniaCitizenInformationExtractor implements CitizenInformationExt
     public function extract(string $id): Citizen
     {
         if (! (new NorthMacedoniaIdValidator())->validate($id)) {
-            throw new InvalidIdException('Provided JMBG is invalid');
+            throw new InvalidIdException('Provided ID is invalid');
         }
 
         try {

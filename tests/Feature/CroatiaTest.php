@@ -96,9 +96,9 @@ class CroatiaTest extends FeatureTest
 
     public function test_validation_behaviour(): void
     {
-        foreach ($this->validIds as $id) {
+        foreach ($this->validIds as $oib) {
             $this->assertTrue(
-                Socrates::validateId($id, 'HR')
+                Socrates::validateId($oib, 'HR')
             );
         }
 

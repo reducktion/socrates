@@ -18,49 +18,49 @@ class FranceTest extends FeatureTest
 
         $this->people = [
             'Annette' => [
-                'nir' => '2820819398814 09',
+                'insee' => '2820819398814 09',
                 'gender' => Gender::FEMALE,
                 'dob' => Carbon::createFromFormat('Y-m', '1982-08'),
                 'age' => Carbon::createFromFormat('Y-m', '1982-08')->age,
                 'pob' => 'Corrèze'
             ],
             'Lance' => [
-                'nir' => '1350455179061 16',
+                'insee' => '1350455179061 16',
                 'gender' => Gender::MALE,
                 'dob' => Carbon::createFromFormat('Y-m', '1935-04'),
                 'age' => Carbon::createFromFormat('Y-m', '1935-04')->age,
                 'pob' => 'Meuse'
             ],
             'Ancelote' => [
-                'nir' => '2381080214568 11',
+                'insee' => '2381080214568 11',
                 'gender' => Gender::FEMALE,
                 'dob' => Carbon::createFromFormat('Y-m', '1938-10'),
                 'age' => Carbon::createFromFormat('Y-m', '1938-10')->age,
                 'pob' => 'Somme'
             ],
             'Lothair' => [
-                'nir' => '1880858704571 57',
+                'insee' => '1880858704571 57',
                 'gender' => Gender::MALE,
                 'dob' => Carbon::createFromFormat('Y-m', '1988-08'),
                 'age' => Carbon::createFromFormat('Y-m', '1988-08')->age,
                 'pob' => 'Nièvre'
             ],
             'Millard' => [
-                'nir' => '1030307795669 72',
+                'insee' => '1030307795669 72',
                 'gender' => Gender::MALE,
                 'dob' => Carbon::createFromFormat('Y-m', '2003-03'),
                 'age' => Carbon::createFromFormat('Y-m', '2003-03')->age,
                 'pob' => 'Ardèche'
             ],
             'Geoffrey' => [
-                'nir' => '1820897401154 75',
+                'insee' => '1820897401154 75',
                 'gender' => Gender::MALE,
                 'dob' => Carbon::createFromFormat('Y-m', '1982-08'),
                 'age' => Carbon::createFromFormat('Y-m', '1982-08')->age,
                 'pob' => 'Réunion'
             ],
             'Galatee' => [
-                'nir' => '2041098718061 61',
+                'insee' => '2041098718061 61',
                 'gender' => Gender::FEMALE,
                 'dob' => Carbon::createFromFormat('Y-m', '2004-10'),
                 'age' => Carbon::createFromFormat('Y-m', '2004-10')->age,
@@ -80,7 +80,7 @@ class FranceTest extends FeatureTest
     public function test_extract_behaviour(): void
     {
         foreach ($this->people as $person) {
-            $citizen = Socrates::getCitizenDataFromId($person['nir'], 'FR');
+            $citizen = Socrates::getCitizenDataFromId($person['insee'], 'FR');
             $this->assertEquals($person['gender'], $citizen->getGender());
             $this->assertEquals($person['dob'], $citizen->getDateOfBirth());
             $this->assertEquals($person['age'], $citizen->getAge());
@@ -96,13 +96,13 @@ class FranceTest extends FeatureTest
     {
         foreach ($this->people as $person) {
             $this->assertTrue(
-                Socrates::validateId($person['nir'], 'FR')
+                Socrates::validateId($person['insee'], 'FR')
             );
         }
 
-        foreach ($this->invalidIds as $nir) {
+        foreach ($this->invalidIds as $insee) {
             $this->assertFalse(
-                Socrates::validateId($nir, 'FR')
+                Socrates::validateId($insee, 'FR')
             );
         }
 
