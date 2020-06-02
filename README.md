@@ -115,6 +115,7 @@ We hope to make someone's life easier after all the hard work compiling, researc
 A big thanks goes to these people who helped us either test with real life IDs or guide us in finding the algorithm for their countries:
 * Alexandra from 🇷🇴
 * Berilay from 🇹🇷
+* Christian from 🇨🇭
 * Domynikas from 🇱🇹
 * Jeppe from 🇩🇰
 * Jeremy from 🇫🇷 
