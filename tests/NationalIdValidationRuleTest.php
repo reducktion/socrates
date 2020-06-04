@@ -2,10 +2,12 @@
 
 namespace Reducktion\Socrates\Tests;
 
+use Illuminate\Validation\ValidationException;
+
 class NationalIdValidationRuleTest extends TestCase
 {
     /** @test */
-    public function a_valid_id_and_a_supported_country_passes():void
+    public function it_passes_if_the_user_passes_a_valid_id_and_a_supported_country(): void
     {
         $data = [
             'id' => '93.05.18-223.61',
@@ -21,7 +23,7 @@ class NationalIdValidationRuleTest extends TestCase
     }
 
     /** @test */
-    public function an_invalid_id_and_a_supported_country_fails():void
+    public function it_fails_if_the_user_passes_an_invalid_id_and_a_supported_country(): void
     {
         $data = [
             'id' => '123',
@@ -32,7 +34,26 @@ class NationalIdValidationRuleTest extends TestCase
             'id' => 'national_id:' . $data['country']
         ];
 
-        $validator = $this->app['validator']->make($data, $rules);
-        $this->assertTrue($validator->fails());
+        $this->expectException(ValidationException::class);
+        $this->app['validator']->make($data, $rules)->validate();
+    }
+
+    /** @test */
+    public function it_throws_an_exception_if_the_user_passes_an_unsupported_country(): void
+    {
+        $this->withoutExceptionHandling();
+
+        $data = [
+            'id' => '123',
+            'country' => 'BB'
+        ];
+
+        $rules = [
+            'id' => 'national_id:' . $data['country']
+        ];
+
+        $this->expectException(ValidationException::class);
+        $this->app['validator']->make($data, $rules)->validate();
+
     }
 }
