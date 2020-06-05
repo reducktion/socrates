@@ -23,7 +23,7 @@ class NationalIdValidationRuleTest extends TestCase
     }
 
     /** @test */
-    public function it_fails_if_the_user_passes_an_invalid_id_and_a_supported_country(): void
+    public function it_throws_an_exception_if_the_user_passes_an_invalid_id_and_a_supported_country(): void
     {
         $data = [
             'id' => '123',
@@ -54,6 +54,5 @@ class NationalIdValidationRuleTest extends TestCase
 
         $this->expectException(ValidationException::class);
         $this->app['validator']->make($data, $rules)->validate();
-
     }
 }
