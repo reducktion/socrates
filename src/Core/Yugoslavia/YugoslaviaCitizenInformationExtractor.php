@@ -16,7 +16,7 @@ class YugoslaviaCitizenInformationExtractor
         $id = trim($id);
 
         if (! (new YugoslaviaIdValidator())::validate($id)) {
-            throw new InvalidIdException("Provided ID is invalid.");
+            throw new InvalidIdException();
         }
 
         $gender = self::getGender($id);

@@ -14,13 +14,13 @@ class BosniaAndHerzegovinaCitizenInformationExtractor implements CitizenInformat
     public function extract(string $id): Citizen
     {
         if (! (new BosniaAndHerzegovinaIdValidator())->validate($id)) {
-            throw new InvalidIdException('Provided ID is invalid');
+            throw new InvalidIdException();
         }
 
         try {
             $citizen = YugoslaviaCitizenInformationExtractor::extract($id);
         } catch (InvalidLengthException $e) {
-            throw new InvalidLengthException('The Bosnian JMBG must have 13 digits, ' . $e->getMessage());
+            throw new InvalidLengthException('Bosnian JMBG', $e->getRequiredCharacters(), $e->getGivenCharacters());
         }
 
         return $citizen;

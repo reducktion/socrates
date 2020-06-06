@@ -14,7 +14,7 @@ class IcelandCitizenInformationExtractor implements CitizenInformationExtractor
         $id = $this->sanitize($id);
 
         if (! (new IcelandIdValidator())->validate($id)) {
-            throw new InvalidIdException("Provided ID is invalid.");
+            throw new InvalidIdException();
         }
 
         $dateOfBirth = $this->getDateOfBirth($id);

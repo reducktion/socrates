@@ -17,7 +17,7 @@ class FranceCitizenInformationExtractor implements CitizenInformationExtractor
         $id = $this->sanitize($id);
 
         if (! (new FranceIdValidator())->validate($id)) {
-            throw new InvalidIdException("Provided ID is invalid.");
+            throw new InvalidIdException();
         }
 
         $gender = $this->getGender($id);

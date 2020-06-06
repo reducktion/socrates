@@ -14,7 +14,7 @@ class CzechRepublicCitizenInformationExtractor implements CitizenInformationExtr
     public function extract(string $id): Citizen
     {
         if (! (new CzechRepublicIdValidator())->validate($id)) {
-            throw new InvalidIdException('Provided ID is invalid');
+            throw new InvalidIdException();
         }
 
         try {
