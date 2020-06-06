@@ -11,7 +11,7 @@ class ItalyIdValidator implements IdValidator
     {
         $idLength = strlen($id);
         if ($idLength !== 16) {
-            throw new InvalidLengthException("Italian FC must have 16 digits, got $idLength");
+            throw new InvalidLengthException('Italian FC', '16', $idLength);
         }
 
         $id = $this->omocodiaSwap($id);

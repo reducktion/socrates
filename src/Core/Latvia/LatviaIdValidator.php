@@ -50,7 +50,7 @@ class LatviaIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 11) {
-            throw new InvalidLengthException("The Latvian PK must have 11 digits, got $idLength");
+            throw new InvalidLengthException('Latvian PK', '11', $idLength);
         }
 
         return $id;

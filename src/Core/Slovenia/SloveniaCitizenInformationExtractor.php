@@ -20,7 +20,7 @@ class SloveniaCitizenInformationExtractor implements CitizenInformationExtractor
         try {
             $citizen = YugoslaviaCitizenInformationExtractor::extract($id);
         } catch (InvalidLengthException $e) {
-            throw new InvalidLengthException('The Slovenian EMSO must have 13 digits, ' . $e->getMessage());
+            throw new InvalidLengthException('Slovenian EMSO', $e->getRequiredCharacters(), $e->getGivenCharacters());
         }
 
         return $citizen;

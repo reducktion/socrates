@@ -14,7 +14,7 @@ class CzechoslovakiaIdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 10) {
-            throw new InvalidLengthException("got $idLength");
+            throw new InvalidLengthException('Czechoslovakian RC', '10', $idLength);
         }
 
         $checksum = (int) substr($id, -1);

@@ -40,7 +40,7 @@ class HungaryIdValidator implements IdValidator
 
         if ($idLength !== 11) {
             throw new InvalidLengthException(
-                "The Hungarian personal identification number must have 11 digits, got $idLength"
+                'Hungarian personal identification number', '11', $idLength
             );
         }
 

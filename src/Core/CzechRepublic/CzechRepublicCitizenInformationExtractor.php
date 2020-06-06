@@ -20,7 +20,7 @@ class CzechRepublicCitizenInformationExtractor implements CitizenInformationExtr
         try {
             $result = CzechoslovakiaCitizenInformationExtractor::extract($id);
         } catch (InvalidLengthException $e) {
-            throw new InvalidLengthException('The Czech RC must have 10 digits, ' . $e->getMessage());
+            throw new InvalidLengthException('Czech RC', $e->getRequiredCharacters(), $e->getGivenCharacters());
         }
 
         return $result;

@@ -20,7 +20,7 @@ class CroatiaCitizenInformationExtractor implements CitizenInformationExtractor
         try {
             $citizen = YugoslaviaCitizenInformationExtractor::extract($id);
         } catch (InvalidLengthException $e) {
-            throw new InvalidLengthException('The Croatian JMBG must have 13 digits, ' . $e->getMessage());
+            throw new InvalidLengthException('Croatian JMBG', $e->getRequiredCharacters(), $e->getGivenCharacters());
         }
 
         return $citizen;
