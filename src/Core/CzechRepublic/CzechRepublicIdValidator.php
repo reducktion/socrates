@@ -8,7 +8,6 @@ use Reducktion\Socrates\Core\Czechoslovakia\CzechoslovakiaIdValidator;
 
 class CzechRepublicIdValidator implements IdValidator
 {
-
     public function validate(string $id): bool
     {
         try {

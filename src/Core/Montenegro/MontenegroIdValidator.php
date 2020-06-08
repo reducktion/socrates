@@ -8,7 +8,6 @@ use Reducktion\Socrates\Core\Yugoslavia\YugoslaviaIdValidator;
 
 class MontenegroIdValidator implements IdValidator
 {
-
     public function validate(string $id): bool
     {
         try {

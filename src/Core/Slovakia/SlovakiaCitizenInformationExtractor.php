@@ -11,7 +11,6 @@ use Reducktion\Socrates\Core\Czechoslovakia\CzechoslovakiaCitizenInformationExtr
 
 class SlovakiaCitizenInformationExtractor implements CitizenInformationExtractor
 {
-
     public function extract(string $id): Citizen
     {
         if (! (new CzechRepublicIdValidator())->validate($id)) {

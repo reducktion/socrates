@@ -9,7 +9,6 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class CzechoslovakiaCitizenInformationExtractor
 {
-
     public static function extract(string $id): Citizen
     {
         $id = str_replace('/', '', $id);
