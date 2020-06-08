@@ -10,7 +10,6 @@ use Reducktion\Socrates\Core\Yugoslavia\YugoslaviaCitizenInformationExtractor;
 
 class NorthMacedoniaCitizenInformationExtractor implements CitizenInformationExtractor
 {
-
     public function extract(string $id): Citizen
     {
         if (! (new NorthMacedoniaIdValidator())->validate($id)) {

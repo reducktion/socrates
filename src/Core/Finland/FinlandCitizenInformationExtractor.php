@@ -11,7 +11,6 @@ use Reducktion\Socrates\Models\Citizen;
 
 class FinlandCitizenInformationExtractor implements CitizenInformationExtractor
 {
-
     public function extract(string $id): Citizen
     {
         if (! (new FinlandIdValidator())->validate($id)) {

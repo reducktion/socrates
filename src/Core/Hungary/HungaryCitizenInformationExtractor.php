@@ -10,7 +10,6 @@ use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 
 class HungaryCitizenInformationExtractor implements CitizenInformationExtractor
 {
-
     public function extract(string $id): Citizen
     {
         $id = $this->sanitize($id);

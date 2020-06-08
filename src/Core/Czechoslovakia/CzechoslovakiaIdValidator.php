@@ -6,7 +6,6 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class CzechoslovakiaIdValidator
 {
-
     public static function validate(string $id): bool
     {
         $id = str_replace('/', '', $id);

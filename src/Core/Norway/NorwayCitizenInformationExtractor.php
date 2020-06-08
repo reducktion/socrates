@@ -10,7 +10,6 @@ use Reducktion\Socrates\Models\Citizen;
 
 class NorwayCitizenInformationExtractor implements CitizenInformationExtractor
 {
-
     public function extract(string $id): Citizen
     {
         if (! (new NorwayIdValidator())->validate($id)) {

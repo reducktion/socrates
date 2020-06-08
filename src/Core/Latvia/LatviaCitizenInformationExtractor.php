@@ -10,7 +10,6 @@ use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
 
 class LatviaCitizenInformationExtractor implements CitizenInformationExtractor
 {
-
     public function extract(string $id): Citizen
     {
         $id = $this->sanitize($id);
