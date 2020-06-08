@@ -9,6 +9,7 @@
     <img alt="Total Downloads" src="https://img.shields.io/packagist/dt/reducktion/socrates">
     <img alt="Latest Version" src="https://img.shields.io/packagist/v/reducktion/socrates">
     <img alt="License" src="https://img.shields.io/github/license/reducktion/socrates">
+    <img alt="StyleCI" src="https://github.styleci.io/repos/238900350/shield?branch=master">
 </p>
 
 ------
