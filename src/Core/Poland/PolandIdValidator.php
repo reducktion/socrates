@@ -7,7 +7,6 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class PolandIdValidator implements IdValidator
 {
-
     public function validate(string $id): bool
     {
         $idLength = strlen($id);

@@ -7,7 +7,6 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class UnitedKingdomIdValidator implements IdValidator
 {
-
     public function validate(string $id): bool
     {
         $id = $this->sanitize($id);

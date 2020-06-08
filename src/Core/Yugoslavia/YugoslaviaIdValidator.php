@@ -6,7 +6,6 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class YugoslaviaIdValidator
 {
-
     public static function validate(string $id): bool
     {
         $id = trim($id);

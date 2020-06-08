@@ -7,7 +7,6 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class GreeceIdValidator implements IdValidator
 {
-
     public function validate(string $id): bool
     {
         $id = str_replace('-', '', $id);

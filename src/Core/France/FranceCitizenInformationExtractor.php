@@ -11,7 +11,6 @@ use Reducktion\Socrates\Models\Citizen;
 
 class FranceCitizenInformationExtractor implements CitizenInformationExtractor
 {
-
     public function extract(string $id): Citizen
     {
         $id = $this->sanitize($id);
