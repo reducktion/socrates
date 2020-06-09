@@ -13,7 +13,9 @@ class LuxembourgIdValidator implements IdValidator
 
         if ($idLength !== 13) {
             throw new InvalidLengthException(
-                'Luxembourger national identification', '11', $idLength
+                'Luxembourger national identification',
+                '11',
+                $idLength
             );
         }
 

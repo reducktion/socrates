@@ -38,7 +38,7 @@ class IcelandIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 10) {
-            throw new InvalidLengthException('Icelandic KR', '10',$idLength);
+            throw new InvalidLengthException('Icelandic KR', '10', $idLength);
         }
 
         return $id;

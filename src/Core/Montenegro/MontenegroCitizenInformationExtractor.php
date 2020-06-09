@@ -19,7 +19,7 @@ class MontenegroCitizenInformationExtractor implements CitizenInformationExtract
         try {
             $citizen = YugoslaviaCitizenInformationExtractor::extract($id);
         } catch (InvalidLengthException $e) {
-            throw new InvalidLengthException('Montenegrin JMBG',$e->getRequiredCharacters(), $e->getGivenCharacters());
+            throw new InvalidLengthException('Montenegrin JMBG', $e->getRequiredCharacters(), $e->getGivenCharacters());
         }
 
         return $citizen;

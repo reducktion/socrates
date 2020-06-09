@@ -42,7 +42,7 @@ class PortugalIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 12) {
-            throw new InvalidLengthException('Portuguese ID Number', '12',$idLength);
+            throw new InvalidLengthException('Portuguese ID Number', '12', $idLength);
         }
 
         return $id;
