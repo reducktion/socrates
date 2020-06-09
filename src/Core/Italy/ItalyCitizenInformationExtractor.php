@@ -14,7 +14,7 @@ class ItalyCitizenInformationExtractor implements CitizenInformationExtractor
     public function extract(string $id): Citizen
     {
         if (! (new ItalyIdValidator())->validate($id)) {
-            throw new InvalidIdException("Provided ID is invalid.");
+            throw new InvalidIdException();
         }
 
         $id = $this->omocodiaSwap($id);

@@ -12,7 +12,7 @@ class MoldovaIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 13) {
-            throw new InvalidLengthException("Moldovan IDNP must have 13 characters, got $idLength");
+            throw new InvalidLengthException('Moldovan IDNP', '13', $idLength);
         }
 
         if (!is_numeric($id)) {

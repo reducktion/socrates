@@ -13,7 +13,7 @@ class LithuaniaCitizenInformationExtractor implements CitizenInformationExtracto
     public function extract(string $id): Citizen
     {
         if (! (new LithuaniaIdValidator())->validate($id)) {
-            throw new InvalidIdException("Provided ID is invalid.");
+            throw new InvalidIdException();
         }
 
         $gender = $this->getGender($id);

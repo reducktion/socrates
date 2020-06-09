@@ -11,7 +11,7 @@ class RomaniaIdValidator implements IdValidator
     {
         $idLength = strlen($id);
         if ($idLength !== 13) {
-            throw new InvalidLengthException("Romanian CNP must have 13 digits, got $idLength");
+            throw new InvalidLengthException('Romanian CNP', '13', $idLength);
         }
 
         $key = '279146358279';

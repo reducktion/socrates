@@ -13,13 +13,13 @@ class SerbiaCitizenInformationExtractor implements CitizenInformationExtractor
     public function extract(string $id): Citizen
     {
         if (! (new SerbiaIdValidator())->validate($id)) {
-            throw new InvalidIdException('Provided ID is invalid');
+            throw new InvalidIdException();
         }
 
         try {
             $citizen = YugoslaviaCitizenInformationExtractor::extract($id);
         } catch (InvalidLengthException $e) {
-            throw new InvalidLengthException('The Serbian JMBG must have 13 digits, ' . $e->getMessage());
+            throw new InvalidLengthException('Serbian JMBG', $e->getRequiredCharacters(), $e->getGivenCharacters());
         }
 
         return $citizen;

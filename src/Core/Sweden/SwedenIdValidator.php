@@ -59,7 +59,7 @@ class SwedenIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 10 && $idLength !== 12) {
-            throw new InvalidLengthException("Swedish Personnummer must have 10 or 12 digits, got $idLength");
+            throw new InvalidLengthException('Swedish Personnummer', '10 or 12', $idLength);
         }
 
         return $id;

@@ -13,19 +13,19 @@ class CroatiaIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 11 && $idLength !== 13) {
-            throw new InvalidLengthException("Croatian OIB must have 11 or 13 characters, got $idLength");
+            throw new InvalidLengthException('Croatian OIB or JMBG', '11 or 13', $idLength);
         }
 
         if ($idLength === 11) {
             $checksum = (int) substr($id, -1);
-            $test = $this->calculateChecksum($id);
-            return $checksum === $test;
+            $calculatedChecksum = $this->calculateChecksum($id);
+            return $checksum === $calculatedChecksum;
         }
 
         try {
             $result = YugoslaviaIdValidator::validate($id);
         } catch (InvalidLengthException $e) {
-            throw new InvalidLengthException('The Croatian JMBG must have 13 digits, ' . $e->getMessage());
+            throw new InvalidLengthException('Croatian JMBG', '13', $idLength);
         }
 
         $regionDigits = (int) substr($id, 7, 2);

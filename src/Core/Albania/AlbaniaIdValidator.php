@@ -12,7 +12,7 @@ class AlbaniaIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 10) {
-            throw new InvalidLengthException("Albanian NID must have 10 characters, got $idLength");
+            throw new InvalidLengthException('Albanian NID', '10', $idLength);
         }
 
         if (is_numeric($id[0])) {

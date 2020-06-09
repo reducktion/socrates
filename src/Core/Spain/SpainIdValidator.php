@@ -35,7 +35,7 @@ class SpainIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 9) {
-            throw new InvalidLengthException("Spanish DNI must have 9 characters, got $idLength");
+            throw new InvalidLengthException('Spanish DNI', '9', $idLength);
         }
 
         return $id;

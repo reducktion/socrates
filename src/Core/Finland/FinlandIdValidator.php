@@ -11,7 +11,7 @@ class FinlandIdValidator implements IdValidator
     {
         $idLength = strlen($id);
         if ($idLength !== 11) {
-            throw new InvalidLengthException("Finnish HETU must have 11 digits, got $idLength");
+            throw new InvalidLengthException('Finnish HETU', '11', $idLength);
         }
 
         $control = substr($id, -1);

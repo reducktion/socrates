@@ -13,7 +13,7 @@ class SwedenCitizenInformationExtractor implements CitizenInformationExtractor
     public function extract(string $id): Citizen
     {
         if (! (new SwedenIdValidator())->validate($id)) {
-            throw new InvalidIdException("Provided ID is invalid.");
+            throw new InvalidIdException();
         }
 
         $isOverOneHundredYearsOld = $this->checkIfCitizenIsOverOneHundredYearsOld($id);
