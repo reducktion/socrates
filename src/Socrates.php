@@ -3,6 +3,9 @@
 namespace Reducktion\Socrates;
 
 use Locale;
+use Reducktion\Socrates\Exceptions\InvalidIdException;
+use Reducktion\Socrates\Exceptions\InvalidLengthException;
+use Reducktion\Socrates\Exceptions\UnrecognisedPlaceOfBirthException;
 use Reducktion\Socrates\Models\Citizen;
 use Reducktion\Socrates\Config\Countries;
 use Reducktion\Socrates\Core\IdValidatorFactory;
@@ -19,8 +22,11 @@ class Socrates
      *
      * @param  string  $id
      * @param  string  $countryCode
-     *
-     * @return \Reducktion\Socrates\Models\Citizen
+     * @return Citizen
+     * @throws InvalidIdException if the provided National Identification Number is invalid.
+     * @throws UnrecognisedPlaceOfBirthException if the encoded place of birth is wrong or invalid.
+     * @throws UnsupportedOperationException if the version or format of the National Identification Number does
+     * not support a given operation.
      */
     public function getCitizenDataFromId(string $id, string $countryCode = ''): Citizen
     {
@@ -40,8 +46,8 @@ class Socrates
      *
      * @param  string  $id
      * @param  string  $countryCode
-     *
      * @return bool
+     * @throws InvalidLengthException if the provided National Identification Number has the wrong length.
      */
     public function validateId(string $id, string $countryCode = ''): bool
     {
@@ -58,8 +64,9 @@ class Socrates
      * Transforms the provided country code to the ISO 3166-2 format.
      *
      * @param  string  $countryCode
-     *
      * @return string
+     * @throws InvalidCountryCodeException if the provided country code is not provided or is not in the right format.
+     * @throws UnrecognisedCountryException if the provided country code does not correspond to any country.
      */
     private function formatCountryCode(string $countryCode): string
     {
@@ -96,6 +103,9 @@ class Socrates
      * Verifies if a given country supports Citizen data extraction.
      *
      * @param  string  $countryCode
+     * @return void
+     * @throws UnsupportedOperationException if the provided country does not supported extracting data from
+     * the Personal Identification Number.
      */
     private function checkIfCountrySupportsCitizenData(string $countryCode): void
     {

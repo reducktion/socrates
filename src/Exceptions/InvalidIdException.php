@@ -9,6 +9,6 @@ class InvalidIdException extends \LogicException
      */
     public function __construct()
     {
-        parent::__construct('The National ID provided is invalid.');
+        parent::__construct('The provided National ID is invalid.');
     }
 }
