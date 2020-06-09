@@ -10,17 +10,16 @@ use Reducktion\Socrates\Core\Czechoslovakia\CzechoslovakiaCitizenInformationExtr
 
 class CzechRepublicCitizenInformationExtractor implements CitizenInformationExtractor
 {
-
     public function extract(string $id): Citizen
     {
         if (! (new CzechRepublicIdValidator())->validate($id)) {
-            throw new InvalidIdException('Provided ID is invalid');
+            throw new InvalidIdException();
         }
 
         try {
             $result = CzechoslovakiaCitizenInformationExtractor::extract($id);
         } catch (InvalidLengthException $e) {
-            throw new InvalidLengthException('The Czech RC must have 10 digits, ' . $e->getMessage());
+            throw new InvalidLengthException('Czech RC', $e->getRequiredCharacters(), $e->getGivenCharacters());
         }
 
         return $result;

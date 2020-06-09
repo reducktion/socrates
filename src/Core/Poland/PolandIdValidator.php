@@ -7,13 +7,12 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class PolandIdValidator implements IdValidator
 {
-
     public function validate(string $id): bool
     {
         $idLength = strlen($id);
 
         if ($idLength !== 11) {
-            throw new InvalidLengthException("The Polish PESEL must have 11 digits, got $idLength");
+            throw new InvalidLengthException('Polish PESEL', '11', $idLength);
         }
 
         $checksum = (int) substr($id, -1);

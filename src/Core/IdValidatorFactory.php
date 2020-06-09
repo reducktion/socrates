@@ -10,7 +10,6 @@ abstract class IdValidatorFactory
 {
     public static function getValidator(string $countryCode): IdValidator
     {
-
         if (! isset(Countries::$validators[$countryCode])) {
             throw new RuntimeException("Unknown or unsupported country code '$countryCode'");
         }

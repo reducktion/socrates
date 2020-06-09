@@ -7,7 +7,6 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class SwitzerlandIdValidator implements IdValidator
 {
-
     public function validate(string $id): bool
     {
         $id = $this->sanitize($id);
@@ -43,7 +42,7 @@ class SwitzerlandIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 13) {
-            throw new InvalidLengthException("Swiss AVH/AVN must have 13 digits, got $idLength");
+            throw new InvalidLengthException('Swiss AVH/AVN', '13', $idLength);
         }
 
         return $id;

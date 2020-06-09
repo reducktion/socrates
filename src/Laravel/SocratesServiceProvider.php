@@ -2,6 +2,7 @@
 
 namespace Reducktion\Socrates\Laravel;
 
+use Illuminate\Validation\ValidationException;
 use Reducktion\Socrates\Socrates;
 use Illuminate\Support\ServiceProvider;
 use Reducktion\Socrates\Config\Countries;
@@ -28,7 +29,9 @@ class SocratesServiceProvider extends ServiceProvider
             try {
                 return app('socrates')->validateId($value, $countryCode);
             } catch (\Exception $e) {
-                return false;
+                throw ValidationException::withMessages([
+                    $attribute => $e->getMessage()
+                ]);
             }
         }, 'National ID number is invalid.');
     }

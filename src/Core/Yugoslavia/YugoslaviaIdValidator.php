@@ -6,14 +6,13 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class YugoslaviaIdValidator
 {
-
     public static function validate(string $id): bool
     {
         $id = trim($id);
         $idLength = strlen($id);
 
         if ($idLength !== 13) {
-            throw new InvalidLengthException("got $idLength");
+            throw new InvalidLengthException('Yugoslavian JMBG', '13', $idLength);
         }
 
         $checksum = (int) substr($id, -1);

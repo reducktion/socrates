@@ -26,7 +26,7 @@ class FranceIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 15) {
-            throw new InvalidLengthException("The French INSEE must have 15 digits, got $idLength");
+            throw new InvalidLengthException('French INSEE', '15', $idLength);
         }
 
         return $id;

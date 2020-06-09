@@ -89,8 +89,6 @@ class CroatiaTest extends FeatureTest
             Socrates::getCitizenDataFromId($person, 'HR');
         }
 
-        $this->expectException(InvalidLengthException::class);
-
         Socrates::getCitizenDataFromId('1821992971', 'HR');
     }
 

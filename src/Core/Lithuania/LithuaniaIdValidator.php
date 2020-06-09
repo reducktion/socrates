@@ -11,7 +11,7 @@ class LithuaniaIdValidator implements IdValidator
     {
         $idLength = strlen($id);
         if ($idLength !== 11) {
-            throw new InvalidLengthException("Lithuanian AK must have 11 digits, got $idLength");
+            throw new InvalidLengthException('Lithuanian AK', '11', $idLength);
         }
 
         $control = substr($id, -1);

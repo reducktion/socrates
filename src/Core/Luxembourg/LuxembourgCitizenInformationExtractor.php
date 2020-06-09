@@ -9,11 +9,10 @@ use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 
 class LuxembourgCitizenInformationExtractor implements CitizenInformationExtractor
 {
-
     public function extract(string $id): Citizen
     {
         if (! (new LuxembourgIdValidator())->validate($id)) {
-            throw new InvalidIdException("Provided ID is invalid.");
+            throw new InvalidIdException();
         }
 
         $dob = $this->getDateOfBirth($id);

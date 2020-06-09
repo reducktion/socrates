@@ -7,13 +7,12 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class UkraineIdValidator implements IdValidator
 {
-
     public function validate(string $id): bool
     {
         $idLength = strlen($id);
 
         if ($idLength !== 10) {
-            throw new InvalidLengthException("Ukrainian INN must have 10 digits, got $idLength");
+            throw new InvalidLengthException('Ukrainian INN', '10', $idLength);
         }
 
         if (!is_numeric($id)) {

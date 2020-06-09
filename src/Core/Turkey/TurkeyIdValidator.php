@@ -7,13 +7,12 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class TurkeyIdValidator implements IdValidator
 {
-
     public function validate(string $id): bool
     {
         $idLength = strlen($id);
 
         if ($idLength !== 11) {
-            throw new InvalidLengthException("Turkish TC must have 11 digits, got $idLength");
+            throw new InvalidLengthException('Turkish TC', '11', $idLength);
         }
 
         $id = array_map(

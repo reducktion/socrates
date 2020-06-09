@@ -4,6 +4,7 @@ namespace Reducktion\Socrates\Core\Yugoslavia;
 
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
+use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Exceptions\UnrecognisedPlaceOfBirthException;
 use Reducktion\Socrates\Models\Citizen;
@@ -13,10 +14,9 @@ class YugoslaviaCitizenInformationExtractor
     public static function extract(string $id): Citizen
     {
         $id = trim($id);
-        $idLength = strlen($id);
 
-        if ($idLength !== 13) {
-            throw new InvalidLengthException("got $idLength");
+        if (! (new YugoslaviaIdValidator())::validate($id)) {
+            throw new InvalidIdException();
         }
 
         $gender = self::getGender($id);

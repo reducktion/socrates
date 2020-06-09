@@ -12,18 +12,18 @@
 | Estonia 🇪🇪                |      EE      | :heavy_check_mark: | :heavy_check_mark: |
 | Finland 🇫🇮                |      FI      | :heavy_check_mark: | :heavy_check_mark: |
 | France 🇫🇷                 |      FR      | :heavy_check_mark: | :heavy_check_mark: |
-| Greece 🇬🇷                 |      GR      | :heavy_check_mark: | :heavy_check_mark: |
+| Greece 🇬🇷                 |      GR      | :heavy_check_mark: | :x:                |
 | Hungary 🇭🇺                |      HU      | :heavy_check_mark: | :heavy_check_mark: |
 | Iceland 🇮🇸                |      IS      | :heavy_check_mark: | :heavy_check_mark: |
 | Ireland 🇮🇪                |      IE      | :heavy_check_mark: | :x:                |
-| Italy 🇮🇹                  |      IE      | :heavy_check_mark: | :heavy_check_mark: |
+| Italy 🇮🇹                  |      IT      | :heavy_check_mark: | :heavy_check_mark: |
 | Kosovo 🇽🇰                 |      XK      | :heavy_check_mark: | :heavy_check_mark: |
 | Latvia 🇱🇻                 |      LV      | :heavy_check_mark: | :heavy_check_mark: |
 | Lithuania 🇱🇹              |      LT      | :heavy_check_mark: | :heavy_check_mark: |
 | Luxembourg 🇱🇺             |      LU      | :heavy_check_mark: | :heavy_check_mark: |
-| Moldova 🇲🇩                |      LU      | :heavy_check_mark: | :x:                |
+| Moldova 🇲🇩                |      MD      | :heavy_check_mark: | :x:                |
 | Montenegro 🇲🇪             |      ME      | :heavy_check_mark: | :heavy_check_mark: |
-| Netherlands 🇳🇱            |      ME      | :heavy_check_mark: | :x:                |
+| Netherlands 🇳🇱            |      NL      | :heavy_check_mark: | :x:                |
 | North Macedonia 🇲🇰        |      MK      | :heavy_check_mark: | :heavy_check_mark: |
 | Norway 🇳🇴                 |      NO      | :heavy_check_mark: | :heavy_check_mark: |
 | Poland 🇵🇱                 |      PL      | :heavy_check_mark: | :heavy_check_mark: |

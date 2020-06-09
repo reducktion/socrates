@@ -7,13 +7,12 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class IrelandIdValidator implements IdValidator
 {
-
     public function validate(string $id): bool
     {
         $idLength = strlen($id);
 
         if ($idLength !== 8 && $idLength !== 9) {
-            throw new InvalidLengthException("The Irish PPS must have 8 or 9 digits, got $idLength");
+            throw new InvalidLengthException('Irish PPS', '8 or 9', $idLength);
         }
 
         $sum = 0;

@@ -7,7 +7,6 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class HungaryIdValidator implements IdValidator
 {
-
     public function validate(string $id): bool
     {
         $id = $this->sanitize($id);
@@ -40,7 +39,9 @@ class HungaryIdValidator implements IdValidator
 
         if ($idLength !== 11) {
             throw new InvalidLengthException(
-                "The Hungarian personal identification number must have 11 digits, got $idLength"
+                'Hungarian personal identification number',
+                '11',
+                $idLength
             );
         }
 

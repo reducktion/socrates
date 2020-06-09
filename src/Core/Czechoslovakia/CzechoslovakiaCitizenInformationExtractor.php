@@ -3,20 +3,19 @@
 namespace Reducktion\Socrates\Core\Czechoslovakia;
 
 use Carbon\Carbon;
+use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Models\Citizen;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class CzechoslovakiaCitizenInformationExtractor
 {
-
     public static function extract(string $id): Citizen
     {
         $id = str_replace('/', '', $id);
-        $idLength = strlen($id);
 
-        if ($idLength !== 10) {
-            throw new InvalidLengthException("got $idLength");
+        if (! (new CzechoslovakiaIdValidator())::validate($id)) {
+            throw new InvalidIdException();
         }
 
         $gender = self::getGender($id);

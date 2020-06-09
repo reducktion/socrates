@@ -7,7 +7,6 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class GreeceIdValidator implements IdValidator
 {
-
     public function validate(string $id): bool
     {
         $id = str_replace('-', '', $id);
@@ -15,7 +14,7 @@ class GreeceIdValidator implements IdValidator
         $idLength = mb_strlen($id);
 
         if ($idLength !== 8) {
-            throw new InvalidLengthException("Greek id card number must have 8 digits, got $idLength");
+            throw new InvalidLengthException('Greek id card number', '8', $idLength);
         }
 
         $greekLetters = [

@@ -38,7 +38,7 @@ class DenmarkIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 10) {
-            throw new InvalidLengthException("Danish CPR must have 10 digits, got $idLength");
+            throw new InvalidLengthException('Danish CPR', '10', $idLength);
         }
 
         return $id;

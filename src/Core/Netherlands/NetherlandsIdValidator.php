@@ -7,13 +7,12 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class NetherlandsIdValidator implements IdValidator
 {
-
     public function validate(string $id): bool
     {
         $idLength = strlen($id);
 
         if ($idLength !== 9) {
-            throw new InvalidLengthException("The Dutch BSN must have 9 digits, got $idLength");
+            throw new InvalidLengthException('Dutch BSN', '9', $idLength);
         }
 
         $lastDigit = (int) substr($id, -1);

@@ -7,13 +7,12 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class NorwayIdValidator implements IdValidator
 {
-
     public function validate(string $id): bool
     {
         $idLength = strlen($id);
 
         if ($idLength !== 11) {
-            throw new InvalidLengthException("Norwegian fødselsnummer must have 11 digits, got $idLength");
+            throw new InvalidLengthException('Norwegian fødselsnummer', '11', $idLength);
         }
 
         $firstControlDigit = (int) $id[9];

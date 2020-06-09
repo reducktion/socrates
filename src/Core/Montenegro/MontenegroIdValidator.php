@@ -8,13 +8,12 @@ use Reducktion\Socrates\Core\Yugoslavia\YugoslaviaIdValidator;
 
 class MontenegroIdValidator implements IdValidator
 {
-
     public function validate(string $id): bool
     {
         try {
             $result = YugoslaviaIdValidator::validate($id);
         } catch (InvalidLengthException $e) {
-            throw new InvalidLengthException('The Montenegrin JMBG must have 13 digits, ' . $e->getMessage());
+            throw new InvalidLengthException('Montenegrin JMBG', $e->getRequiredCharacters(), $e->getGivenCharacters());
         }
 
         $regionDigits = (int) substr($id, 7, 2);

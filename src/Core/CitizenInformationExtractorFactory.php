@@ -10,7 +10,6 @@ abstract class CitizenInformationExtractorFactory
 {
     public static function getExtractor(string $countryCode): CitizenInformationExtractor
     {
-
         if (! isset(Countries::$extractors[$countryCode])) {
             throw new RuntimeException("Unknown or unsupported country code '$countryCode'");
         }

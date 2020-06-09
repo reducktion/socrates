@@ -10,11 +10,10 @@ use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 
 class AlbaniaCitizenInformationExtractor implements CitizenInformationExtractor
 {
-
     public function extract(string $id): Citizen
     {
         if (!(new AlbaniaIdValidator())->validate($id)) {
-            throw new InvalidIdException("Provided ID is invalid.");
+            throw new InvalidIdException();
         }
 
         $gender = $this->getGender($id);
