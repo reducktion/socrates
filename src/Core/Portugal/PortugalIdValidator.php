@@ -24,10 +24,10 @@ class PortugalIdValidator implements IdValidator
                 if ($value > 9) {
                     $value -= 9;
                 }
-
-                $sum += $value;
-                $toggleDigit = !$toggleDigit;
             }
+
+            $sum += $value;
+            $toggleDigit = !$toggleDigit;
         }
 
         return ($sum % 10) === 0;
