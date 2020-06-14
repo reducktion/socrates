@@ -47,11 +47,20 @@ class FranceCitizenInformationExtractor implements CitizenInformationExtractor
     {
         $dateDigits = substr($id, 1, 4);
         [$year, $month] = str_split($dateDigits, 2);
-        $currentYear = (int) now()->format('y');
+        $currentYear = now()->format('y');
 
-        $year = (int) $year > $currentYear ? (int) $year + 1900 : (int) $year + 2000;
+        $year = $year > $currentYear ? $year + 1900 : $year + 2000;
 
-        return Carbon::createFromFormat('Y-m', "$year-$month");
+        if ($month > 0 && $month < 13) {
+            return Carbon::createFromFormat('Y-m', "$year-$month");
+        }
+
+        if ($month > 30 && $month < 43) {
+            $month -= 30;
+            return Carbon::createFromFormat('Y-m', "$year-$month");
+        }
+
+        return Carbon::createFromFormat('Y', $year);
     }
 
     private function getPlaceOfBirth(string $id): string
