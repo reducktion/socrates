@@ -28,9 +28,9 @@ class UnitedKingdomTest extends FeatureTest
 
         $this->invalidIds = [
             'AA 37 07 73 F',
-            '3392 2870',
+            '3392 2870 9',
             'GG 79 gj 59 B',
-            'FO 99 04 28',
+            'FO 99 04 28 C',
             'GB 79 89 59 B',
             'NK 79 89 59 B',
             'TN 79 89 59 B',
@@ -56,14 +56,14 @@ class UnitedKingdomTest extends FeatureTest
             );
         }
 
-        $this->expectException(InvalidLengthException::class);
-
-        Socrates::validateId('AA370773', 'GB');
-
         foreach ($this->invalidIds as $invalidId) {
             $this->assertFalse(
                 Socrates::validateId($invalidId, 'GB')
             );
         }
+
+        $this->expectException(InvalidLengthException::class);
+
+        Socrates::validateId('AA370773', 'GB');
     }
 }

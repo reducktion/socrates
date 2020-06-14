@@ -30,14 +30,14 @@ class SpainIdValidator implements IdValidator
     {
         $id = strtoupper($id);
 
-        $id = str_replace('-', '', $id);
+        $idArray = str_replace('-', '', $id);
 
-        $idLength = strlen($id);
+        $idLength = strlen($idArray);
 
         if ($idLength !== 9) {
             throw new InvalidLengthException('Spanish DNI', '9', $idLength);
         }
 
-        return $id;
+        return $idArray;
     }
 }

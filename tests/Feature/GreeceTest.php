@@ -25,7 +25,7 @@ class GreeceTest extends FeatureTest
         ];
 
         $this->invalidIds = [
-            'ΔΞ-89172',
+            'Δx-091003',
             'Ω-1213312',
             'ΒΖΜ-98912',
             'ΧΘ-543971',
@@ -50,14 +50,14 @@ class GreeceTest extends FeatureTest
             );
         }
 
-        $this->expectException(InvalidLengthException::class);
-
-        Socrates::validateId('ΔΞ-89172', 'GR');
-
         foreach ($this->invalidIds as $invalidId) {
             $this->assertFalse(
                 Socrates::validateId($invalidId, 'GR')
             );
         }
+
+        $this->expectException(InvalidLengthException::class);
+
+        Socrates::validateId('ΔΞ-89172', 'GR');
     }
 }

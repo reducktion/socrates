@@ -9,6 +9,7 @@ use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
 class SpainTest extends FeatureTest
 {
     private $validIds;
+    private $invalidIds;
 
     protected function setUp(): void
     {
@@ -20,6 +21,14 @@ class SpainTest extends FeatureTest
             '40298386V',
             'Y0597591L',
             '09730915Y',
+        ];
+
+        $this->invalidIds = [
+            '05756786M',
+            'YY597522L',
+            '4020X069V',
+            'XX-597591L',
+            '09730215Y',
         ];
     }
 
@@ -38,12 +47,14 @@ class SpainTest extends FeatureTest
             );
         }
 
+        foreach ($this->invalidIds as $invalidId) {
+            $this->assertFalse(
+                Socrates::validateId($invalidId, 'ES')
+            );
+        }
+
         $this->expectException(InvalidLengthException::class);
 
         Socrates::validateId('05751086', 'ES');
-
-        $this->assertFalse(
-            Socrates::validateId('05756786M', 'ES')
-        );
     }
 }

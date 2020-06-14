@@ -26,7 +26,7 @@ class NetherlandsTest extends FeatureTest
         $this->invalidIds = [
             '692676411',
             '918271871',
-            '998786123',
+            '908786123',
             '123128764',
             '817187288',
         ];
@@ -47,15 +47,14 @@ class NetherlandsTest extends FeatureTest
             );
         }
 
-        $this->expectException(InvalidLengthException::class);
-
-        Socrates::validateId('692676', 'NL');
-
-
         foreach ($this->invalidIds as $id) {
             $this->assertFalse(
                 Socrates::validateId($id, 'NL')
             );
         }
+
+        $this->expectException(InvalidLengthException::class);
+
+        Socrates::validateId('692676', 'NL');
     }
 }
