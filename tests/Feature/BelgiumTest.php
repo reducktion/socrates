@@ -86,5 +86,9 @@ class BelgiumTest extends FeatureTest
                 Socrates::validateId($id, 'BE')
             );
         }
+
+        $this->expectException(InvalidLengthException::class);
+
+        Socrates::getCitizenDataFromId('12.12.12-1323.32', 'BE');
     }
 }

@@ -45,15 +45,14 @@ class MoldovaTest extends FeatureTest
             );
         }
 
-        $this->expectException(InvalidLengthException::class);
-
-        Socrates::validateId('648295', 'MD');
-
-
         foreach ($this->invalidIds as $id) {
             $this->assertFalse(
                 Socrates::validateId($id, 'MD')
             );
         }
+
+        $this->expectException(InvalidLengthException::class);
+
+        Socrates::validateId('648295', 'MD');
     }
 }

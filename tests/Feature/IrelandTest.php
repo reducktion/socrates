@@ -47,15 +47,14 @@ class IrelandTest extends FeatureTest
             );
         }
 
-        $this->expectException(InvalidLengthException::class);
-
-        Socrates::validateId('648295R', 'IE');
-
-
         foreach ($this->invalidIds as $id) {
             $this->assertFalse(
                 Socrates::validateId($id, 'IE')
             );
         }
+
+        $this->expectException(InvalidLengthException::class);
+
+        Socrates::validateId('648295R', 'IE');
     }
 }
