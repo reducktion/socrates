@@ -1,7 +1,4 @@
 <p align="center">
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
     <img src="https://raw.githubusercontent.com/AlexOlival/socrates/master/docs/logo.png" alt="Socrates logo" width="480">
 </p>
 <p align="center">
@@ -13,6 +10,7 @@
     <img alt="Latest Version" src="https://img.shields.io/packagist/v/reducktion/socrates">
     <img alt="License" src="https://img.shields.io/github/license/reducktion/socrates">
     <img alt="StyleCI" src="https://github.styleci.io/repos/238900350/shield?branch=master">
+    <img alt="Contributors" src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square">
 </p>
 
 ------
