@@ -29,6 +29,15 @@ class FranceIdValidator implements IdValidator
             throw new InvalidLengthException('French INSEE', '15', $idLength);
         }
 
+        $substitutions = [
+            '2A' => 19,
+            '2B' => 18
+        ];
+
+        foreach ($substitutions as $key => $substitution) {
+            $id = str_replace($key, $substitution, $id);
+        }
+
         return $id;
     }
 }
