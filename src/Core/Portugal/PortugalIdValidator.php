@@ -6,6 +6,13 @@ use InvalidArgumentException;
 use Reducktion\Socrates\Contracts\IdValidator;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
+/**
+ * Class PortugalIdValidator
+ *
+ * Algorithm adapted from: https://www.autenticacao.gov.pt/documents/20126/115760/Valida%C3%A7%C3%A3o+de+N%C3%BAmero+de+Documento+do+Cart%C3%A3o+de+Cidad%C3%A3o.pdf/bdc4eb37-7316-3ff4-164a-f869382b7053.
+ *
+ * @package Reducktion\Socrates\Core\Portugal
+ */
 class PortugalIdValidator implements IdValidator
 {
     public function validate(string $id): bool

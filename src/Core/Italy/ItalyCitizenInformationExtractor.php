@@ -9,6 +9,13 @@ use Reducktion\Socrates\Models\Citizen;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 
+/**
+ * Class ItalyCitizenInformationExtractor
+ *
+ * Algorithm adapted from: http://www.dossier.net/utilities/codice-fiscale/decreto1974_2227.html and https://en.wikipedia.org/wiki/Italian_fiscal_code.
+ *
+ * @package Reducktion\Socrates\Core\Italy
+ */
 class ItalyCitizenInformationExtractor implements CitizenInformationExtractor
 {
     public function extract(string $id): Citizen
