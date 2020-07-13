@@ -5,6 +5,13 @@ namespace Reducktion\Socrates\Core\Italy;
 use Reducktion\Socrates\Contracts\IdValidator;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
+/**
+ * Class ItalyIdValidator
+ *
+ * Algorithm adapted from: http://www.dossier.net/utilities/codice-fiscale/decreto1974_2227.html and https://en.wikipedia.org/wiki/Italian_fiscal_code.
+ *
+ * @package Reducktion\Socrates\Core\Italy
+ */
 class ItalyIdValidator implements IdValidator
 {
     public function validate(string $id): bool

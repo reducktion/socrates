@@ -5,6 +5,13 @@ namespace Reducktion\Socrates\Core\Spain;
 use Reducktion\Socrates\Contracts\IdValidator;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
+/**
+ * Class SpainIdValidator
+ *
+ * Algorithm adapted from: http://www.interior.gob.es/web/servicios-al-ciudadano/dni/calculo-del-digito-de-control-del-nif-nie.
+ *
+ * @package Reducktion\Socrates\Core\Spain
+ */
 class SpainIdValidator implements IdValidator
 {
     public function validate(string $id): bool
