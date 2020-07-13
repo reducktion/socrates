@@ -79,6 +79,20 @@ class FranceTest extends FeatureTest
                 'dob' => Carbon::createFromFormat('Y', '2011'),
                 'age' => Carbon::createFromFormat('Y', '2011')->age,
                 'pob' => 'Eure-et-Loir'
+            ],
+            'Roch' => [
+                'insee' => '199072A228070 10',
+                'gender' => Gender::MALE,
+                'dob' => Carbon::createFromFormat('Y-m', '1999-07'),
+                'age' => Carbon::createFromFormat('Y-m', '1999-07')->age,
+                'pob' => 'Corse-du-Sud'
+            ],
+            'Nadine' => [
+                'insee' => '257092B844458 87',
+                'gender' => Gender::FEMALE,
+                'dob' => Carbon::createFromFormat('Y-m', '1957-09'),
+                'age' => Carbon::createFromFormat('Y-m', '1957-09')->age,
+                'pob' => 'Haute-Corse'
             ]
         ];
 
