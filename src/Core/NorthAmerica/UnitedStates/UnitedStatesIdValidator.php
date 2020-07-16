@@ -1,18 +1,18 @@
 <?php
 
-namespace Reducktion\Socrates\Core\NorthAmerica\USA;
+namespace Reducktion\Socrates\Core\NorthAmerica\UnitedStates;
 
 use Reducktion\Socrates\Contracts\IdValidator;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 /**
- * Class USAIdValidator
+ * Class UnitedStatesIdValidator
  *
  * Algorithm adapted from: https://en.wikipedia.org/wiki/Social_Security_number
  *
- * @package Reducktion\Socrates\Core\NorthAmerica\USA
+ * @package Reducktion\Socrates\Core\NorthAmerica\UnitedStates
  */
-class USAIdValidator implements IdValidator
+class UnitedStatesIdValidator implements IdValidator
 {
     private $blacklist = [
         '078051120',

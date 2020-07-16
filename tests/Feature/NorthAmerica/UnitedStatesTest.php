@@ -7,7 +7,7 @@ use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
 use Reducktion\Socrates\Laravel\Facades\Socrates;
 use Reducktion\Socrates\Tests\Feature\FeatureTest;
 
-class USATest extends FeatureTest
+class UnitedStatesTest extends FeatureTest
 {
     private $validIds;
     private $invalidIds;
