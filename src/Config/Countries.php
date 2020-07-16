@@ -258,6 +258,10 @@ class Countries
     ];
 
     public static $validators = [
+
+        /**
+         * Validators for european countries.
+         */
         'AL' => \Reducktion\Socrates\Core\Europe\Albania\AlbaniaIdValidator::class,
         'BA' => \Reducktion\Socrates\Core\Europe\BosniaAndHerzegovina\BosniaAndHerzegovinaIdValidator::class,
         'BE' => \Reducktion\Socrates\Core\Europe\Belgium\BelgiumIdValidator::class,
@@ -294,9 +298,18 @@ class Countries
         'TR' => \Reducktion\Socrates\Core\Europe\Turkey\TurkeyIdValidator::class,
         'UA' => \Reducktion\Socrates\Core\Europe\Ukraine\UkraineIdValidator::class,
         'XK' => \Reducktion\Socrates\Core\Europe\Kosovo\KosovoIdValidator::class,
+
+        /**
+         * Validators for north american countries.
+         */
+        'US' => \Reducktion\Socrates\Core\NorthAmerica\USA\USAIdValidator::class,
     ];
 
     public static $extractors = [
+
+        /**
+         * Extractors for european countries.
+         */
         'AL' => \Reducktion\Socrates\Core\Europe\Albania\AlbaniaCitizenInformationExtractor::class,
         'BA' => \Reducktion\Socrates\Core\Europe\BosniaAndHerzegovina\BosniaAndHerzegovinaCitizenInformationExtractor::class,
         'BE' => \Reducktion\Socrates\Core\Europe\Belgium\BelgiumCitizenInformationExtractor::class,
