@@ -58,5 +58,4 @@ class CanadaTest extends FeatureTest
 
         Socrates::validateId('781 211 2231', 'CA');
     }
-
 }
