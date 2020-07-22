@@ -302,8 +302,8 @@ class Countries
         /**
          * Validators for north american countries.
          */
-        'US' => \Reducktion\Socrates\Core\NorthAmerica\UnitedStates\UnitedStatesIdValidator::class,
         'CA' => \Reducktion\Socrates\Core\NorthAmerica\Canada\CanadaIdValidator::class,
+        'US' => \Reducktion\Socrates\Core\NorthAmerica\UnitedStates\UnitedStatesIdValidator::class,
     ];
 
     public static $extractors = [
