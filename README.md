@@ -134,8 +134,6 @@ A big thanks goes to these people who helped us either test with real life IDs o
 * Lisa from 🇬🇷
 * Miguel from 🇪🇸
 
-and Nair from 🇵🇹 for providing the package name.
-
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
