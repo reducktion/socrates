@@ -16,7 +16,6 @@ use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
 
 class Socrates
 {
-
     /**
      * Extracts the Citizen data related to the provided Personal Identification Number.
      *
