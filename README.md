@@ -17,6 +17,8 @@
 ## Introduction
 >I am a **Citizen of the World**, and my Nationality is Goodwill.
 
+<i>You can now read [a blog post](https://medium.com/@alex.olival/road-to-mastery-building-an-open-source-package-3936f57aed81) about how this package was created and its goals.</i>
+
 **Socrates** is a PHP Package that allows you to validate and retrieve personal data from most [National Identification Numbers](https://en.wikipedia.org/wiki/National_identification_number) in Europe with the goal of eventually supporting as many countries in the world as possible.
 <p>Some countries also encode personal information of the citizen, such as gender or the place of birth. This package allows you to extract that information in a consistent way.</p>
 <p>For Laravel, a Facade and request Validator is also made available (see usage below).</p>
