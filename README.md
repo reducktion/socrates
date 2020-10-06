@@ -154,6 +154,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/SLourenco"><img src="https://avatars2.githubusercontent.com/u/7704656?v=4" width="100px;" alt=""/><br /><sub><b>SLourenco</b></sub></a><br /><a href="https://github.com/reducktion/socrates/issues?q=author%3ASLourenco" title="Bug reports">🐛</a> <a href="https://github.com/reducktion/socrates/commits?author=SLourenco" title="Documentation">📖</a> <a href="https://github.com/reducktion/socrates/commits?author=SLourenco" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/flavioheleno/"><img src="https://avatars0.githubusercontent.com/u/471860?v=4" width="100px;" alt=""/><br /><sub><b>Flávio Heleno</b></sub></a><br /><a href="https://github.com/reducktion/socrates/commits?author=flavioheleno" title="Code">💻</a> <a href="https://github.com/reducktion/socrates/commits?author=flavioheleno" title="Documentation">📖</a></td>
   </tr>
 </table>
 
