@@ -263,6 +263,7 @@ class Countries
         'BE' => \Reducktion\Socrates\Core\Belgium\BelgiumIdValidator::class,
         'BG' => \Reducktion\Socrates\Core\Bulgaria\BulgariaIdValidator::class,
         'BR' => \Reducktion\Socrates\Core\Brazil\BrazilIdValidator::class,
+        'CL' => \Reducktion\Socrates\Core\Chile\ChileIdValidator::class,
         'CH' => \Reducktion\Socrates\Core\Switzerland\SwitzerlandIdValidator::class,
         'CZ' => \Reducktion\Socrates\Core\CzechRepublic\CzechRepublicIdValidator::class,
         'DK' => \Reducktion\Socrates\Core\Denmark\DenmarkIdValidator::class,
