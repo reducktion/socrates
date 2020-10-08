@@ -1,8 +1,9 @@
 <?php
 
-namespace Reducktion\Socrates\Tests\Feature;
+namespace Reducktion\Socrates\Tests\Feature\NorthAmerica;
 
 use Reducktion\Socrates\Laravel\Facades\Socrates;
+use Reducktion\Socrates\Tests\Feature\FeatureTest;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
 
