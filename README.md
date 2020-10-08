@@ -111,7 +111,7 @@ Four european countries are currently unsupported: Austria 🇦🇹, Belarus �
 ## Ports
 This package is also available for the following languages:
 
-[Rust](https://github.com/reducktion/socrates-rs)
+[Rust](https://github.com/reducktion/socrates-rs)<br>
 [Java](https://github.com/reducktion/socrates-java)
 
 ## Contributing
