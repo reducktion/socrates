@@ -17,9 +17,9 @@ class MexicoTest extends FeatureTest
         parent::setUp();
 
         $this->validIds = [
+            'MAAR790213HMNRLF03',
             'HEGG560427MVZRRL04',
             'BOXW310820HNERXN09',
-            'MAAR790213HMNRLF03',
         ];
 
         $this->invalidIds = [
