@@ -12,7 +12,7 @@ use Facades\Reducktion\Socrates\Core\Mexico\Validators\Checksum as ChecksumValid
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 /**
- * Class MexicoIdValidatorMexicoIdValidator
+ * Class MexicoIdValidator
  *
  * Algorithm adapted from: https://sayari.com/blog/breaking-down-mexican-national-id/.
  *
@@ -20,6 +20,9 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
  */
 class MexicoIdValidator implements IdValidator
 {
+    // Mexican id number size
+    const CURP_SIZE = 18;
+
     public function validate(string $id): bool
     {
         $id = $this->sanitize($id);
@@ -51,8 +54,8 @@ class MexicoIdValidator implements IdValidator
     {
         $idLength = strlen($id);
 
-        if ($idLength !== 18) {
-            throw new InvalidLengthException('Mexico CURP', 18, $idLength);
+        if ($idLength !== SELF::CURP_SIZE) {
+            throw new InvalidLengthException('Mexico CURP', SELF::CURP_SIZE, $idLength);
         }
 
         return strtoupper($id);
