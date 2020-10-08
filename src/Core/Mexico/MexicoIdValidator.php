@@ -21,7 +21,7 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 class MexicoIdValidator implements IdValidator
 {
     // Mexican id number size
-    const CURP_SIZE = 18;
+    public const CURP_SIZE = 18;
 
     public function validate(string $id): bool
     {
@@ -39,11 +39,11 @@ class MexicoIdValidator implements IdValidator
             return false;
         }
 
-        if (!StateValidator::validate(substr($id, 11,  2))) {
+        if (!StateValidator::validate(substr($id, 11, 2))) {
             return false;
         }
 
-        if (!ConsoantsValidator::validate(substr($id, 13,  3))) {
+        if (!ConsoantsValidator::validate(substr($id, 13, 3))) {
             return false;
         }
 
@@ -55,7 +55,7 @@ class MexicoIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== SELF::CURP_SIZE) {
-            throw new InvalidLengthException('Mexico CURP', SELF::CURP_SIZE, $idLength);
+            throw new InvalidLengthException('Mexico CURP', self::CURP_SIZE, $idLength);
         }
 
         return strtoupper($id);
