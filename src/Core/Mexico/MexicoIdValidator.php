@@ -15,9 +15,9 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
 class MexicoIdValidator implements IdValidator
 {
     // Mexican id number size
-    const CURP_SIZE = 18;
-    const VOWELS = ['A', 'E', 'I', 'O', 'U'];
-    const GENDERS = ['H', 'M'];
+    public const CURP_SIZE = 18;
+    public const VOWELS = ['A', 'E', 'I', 'O', 'U'];
+    public const GENDERS = ['H', 'M'];
 
     public function validate(string $id): bool
     {
