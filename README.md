@@ -23,7 +23,7 @@
 <p>Some countries also encode personal information of the citizen, such as gender or the place of birth. This package allows you to extract that information in a consistent way.</p>
 <p>For Laravel, a Facade and request Validator is also available (see below).</p>
 <p>This package can be useful for many things, such as validating a user's ID for finance related applications or verifying a user's age without asking for it explicitly. However, we recommend you review your country's data protection laws before storing any information.</p>
-<p>Ports of this package to other languages are currently in progress. Check further below for which ones are currently available.</p>
+<p>[Ports](https://github.com/reducktion/socrates#ports) of this package to other languages are currently in progress. Check further below for which ones are currently available.</p>
 
 Our goals:
 * Standardize and centralise what is usually very difficult and sparse information to find.
@@ -112,6 +112,7 @@ Four european countries are currently unsupported: Austria 🇦🇹, Belarus �
 This package is also available for the following languages:
 
 [Rust](https://github.com/reducktion/socrates-rs)
+[Java](https://github.com/reducktion/socrates-java)
 
 ## Contributing
 
