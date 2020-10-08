@@ -259,6 +259,7 @@ class Countries
 
     public static $validators = [
         'AL' => \Reducktion\Socrates\Core\Albania\AlbaniaIdValidator::class,
+        'AR' => \Reducktion\Socrates\Core\Argentina\ArgentinaIdValidator::class,
         'BA' => \Reducktion\Socrates\Core\BosniaAndHerzegovina\BosniaAndHerzegovinaIdValidator::class,
         'BE' => \Reducktion\Socrates\Core\Belgium\BelgiumIdValidator::class,
         'BG' => \Reducktion\Socrates\Core\Bulgaria\BulgariaIdValidator::class,
