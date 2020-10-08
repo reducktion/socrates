@@ -54,7 +54,7 @@ class MexicoIdValidator implements IdValidator
     {
         $idLength = strlen($id);
 
-        if ($idLength !== SELF::CURP_SIZE) {
+        if ($idLength !== self::CURP_SIZE) {
             throw new InvalidLengthException('Mexico CURP', self::CURP_SIZE, $idLength);
         }
 
