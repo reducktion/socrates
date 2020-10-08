@@ -308,7 +308,8 @@ class Countries
         /**
          * Validators for latin american countries.
          */
-        'CL' => \Reducktion\Socrates\Core\Chile\ChileIdValidator::class,
+        'BR' => \Reducktion\Socrates\Core\LatinAmerica\Brazil\BrazilIdValidator::class,
+        'CL' => \Reducktion\Socrates\Core\LatinAmerica\Chile\ChileIdValidator::class,
     ];
 
     public static $extractors = [
