@@ -1,0 +1,27 @@
+<?php
+
+namespace Reducktion\Socrates\Core\Europe\Montenegro;
+
+use Reducktion\Socrates\Contracts\IdValidator;
+use Reducktion\Socrates\Exceptions\InvalidLengthException;
+use Reducktion\Socrates\Core\Europe\Yugoslavia\YugoslaviaIdValidator;
+
+class MontenegroIdValidator implements IdValidator
+{
+    public function validate(string $id): bool
+    {
+        try {
+            $result = YugoslaviaIdValidator::validate($id);
+        } catch (InvalidLengthException $e) {
+            throw new InvalidLengthException('Montenegrin JMBG', $e->getRequiredCharacters(), $e->getGivenCharacters());
+        }
+
+        $regionDigits = (int) substr($id, 7, 2);
+
+        if (($regionDigits < 20 || $regionDigits > 29) && $regionDigits !== 2) {
+            return false;
+        }
+
+        return $result;
+    }
+}
