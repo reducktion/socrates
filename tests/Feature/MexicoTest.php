@@ -20,11 +20,31 @@ class MexicoTest extends FeatureTest
             'MAAR790213HMNRLF03',
             'HEGG560427MVZRRL04',
             'BOXW310820HNERXN09',
+            'TUAZ790213HMNRLF02',
+            'TUAZ040213MCLRLFA7',
+            'JIAZ040213MCLRLFA6',
+            'XOAZ980927MCLRLFA6',
         ];
 
         $this->invalidIds = [
-            '1234790213HMNRLF03',
-            'BOXW310820HNERXN08',
+            '1AAR790213HMNRLF03',
+            'MRAR790213HMNRLF03',
+            'MAARA90213HMNRLF03',
+            'MAAR7A0213HMNRLF03',
+            'MAAR79A213HMNRLF03',
+            'MAAR790A13HMNRLF03',
+            'MAAR7902A3HMNRLF03',
+            'MAAR79021AHMNRLF03',
+            'MRAR791313HMNRLF03',
+            'MRAR791332HMNRLF03',
+            'MRAR7913321MNRLF03',
+            'MRAR791332AMNRLF03',
+            'MRAR7902131MNRLF03',
+            'MRAR790213ZMNRLF03',
+            'MAAR790213HZORLF03',
+            'MAAR790213HZ1RLF03',
+            'MAAR790213HMNRLF04',
+            'MAAR790213HMNRLF0A',
         ];
     }
 

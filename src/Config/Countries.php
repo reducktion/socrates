@@ -285,6 +285,7 @@ class Countries
         'MK' => \Reducktion\Socrates\Core\NorthMacedonia\NorthMacedoniaIdValidator::class,
         'NL' => \Reducktion\Socrates\Core\Netherlands\NetherlandsIdValidator::class,
         'NO' => \Reducktion\Socrates\Core\Norway\NorwayIdValidator::class,
+        'MX' => \Reducktion\Socrates\Core\Mexico\MexicoIdValidator::class,
         'PL' => \Reducktion\Socrates\Core\Poland\PolandIdValidator::class,
         'PT' => \Reducktion\Socrates\Core\Portugal\PortugalIdValidator::class,
         'RO' => \Reducktion\Socrates\Core\Romania\RomaniaIdValidator::class,
@@ -295,7 +296,6 @@ class Countries
         'TR' => \Reducktion\Socrates\Core\Turkey\TurkeyIdValidator::class,
         'UA' => \Reducktion\Socrates\Core\Ukraine\UkraineIdValidator::class,
         'XK' => \Reducktion\Socrates\Core\Kosovo\KosovoIdValidator::class,
-        'MX' => \Reducktion\Socrates\Core\Mexico\MexicoIdValidator::class,
     ];
 
     public static $extractors = [
