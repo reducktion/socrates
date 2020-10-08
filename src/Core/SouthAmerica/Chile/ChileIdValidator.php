@@ -1,6 +1,6 @@
 <?php
 
-namespace Reducktion\Socrates\Core\LatinAmerica\Chile;
+namespace Reducktion\Socrates\Core\SouthAmerica\Chile;
 
 use Illuminate\Support\Str;
 use Reducktion\Socrates\Contracts\IdValidator;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Reducktion\Socrates\Core\LatinAmerica\Brazil;
+namespace Reducktion\Socrates\Core\SouthAmerica\Brazil;
 
 use Reducktion\Socrates\Contracts\IdValidator;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;

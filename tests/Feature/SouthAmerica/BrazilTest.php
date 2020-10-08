@@ -1,6 +1,6 @@
 <?php
 
-namespace Reducktion\Socrates\Tests\Feature\LatinAmerica;
+namespace Reducktion\Socrates\Tests\Feature\SouthAmerica;
 
 use Reducktion\Socrates\Laravel\Facades\Socrates;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
