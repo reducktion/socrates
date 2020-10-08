@@ -295,6 +295,7 @@ class Countries
         'TR' => \Reducktion\Socrates\Core\Turkey\TurkeyIdValidator::class,
         'UA' => \Reducktion\Socrates\Core\Ukraine\UkraineIdValidator::class,
         'XK' => \Reducktion\Socrates\Core\Kosovo\KosovoIdValidator::class,
+        'MX' => \Reducktion\Socrates\Core\Mexico\MexicoIdValidator::class,
     ];
 
     public static $extractors = [
