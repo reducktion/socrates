@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Config;
 
-class Countries
+abstract class Countries
 {
     public static $all = [
         'AF',
