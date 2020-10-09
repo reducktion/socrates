@@ -49,6 +49,18 @@ class BelgiumTest extends FeatureTest
                 'dob' => Carbon::createFromFormat('Y-m-d', '1971-09-07'),
                 'age' => Carbon::createFromFormat('Y-m-d', '1971-09-07')->age,
             ],
+            'john' => [
+                'id' => '40 00 00-953 81',
+                'gender' => Gender::MALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1940-01-01'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1940-01-01')->age,
+            ],
+            'mark' => [
+                'id' => '40.00.01-001.33',
+                'gender' => Gender::MALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1940-01-01'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1940-01-01')->age,
+            ]
         ];
 
         $this->invalidIds = [
@@ -56,7 +68,9 @@ class BelgiumTest extends FeatureTest
             '97.12.03-123.12',
             '01.06.18-468.99',
             '64.04.09-874.43',
-            '12.10.23-954.11'
+            '12.10.23-954.11',
+            '01.11.16-000.06', // invalid sequence number
+            '01.11.16-999.74'  // invalid sequence number
         ];
     }
 

@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Config;
 
-class Countries
+abstract class Countries
 {
     public static $all = [
         'AF',
@@ -258,7 +258,6 @@ class Countries
     ];
 
     public static $validators = [
-
         /**
          * Validators for european countries.
          */
@@ -313,7 +312,6 @@ class Countries
     ];
 
     public static $extractors = [
-
         /**
          * Extractors for european countries.
          */

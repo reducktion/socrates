@@ -6,11 +6,22 @@ use Carbon\Carbon;
 use Reducktion\Socrates\Contracts\IdValidator;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
+/**
+ * Class BelgiumIdValidator
+ *
+ * Algorithm adapted from: http://www.ibz.rrn.fgov.be/fileadmin/user_upload/nl/rr/instructies/IT-lijst/IT000_Rijksregisternummer.pdf.
+ *
+ * @package Reducktion\Socrates\Core\Belgium
+ */
 class BelgiumIdValidator implements IdValidator
 {
     public function validate(string $id): bool
     {
         $id = $this->sanitize($id);
+
+        if (! $this->validateSequenceNumber($id)) {
+            return false;
+        }
 
         $checksumFromId = (int) substr($id, -2);
         $after2000 = false;
@@ -33,7 +44,7 @@ class BelgiumIdValidator implements IdValidator
 
     private function sanitize(string $id): string
     {
-        $id = str_replace(['-', '.'], '', $id);
+        $id = str_replace(['-', ' ', '.'], '', $id);
 
         $idLength = strlen($id);
 
@@ -42,6 +53,13 @@ class BelgiumIdValidator implements IdValidator
         }
 
         return $id;
+    }
+
+    private function validateSequenceNumber(string $id): bool
+    {
+        $sequenceNumber = substr($id, 6, 3);
+
+        return $sequenceNumber != 0 && $sequenceNumber != 999;
     }
 
     private function calculateChecksum(string $id, bool $after2000): int
@@ -60,16 +78,18 @@ class BelgiumIdValidator implements IdValidator
         $dateDigits = substr($id, 0, 6);
         [$year, $month, $day] = str_split($dateDigits, 2);
 
-        if ($month < 1 || $month > 12 || $day < 1 || $day > 31) {
+        if ($month > 12 || $day > 31) {
             return false;
         }
 
-        $year = $after2000 ? $year + 2000 : $year + 1900;
+        if ($month != 0 && $day != 0) {
+            $year = $after2000 ? $year + 2000 : $year + 1900;
 
-        $dob = Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+            $dob = Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
 
-        if ($dob->greaterThan($dob->subYears(12))) {
-            return false;
+            if ($dob->greaterThan($dob->subYears(12))) {
+                return false;
+            }
         }
 
         return true;
