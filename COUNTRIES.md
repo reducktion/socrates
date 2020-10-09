@@ -41,3 +41,4 @@
 | Turkey 🇹🇷                 |      TR      | :heavy_check_mark: | :x:                |
 | Ukraine 🇺🇦                |      UA      | :heavy_check_mark: | :heavy_check_mark: |
 | United Kingdom 🇬🇧         |      GB      | :heavy_check_mark: | :x:                |
+| Uruguay 🇺🇾                |      UY      | :heavy_check_mark: | :x:                |

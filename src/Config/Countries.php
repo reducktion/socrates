@@ -310,6 +310,7 @@ abstract class Countries
         'AR' => \Reducktion\Socrates\Core\SouthAmerica\Argentina\ArgentinaIdValidator::class,
         'BR' => \Reducktion\Socrates\Core\SouthAmerica\Brazil\BrazilIdValidator::class,
         'CL' => \Reducktion\Socrates\Core\SouthAmerica\Chile\ChileIdValidator::class,
+        'UY' => \Reducktion\Socrates\Core\SouthAmerica\Uruguay\UruguayIdValidator::class,
     ];
 
     public static $extractors = [
