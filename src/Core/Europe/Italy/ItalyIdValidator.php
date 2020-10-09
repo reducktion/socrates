@@ -10,7 +10,7 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
  *
  * Algorithm adapted from: http://www.dossier.net/utilities/codice-fiscale/decreto1974_2227.html and https://en.wikipedia.org/wiki/Italian_fiscal_code.
  *
- * @package Reducktion\Socrates\Core\Italy
+ * @package Reducktion\Socrates\Core\Europe\Italy
  */
 class ItalyIdValidator implements IdValidator
 {

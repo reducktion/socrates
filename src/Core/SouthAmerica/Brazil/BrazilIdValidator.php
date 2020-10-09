@@ -5,6 +5,13 @@ namespace Reducktion\Socrates\Core\SouthAmerica\Brazil;
 use Reducktion\Socrates\Contracts\IdValidator;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
+/**
+ * Class BrazilIdValidator
+ *
+ * Algorithm adapted from: https://pt.wikipedia.org/wiki/Cadastro_de_pessoas_f%C3%ADsicas#Algoritmo
+ *
+ * @package Reducktion\Socrates\Core\SouthAmerica\Brazil
+ */
 class BrazilIdValidator implements IdValidator
 {
     public function validate(string $id): bool
@@ -23,7 +30,6 @@ class BrazilIdValidator implements IdValidator
             )
         );
 
-        // source: https://pt.wikipedia.org/wiki/Cadastro_de_pessoas_f%C3%ADsicas#Algoritmo
         $v1 = 0;
         $v2 = 0;
         for ($i = 0; $i < 9; $i++) {

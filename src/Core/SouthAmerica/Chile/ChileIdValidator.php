@@ -6,11 +6,17 @@ use Illuminate\Support\Str;
 use Reducktion\Socrates\Contracts\IdValidator;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
+/**
+ * Class ChileIdValidator
+ *
+ * Algorithm adapted from: https://es.wikipedia.org/wiki/Anexo:Implementaciones_para_algoritmo_de_rut
+ *
+ * @package Reducktion\Socrates\Core\SouthAmerica\Chile
+ */
 class ChileIdValidator implements IdValidator
 {
     public function validate(string $id): bool
     {
-        // source: https://es.wikipedia.org/wiki/Anexo:Implementaciones_para_algoritmo_de_rut
         $id = $this->sanitize($id);
 
         $lastDigit = $id[-1];
