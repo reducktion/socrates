@@ -8,6 +8,13 @@ use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Models\Citizen;
 
+/**
+ * Class BelgiumCitizenInformationExtractor
+ *
+ * Algorithm adapted from: http://www.ibz.rrn.fgov.be/fileadmin/user_upload/nl/rr/instructies/IT-lijst/IT000_Rijksregisternummer.pdf.
+ *
+ * @package Reducktion\Socrates\Core\Belgium
+ */
 class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
 {
     public function extract(string $id): Citizen
