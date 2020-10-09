@@ -17,10 +17,14 @@
 ## Introduction
 >I am a **Citizen of the World**, and my Nationality is Goodwill.
 
-**Socrates** is a PHP Package that allows you to validate and retrieve personal data from most [National Identification Numbers](https://en.wikipedia.org/wiki/National_identification_number) in Europe with the goal of eventually supporting as many countries in the world as possible.
+<i>You can now read [a blog post](https://medium.com/@alex.olival/road-to-mastery-building-an-open-source-package-3936f57aed81) about how this package was created and its goals.</i>
+
+**Socrates** is a PHP Package that allows you to validate and retrieve personal data from [National Identification Numbers](https://en.wikipedia.org/wiki/National_identification_number). At the moment, most countries in Europe are supported, but the goal is to eventually support as many countries in the world as possible.
 <p>Some countries also encode personal information of the citizen, such as gender or the place of birth. This package allows you to extract that information in a consistent way.</p>
-<p>For Laravel, a Facade and request Validator is also made available (see usage below).</p>
+<p>For Laravel, a Facade and request Validator is also available (see below).</p>
 <p>This package can be useful for many things, such as validating a user's ID for finance related applications or verifying a user's age without asking for it explicitly. However, we recommend you review your country's data protection laws before storing any information.</p>
+
+[Ports](https://github.com/reducktion/socrates#ports) of this package to other languages are currently in progress. Check further below for which ones are currently available.
 
 Our goals:
 * Standardize and centralise what is usually very difficult and sparse information to find.
@@ -105,6 +109,12 @@ Four european countries are currently unsupported: Austria 🇦🇹, Belarus �
 ## Testing
 `composer test`
 
+## Ports
+This package is also available for the following languages:
+
+[Rust](https://github.com/reducktion/socrates-rs)<br>
+[Java](https://github.com/reducktion/socrates-java)
+
 ## Contributing
 
 Did you find a problem in any of the algorithms? 
@@ -134,7 +144,7 @@ A big thanks goes to these people who helped us either test with real life IDs o
 * Lisa from 🇬🇷
 * Miguel from 🇪🇸
 
-and Nair from 🇵🇹 for providing the package name.
+and Nair from 🇵🇹 for the package name.
 
 ## Contributors ✨
 
@@ -146,6 +156,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/SLourenco"><img src="https://avatars2.githubusercontent.com/u/7704656?v=4" width="100px;" alt=""/><br /><sub><b>SLourenco</b></sub></a><br /><a href="https://github.com/reducktion/socrates/issues?q=author%3ASLourenco" title="Bug reports">🐛</a> <a href="https://github.com/reducktion/socrates/commits?author=SLourenco" title="Documentation">📖</a> <a href="https://github.com/reducktion/socrates/commits?author=SLourenco" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/flavioheleno/"><img src="https://avatars0.githubusercontent.com/u/471860?v=4" width="100px;" alt=""/><br /><sub><b>Flávio Heleno</b></sub></a><br /><a href="https://github.com/reducktion/socrates/commits?author=flavioheleno" title="Code">💻</a> <a href="https://github.com/reducktion/socrates/commits?author=flavioheleno" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/YvesBos"><img src="https://avatars1.githubusercontent.com/u/22393924?v=4" width="100px;" alt=""/><br /><sub><b>Yves Bos</b></sub></a><br /><a href="https://github.com/reducktion/socrates/commits?author=YvesBos" title="Documentation">📖</a></td>
   </tr>
 </table>
 

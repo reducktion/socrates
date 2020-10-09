@@ -258,7 +258,6 @@ class Countries
     ];
 
     public static $validators = [
-
         /**
          * Validators for european countries.
          */
@@ -304,10 +303,14 @@ class Countries
          */
         'CA' => \Reducktion\Socrates\Core\NorthAmerica\Canada\CanadaIdValidator::class,
         'US' => \Reducktion\Socrates\Core\NorthAmerica\UnitedStates\UnitedStatesIdValidator::class,
+
+        /**
+         * Validators for south american countries.
+         */
+        'BR' => \Reducktion\Socrates\Core\SouthAmerica\Brazil\BrazilIdValidator::class
     ];
 
     public static $extractors = [
-
         /**
          * Extractors for european countries.
          */

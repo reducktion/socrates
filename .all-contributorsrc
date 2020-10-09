@@ -15,6 +15,25 @@
         "doc",
         "code"
       ]
+    },
+    {
+      "login": "flavioheleno",
+      "name": "Flávio Heleno",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/471860?v=4",
+      "profile": "https://www.linkedin.com/in/flavioheleno/",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "YvesBos",
+      "name": "Yves Bos",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/22393924?v=4",
+      "profile": "https://github.com/YvesBos",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
