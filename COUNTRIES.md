@@ -3,6 +3,7 @@
 | Country                   | Country Code |     Validation     |     Extraction     |
 |---------------------------|--------------|--------------------|--------------------|
 | Albania 🇦🇱                |      AL      | :heavy_check_mark: | :heavy_check_mark: |
+| Argentina 🇦🇷              |      AR      | :heavy_check_mark: | :x: |
 | Belgium 🇧🇪                |      BE      | :heavy_check_mark: | :heavy_check_mark: |
 | Bosnia and Herzegovina 🇧🇦 |      BA      | :heavy_check_mark: | :heavy_check_mark: |
 | Bulgaria 🇧🇬               |      BG      | :heavy_check_mark: | :heavy_check_mark: |
