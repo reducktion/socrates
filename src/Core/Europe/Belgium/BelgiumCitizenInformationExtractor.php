@@ -37,7 +37,7 @@ class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
 
     private function sanitize(string $id): string
     {
-        $id = str_replace(['-', '.'], '', $id);
+        $id = str_replace(['-', ' ', '.'], '', $id);
 
         return $id;
     }
@@ -51,6 +51,10 @@ class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
     {
         $dateDigits = substr($id, 0, 6);
         [$year, $month, $day] = str_split($dateDigits, 2);
+
+        // use first day or month if unknown
+        $month = $month == 0 ? 1 : $month;
+        $day = $day == 0 ? 1 : $day;
 
         $year = $this->isAfter2000($id) ? $year + 2000 : $year + 1900;
 
