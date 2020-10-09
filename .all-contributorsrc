@@ -44,6 +44,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "gheleri",
+      "name": "Rodolpho Lima",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1103419?v=4",
+      "profile": "https://github.com/gheleri",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
