@@ -14,14 +14,24 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
  */
 class MexicoIdValidator implements IdValidator
 {
-    // Mexican id number size
-    public const CURP_SIZE = 18;
     public const VOWELS = ['A', 'E', 'I', 'O', 'U'];
     public const GENDERS = ['H', 'M'];
+    public const BLACKLISTED_NAMES = [
+        'BACA', 'BAKA', 'BUEI', 'BUEY', 'CACA', 'CACO', 'CAGA', 'CAGO', 'CAKA', 'CAKO', 'COGE', 'COGI', 'COJA', 'COJE',
+        'COJI', 'COJO', 'COLA', 'CULO', 'FALO', 'FETO', 'GETA', 'GUEI', 'GUEY', 'JETA', 'JOTO', 'KACA', 'KACO', 'KAGA',
+        'KAGO', 'KAKA', 'KAKO', 'KOGE', 'KOGI', 'KOJA', 'KOJE', 'KOJI', 'KOJO', 'KOLA', 'KULO', 'LILO', 'LOCA', 'LOCO',
+        'LOKA', 'LOKO', 'MAME', 'MAMO', 'MEAR', 'MEAS', 'MEON', 'MIAR', 'MION', 'MOCO', 'MOKO', 'MULA', 'MULO', 'NACA',
+        'NACO', 'PEDA', 'PEDO', 'PENE', 'PIPI', 'PITO', 'POPO', 'PUTA', 'PUTO', 'QULO', 'RATA', 'ROBA', 'ROBE', 'ROBO',
+        'RUIN', 'SENO', 'TETA', 'VACA', 'VAGA', 'VAGO', 'VAKA', 'VUEI', 'VUEY', 'WUEI', 'WUEY',
+    ];
 
     public function validate(string $id): bool
     {
         $id = $this->sanitize($id);
+
+        if (!$this->validateRegex($id)) {
+            return false;
+        }
 
         if (!$this->validateNames(substr($id, 0, 3))) {
             return false;
@@ -39,7 +49,7 @@ class MexicoIdValidator implements IdValidator
             return false;
         }
 
-        if (!$this->validateConsoants(substr($id, 13, 3))) {
+        if (!$this->validateConsonants(substr($id, 13, 3))) {
             return false;
         }
 
@@ -50,11 +60,16 @@ class MexicoIdValidator implements IdValidator
     {
         $idLength = strlen($id);
 
-        if ($idLength !== self::CURP_SIZE) {
-            throw new InvalidLengthException('Mexico CURP', self::CURP_SIZE, $idLength);
+        if ($idLength !== 18) {
+            throw new InvalidLengthException('Mexico CURP', 18, $idLength);
         }
 
         return strtoupper($id);
+    }
+
+    private function validateRegex(string $id): bool
+    {
+        return preg_match('/^[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9A-Z][0-9]$/', $id, $matches);
     }
 
     private function validateNames(string $names): bool
@@ -67,6 +82,10 @@ class MexicoIdValidator implements IdValidator
             if (!in_array($names[1], self::VOWELS)) {
                 return false;
             }
+        }
+
+        if (in_array($names, self::BLACKLISTED_NAMES)) {
+            return false;
         }
 
         return true;
@@ -117,7 +136,7 @@ class MexicoIdValidator implements IdValidator
         return true;
     }
 
-    private function validateConsoants(string $names): bool
+    private function validateConsonants(string $names): bool
     {
         if (!ctype_alpha($names)) {
             return false;

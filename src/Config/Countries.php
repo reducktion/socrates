@@ -339,5 +339,10 @@ class Countries
         'SK' => \Reducktion\Socrates\Core\Europe\Slovakia\SlovakiaCitizenInformationExtractor::class,
         'UA' => \Reducktion\Socrates\Core\Europe\Ukraine\UkraineCitizenInformationExtractor::class,
         'XK' => \Reducktion\Socrates\Core\Europe\Kosovo\KosovoCitizenInformationExtractor::class,
+
+        /**
+         * Validators for north american countries.
+         */
+        'MX' => \Reducktion\Socrates\Core\NorthAmerica\Mexico\MexicoCitizenInformationExtractor::class,
     ];
 }

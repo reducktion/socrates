@@ -2,6 +2,8 @@
 
 namespace Reducktion\Socrates\Tests\Feature\NorthAmerica;
 
+use Carbon\Carbon;
+use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Laravel\Facades\Socrates;
 use Reducktion\Socrates\Tests\Feature\FeatureTest;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
@@ -16,6 +18,33 @@ class MexicoTest extends FeatureTest
     protected function setUp(): void
     {
         parent::setUp();
+
+        $this->people = [
+            'bardhana' => [
+                'curp' => 'MAAR790213HMNRLF03',
+                'gender' => Gender::MALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1979-2-13'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1979-2-13')->age,
+            ],
+            'shufti' => [
+                'curp' => 'HEGG560427MVZRRL04',
+                'gender' => Gender::FEMALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '1956-4-27'),
+                'age' => Carbon::createFromFormat('Y-m-d', '1956-4-27')->age,
+            ],
+            'shyqe' => [
+                'curp' => 'BOXW010820HNERXNA1',
+                'gender' => Gender::MALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '2001-8-20'),
+                'age' => Carbon::createFromFormat('Y-m-d', '2001-8-20')->age,
+            ],
+            'elseid' => [
+                'curp' => 'TUAZ080213HMNRLFA3',
+                'gender' => Gender::MALE,
+                'dob' => Carbon::createFromFormat('Y-m-d', '2008-2-13'),
+                'age' => Carbon::createFromFormat('Y-m-d', '2008-2-13')->age,
+            ],
+        ];
 
         $this->validIds = [
             'MAAR790213HMNRLF03',
@@ -51,7 +80,15 @@ class MexicoTest extends FeatureTest
 
     public function test_extract_behaviour(): void
     {
-        $this->expectException(UnsupportedOperationException::class);
+        foreach ($this->people as $person) {
+            $citizen = Socrates::getCitizenDataFromId($person['curp'], $this->MEXICO_CODE);
+
+            $this->assertEquals($person['gender'], $citizen->getGender());
+            $this->assertEquals($person['dob'], $citizen->getDateOfBirth());
+            $this->assertEquals($person['age'], $citizen->getAge());
+        }
+
+        $this->expectException(InvalidLengthException::class);
 
         Socrates::getCitizenDataFromId('69218938062', $this->MEXICO_CODE);
     }
