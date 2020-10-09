@@ -8,6 +8,7 @@
 | Bosnia and Herzegovina 🇧🇦 |      BA      | :heavy_check_mark: | :heavy_check_mark: |
 | Bulgaria 🇧🇬               |      BG      | :heavy_check_mark: | :heavy_check_mark: |
 | Brazil 🇧🇷                 |      BR      | :heavy_check_mark: | :x:                |
+| Chile 🇨🇱                  |      CL      | :heavy_check_mark: | :x:                |
 | Croatia 🇭🇷                |      HR      | :heavy_check_mark: | :heavy_check_mark: |
 | Czech Republic 🇨🇿         |      CZ      | :heavy_check_mark: | :heavy_check_mark: |
 | Denmark 🇩🇰                |      DK      | :heavy_check_mark: | :heavy_check_mark: |
