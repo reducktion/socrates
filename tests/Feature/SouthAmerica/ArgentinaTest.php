@@ -1,10 +1,11 @@
 <?php
 
-namespace Reducktion\Socrates\Tests\Feature;
+namespace Reducktion\Socrates\Tests\Feature\SouthAmerica;
 
 use Reducktion\Socrates\Laravel\Facades\Socrates;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
+use Reducktion\Socrates\Tests\Feature\FeatureTest;
 
 class ArgentinaTest extends FeatureTest
 {

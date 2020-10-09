@@ -1,15 +1,21 @@
 <?php
 
-namespace Reducktion\Socrates\Core\Argentina;
+namespace Reducktion\Socrates\Core\SouthAmerica\Argentina;
 
 use Reducktion\Socrates\Contracts\IdValidator;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
+/**
+ * Class ArgentinaIdValidator
+ *
+ * Algorithm adapted from: https://es.wikipedia.org/wiki/Clave_%C3%9Anica_de_Identificaci%C3%B3n_Tributaria
+ *
+ * @package Reducktion\Socrates\Core\SouthAmerica\Argentina
+ */
 class ArgentinaIdValidator implements IdValidator
 {
     public function validate(string $id): bool
     {
-        // source: https://es.wikipedia.org/wiki/Clave_%C3%9Anica_de_Identificaci%C3%B3n_Tributaria
         $id = $this->sanitize($id);
 
         $sum = 0;
