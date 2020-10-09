@@ -34,6 +34,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "bofalke",
+      "name": "bofalke",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/54977705?v=4",
+      "profile": "https://github.com/bofalke",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
