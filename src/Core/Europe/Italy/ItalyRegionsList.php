@@ -7,7 +7,7 @@ namespace Reducktion\Socrates\Core\Europe\Italy;
  *
  * Data taken from: https://web.archive.org/web/20160819012136/http://www.agenziaentrate.gov.it/wps/wcm/connect/321b0500426a5e2492629bc065cef0e8/codicicatastali_comuni_29_11_2010.pdf?MOD=AJPERES&CACHEID=321b500426a5e2492629bc065cef0e8
  *
- * @package Reducktion\Socrates\Core\Italy
+ * @package Reducktion\Socrates\Core\Europe\Italy
  */
 class ItalyRegionsList
 {

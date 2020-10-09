@@ -307,7 +307,8 @@ abstract class Countries
         /**
          * Validators for south american countries.
          */
-        'BR' => \Reducktion\Socrates\Core\SouthAmerica\Brazil\BrazilIdValidator::class
+        'BR' => \Reducktion\Socrates\Core\SouthAmerica\Brazil\BrazilIdValidator::class,
+        'CL' => \Reducktion\Socrates\Core\SouthAmerica\Chile\ChileIdValidator::class,
     ];
 
     public static $extractors = [
