@@ -24,10 +24,10 @@ class UruguayIdValidator implements IdValidator
 
         $baseNumber = "2987634";
         for ($i = 0; $i < 7; $i++) {
-            $baseDigit = $baseNumber[$i];
-            $ciDigit = $id[$i];
+            $baseDigit = (int)$baseNumber[$i];
+            $ciDigit = (int)$id[$i];
 
-            $a += (intval($baseDigit) * intval($ciDigit)) % 10;
+            $a += ($baseDigit * $ciDigit) % 10;
         }
 
         $validationDigit = $a % 10 == 0 ? 0 : 10 - $a % 10;
