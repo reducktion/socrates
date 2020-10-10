@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Config;
 
-class Countries
+abstract class Countries
 {
     public static $all = [
         'AF',
@@ -258,7 +258,6 @@ class Countries
     ];
 
     public static $validators = [
-
         /**
          * Validators for european countries.
          */
@@ -305,10 +304,16 @@ class Countries
         'CA' => \Reducktion\Socrates\Core\NorthAmerica\Canada\CanadaIdValidator::class,
         'US' => \Reducktion\Socrates\Core\NorthAmerica\UnitedStates\UnitedStatesIdValidator::class,
         'MX' => \Reducktion\Socrates\Core\NorthAmerica\Mexico\MexicoIdValidator::class,
+        
+        /**
+         * Validators for south american countries.
+         */
+        'AR' => \Reducktion\Socrates\Core\SouthAmerica\Argentina\ArgentinaIdValidator::class,
+        'BR' => \Reducktion\Socrates\Core\SouthAmerica\Brazil\BrazilIdValidator::class,
+        'CL' => \Reducktion\Socrates\Core\SouthAmerica\Chile\ChileIdValidator::class,
     ];
 
     public static $extractors = [
-
         /**
          * Extractors for european countries.
          */

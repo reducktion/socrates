@@ -10,7 +10,7 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
  *
  * Algorithm adapted from: http://www.interior.gob.es/web/servicios-al-ciudadano/dni/calculo-del-digito-de-control-del-nif-nie.
  *
- * @package Reducktion\Socrates\Core\Spain
+ * @package Reducktion\Socrates\Core\Europe\Spain
  */
 class SpainIdValidator implements IdValidator
 {
