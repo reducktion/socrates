@@ -39,9 +39,9 @@ class MexicoCitizenInformationExtractor implements CitizenInformationExtractor
 
     private function getDateOfBirth(string $id): Carbon
     {
-        $year = intval(substr($id, 4, 2));
-        $month = intval(substr($id, 6, 2));
-        $day = intval(substr($id, 8, 2));
+        $year = (int) substr($id, 4, 2);
+        $month = (int) substr($id, 6, 2);
+        $day = (int) substr($id, 8, 2);
 
         $year += is_numeric($id[16]) ? 1900 : 2000;
 

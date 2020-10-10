@@ -100,12 +100,12 @@ class MexicoIdValidator implements IdValidator
         }
 
         //validate month
-        if (!in_array(intval(substr($birthdate, 2, 2)), range(1, 12))) {
+        if (!in_array((int) substr($birthdate, 2, 2), range(1, 12))) {
             return false;
         }
 
         //validate day
-        if (!in_array(intval(substr($birthdate, 4, 2)), range(1, 31))) {
+        if (!in_array((int) substr($birthdate, 4, 2), range(1, 31))) {
             return false;
         }
 
@@ -165,6 +165,6 @@ class MexicoIdValidator implements IdValidator
         for ($i = 0; $i < strlen($code); $i++) {
             $check += array_search($code[$i], str_split($alphabet)) * (18 - $i);
         }
-        return (10 - $check % 10) % 10 === intval($id[17]);
+        return (10 - $check % 10) % 10 === (int) $id[17];
     }
 }
