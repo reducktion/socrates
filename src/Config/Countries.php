@@ -346,7 +346,7 @@ abstract class Countries
         'XK' => \Reducktion\Socrates\Core\Europe\Kosovo\KosovoCitizenInformationExtractor::class,
 
         /**
-         * Validators for north american countries.
+         * Extractors for north american countries.
          */
         'MX' => \Reducktion\Socrates\Core\NorthAmerica\Mexico\MexicoCitizenInformationExtractor::class,
     ];

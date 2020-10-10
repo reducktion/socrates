@@ -30,7 +30,7 @@ class MexicoCitizenInformationExtractor implements CitizenInformationExtractor
     {
         $identifier = $id[10];
 
-        if ($identifier === MexicoIdValidator::GENDERS[0]) {
+        if ($identifier === 'H') {
             return Gender::MALE;
         }
 
