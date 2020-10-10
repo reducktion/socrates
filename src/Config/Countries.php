@@ -304,7 +304,7 @@ abstract class Countries
         'CA' => \Reducktion\Socrates\Core\NorthAmerica\Canada\CanadaIdValidator::class,
         'US' => \Reducktion\Socrates\Core\NorthAmerica\UnitedStates\UnitedStatesIdValidator::class,
         'MX' => \Reducktion\Socrates\Core\NorthAmerica\Mexico\MexicoIdValidator::class,
-        
+
         /**
          * Validators for south american countries.
          */
