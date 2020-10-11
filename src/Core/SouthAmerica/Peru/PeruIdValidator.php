@@ -67,7 +67,7 @@ class PeruIdValidator implements IdValidator
         $idLength = strlen($id);
 
         if ($idLength !== 9) {
-            throw new InvalidLengthException('Peru DNI', '9', $idLength);
+            throw new InvalidLengthException('Peru CUI', '9', $idLength);
         }
 
         return $id;
