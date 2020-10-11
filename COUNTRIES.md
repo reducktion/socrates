@@ -26,6 +26,7 @@
 | Luxembourg 🇱🇺             |      LU      | :heavy_check_mark: | :heavy_check_mark: |
 | Moldova 🇲🇩                |      MD      | :heavy_check_mark: | :x:                |
 | Montenegro 🇲🇪             |      ME      | :heavy_check_mark: | :heavy_check_mark: |
+| México 🇲🇽                 |      ME      | :heavy_check_mark: | :heavy_check_mark: |
 | Netherlands 🇳🇱            |      NL      | :heavy_check_mark: | :x:                |
 | North Macedonia 🇲🇰        |      MK      | :heavy_check_mark: | :heavy_check_mark: |
 | Norway 🇳🇴                 |      NO      | :heavy_check_mark: | :heavy_check_mark: |

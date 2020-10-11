@@ -303,6 +303,7 @@ abstract class Countries
          */
         'CA' => \Reducktion\Socrates\Core\NorthAmerica\Canada\CanadaIdValidator::class,
         'US' => \Reducktion\Socrates\Core\NorthAmerica\UnitedStates\UnitedStatesIdValidator::class,
+        'MX' => \Reducktion\Socrates\Core\NorthAmerica\Mexico\MexicoIdValidator::class,
 
         /**
          * Validators for south american countries.
@@ -344,5 +345,10 @@ abstract class Countries
         'SK' => \Reducktion\Socrates\Core\Europe\Slovakia\SlovakiaCitizenInformationExtractor::class,
         'UA' => \Reducktion\Socrates\Core\Europe\Ukraine\UkraineCitizenInformationExtractor::class,
         'XK' => \Reducktion\Socrates\Core\Europe\Kosovo\KosovoCitizenInformationExtractor::class,
+
+        /**
+         * Extractors for north american countries.
+         */
+        'MX' => \Reducktion\Socrates\Core\NorthAmerica\Mexico\MexicoCitizenInformationExtractor::class,
     ];
 }
