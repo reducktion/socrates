@@ -13,7 +13,7 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
  * https://mag.elcomercio.pe/respuestas/cual-es-el-digito-verificador-de-mi-dni-documento-nacional-de-identidad-reniec-peru-nnda-nnlt-noticia/?ref=ecr
  * ]
  *
- * @package Reducktion\Socrates\Core\SouthAmerica\Brazil
+ * @package Reducktion\Socrates\Core\SouthAmerica\Peru
  */
 class PeruIdValidator implements IdValidator
 {
@@ -23,7 +23,7 @@ class PeruIdValidator implements IdValidator
 
         $sum = 0;
         $factors = [3, 2, 7, 6, 5, 4, 3, 2];
-        $NumberKeys = [6, 7, 8, 9, 0, 1, 1, 2, 3, 4, 5];
+        $numberKeys = [6, 7, 8, 9, 0, 1, 1, 2, 3, 4, 5];
         $charKeys = ['K', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 
         $dniDigits = substr($id, 0, -1);
@@ -41,23 +41,18 @@ class PeruIdValidator implements IdValidator
 
         $lastDigit = substr($id, -1);
 
-        for ($i = 0; $i < count($dniDigits); $i++) {
+        $countDniDigits = count($dniDigits);
+
+        for ($i = 0; $i < $countDniDigits; $i++) {
             $sum += $dniDigits[$i] * $factors[$i];
         }
 
-
         $key = 11 - ($sum % 11);
-        $key = $key == 11 ? 0 : $key;
+        $key = $key === 11 ? 0 : $key;
 
-        if (is_numeric($lastDigit)) {
-            if ($NumberKeys[$key] != $lastDigit) {
-                return false;
-            }
-        } elseif ($charKeys[$key] != strtoupper($lastDigit)) {
-            return false;
-        }
-
-        return true;
+        return is_numeric($lastDigit)
+            ? $numberKeys[$key] === (int)$lastDigit
+            : $charKeys[$key] === strtoupper($lastDigit);
     }
 
     private function sanitize(string $id): string

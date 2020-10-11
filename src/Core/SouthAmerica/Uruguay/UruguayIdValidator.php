@@ -30,9 +30,9 @@ class UruguayIdValidator implements IdValidator
             $a += ($baseDigit * $ciDigit) % 10;
         }
 
-        $validationDigit = $a % 10 == 0 ? 0 : 10 - $a % 10;
+        $validationDigit = $a % 10 === 0 ? 0 : 10 - $a % 10;
 
-        return $lastDigit == $validationDigit;
+        return $lastDigit === $validationDigit;
     }
 
     private function sanitize(string $id): string
@@ -41,7 +41,7 @@ class UruguayIdValidator implements IdValidator
 
         $idLength = strlen($id);
 
-        if ($idLength != 8) {
+        if ($idLength !== 8) {
             throw new InvalidLengthException('Uruguay CI', '8', $idLength);
         }
 
