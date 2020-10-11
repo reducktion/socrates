@@ -29,6 +29,7 @@
 | Netherlands 🇳🇱            |      NL      | :heavy_check_mark: | :x:                |
 | North Macedonia 🇲🇰        |      MK      | :heavy_check_mark: | :heavy_check_mark: |
 | Norway 🇳🇴                 |      NO      | :heavy_check_mark: | :heavy_check_mark: |
+| Peru 🇵🇪                   |      PE      | :heavy_check_mark: | :x:                |
 | Poland 🇵🇱                 |      PL      | :heavy_check_mark: | :heavy_check_mark: |
 | Portugal 🇵🇹               |      PT      | :heavy_check_mark: | :x:                |
 | Romania 🇷🇴                |      RO      | :heavy_check_mark: | :heavy_check_mark: |
