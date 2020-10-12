@@ -32,6 +32,37 @@
       "avatar_url": "https://avatars1.githubusercontent.com/u/22393924?v=4",
       "profile": "https://github.com/YvesBos",
       "contributions": [
+        "doc",
+        "code",
+        "bug"
+      ]
+    },
+    {
+      "login": "bofalke",
+      "name": "bofalke",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/54977705?v=4",
+      "profile": "https://github.com/bofalke",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "gheleri",
+      "name": "Rodolpho Lima",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1103419?v=4",
+      "profile": "https://github.com/gheleri",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "tiagomichaelsousa",
+      "name": "tiagomichaelsousa",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/28356381?v=4",
+      "profile": "https://github.com/tiagomichaelsousa",
+      "contributions": [
+        "code",
         "doc"
       ]
     }
