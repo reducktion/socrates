@@ -22,7 +22,7 @@ class EcuadorIdValidator implements IdValidator
         $id = $this->sanitize($id);
 
         $provinceCode = (int)substr($id, 0, 2);
-        $thirdDigit = (int)substr($id, 2, 1);
+        $thirdDigit = (int)$id[2];
         $sequenceNumber = substr($id, 0, 9);
         $lastDigit = (int)$id[-1];
 
@@ -72,8 +72,8 @@ class EcuadorIdValidator implements IdValidator
             $sum += $posValue;
         }
 
-        $remaining = $sum % 10;
-        $result = $remaining !== 0 ? 10 - $remaining : 0;
+        $remainder = $sum % 10;
+        $result = $remainder !== 0 ? 10 - $remainder : 0;
 
         return $result === $lastDigit;
     }
