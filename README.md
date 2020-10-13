@@ -104,7 +104,7 @@ echo $citizen->getPlaceOfBirth(); // null
 
 [Here](COUNTRIES.md) you can see the full list of supported countries and whether they support data extraction.
 
-Four european countries are currently unsupported: Austria 🇦🇹, Belarus 🇧🇾, Cyprus 🇨🇾 and Germany 🇩🇪. This is because we could not find a reliable source for the algorithm, if at all. Help would be appreciated to get these countries supported.
+Three european countries are currently unsupported: Austria 🇦🇹, Belarus 🇧🇾 and Cyprus 🇨🇾. This is because we could not find a reliable source for the algorithm, if at all. Help would be appreciated to get these countries supported.
 
 ## Testing
 `composer test`

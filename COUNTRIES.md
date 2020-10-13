@@ -15,6 +15,7 @@
 | Estonia 🇪🇪                |      EE      | :heavy_check_mark: | :heavy_check_mark: |
 | Finland 🇫🇮                |      FI      | :heavy_check_mark: | :heavy_check_mark: |
 | France 🇫🇷                 |      FR      | :heavy_check_mark: | :heavy_check_mark: |
+| Germany 🇩🇪                |      DE      | :heavy_check_mark: | :x:                |
 | Greece 🇬🇷                 |      GR      | :heavy_check_mark: | :x:                |
 | Hungary 🇭🇺                |      HU      | :heavy_check_mark: | :heavy_check_mark: |
 | Iceland 🇮🇸                |      IS      | :heavy_check_mark: | :heavy_check_mark: |

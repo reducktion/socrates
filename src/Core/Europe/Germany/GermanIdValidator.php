@@ -5,6 +5,7 @@ namespace Reducktion\Socrates\Core\Europe\Germany;
 use Reducktion\Socrates\Contracts\IdValidator;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
+//Documentation can be found in Chapter 2.2 https://download.elster.de/download/schnittstellen/Pruefung_der_Steuer_und_Steueridentifikatsnummer.pdf
 class GermanIdValidator implements IdValidator
 {
     public function validate(string $id): bool
