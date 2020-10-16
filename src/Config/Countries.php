@@ -267,6 +267,7 @@ abstract class Countries
         'BG' => \Reducktion\Socrates\Core\Europe\Bulgaria\BulgariaIdValidator::class,
         'CH' => \Reducktion\Socrates\Core\Europe\Switzerland\SwitzerlandIdValidator::class,
         'CZ' => \Reducktion\Socrates\Core\Europe\CzechRepublic\CzechRepublicIdValidator::class,
+        'DE' => \Reducktion\Socrates\Core\Europe\Germany\GermanIdValidator::class,
         'DK' => \Reducktion\Socrates\Core\Europe\Denmark\DenmarkIdValidator::class,
         'EE' => \Reducktion\Socrates\Core\Europe\Estonia\EstoniaIdValidator::class,
         'ES' => \Reducktion\Socrates\Core\Europe\Spain\SpainIdValidator::class,
