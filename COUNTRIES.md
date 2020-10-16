@@ -12,6 +12,7 @@
 | Croatia 🇭🇷                |      HR      | :heavy_check_mark: | :heavy_check_mark: |
 | Czech Republic 🇨🇿         |      CZ      | :heavy_check_mark: | :heavy_check_mark: |
 | Denmark 🇩🇰                |      DK      | :heavy_check_mark: | :heavy_check_mark: |
+| Ecuador 🇪🇨                |      EC      | :heavy_check_mark: | :x:                |
 | Estonia 🇪🇪                |      EE      | :heavy_check_mark: | :heavy_check_mark: |
 | Finland 🇫🇮                |      FI      | :heavy_check_mark: | :heavy_check_mark: |
 | France 🇫🇷                 |      FR      | :heavy_check_mark: | :heavy_check_mark: |
