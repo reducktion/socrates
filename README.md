@@ -40,17 +40,19 @@ Socrates provides two methods: `validateId` and `getCitizenDataFromId`. Both rec
 
 ```php
 use Reducktion\Socrates\Socrates;
+use Reducktion\Socrates\Constants\Country;
 
 $socrates = new Socrates();
-$socrates->validateId('14349483 0 ZV3', 'PT');
+$socrates->validateId('14349483 0 ZV3', Country::PORTUGAL);
 ```
 
 For Laravel, a facade is also available for your convenience:
 
 ```php
 use Reducktion\Socrates\Laravel\Facades\Socrates;
+use Reducktion\Socrates\Constants\Country;
 
-Socrates::getCitizenDataFromId('550309-6447', 'SE');
+Socrates::getCitizenDataFromId('550309-6447', Country::SWEDEN);
 ```
 
 You can also use the `national_id:[COUNTRY CODE]` request validation rule:
@@ -75,7 +77,7 @@ This method will return true or false depending on the validity of the ID.
 In case the ID has the wrong character length, an `InvalidLengthException` will be thrown.
 
 ```php
-if ($socrates->validateId('719102091', 'NL')) {
+if ($socrates->validateId('719102091', Country::NETHERLANDS)) {
     echo 'Valid ID.'
 } else {
     echo 'Invalid ID.'
@@ -86,7 +88,7 @@ if ($socrates->validateId('719102091', 'NL')) {
 This method will return an instance of `Citizen`. If the ID is invalid, an `InvalidIdException` will be thrown. If the country does not support data extraction, an `UnsupportedOperationException` will be thrown.
 
 ```php
-$citizen = $socrates->getCitizenDataFromId('3860123012', 'EE');
+$citizen = $socrates->getCitizenDataFromId('3860123012', Country::ESTONIA);
 ```
 
 The `Citizen` class stores the extracted citizen data in a consistent format across all countries. It exposes the `getGender()`, `getDateOfBirth()`, `getAge()` and `getPlaceOfBirth()` methods.
