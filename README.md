@@ -44,6 +44,8 @@ use Reducktion\Socrates\Constants\Country;
 
 $socrates = new Socrates();
 $socrates->validateId('14349483 0 ZV3', Country::PORTUGAL);
+// or
+$socrates->validateId('14349483 0 ZV3', 'PT');
 ```
 
 For Laravel, a facade is also available for your convenience:
