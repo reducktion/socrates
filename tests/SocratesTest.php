@@ -25,18 +25,4 @@ class SocratesTest extends TestCase
 
         Socrates::validateId('123123123', 'ZZZ');
     }
-
-    /** @test */
-    public function it_uses_the_application_current_locale_if_none_is_provided(): void
-    {
-        App::setLocale('PT');
-
-        $this->assertTrue(
-            Socrates::validateId('11084129 8 ZX8')
-        );
-
-        $this->expectException(UnsupportedOperationException::class);
-
-        Socrates::getCitizenDataFromId('11084129 8 ZX8');
-    }
 }
