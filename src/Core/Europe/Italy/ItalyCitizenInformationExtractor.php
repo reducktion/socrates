@@ -50,7 +50,7 @@ class ItalyCitizenInformationExtractor implements CitizenInformationExtractor
         $monthChar = $id[8];
         $yearDigits = substr($id, 6, 2);
         $months = 'ABCDEHLMPRST';
-        $currentYear = (int) (new DateTime)->format('y');
+        $currentYear = (int) (new DateTime())->format('y');
 
         $day = (int) $dayDigits > 31 ? (int) $dayDigits - 40 : (int) $dayDigits;
         $month = strpos($months, $monthChar) + 1;
