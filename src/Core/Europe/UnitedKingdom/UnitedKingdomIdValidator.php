@@ -52,19 +52,13 @@ class UnitedKingdomIdValidator implements IdValidator
 
         $firstTwoCharacters = substr($id, 0, 2);
 
-        if (
-            $firstTwoCharacters === 'GB'
+        return !($firstTwoCharacters === 'GB'
             || $firstTwoCharacters === 'NK'
             || $firstTwoCharacters === 'TN'
             || $firstTwoCharacters === 'BG'
             || $firstTwoCharacters === 'KN'
             || $firstTwoCharacters === 'NT'
-            || $firstTwoCharacters === 'ZZ'
-        ) {
-            return false;
-        }
-
-        return true;
+            || $firstTwoCharacters === 'ZZ');
     }
 
     private function sanitize(string $id)

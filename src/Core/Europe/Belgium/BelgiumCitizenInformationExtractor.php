@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Core\Europe\Belgium;
 
-use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
@@ -47,7 +47,7 @@ class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
         return (substr($id, 6, 3) % 2) ? Gender::MALE : Gender::FEMALE;
     }
 
-    private function getDateOfBirth(string $id): Carbon
+    private function getDateOfBirth(string $id): DateTime
     {
         $dateDigits = substr($id, 0, 6);
         [$year, $month, $day] = str_split($dateDigits, 2);
@@ -58,7 +58,7 @@ class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
 
         $year = $this->isAfter2000($id) ? $year + 2000 : $year + 1900;
 
-        return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+        return new DateTime("$year-$month-$day");
     }
 
     private function isAfter2000($id): bool

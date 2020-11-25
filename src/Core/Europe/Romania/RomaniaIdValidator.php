@@ -23,10 +23,6 @@ class RomaniaIdValidator implements IdValidator
 
         $sum %= 11;
 
-        if (($sum === 10 && $id[12] !== '1') || ($sum < 10 && $sum != $id[12])) {
-            return false;
-        }
-
-        return true;
+        return !(($sum === 10 && $id[12] !== '1') || ($sum < 10 && $sum !== (int) $id[12]));
     }
 }

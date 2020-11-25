@@ -3,6 +3,7 @@
 namespace Reducktion\Socrates\Tests\Feature\Europe;
 
 use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Laravel\Facades\Socrates;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
@@ -22,43 +23,43 @@ class ItalyTest extends FeatureTest
             'matteo moretti' => [
                 'fc' => 'MRTMTT25D09F205Z',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1925-04-09'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1925-04-09')->age,
+                'dob' => new DateTime('1925-04-09'),
+                'age' => $this->calculateAge(new DateTime('1925-04-09')),
                 'pob' => 'MILANO (MI)'
             ],
             'samantha miller' => [
                 'fc' => 'MLLSNT82P65Z404U',
                 'gender' => Gender::FEMALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1982-09-25'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1982-09-25')->age,
+                'dob' => new DateTime('1982-09-25'),
+                'age' => $this->calculateAge(new DateTime('1982-09-25')),
                 'pob' => 'STATI UNITI D\'AMERICA'
             ],
             'delmo castiglione' => [
                 'fc' => 'DLMCTG75B07H227Y',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1975-02-07'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1975-02-07')->age,
+                'dob' => new DateTime('1975-02-07'),
+                'age' => $this->calculateAge(new DateTime('1975-02-07')),
                 'pob' => 'REINO (BN)'
             ],
             'elsa barese' => [
                 'fc' => 'BRSLSE08D50H987B',
                 'gender' => Gender::FEMALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '2008-04-10'),
-                'age' => Carbon::createFromFormat('Y-m-d', '2008-04-10')->age,
+                'dob' => new DateTime('2008-04-10'),
+                'age' => $this->calculateAge(new DateTime('2008-04-10')),
                 'pob' => 'SAN MARTINO ALFIERI (AT)'
             ],
             'dario marcelo' => [
                 'fc' => 'MRCDRA01A13A065E',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '2001-01-13'),
-                'age' => Carbon::createFromFormat('Y-m-d', '2001-01-13')->age,
+                'dob' => new DateTime('2001-01-13'),
+                'age' => $this->calculateAge(new DateTime('2001-01-13')),
                 'pob' => 'AFRICO (RC)'
             ],
             'dario marchesani' => [
                 'fc' => 'MRCDRALMAMPALSRE',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '2001-01-13'),
-                'age' => Carbon::createFromFormat('Y-m-d', '2001-01-13')->age,
+                'dob' => new DateTime('2001-01-13'),
+                'age' => $this->calculateAge(new DateTime('2001-01-13')),
                 'pob' => 'AFRICO (RC)'
             ]
         ];
@@ -77,10 +78,11 @@ class ItalyTest extends FeatureTest
         foreach ($this->people as $person) {
             $citizen = Socrates::getCitizenDataFromId($person['fc'], 'IT');
 
-            $this->assertEquals($person['gender'], $citizen->getGender());
-            $this->assertEquals($person['dob'], $citizen->getDateOfBirth());
-            $this->assertEquals($person['age'], $citizen->getAge());
-            $this->assertEquals($person['pob'], $citizen->getPlaceOfBirth());
+            self::assertEquals($person['gender'], $citizen->getGender());
+            self::assertEquals(Carbon::instance($person['dob']), $citizen->getDateOfBirth());
+            self::assertEquals($person['dob'], $citizen->getDateOfBirthNative());
+            self::assertEquals($person['age'], $citizen->getAge());
+            self::assertEquals($person['pob'], $citizen->getPlaceOfBirth());
         }
 
         $this->expectException(InvalidIdException::class);
@@ -91,13 +93,13 @@ class ItalyTest extends FeatureTest
     public function test_validation_behaviour(): void
     {
         foreach ($this->people as $person) {
-            $this->assertTrue(
+            self::assertTrue(
                 Socrates::validateId($person['fc'], 'IT')
             );
         }
 
         foreach ($this->invalidIds as $fc) {
-            $this->assertFalse(
+            self::assertFalse(
                 Socrates::validateId($fc, 'IT')
             );
         }

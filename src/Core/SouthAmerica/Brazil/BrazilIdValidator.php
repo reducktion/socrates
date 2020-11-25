@@ -38,7 +38,7 @@ class BrazilIdValidator implements IdValidator
         }
 
         $v1 = ($v1 % 11) % 10;
-        $v2 = $v2 + ($v1 * 9);
+        $v2 += ($v1 * 9);
         $v2 = ($v2 % 11) % 10;
 
         return $checksum === (($v1 * 10) + $v2);
@@ -46,7 +46,7 @@ class BrazilIdValidator implements IdValidator
 
     private function sanitize(string $id): string
     {
-        $id = preg_replace('/[^0-9]/', '', $id);
+        $id = preg_replace('/[\D]/', '', $id);
 
         $idLength = strlen($id);
 

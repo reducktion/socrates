@@ -20,7 +20,7 @@ class AlbaniaIdValidator implements IdValidator
         }
 
         $id = strtoupper($id);
-        $id = str_split($id);
+        $idArray = str_split($id);
 
         $verificationTable = [
             1 => 'A',
@@ -48,11 +48,11 @@ class AlbaniaIdValidator implements IdValidator
             0 => 'W',
         ];
 
-        $firstLetter = $id[0];
-        $checkLetter = $id[9];
-        $firstLetterNumber = array_search($firstLetter, $verificationTable);
+        $firstLetter = $idArray[0];
+        $checkLetter = $idArray[9];
+        $firstLetterNumber = array_search($firstLetter, $verificationTable, true);
 
-        $eightMiddleDigits = array_slice($id, 1, 8);
+        $eightMiddleDigits = array_slice($idArray, 1, 8);
 
         $sum = array_sum(
             array_map(

@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Core\Europe\Norway;
 
-use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
@@ -33,7 +33,7 @@ class NorwayCitizenInformationExtractor implements CitizenInformationExtractor
         return ($individualNumber % 2) ? Gender::MALE : Gender::FEMALE;
     }
 
-    private function getDateOfBirth(string $id): Carbon
+    private function getDateOfBirth(string $id): DateTime
     {
         $day = (int) substr($id, 0, 2);
         $month = (int) substr($id, 2, 2);
@@ -64,6 +64,6 @@ class NorwayCitizenInformationExtractor implements CitizenInformationExtractor
 
         $year = $century + $twoDigitYear;
 
-        return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+        return new DateTime("$year-$month-$day");
     }
 }

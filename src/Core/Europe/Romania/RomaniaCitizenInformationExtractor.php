@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Core\Europe\Romania;
 
-use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
@@ -34,7 +34,7 @@ class RomaniaCitizenInformationExtractor implements CitizenInformationExtractor
         return ((int) substr($id, 0, 1)) % 2 ? Gender::MALE : Gender::FEMALE;
     }
 
-    private function getDateOfBirth(string $id): Carbon
+    private function getDateOfBirth(string $id): DateTime
     {
         $yearCode = ((int) $id[1] * 10) + (int) $id[2];
         switch ((int) $id[0]) {
@@ -71,7 +71,7 @@ class RomaniaCitizenInformationExtractor implements CitizenInformationExtractor
 
         $day = $id[5] . $id[6];
 
-        return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+        return new DateTime("$year-$month-$day");
     }
 
     private function getPlaceOfBirth(string $id): string

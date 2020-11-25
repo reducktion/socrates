@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Core\Europe\Sweden;
 
-use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
@@ -49,7 +49,8 @@ class SwedenCitizenInformationExtractor implements CitizenInformationExtractor
     {
         $tenDigitId = '';
 
-        for ($i = 0; $i < strlen($id); $i++) {
+        $length = strlen($id);
+        for ($i = 0; $i < $length; $i++) {
             if ($i > 1) {
                 $tenDigitId .= $id[$i];
             }
@@ -61,24 +62,24 @@ class SwedenCitizenInformationExtractor implements CitizenInformationExtractor
 
     private function getGender(string $id): string
     {
-        return $id[8] % 2 == 0 ? Gender::FEMALE : Gender::MALE;
+        return $id[8] % 2 === 0 ? Gender::FEMALE : Gender::MALE;
     }
 
-    private function getDateOfBirth(string $id, bool $isOverOneHundredYearsOld): Carbon
+    private function getDateOfBirth(string $id, bool $isOverOneHundredYearsOld): DateTime
     {
         $dateDigits = substr($id, 0, 6);
         [$twoDigitYear, $month, $day] = str_split($dateDigits, 2);
 
         if ($isOverOneHundredYearsOld) {
-            $year = Carbon::createFromFormat('Y', "19$twoDigitYear")->format('Y');
+            $year = DateTime::createFromFormat('Y', "19$twoDigitYear")->format('Y');
         } else {
-            $presentTwoDigitYear = (int) now()->format('y');
+            $presentTwoDigitYear = (int) (new DateTime())->format('y');
 
             $year = $twoDigitYear < $presentTwoDigitYear
-                ? Carbon::createFromFormat('y', (string) $twoDigitYear)->format('Y')
-                : Carbon::createFromFormat('Y', "19$twoDigitYear")->format('Y');
+                ? DateTime::createFromFormat('y', (string) $twoDigitYear)->format('Y')
+                : DateTime::createFromFormat('Y', "19$twoDigitYear")->format('Y');
         }
 
-        return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+        return new DateTime("$year-$month-$day");
     }
 }

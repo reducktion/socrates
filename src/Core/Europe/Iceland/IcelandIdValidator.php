@@ -26,7 +26,7 @@ class IcelandIdValidator implements IdValidator
         }
 
         $remainder = 11 - ($sum % 11);
-        $secretNumber = intval(substr($id, 8, 1), 0);
+        $secretNumber = intval($id[8], 0);
 
         return ($remainder === 11 && $secretNumber === 0) || $remainder === $secretNumber;
     }

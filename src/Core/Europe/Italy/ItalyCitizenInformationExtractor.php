@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Core\Europe\Italy;
 
-use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Exceptions\UnrecognisedPlaceOfBirthException;
 use Reducktion\Socrates\Models\Citizen;
@@ -44,19 +44,19 @@ class ItalyCitizenInformationExtractor implements CitizenInformationExtractor
         return $dayOfBirth > 31 ? Gender::FEMALE : Gender::MALE;
     }
 
-    private function getDateOfBirth(string $id): Carbon
+    private function getDateOfBirth(string $id): DateTime
     {
         $dayDigits = substr($id, 9, 2);
         $monthChar = $id[8];
         $yearDigits = substr($id, 6, 2);
         $months = 'ABCDEHLMPRST';
-        $currentYear = (int) now()->format('y');
+        $currentYear = (int) (new DateTime)->format('y');
 
         $day = (int) $dayDigits > 31 ? (int) $dayDigits - 40 : (int) $dayDigits;
         $month = strpos($months, $monthChar) + 1;
         $year = (int) $yearDigits > $currentYear ? (int) $yearDigits + 1900 : (int) $yearDigits + 2000;
 
-        return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+        return new DateTime("$year-$month-$day");
     }
 
     private function getPlaceOfBirth(string $id): string

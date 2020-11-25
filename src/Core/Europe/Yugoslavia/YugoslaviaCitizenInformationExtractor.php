@@ -2,10 +2,9 @@
 
 namespace Reducktion\Socrates\Core\Europe\Yugoslavia;
 
-use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
-use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Exceptions\UnrecognisedPlaceOfBirthException;
 use Reducktion\Socrates\Models\Citizen;
 
@@ -36,13 +35,13 @@ class YugoslaviaCitizenInformationExtractor
         return ((int) substr($id, 9, 3)) < 500 ? Gender::MALE : Gender::FEMALE;
     }
 
-    private static function getDateOfBirth(string $id): Carbon
+    private static function getDateOfBirth(string $id): DateTime
     {
         $day = substr($id, 0, 2);
         $month = substr($id, 2, 2);
         $year = (int) substr($id, 4, 3);
 
-        $currentYear = (string) Carbon::now()->year;
+        $currentYear = (int) (new DateTime())->format('Y');
 
         if ($year + 1000 < $currentYear && $year + 1000 > 1900) {
             $year += 1000;
@@ -50,7 +49,7 @@ class YugoslaviaCitizenInformationExtractor
             $year += 2000;
         }
 
-        return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+        return new DateTime("$year-$month-$day");
     }
 
     private static function getPlaceOfBirth(string $id): string

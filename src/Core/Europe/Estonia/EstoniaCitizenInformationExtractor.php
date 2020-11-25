@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Core\Europe\Estonia;
 
-use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
@@ -31,7 +31,7 @@ class EstoniaCitizenInformationExtractor implements CitizenInformationExtractor
         return ($id[0] % 2) ? Gender::MALE : Gender::FEMALE;
     }
 
-    private function getDateOfBirth(string $id): Carbon
+    private function getDateOfBirth(string $id): DateTime
     {
         $dateDigits = substr($id, 1, 6);
         [$year, $month, $day] = str_split($dateDigits, 2);
@@ -48,6 +48,6 @@ class EstoniaCitizenInformationExtractor implements CitizenInformationExtractor
             $year += 2000;
         }
 
-        return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+        return new DateTime("$year-$month-$day");
     }
 }

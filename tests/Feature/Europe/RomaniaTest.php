@@ -3,6 +3,7 @@
 namespace Reducktion\Socrates\Tests\Feature\Europe;
 
 use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Laravel\Facades\Socrates;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
@@ -11,7 +12,6 @@ use Reducktion\Socrates\Tests\Feature\FeatureTest;
 class RomaniaTest extends FeatureTest
 {
     private $people;
-
     private $invalidIds;
 
     public function setUp(): void
@@ -22,36 +22,36 @@ class RomaniaTest extends FeatureTest
             'alexandra' => [
                 'cnp' => '2931213173842',
                 'gender' => Gender::FEMALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1993-12-13'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1993-12-13')->age,
+                'dob' => new DateTime('1993-12-13'),
+                'age' => $this->calculateAge(new DateTime('1993-12-13')),
                 'pob' => 'Galati'
             ],
             'andrei' => [
                 'cnp' => '1941003395747',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1994-10-03'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1994-10-03')->age,
+                'dob' => new DateTime('1994-10-03'),
+                'age' => $this->calculateAge(new DateTime('1994-10-03')),
                 'pob' => 'Vrancea'
             ],
             'elena' => [
                 'cnp' => '2870917211577',
                 'gender' => Gender::FEMALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1987-09-17'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1987-09-17')->age,
+                'dob' => new DateTime('1987-09-17'),
+                'age' => $this->calculateAge(new DateTime('1987-09-17')),
                 'pob' => 'Ialomita'
             ],
             'florin' => [
                 'cnp' => '1850327466200',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1985-03-27'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1985-03-27')->age,
+                'dob' => new DateTime('1985-03-27'),
+                'age' => $this->calculateAge(new DateTime('1985-03-27')),
                 'pob' => 'Bucuresti Sectorul 6'
             ],
             'mihai' => [
                 'cnp' => '5010318045469',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '2001-03-18'),
-                'age' => Carbon::createFromFormat('Y-m-d', '2001-03-18')->age,
+                'dob' => new DateTime('2001-03-18'),
+                'age' => $this->calculateAge(new DateTime('2001-03-18')),
                 'pob' => 'Bacau'
             ]
         ];
@@ -69,10 +69,11 @@ class RomaniaTest extends FeatureTest
     {
         foreach ($this->people as $person) {
             $citizen = Socrates::getCitizenDataFromId($person['cnp'], 'RO');
-            $this->assertEquals($person['gender'], $citizen->getGender());
-            $this->assertEquals($person['dob'], $citizen->getDateOfBirth());
-            $this->assertEquals($person['age'], $citizen->getAge());
-            $this->assertEquals($person['pob'], $citizen->getPlaceOfBirth());
+            self::assertEquals($person['gender'], $citizen->getGender());
+            self::assertEquals(Carbon::instance($person['dob']), $citizen->getDateOfBirth());
+            self::assertEquals($person['dob'], $citizen->getDateOfBirthNative());
+            self::assertEquals($person['age'], $citizen->getAge());
+            self::assertEquals($person['pob'], $citizen->getPlaceOfBirth());
         }
 
         $this->expectException(InvalidLengthException::class);
@@ -83,13 +84,13 @@ class RomaniaTest extends FeatureTest
     public function test_validation_behaviour(): void
     {
         foreach ($this->people as $person) {
-            $this->assertTrue(
+            self::assertTrue(
                 Socrates::validateId($person['cnp'], 'RO')
             );
         }
 
         foreach ($this->invalidIds as $cnp) {
-            $this->assertFalse(
+            self::assertFalse(
                 Socrates::validateId($cnp, 'RO')
             );
         }

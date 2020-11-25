@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Core\Europe\Luxembourg;
 
-use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Models\Citizen;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
@@ -23,12 +23,12 @@ class LuxembourgCitizenInformationExtractor implements CitizenInformationExtract
         return $citizen;
     }
 
-    private function getDateOfBirth(string $id): Carbon
+    private function getDateOfBirth(string $id): DateTime
     {
         $year = substr($id, 0, 4);
         $month = substr($id, 4, 2);
         $day = substr($id, 6, 2);
 
-        return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+        return new DateTime("$year-$month-$day");
     }
 }

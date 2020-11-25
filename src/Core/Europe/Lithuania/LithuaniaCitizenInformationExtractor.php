@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Core\Europe\Lithuania;
 
-use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
@@ -31,7 +31,7 @@ class LithuaniaCitizenInformationExtractor implements CitizenInformationExtracto
         return ($id[0] % 2) ? Gender::MALE : Gender::FEMALE;
     }
 
-    private function getDateOfBirth(string $id): Carbon
+    private function getDateOfBirth(string $id): DateTime
     {
         $dateDigits = substr($id, 1, 6);
         [$year, $month, $day] = str_split($dateDigits, 2);
@@ -45,6 +45,6 @@ class LithuaniaCitizenInformationExtractor implements CitizenInformationExtracto
 
         $year = (($century - 1) * 100) + $year;
 
-        return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+        return new DateTime("$year-$month-$day");
     }
 }

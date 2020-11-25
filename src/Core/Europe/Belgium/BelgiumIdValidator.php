@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Core\Europe\Belgium;
 
-use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Contracts\IdValidator;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
@@ -85,9 +85,10 @@ class BelgiumIdValidator implements IdValidator
         if ($month != 0 && $day != 0) {
             $year = $after2000 ? $year + 2000 : $year + 1900;
 
-            $dob = Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+            $dob = new DateTime("$year-$month-$day");
+            $dobMinusTwelveYears = (new DateTime("$year-$month-$day"))->modify('-12 years');
 
-            if ($dob->greaterThan($dob->subYears(12))) {
+            if ($dob < $dobMinusTwelveYears) {
                 return false;
             }
         }

@@ -14,9 +14,9 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
  */
 class MexicoIdValidator implements IdValidator
 {
-    public const VOWELS = ['A', 'E', 'I', 'O', 'U'];
-    public const GENDERS = ['H', 'M'];
-    public const BLACKLISTED_NAMES = [
+    private const VOWELS = ['A', 'E', 'I', 'O', 'U'];
+    private const GENDERS = ['H', 'M'];
+    private const BLACKLISTED_NAMES = [
         'BACA', 'BAKA', 'BUEI', 'BUEY', 'CACA', 'CACO', 'CAGA', 'CAGO', 'CAKA', 'CAKO', 'COGE', 'COGI', 'COJA', 'COJE',
         'COJI', 'COJO', 'COLA', 'CULO', 'FALO', 'FETO', 'GETA', 'GUEI', 'GUEY', 'JETA', 'JOTO', 'KACA', 'KACO', 'KAGA',
         'KAGO', 'KAKA', 'KAKO', 'KOGE', 'KOGI', 'KOJA', 'KOJE', 'KOJI', 'KOJO', 'KOLA', 'KULO', 'LILO', 'LOCA', 'LOCO',
@@ -69,12 +69,13 @@ class MexicoIdValidator implements IdValidator
 
     private function validateRegex(string $id): bool
     {
-        return preg_match('/^[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9A-Z][0-9]$/', $id, $matches);
+        return preg_match('/^[A-Z]{4}\d{6}[A-Z]{6}[0-9A-Z]\d$/', $id, $matches);
     }
 
     private function validateNames(string $names): bool
     {
-        for ($i = 0; $i < strlen($names); $i++) {
+        $length = strlen($names);
+        for ($i = 0; $i < $length; $i++) {
             if (!ctype_alpha($names[$i])) {
                 return false;
             }
@@ -93,19 +94,18 @@ class MexicoIdValidator implements IdValidator
 
     private function validateBirthdate(string $birthdate): bool
     {
-        for ($i = 0; $i < strlen($birthdate); $i++) {
+        $length = strlen($birthdate);
+        for ($i = 0; $i < $length; $i++) {
             if (!is_numeric($birthdate[$i])) {
                 return false;
             }
         }
 
-        //validate month
-        if (!in_array((int) substr($birthdate, 2, 2), range(1, 12))) {
+        if (!in_array((int)substr($birthdate, 2, 2), range(1, 12), true)) {
             return false;
         }
 
-        //validate day
-        if (!in_array((int) substr($birthdate, 4, 2), range(1, 31))) {
+        if (!in_array((int)substr($birthdate, 4, 2), range(1, 31), true)) {
             return false;
         }
 
@@ -114,26 +114,12 @@ class MexicoIdValidator implements IdValidator
 
     private function validateGender(string $gender): bool
     {
-        if (
-            !ctype_alpha($gender) ||
-            !in_array($gender, self::GENDERS)
-        ) {
-            return false;
-        }
-
-        return true;
+        return !(!ctype_alpha($gender) || !in_array($gender, self::GENDERS));
     }
 
     private function validateState(string $state): bool
     {
-        if (
-            !ctype_alpha($state) ||
-            !in_array($state, array_keys(MexicoStatesList::$states))
-        ) {
-            return false;
-        }
-
-        return true;
+        return !(!array_key_exists($state, MexicoStatesList::$states) || !ctype_alpha($state));
     }
 
     private function validateConsonants(string $names): bool
@@ -142,7 +128,8 @@ class MexicoIdValidator implements IdValidator
             return false;
         }
 
-        for ($i = 0; $i < strlen($names); $i++) {
+        $length = strlen($names);
+        for ($i = 0; $i < $length; $i++) {
             if (in_array($names[$i], self::VOWELS)) {
                 return false;
             }
@@ -162,8 +149,9 @@ class MexicoIdValidator implements IdValidator
         $code = substr($id, 0, 17);
         $check = 0;
 
-        for ($i = 0; $i < strlen($code); $i++) {
-            $check += array_search($code[$i], str_split($alphabet)) * (18 - $i);
+        $length = strlen($code);
+        for ($i = 0; $i < $length; $i++) {
+            $check += array_search($code[$i], str_split($alphabet), true) * (18 - $i);
         }
         return (10 - $check % 10) % 10 === (int) $id[17];
     }
