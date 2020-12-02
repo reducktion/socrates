@@ -73,26 +73,11 @@ class BelgiumIdValidator implements IdValidator
         return 97 - ($number % 97);
     }
 
-    private function validDateOfBirth(string $id, bool $after2000): bool
+    private function validDateOfBirth(string $id): bool
     {
-        $dateDigits = substr($id, 0, 6);
-        [$year, $month, $day] = str_split($dateDigits, 2);
+        $dateDigits = substr($id, 2, 4);
+        [$month, $day] = str_split($dateDigits, 2);
 
-        if ($month > 12 || $day > 31) {
-            return false;
-        }
-
-        if ($month != 0 && $day != 0) {
-            $year = $after2000 ? $year + 2000 : $year + 1900;
-
-            $dob = new DateTime("$year-$month-$day");
-            $dobMinusTwelveYears = (new DateTime("$year-$month-$day"))->modify('-12 years');
-
-            if ($dob < $dobMinusTwelveYears) {
-                return false;
-            }
-        }
-
-        return true;
+        return !($month > 12 || $day > 31);
     }
 }
