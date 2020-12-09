@@ -37,23 +37,11 @@ class BelgiumTest extends FeatureTest
                 'dob' => new DateTime('1975-12-05'),
                 'age' => $this->calculateAge(new DateTime('1975-12-05')),
             ],
-            'ute' => [
-                'id' => '09.08.24-282.48',
-                'gender' => Gender::FEMALE,
-                'dob' => new DateTime('2009-08-24'),
-                'age' => $this->calculateAge(new DateTime('2009-08-24')),
-            ],
             'kurt' => [
                 'id' => '71.09.07-213.64',
                 'gender' => Gender::MALE,
                 'dob' => new DateTime('1971-09-07'),
                 'age' => $this->calculateAge(new DateTime('1971-09-07')),
-            ],
-            'john' => [
-                'id' => '40 00 00-953 81',
-                'gender' => Gender::MALE,
-                'dob' => new DateTime('1940-01-01'),
-                'age' => $this->calculateAge(new DateTime('1940-01-01')),
             ],
             'mark' => [
                 'id' => '40.00.01-001.33',
@@ -69,6 +57,7 @@ class BelgiumTest extends FeatureTest
             '01.06.18-468.99',
             '64.04.09-874.43',
             '12.10.23-954.11',
+            '09.08.24-282.48', // invalid age
             '01.11.16-000.06', // invalid sequence number
             '01.11.16-999.74'  // invalid sequence number
         ];

@@ -52,9 +52,13 @@ class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
         $dateDigits = substr($id, 0, 6);
         [$year, $month, $day] = str_split($dateDigits, 2);
 
+        $year = (int) $year;
+        $month = (int) $month;
+        $day = (int) $day;
+
         // use first day or month if unknown
-        $month = $month == 0 ? 1 : $month;
-        $day = $day == 0 ? 1 : $day;
+        $month = $month === 0 ? 1 : $month;
+        $day = $day === 0 ? 1 : $day;
 
         $year = $this->isAfter2000($id) ? $year + 2000 : $year + 1900;
 

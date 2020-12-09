@@ -57,9 +57,9 @@ class BelgiumIdValidator implements IdValidator
 
     private function validateSequenceNumber(string $id): bool
     {
-        $sequenceNumber = substr($id, 6, 3);
+        $sequenceNumber = (int) substr($id, 6, 3);
 
-        return $sequenceNumber != 0 && $sequenceNumber != 999;
+        return $sequenceNumber !== 0 && $sequenceNumber !== 999;
     }
 
     private function calculateChecksum(string $id, bool $after2000): int
@@ -73,11 +73,26 @@ class BelgiumIdValidator implements IdValidator
         return 97 - ($number % 97);
     }
 
-    private function validDateOfBirth(string $id): bool
+    private function validDateOfBirth(string $id, bool $after2000): bool
     {
-        $dateDigits = substr($id, 2, 4);
-        [$month, $day] = str_split($dateDigits, 2);
+        $dateDigits = substr($id, 0, 6);
+        [$year, $month, $day] = str_split($dateDigits, 2);
 
-        return !($month > 12 || $day > 31);
+        $year = (int) $year;
+        $month = (int) $month;
+        $day = (int) $day;
+
+        $month = $month === 0 ? 1 : $month;
+        $day = $day === 0 ? 1 : $day;
+
+        if ($month < 1 || $month > 12 || $day < 1 || $day > 31) {
+            return false;
+        }
+
+        $year = $after2000 ? $year + 2000 : $year + 1900;
+
+        $dateOfBirth = new DateTime("$year-$month-$day");
+
+        return (new DateTime())->diff($dateOfBirth)->y >= 12;
     }
 }
