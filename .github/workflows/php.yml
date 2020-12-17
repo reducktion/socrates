@@ -17,8 +17,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      with:
-        php-version: '7.2'
 
     - name: Validate composer.json and composer.lock
       run: composer validate
@@ -34,7 +32,7 @@ jobs:
 
     - name: Install dependencies
       if: steps.composer-cache.outputs.cache-hit != 'true'
-      run: composer install --prefer-dist --no-progress --no-suggest
+      run: composer install --no-progress --no-suggest
 
     - name: Run test suite
       run: vendor/bin/phpunit
