@@ -38,10 +38,12 @@ class GermanIdValidator implements IdValidator
             }
             $product = ($sum * 2) % 11;
         }
+
         $checksum = 11 - $product;
         if ($checksum === 10) {
             $checksum = 0;
         }
+
         return $checksum === (int) $id[strlen($id) - 1];
     }
 }

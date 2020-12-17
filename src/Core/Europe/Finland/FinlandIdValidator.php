@@ -16,9 +16,9 @@ class FinlandIdValidator implements IdValidator
 
         $control = substr($id, -1);
         $id = substr($id, 0, -1);
-        $id = substr_replace($id, '', 6, 1);
+        $idArray = substr_replace($id, '', 6, 1);
 
-        $result = ((int) $id % 31);
+        $result = ((int) $idArray % 31);
 
         $controlCharacters = '0123456789ABCDEFHJKLMNPRSTUVWXY';
 

@@ -2,7 +2,6 @@
 
 namespace Reducktion\Socrates\Core\SouthAmerica\Chile;
 
-use Illuminate\Support\Str;
 use Reducktion\Socrates\Contracts\IdValidator;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
@@ -20,6 +19,7 @@ class ChileIdValidator implements IdValidator
         $id = $this->sanitize($id);
 
         $lastDigit = $id[-1];
+
         $id = substr($id, 0, -1);
 
         $sum = 1;
@@ -29,16 +29,16 @@ class ChileIdValidator implements IdValidator
 
         $checksum = chr($sum ? $sum + 47 : 75);
 
-        return (string)$checksum === $lastDigit;
+        return $checksum === $lastDigit;
     }
 
     private function sanitize(string $id): string
     {
-        $lastDigitChar = Str::endsWith($id, ['K']);
-        $id = preg_replace('/[^0-9]/', '', $id);
+        $lastDigitCharIsK = substr($id, -1) === 'K';
+        $id = preg_replace('/[\D]/', '', $id);
 
         if (is_string($id)) {
-            $id .= $lastDigitChar ? 'K' : '';
+            $id .= $lastDigitCharIsK ? 'K' : '';
         }
 
         $idLength = strlen($id);

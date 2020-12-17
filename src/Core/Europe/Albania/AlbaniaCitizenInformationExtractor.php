@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Core\Europe\Albania;
 
-use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Models\Citizen;
 use Reducktion\Socrates\Constants\Gender;
@@ -41,7 +41,7 @@ class AlbaniaCitizenInformationExtractor implements CitizenInformationExtractor
         return Gender::FEMALE;
     }
 
-    private function getDateOfBirth(string $id): Carbon
+    private function getDateOfBirth(string $id): DateTime
     {
         $dateDigits = substr($id, 0, 6);
         [$yearCode, $monthDigits, $day] = str_split($dateDigits, 2);
@@ -52,7 +52,7 @@ class AlbaniaCitizenInformationExtractor implements CitizenInformationExtractor
 
         $month = $this->getMonthFromDigits($monthDigits, $this->getGender($id));
 
-        return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+        return new DateTime("$year-$month-$day");
     }
 
     private function getYearFromCode(string $yearCode): int

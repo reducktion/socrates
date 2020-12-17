@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Core\Europe\France;
 
-use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
@@ -43,24 +43,25 @@ class FranceCitizenInformationExtractor implements CitizenInformationExtractor
         return ((int) $id[0]) === 1 ? Gender::MALE : Gender::FEMALE;
     }
 
-    private function getDateOfBirth(string $id): Carbon
+    private function getDateOfBirth(string $id): DateTime
     {
         $dateDigits = substr($id, 1, 4);
         [$year, $month] = str_split($dateDigits, 2);
-        $currentYear = now()->format('y');
+        $currentYear = (int) (new DateTime())->format('y');
+
 
         $year = $year > $currentYear ? $year + 1900 : $year + 2000;
 
         if ($month > 0 && $month < 13) {
-            return Carbon::createFromFormat('Y-m', "$year-$month");
+            return DateTime::createFromFormat('Y-m', "$year-$month");
         }
 
         if ($month > 30 && $month < 43) {
             $month -= 30;
-            return Carbon::createFromFormat('Y-m', "$year-$month");
+            return DateTime::createFromFormat('Y-m', "$year-$month");
         }
 
-        return Carbon::createFromFormat('Y', $year);
+        return DateTime::createFromFormat('Y', $year);
     }
 
     private function getPlaceOfBirth(string $id): string

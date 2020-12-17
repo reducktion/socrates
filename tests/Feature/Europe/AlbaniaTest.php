@@ -2,6 +2,7 @@
 
 namespace Reducktion\Socrates\Tests\Feature\Europe;
 
+use DateTime;
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
@@ -21,32 +22,32 @@ class AlbaniaTest extends FeatureTest
             'bardhana' => [
                 'nid' => 'I05101999I',
                 'gender' => Gender::FEMALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1980-01-01'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1980-01-01')->age,
+                'dob' => new DateTime('1980-01-01'),
+                'age' => $this->calculateAge(new DateTime('1980-01-01')),
             ],
             'shufti' => [
                 'nid' => 'I90201535E',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1989-02-01'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1989-02-01')->age,
+                'dob' => new DateTime('1989-02-01'),
+                'age' => $this->calculateAge(new DateTime('1989-02-01')),
             ],
             'shyqe' => [
                 'nid' => 'J45423004V',
                 'gender' => Gender::FEMALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1994-04-23'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1994-04-23')->age,
+                'dob' => new DateTime('1994-04-23'),
+                'age' => $this->calculateAge(new DateTime('1994-04-23')),
             ],
             'elseid' => [
                 'nid' => 'H71211672R',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1977-12-11'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1977-12-11')->age,
+                'dob' => new DateTime('1977-12-11'),
+                'age' => $this->calculateAge(new DateTime('1977-12-11')),
             ],
             'hasna' => [
                 'nid' => 'I85413200A',
                 'gender' => Gender::FEMALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1988-04-13'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1988-04-13')->age,
+                'dob' => new DateTime('1988-04-13'),
+                'age' => $this->calculateAge(new DateTime('1988-04-13')),
             ],
         ];
 
@@ -63,10 +64,10 @@ class AlbaniaTest extends FeatureTest
     {
         foreach ($this->people as $person) {
             $citizen = Socrates::getCitizenDataFromId($person['nid'], 'AL');
-
-            $this->assertEquals($person['gender'], $citizen->getGender());
-            $this->assertEquals($person['dob'], $citizen->getDateOfBirth());
-            $this->assertEquals($person['age'], $citizen->getAge());
+            self::assertEquals($person['gender'], $citizen->getGender());
+            self::assertEquals(Carbon::instance($person['dob']), $citizen->getDateOfBirth());
+            self::assertEquals($person['dob'], $citizen->getDateOfBirthNative());
+            self::assertEquals($person['age'], $citizen->getAge());
         }
 
         $this->expectException(InvalidLengthException::class);
@@ -77,13 +78,13 @@ class AlbaniaTest extends FeatureTest
     public function test_validation_behaviour(): void
     {
         foreach ($this->people as $person) {
-            $this->assertTrue(
+            self::assertTrue(
                 Socrates::validateId($person['nid'], 'AL')
             );
         }
 
         foreach ($this->invalidIds as $invalidId) {
-            $this->assertFalse(
+            self::assertFalse(
                 Socrates::validateId($invalidId, 'AL')
             );
         }

@@ -2,6 +2,7 @@
 
 namespace Reducktion\Socrates\Tests\Feature\Europe;
 
+use DateTime;
 use Carbon\Carbon;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
@@ -21,36 +22,36 @@ class BosniaAndHerzegovinaTest extends FeatureTest
             'Naser' => [
                 'jmbg' => '1502957172694',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1957-02-15'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1957-02-15')->age,
+                'dob' => new DateTime('1957-02-15'),
+                'age' => $this->calculateAge(new DateTime('1957-02-15')),
                 'pob' => 'Sarajevo - Bosnia and Herzegovina'
             ],
             'Imran' => [
                 'jmbg' => '2508995191483',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1995-08-25'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1995-08-25')->age,
+                'dob' => new DateTime('1995-08-25'),
+                'age' => $this->calculateAge(new DateTime('1995-08-25')),
                 'pob' => 'Zenica - Bosnia and Herzegovina'
             ],
             'Ajdin' => [
                 'jmbg' => '1012980163603',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1980-12-10'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1980-12-10')->age,
+                'dob' => new DateTime('1980-12-10'),
+                'age' => $this->calculateAge(new DateTime('1980-12-10')),
                 'pob' => 'Prijedor - Bosnia and Herzegovina'
             ],
             'Merjem' => [
                 'jmbg' => '1310963145538',
                 'gender' => Gender::FEMALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1963-10-13'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1963-10-13')->age,
+                'dob' => new DateTime('1963-10-13'),
+                'age' => $this->calculateAge(new DateTime('1963-10-13')),
                 'pob' => 'Livno - Bosnia and Herzegovina'
             ],
             'Eman' => [
                 'jmbg' => '1806998154160',
                 'gender' => Gender::MALE,
-                'dob' => Carbon::createFromFormat('Y-m-d', '1998-06-18'),
-                'age' => Carbon::createFromFormat('Y-m-d', '1998-06-18')->age,
+                'dob' => new DateTime('1998-06-18'),
+                'age' => $this->calculateAge(new DateTime('1998-06-18')),
                 'pob' => 'Mostar - Bosnia and Herzegovina'
             ]
         ];
@@ -69,10 +70,11 @@ class BosniaAndHerzegovinaTest extends FeatureTest
         foreach ($this->people as $person) {
             $citizen = Socrates::getCitizenDataFromId($person['jmbg'], 'BA');
 
-            $this->assertEquals($person['gender'], $citizen->getGender());
-            $this->assertEquals($person['dob'], $citizen->getDateOfBirth());
-            $this->assertEquals($person['age'], $citizen->getAge());
-            $this->assertEquals($person['pob'], $citizen->getPlaceOfBirth());
+            self::assertEquals($person['gender'], $citizen->getGender());
+            self::assertEquals(Carbon::instance($person['dob']), $citizen->getDateOfBirth());
+            self::assertEquals($person['dob'], $citizen->getDateOfBirthNative());
+            self::assertEquals($person['age'], $citizen->getAge());
+            self::assertEquals($person['pob'], $citizen->getPlaceOfBirth());
         }
 
         $this->expectException(InvalidLengthException::class);
@@ -83,13 +85,13 @@ class BosniaAndHerzegovinaTest extends FeatureTest
     public function test_validation_behaviour(): void
     {
         foreach ($this->people as $person) {
-            $this->assertTrue(
+            self::assertTrue(
                 Socrates::validateId($person['jmbg'], 'BA')
             );
         }
 
         foreach ($this->invalidIds as $jmbg) {
-            $this->assertFalse(
+            self::assertFalse(
                 Socrates::validateId($jmbg, 'BA')
             );
         }

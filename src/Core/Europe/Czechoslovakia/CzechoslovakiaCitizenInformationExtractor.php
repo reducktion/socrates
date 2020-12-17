@@ -2,11 +2,10 @@
 
 namespace Reducktion\Socrates\Core\Europe\Czechoslovakia;
 
-use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Models\Citizen;
 use Reducktion\Socrates\Constants\Gender;
-use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class CzechoslovakiaCitizenInformationExtractor
 {
@@ -34,7 +33,7 @@ class CzechoslovakiaCitizenInformationExtractor
         return ($monthDigits < 13) ? Gender::MALE : Gender::FEMALE;
     }
 
-    private static function getDateOfBirth(string $id): Carbon
+    private static function getDateOfBirth(string $id): DateTime
     {
         $day = substr($id, 4, 2);
         $month = (int) substr($id, 2, 2);
@@ -44,6 +43,6 @@ class CzechoslovakiaCitizenInformationExtractor
 
         $month = $month > 12 ? $month - 50 : $month;
 
-        return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+        return new DateTime("$year-$month-$day");
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Core\Europe\Poland;
 
-use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Models\Citizen;
@@ -31,7 +31,7 @@ class PolandCitizenInformationExtractor implements CitizenInformationExtractor
         return ($id[9] % 2) ? Gender::MALE : Gender::FEMALE;
     }
 
-    private function getDateOfBirth($id): Carbon
+    private function getDateOfBirth($id): DateTime
     {
         $dateDigits = substr($id, 0, 6);
         [$year, $month, $day] = str_split($dateDigits, 2);
@@ -60,6 +60,6 @@ class PolandCitizenInformationExtractor implements CitizenInformationExtractor
             $year += 2200;
         }
 
-        return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+        return new DateTime("$year-$month-$day");
     }
 }

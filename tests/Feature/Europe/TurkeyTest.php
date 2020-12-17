@@ -43,13 +43,13 @@ class TurkeyTest extends FeatureTest
     public function test_validation_behaviour(): void
     {
         foreach ($this->validIds as $id) {
-            $this->assertTrue(
+            self::assertTrue(
                 Socrates::validateId($id, 'TR')
             );
         }
 
         foreach ($this->invalidIds as $invalidId) {
-            $this->assertFalse(
+            self::assertFalse(
                 Socrates::validateId($invalidId, 'TR')
             );
         }

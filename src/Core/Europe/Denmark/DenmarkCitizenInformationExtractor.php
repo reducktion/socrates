@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Core\Europe\Denmark;
 
-use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
@@ -40,15 +40,15 @@ class DenmarkCitizenInformationExtractor implements CitizenInformationExtractor
         return ($cpr % 2) ? Gender::MALE : Gender::FEMALE;
     }
 
-    private function getDateOfBirth(string $cpr): Carbon
+    private function getDateOfBirth(string $cpr): DateTime
     {
         $seventhDigit = (int) $cpr[6];
         $dateDigits = substr($cpr, 0, 6);
         [$day, $month, $twoDigitYear] = str_split($dateDigits, 2);
 
         $year = $twoDigitYear < 70
-            ? Carbon::createFromFormat('Y', "19$twoDigitYear")->format('Y')
-            : Carbon::createFromFormat('y', (string) $twoDigitYear)->format('Y');
+            ? DateTime::createFromFormat('Y', "19$twoDigitYear")->format('Y')
+            : DateTime::createFromFormat('y', (string) $twoDigitYear)->format('Y');
 
         if (($seventhDigit === 4 || $seventhDigit === 9) && $year <= 1936) {
             $year += 100;
@@ -56,6 +56,6 @@ class DenmarkCitizenInformationExtractor implements CitizenInformationExtractor
             $year > 1957 ? $year -= 100 : $year += 100;
         }
 
-        return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+        return new DateTime("$year-$month-$day");
     }
 }

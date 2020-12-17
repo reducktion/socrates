@@ -18,10 +18,10 @@ class CanadaIdValidator implements IdValidator
     {
         $id = $this->sanitize($id);
 
-        $id = str_split($id);
-        $parity = count($id) % 2;
+        $idArray = str_split($id);
+        $parity = count($idArray) % 2;
         $sum = 0;
-        foreach ($id as $key => $value) {
+        foreach ($idArray as $key => $value) {
             if ($key % 2 === $parity) {
                 $value *= 2;
             }

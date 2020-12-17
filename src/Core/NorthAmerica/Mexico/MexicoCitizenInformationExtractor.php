@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Core\NorthAmerica\Mexico;
 
-use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Models\Citizen;
 use Reducktion\Socrates\Constants\Gender;
@@ -37,7 +37,7 @@ class MexicoCitizenInformationExtractor implements CitizenInformationExtractor
         return Gender::FEMALE;
     }
 
-    private function getDateOfBirth(string $id): Carbon
+    private function getDateOfBirth(string $id): DateTime
     {
         $year = (int) substr($id, 4, 2);
         $month = (int) substr($id, 6, 2);
@@ -45,6 +45,6 @@ class MexicoCitizenInformationExtractor implements CitizenInformationExtractor
 
         $year += is_numeric($id[16]) ? 1900 : 2000;
 
-        return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+        return new DateTime("$year-$month-$day");
     }
 }

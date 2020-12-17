@@ -69,7 +69,8 @@ class SwedenIdValidator implements IdValidator
     {
         $tenDigitId = '';
 
-        for ($i = 0; $i < strlen($id); $i++) {
+        $length = strlen($id);
+        for ($i = 0; $i < $length; $i++) {
             if ($i > 1) {
                 $tenDigitId .= $id[$i];
             }

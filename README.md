@@ -93,13 +93,16 @@ This method will return an instance of `Citizen`. If the ID is invalid, an `Inva
 $citizen = $socrates->getCitizenDataFromId('3860123012', Country::ESTONIA);
 ```
 
-The `Citizen` class stores the extracted citizen data in a consistent format across all countries. It exposes the `getGender()`, `getDateOfBirth()`, `getAge()` and `getPlaceOfBirth()` methods.
-All will return a `string` (for the gender and place of birth), `int`(for age), a `Carbon` instance (for the date of birth) or `null` if the value is empty.
+The `Citizen` class stores the extracted citizen data in a consistent format across all countries.<br>
+It exposes the `getGender()`, `getDateOfBirthNative()`, `getDateOfBirth()`, `getAge()` and `getPlaceOfBirth()` methods.<br><br>
+Both `getGender` and `getPlaceOfBirth` return a `string`, `getAge()` returns an `int`, `getDateOfBirthNative()` returns a native `DateTime` and `getDateOfBirth()` returns a `Carbon` instance. <br>
+**It is recommended to use `getDateOfBirthNative()` as Carbon will be removed as a dependency in a future release of Socrates.**
 <p>Using the example above, Estonia only encodes the date of birth and gender of the citizen in their ID. So the above methods will return:</p>
  
 ```php
 echo $citizen->getGender(); // 'Male'
-echo $citizen->getDateOfBirth(); // A Carbon instance with the date '1986-01-23'
+echo $citizen->getDateOfBirthNative(); // DateTime instance with the date '1986-01-23'
+echo $citizen->getDateOfBirth(); // DEPRECATED - Carbon instance with the date '1986-01-23'
 echo $citizen->getAge(); // 34 (as of June 2020)
 echo $citizen->getPlaceOfBirth(); // null
 ```

@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Core\Europe\Finland;
 
-use Carbon\Carbon;
+use DateTime;
 use InvalidArgumentException;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
@@ -32,12 +32,12 @@ class FinlandCitizenInformationExtractor implements CitizenInformationExtractor
         return (substr($id, 7, 3) % 2) ? Gender::MALE : Gender::FEMALE;
     }
 
-    private function getDateOfBirth(string $id): Carbon
+    private function getDateOfBirth(string $id): DateTime
     {
         $dateDigits = substr($id, 0, 6);
         [$day, $month, $year] = str_split($dateDigits, 2);
 
-        $century = substr($id, 6, 1);
+        $century = $id[6];
 
         switch ($century) {
             case '+':
@@ -53,6 +53,6 @@ class FinlandCitizenInformationExtractor implements CitizenInformationExtractor
                 throw new InvalidArgumentException("Unrecognised character $century in ID.");
         }
 
-        return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+        return new DateTime("$year-$month-$day");
     }
 }

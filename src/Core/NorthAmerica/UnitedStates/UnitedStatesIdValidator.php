@@ -39,11 +39,8 @@ class UnitedStatesIdValidator implements IdValidator
         }
 
         $serialNumber = (int) substr($id, 5, 4);
-        if ($serialNumber === 0) {
-            return false;
-        }
 
-        return true;
+        return !($serialNumber === 0);
     }
 
     private function sanitize(string $id): string

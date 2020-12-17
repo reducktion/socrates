@@ -2,7 +2,8 @@
 
 namespace Reducktion\Socrates\Core\Europe\Ukraine;
 
-use Carbon\Carbon;
+use DateTime;
+use DateInterval;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
@@ -32,10 +33,13 @@ class UkraineCitizenInformationExtractor implements CitizenInformationExtractor
         return $genderDigit % 2 ? Gender::MALE : Gender::FEMALE;
     }
 
-    private function getDateOfBirth(string $id): Carbon
+    private function getDateOfBirth(string $id): DateTime
     {
         $birthDateDigits = (int) substr($id, 0, 5) - 1;
 
-        return Carbon::createFromFormat('Y-m-d', '1900-01-01')->addDays($birthDateDigits);
+        $date = new DateTime('1900-01-01');
+        $date->add(new DateInterval("P{$birthDateDigits}D"));
+
+        return $date;
     }
 }

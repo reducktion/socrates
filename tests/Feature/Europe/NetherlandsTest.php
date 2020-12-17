@@ -43,13 +43,13 @@ class NetherlandsTest extends FeatureTest
     public function test_validation_behaviour(): void
     {
         foreach ($this->validIds as $id) {
-            $this->assertTrue(
+            self::assertTrue(
                 Socrates::validateId($id, 'NL')
             );
         }
 
         foreach ($this->invalidIds as $id) {
-            $this->assertFalse(
+            self::assertFalse(
                 Socrates::validateId($id, 'NL')
             );
         }

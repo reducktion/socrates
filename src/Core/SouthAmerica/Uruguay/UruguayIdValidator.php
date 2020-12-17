@@ -37,7 +37,7 @@ class UruguayIdValidator implements IdValidator
 
     private function sanitize(string $id): string
     {
-        $id = preg_replace('/[^0-9]/', '', $id);
+        $id = preg_replace('/[\D]/', '', $id);
 
         $idLength = strlen($id);
 

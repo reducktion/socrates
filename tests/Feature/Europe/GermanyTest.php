@@ -10,7 +10,6 @@ use Reducktion\Socrates\Tests\Feature\FeatureTest;
 class GermanyTest extends FeatureTest
 {
     private $validIds;
-
     private $invalidIds;
 
     protected function setUp(): void
@@ -44,13 +43,13 @@ class GermanyTest extends FeatureTest
     public function test_validation_behaviour(): void
     {
         foreach ($this->validIds as $id) {
-            $this->assertTrue(
+            self::assertTrue(
                 Socrates::validateId($id, 'DE')
             );
         }
 
         foreach ($this->invalidIds as $invalidId) {
-            $this->assertFalse(
+            self::assertFalse(
                 Socrates::validateId($invalidId, 'DE')
             );
         }

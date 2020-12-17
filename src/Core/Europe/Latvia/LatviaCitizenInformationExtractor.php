@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Core\Europe\Latvia;
 
-use Carbon\Carbon;
+use DateTime;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Models\Citizen;
 use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
@@ -20,7 +20,7 @@ class LatviaCitizenInformationExtractor implements CitizenInformationExtractor
 
         $citizen = new Citizen();
 
-        if (substr($id, 0, 2) === '32') {
+        if (strpos($id, '32') === 0) {
             throw new UnsupportedOperationException(
                 'Latvia does not support citizen information extraction for PK issued after July 2017.'
             );
@@ -40,7 +40,7 @@ class LatviaCitizenInformationExtractor implements CitizenInformationExtractor
         return $id;
     }
 
-    private function getDateOfBirth(string $id): Carbon
+    private function getDateOfBirth(string $id): DateTime
     {
         $dateDigits = substr($id, 0, 6);
         [$day, $month, $year] = str_split($dateDigits, 2);
@@ -58,6 +58,6 @@ class LatviaCitizenInformationExtractor implements CitizenInformationExtractor
             $year += 2000;
         }
 
-        return Carbon::createFromFormat('Y-m-d', "$year-$month-$day");
+        return new DateTime("$year-$month-$day");
     }
 }
