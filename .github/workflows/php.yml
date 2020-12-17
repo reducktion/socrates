@@ -17,6 +17,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        php-version: '7.2'
 
     - name: Validate composer.json and composer.lock
       run: composer validate
