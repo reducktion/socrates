@@ -37,15 +37,15 @@ Check [this post](https://johnbraun.blog/posts/creating-a-laravel-package-1) for
 
 Let's imagine we want to implement the fictional european country of "Socratia".<br>The first thing we should do
 is find out what its two-digit ISO code is. After that, we need to *thoroughly* research and find out what the 
-Socratia's National Identification Number (henceforth referred to as NIN) is and how it is validated as well as 
+Socratia's National Identification Number is (henceforth referred to as NIN) and how it is validated, as well as 
 some specimens to then write our tests. Additionally, we should find out if the NIN encodes any personal 
 information on the Citizen - gender, date of birth or place of birth.
 
 After some imaginary googling we find out that:
 - The two-digit ISO code is `SC`.
 - The NIN is eleven characters long excluding hyphens.
-- The NIN follows the format `GR-DDDDDDDD-C`, G a letter for gender, R a letter for region, the Ds are a date and 
-  C is a control number.
+- The NIN follows the format `GR-DDDDDDDD-C`, G a letter for gender, R a letter for region, the Ds
+  are numbers representing a date and C is a control number.
 - `G` can either be "M", "F" or "O".
 - `R` can be "P", "J" or "R" referring to its three regions of "Phpilia", "Javardia" and "Rustara".
 - `C` must be an even number, but it can not be "2" if the citizen was registered after 2001 as those particular 
@@ -82,6 +82,7 @@ abstract class Countries
 ```
 
 Wonderful! Now let's go ahead and create the class we just referenced in that array. <br>
+Create a directory in `src/Core/Europe/` named "Socratia" and create a new PHP class inside it.
 We'll name it `SocratiaIdvalidator` and implement `IdValidator`:
 
 ```php
@@ -140,7 +141,7 @@ class SocratiaIdValidator implements IdValidator
 }
 ```
 
-Great! We can now check the other conditions:
+Great! We can now check the other conditions and implement the rest of the `validate()` method:
 
 ```php
 public function validate(string $id): bool
