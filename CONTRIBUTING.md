@@ -232,7 +232,7 @@ public function extract(string $id): Citizen
 ```
 
 A good practice is to segment each piece logic for each type of information in its own method.
-If you recall from above, we can extract gender, birthdate and the place of birth from the Socratian ID.
+If you recall from above, we can extract the gender, date of birth and place of birth from the Socratian ID.
 Our `extract` method then becomes:
 
 ```php
