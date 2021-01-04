@@ -38,7 +38,7 @@ Check [this post](https://johnbraun.blog/posts/creating-a-laravel-package-1) for
 Let's imagine we want to implement the fictional european country of "Socratia".<br>The first thing we should do
 is find out what its two-digit ISO code is. After that, we need to *thoroughly* research and find out what the 
 Socratia's National Identification Number is (henceforth referred to as NIN) and how it is validated, as well as 
-some specimens to then write our tests. Additionally, we should find out if the NIN encodes any personal 
+collect some example specimens to then write our tests. Additionally, we should find out if the NIN encodes any personal 
 information on the Citizen - gender, date of birth or place of birth.
 
 After some imaginary googling we find out that:
@@ -46,7 +46,7 @@ After some imaginary googling we find out that:
 - The NIN is eleven characters long excluding hyphens.
 - The NIN follows the format `GR-DDDDDDDD-C`, G a letter for gender, R a letter for region, the Ds
   are numbers representing a date and C is a control number.
-- `G` can either be "M", "F" or "O".
+- `G` can either be "M" or "F".
 - `R` can be "P", "J" or "R" referring to its three regions of "Phpilia", "Javardia" and "Rustara".
 - `C` must be an even number, but it can not be "2" if the citizen was registered after 2001 as those particular 
   numbers have been phased out.
@@ -57,31 +57,7 @@ an Extractor.<br>
 
 ### Step 2 - Implement the Validator
 
-Armed with this knowledge let's start working on our implementation!
-First let's head off to `Countries.php` and add it to the array. You'll notice it is alphabetically ordered 
-and organised by the continent, so let's be sure to add it in the right place:
-
-```php
-<?php
-
-namespace Reducktion\Socrates\Config;
-
-abstract class Countries
-{
-    //...
-    public static $validators = [
-        /**
-         * Validators for european countries.
-         */
-        'AL' => \Reducktion\Socrates\Core\Europe\Albania\AlbaniaIdValidator::class,
-        //...
-        'RS' => \Reducktion\Socrates\Core\Europe\Serbia\SerbiaIdValidator::class,
-        'SC' => \Reducktion\Socrates\Core\Europe\Socratia\SocratiaIdValidator::class,
-        'SE' => \Reducktion\Socrates\Core\Europe\Sweden\SwedenIdValidator::class,
-        //...
-```
-
-Wonderful! Now let's go ahead and create the class we just referenced in that array. <br>
+Let's start working on our implementation. First we need to create the validator class. <br>
 Create a directory in `src/Core/Europe/` named "Socratia" and create a new PHP class inside it.
 We'll name it `SocratiaIdvalidator` and implement `IdValidator`:
 
@@ -101,14 +77,12 @@ class SocratiaIdValidator implements IdValidator
 }
 ```
 
-Implementing the `IdValidator` means we will need to implement that simple `validate` method to conform to our 
+Implementing the `IdValidator` means we will need to implement a simple `validate` method to conform to our 
 internal API.
 Let's begin with some validations. We follow a "fail early" approach, so we first make sure
 that the ID is not invalid before any further computations. <br>
 We usually create a `sanitize()` method to strip the
 ID of any separator characters (if it makes sense) and check its length.
-If you recall, we want an eleven character string after stripping it from hyphens. If that is not the case, we
-will throw one of our internal exceptions.
 Let's go ahead and do that now:
 
 ```php
@@ -131,10 +105,15 @@ class SocratiaIdValidator implements IdValidator
         $id = str_replace('-', '', $id);
 
         $idLength = strlen($id);
+        
+        // We want an eleven character string after stripping it from hyphens, else
+        // we throw one of our internal exceptions.
 
         if ($idLength !== 11) {
             throw new InvalidLengthException('Socratian NIN', '11', $idLength);
         }
+        
+        $id = strtoupper($id);
 
         return $id;
     }
@@ -154,9 +133,9 @@ public function validate(string $id): bool
         return false;
     }
     
-    // `G` can either be "M", "F" or "O"
+    // `G` can either be "M" or "F"
     $genderCharacter = $id[0];
-    if ($genderCharacter !== 'M' && $genderCharacter !== 'F' && $genderCharacter !== 'O') {
+    if ($genderCharacter !== 'M' && $genderCharacter !== 'F') {
         return false;
     }
     
@@ -187,4 +166,182 @@ public function validate(string $id): bool
 }
 ```
 
+Now we head off to `Countries.php` and add the class to the validators array. You'll notice it is alphabetically ordered
+and organised by the continent, so let's be sure to add it in the right place:
+
+```php
+<?php
+
+namespace Reducktion\Socrates\Config;
+
+abstract class Countries
+{
+    //...
+    public static $validators = [
+        /**
+         * Validators for european countries.
+         */
+        'AL' => \Reducktion\Socrates\Core\Europe\Albania\AlbaniaIdValidator::class,
+        //...
+        'SC' => \Reducktion\Socrates\Core\Europe\Socratia\SocratiaIdValidator::class,
+        'SE' => \Reducktion\Socrates\Core\Europe\Sweden\SwedenIdValidator::class,
+        //...
+```
+
 That's it for our validator!
+
+### Step 3 - Implement the Extractor
+
+Now we create an extractor class in the same directory as the validator:
+
+```php
+<?php
+
+namespace Reducktion\Socrates\Core\Europe\Socratia;
+
+use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
+use Reducktion\Socrates\Models\Citizen;
+
+class SocratiaCitizenInformationExtractor implements CitizenInformationExtractor
+{
+    public function extract(string $id): Citizen
+    {
+        // TODO implement
+    }
+}
+```
+
+Unlike the validator contract, this one requires us to return an instance of `Citizen`.
+Citizen is a simple POPO that allows us to return the encoded information in the ID in a consistent format.
+
+To begin, let us first check that the incoming ID is valid by referencing our validator:
+
+```php
+public function extract(string $id): Citizen
+{
+    // We still need to sanitize the ID! Assume the same method as in the validator.
+    $id = $this->sanitize($id);
+
+    if (! (new SocratiaIdValidator())->validate($id)) {
+        // Throw one of our internal exceptions
+        throw new InvalidIdException();
+    }
+    
+    // We are good to go
+}
+```
+
+A good practice is to segment each piece logic for each type of information in its own method.
+If you recall from above, we can extract gender, birthdate and the place of birth from the Socratian ID.
+Our `extract` method then becomes:
+
+```php
+public function extract(string $id): Citizen
+{
+    $id = $this->sanitize($id);
+
+    if (! (new SocratiaIdValidator())->validate($id)) {
+        // Throw one of our internal exceptions
+        throw new InvalidIdException();
+    }
+    
+    $gender = $this->getGender($id);
+    $dateOfBirth = $this->getDateOfBirth($id);
+    $placeOfBirth = $this->getPlaceOfBirth($id);
+
+    $citizen = new Citizen();
+    $citizen->setGender($gender);
+    $citizen->setDateOfBirth($dateOfBirth);
+    $citizen->setPlaceOfBirth($placeOfBirth);
+
+    return $citizen;
+}
+```
+
+Let us do each in order. Getting the gender is simple. Because we have already validated the ID we
+can be confident that the gender character is safe to check:
+
+```php
+public function getGender(string $id): string
+{
+    // Use our internal "enum"
+    return $id[0] === 'M' ? Gender::MALE : Gender::FEMALE;
+}
+```
+
+Now for the date:
+
+```php
+public function getDateOfBirth(string $id): DateTime
+{
+    $dateDigits = substr($id, 2, 8);
+    
+    $year = (int) substr($dateDigits, 0, 4);
+    $month = (int) substr($dateDigits, 4, 2);
+    $day = (int) substr($dateDigits, 6, 2);
+    
+    return new DateTime("$year-$month-$day");
+}
+```
+
+For the place of birth let us create a separate class in the same directory to hold all possible region values:
+
+```php
+<?php
+
+namespace Reducktion\Socrates\Core\Europe\Socratia;
+
+class SocratiaRegionsList
+{
+    public static $regions = [
+        'P' => 'Phpilia',
+        'J' => 'Javardia',
+        'R' => 'Rustara',
+    ];
+}
+```
+
+Getting the place of birth is now as simple as:
+
+```php
+private function getPlaceOfBirth(string $id): string
+{
+    $regionCharacter = $id[1];
+
+    if (! isset(SocratiaRegionsList::$regions[$regionCharacter])) {
+        // Throw another of our internal exceptions
+        throw new UnrecognisedPlaceOfBirthException(
+            "The provided character '$regionCharacter' does not match any regions."
+        );
+    }
+
+    return SocratiaRegionsList::$regions[$regionCharacter];
+  }
+```
+
+Finally, as before, let us register our extractor class in the extractors array in `Countries.php`:
+
+```php
+<?php
+
+namespace Reducktion\Socrates\Config;
+
+abstract class Countries
+{
+    //...
+    public static $extractors = [
+        /**
+         * Extractors for european countries.
+         */
+        'AL' => \Reducktion\Socrates\Core\Europe\Albania\AlbaniaCitizenInformationExtractor::class,
+        //...
+        'SC' => \Reducktion\Socrates\Core\Europe\Socratia\SocratiaCitizenInformationExtractor::class,
+        'SE' => \Reducktion\Socrates\Core\Europe\Sweden\SwedenCitizenInformationExtractor::class,
+        //...
+```
+
+And there we are. We have implemented both the validator and the extractor for our fictional country.
+However, we are not done yet as we need to...
+
+### Step 4 - Write Tests
+
