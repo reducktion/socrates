@@ -152,6 +152,10 @@ public function validate(string $id): bool
         return false;
     }
     
+    if ($controlDigit % 2 !== 0) {
+        return false;
+    }
+    
     // Don't accept silly dates like 2010-99-99
     $month = (int) substr($dateDigits, 4, 2);
     $day = (int) substr($dateDigits, 6, 2);
@@ -165,7 +169,7 @@ public function validate(string $id): bool
     return true;
 }
 ```
-
+That's it for our validator!
 Now we head off to `Countries.php` and add the class to the validators array. You'll notice it is alphabetically ordered
 and organised by the continent, so let's be sure to add it in the right place:
 
@@ -188,7 +192,24 @@ abstract class Countries
         //...
 ```
 
-That's it for our validator!
+Let's also add a constant to `Country.php` with our country code for convenience:
+
+```php
+<?php
+
+namespace Reducktion\Socrates\Constants;
+
+abstract class Country
+{
+    /**
+     * European countries
+     */
+    public const ALBANIA = 'AL';
+    //...
+    public const SOCRATIA = 'SC';
+    public const SWEDEN = 'SE';
+    // ...
+```
 
 ### Step 3 - Implement the Extractor
 
@@ -340,8 +361,124 @@ abstract class Countries
         //...
 ```
 
-And there we are. We have implemented both the validator and the extractor for our fictional country.
+That's it! We have implemented both the validator and the extractor for our fictional country.
 However, we are not done yet as we need to...
 
 ### Step 4 - Write Tests
 
+We want to ensure the quality of the algorithm and the extracted data. To do so, we will now write a test class.
+First head over to `tests/Feature/Europe` and create a new `SocratiaTest` test class. We will extend our `FeatureTest`
+abstract class:
+
+```php
+<?php
+
+namespace Reducktion\Socrates\Tests\Feature\Europe;
+
+use Reducktion\Socrates\Tests\Feature\FeatureTest;
+
+class SocratiaTest extends FeatureTest
+{
+    public function test_extract_behaviour(): void
+    {
+        // TODO implement
+    }
+    
+    public function test_validation_behaviour(): void
+    {
+        // TODO implement
+    }
+}
+```
+
+To stay consistent with our other tests, let's create two fields in our class: one for people and another one holding
+invalid ids. We shall initialize them in the `setUp()` method:
+
+```php
+private $people; // This would be $validIds if Socratia only had a validator
+private $invalidIds;
+
+protected function setUp(): void
+{
+    parent::setUp();
+    
+    // Make this an array of arrays.
+    $this->people = [
+        'alexandre' => [
+            'id' => 'MR-19940916-4',
+            'gender' => Gender::MALE,
+            'dob' => new DateTime('1994-09-16'),
+            'age' => 26, // as of 2021
+            'pob' => 'Rustaria',
+        ],
+        // ...
+    ];
+    
+    // Try to cover as many edge cases as possible
+    $this->invalidIds = [
+        'OR-19940916-4', // Gender is wrong
+        'MZ-19940916-4', // Place of birth does not exist
+        'MR-19941916-4', // Date of birth is invalid
+        'MR-19940916-3', // Control digit is not even
+        'MR-20020916-3', // Control digit is two but the citizen was born post 2001
+        'MR-020916-3', // ID is too short
+        // ...
+    ];
+}
+```
+
+Now for each of those two data sets we run our validator and extractor classes and check if all is well:
+
+```php
+public function test_extract_behaviour(): void
+{
+    foreach ($this->people as $person) {
+        $citizen = Socrates::getCitizenDataFromId($person['id'], Country::SOCRATIA);
+
+        self::assertEquals($person['gender'], $citizen->getGender());
+        self::assertEquals(Carbon::instance($person['dob']), $citizen->getDateOfBirth());
+        self::assertEquals($person['dob'], $citizen->getDateOfBirthNative());
+        self::assertEquals($person['age'], $citizen->getAge());
+        self::assertEquals($person['pob'], $citizen->getPlaceOfBirth());
+    }
+
+    $this->expectException(InvalidIdException::class);
+
+    // An invalid ID should not be able to be extracted
+    Socrates::getCitizenDataFromId('OR-19940916-4', 'SC');
+}
+
+public function test_validation_behaviour(): void
+{
+    foreach ($this->people as $person) {
+        self::assertTrue(
+            Socrates::validateId($person['id'], 'SC')
+        );
+    }
+
+    foreach ($this->invalidIds as $fc) {
+        self::assertFalse(
+            Socrates::validateId($fc, 'SC')
+        );
+    }
+
+    $this->expectException(InvalidLengthException::class);
+
+    Socrates::validateId('OR-940916-4', 'SC');
+}
+```
+
+### Final step - Update the documentation
+
+Finally we just need to update our `COUNTRIES.md` file for reference:
+
+```text
+| Country                   | Country Code |     Validation     |     Extraction     |
+|---------------------------|--------------|--------------------|--------------------|
+| Albania 🇦🇱                |      AL      | :heavy_check_mark: | :heavy_check_mark: |
+(...)
+| Socratia 🏴               |      SC      | :heavy_check_mark: | :heavy_check_mark: |
+| Sweden 🇸🇪                 |      SE      | :heavy_check_mark: | :heavy_check_mark: |
+```
+
+Congratulations! Now go ahead and implement a real country! 😊
