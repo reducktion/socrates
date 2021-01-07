@@ -70,6 +70,7 @@ use Reducktion\Socrates\Contracts\IdValidator;
 
 class SocratiaIdValidator implements IdValidator
 {
+    // Implementing the `IdValidator` means we will need to implement the `validate` method
     public function validate(string $id): bool
     {
         // TODO implement
@@ -77,12 +78,8 @@ class SocratiaIdValidator implements IdValidator
 }
 ```
 
-Implementing the `IdValidator` means we will need to implement a simple `validate` method to conform to our 
-internal API.
-Let's begin with some validations. We follow a "fail early" approach, so we first make sure
+We follow a "fail early" approach, so we first make sure
 that the ID is not invalid before any further computations. <br>
-We usually create a `sanitize()` method to strip the
-ID of any separator characters (if it makes sense) and check its length.
 Let's go ahead and do that now:
 
 ```php
@@ -100,6 +97,8 @@ class SocratiaIdValidator implements IdValidator
         $id = $this->sanitize($id);
     }
     
+    // We usually create a sanitize method to strip the
+    // ID of any separator characters and check its length.
     private function sanitize($string $id): string
     {
         $id = str_replace('-', '', $id);
@@ -317,7 +316,7 @@ class SocratiaRegionsList
     public static $regions = [
         'P' => 'Phpilia',
         'J' => 'Javardia',
-        'R' => 'Rustara',
+        'R' => 'Rustaria',
     ];
 }
 ```
