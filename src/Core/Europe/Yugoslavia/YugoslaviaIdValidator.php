@@ -8,7 +8,6 @@ class YugoslaviaIdValidator
 {
     public static function validate(string $id): bool
     {
-        $id = trim($id);
         $idLength = strlen($id);
 
         if ($idLength !== 13) {
