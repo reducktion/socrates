@@ -8,7 +8,7 @@ class YugoslaviaRegions
             '01' => 'foreigner in Bosnia and Herzegovina',
             '02' => 'foreigners in Montenegro',
             '03' => 'foreigners in Croatia',
-            '04' => ' foreigners in North Macedonia',
+            '04' => 'foreigners in North Macedonia',
             '05' => 'foreigners in Slovenia',
             '06' => 'foreigners in Central Serbia',
             '07' => 'foreigners in Serbian province of Vojvodina',
