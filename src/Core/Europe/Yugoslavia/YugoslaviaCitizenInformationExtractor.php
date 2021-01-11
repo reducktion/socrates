@@ -12,8 +12,6 @@ class YugoslaviaCitizenInformationExtractor
 {
     public static function extract(string $id): Citizen
     {
-        $id = trim($id);
-
         if (! (new YugoslaviaIdValidator())::validate($id)) {
             throw new InvalidIdException();
         }
