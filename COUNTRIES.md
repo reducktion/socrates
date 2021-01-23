@@ -25,7 +25,6 @@
 | Kosovo 🇽🇰                 |      XK      | :heavy_check_mark: | :heavy_check_mark: |
 | Latvia 🇱🇻                 |      LV      | :heavy_check_mark: | :heavy_check_mark: |
 | Lithuania 🇱🇹              |      LT      | :heavy_check_mark: | :heavy_check_mark: |
-| Luxembourg 🇱🇺             |      LU      | :heavy_check_mark: | :heavy_check_mark: |
 | Moldova 🇲🇩                |      MD      | :heavy_check_mark: | :x:                |
 | Montenegro 🇲🇪             |      ME      | :heavy_check_mark: | :heavy_check_mark: |
 | México 🇲🇽                 |      ME      | :heavy_check_mark: | :heavy_check_mark: |
