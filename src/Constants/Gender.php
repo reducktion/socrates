@@ -2,7 +2,7 @@
 
 namespace Reducktion\Socrates\Constants;
 
-class Gender
+abstract class Gender
 {
     public const MALE = 'Male';
     public const FEMALE = 'Female';

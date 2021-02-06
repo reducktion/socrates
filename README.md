@@ -19,18 +19,13 @@
 
 <i>You can now read [a blog post](https://medium.com/@alex.olival/road-to-mastery-building-an-open-source-package-3936f57aed81) about how this package was created and its goals.</i>
 
-**Socrates** is a PHP Package that allows you to validate and retrieve personal data from [National Identification Numbers](https://en.wikipedia.org/wiki/National_identification_number). At the moment, most countries in Europe are supported, but the goal is to eventually support as many countries in the world as possible.
+**Socrates** is a PHP Package that allows you to validate and retrieve personal data from [National Identification Numbers](https://en.wikipedia.org/wiki/National_identification_number).
+Most countries in Europe are supported as well as some American ones, but the goal is to eventually support as many countries in the world as possible.
 <p>Some countries also encode personal information of the citizen, such as gender or the place of birth. This package allows you to extract that information in a consistent way.</p>
-<p>For Laravel, a Facade and request Validator is also available (see below).</p>
+<p>A Facade and Validation Rule is also available for Laravel (see below).</p>
 <p>This package can be useful for many things, such as validating a user's ID for finance related applications or verifying a user's age without asking for it explicitly. However, we recommend you review your country's data protection laws before storing any information.</p>
 
 [Ports](https://github.com/reducktion/socrates#ports) of this package to other languages are currently in progress. Check further below for which ones are currently available.
-
-Our goals:
-* Standardize and centralise what is usually very difficult and sparse information to find.
-* Have a consistent API for retrieving citizen information from an ID, if available.
-* Test each individual country validation and data extraction algorithm with a number of valid and invalid IDs.
-* Support as many countries as viably possible.
 
 ## Installation
 `composer require reducktion/socrates`
@@ -40,63 +35,66 @@ Socrates provides two methods: `validateId` and `getCitizenDataFromId`. Both rec
 
 ```php
 use Reducktion\Socrates\Socrates;
+use Reducktion\Socrates\Constants\Country;
 
 $socrates = new Socrates();
+$socrates->validateId('14349483 0 ZV3', Country::PORTUGAL);
+// or
 $socrates->validateId('14349483 0 ZV3', 'PT');
 ```
 
-For Laravel, a facade is also available for your convenience:
+If you're using Laravel a facade is also available for your convenience:
 
 ```php
 use Reducktion\Socrates\Laravel\Facades\Socrates;
+use Reducktion\Socrates\Constants\Country;
 
-Socrates::getCitizenDataFromId('550309-6447', 'SE');
+Socrates::getCitizenDataFromId('550309-6447', Country::SWEDEN);
 ```
 
-You can also use the `national_id:[COUNTRY CODE]` request validation rule:
+Still in Laravel you can use the `national_id:[COUNTRY CODE]` request validation rule.
+Here is an example checking if a request parameter is a valid latvian ID:
 
 ```php
 $request->validate([
-    'id' => 'national_id:lv'
+    'national_id' => 'required|string|national_id:lv',
 ]);
 ```
-Still in Laravel, the package will try to guess the country to be validated by the default locale:
-
-```php
-App::setLocale('PT');
-
-Socrates::validateId('11084129 8 ZX8');
-```
- 
-However this is **not** recommended. The safest way is to always explicitly pass the country code as the second parameter.
 
 ### validateId
-This method will return true or false depending on the validity of the ID.
+This method will return true or false.
 In case the ID has the wrong character length, an `InvalidLengthException` will be thrown.
 
 ```php
-if ($socrates->validateId('719102091', 'NL')) {
-    echo 'Valid ID.'
+if ($socrates->validateId('719102091', Country::NETHERLANDS)) {
+    echo 'Valid ID.';
 } else {
-    echo 'Invalid ID.'
+    echo 'Invalid ID.';
 }
 ```
 
 ### getCitizenDataFromId
-This method will return an instance of `Citizen`. If the ID is invalid, an `InvalidIdException` will be thrown. If the country does not support data extraction, an `UnsupportedOperationException` will be thrown.
+This method will return an instance of `Citizen`.<br>
+If the ID is invalid, an `InvalidIdException` will be thrown.<br>
+If the country does not support data extraction, an `UnsupportedOperationException` will be thrown.
 
 ```php
-$citizen = $socrates->getCitizenDataFromId('3860123012', 'EE');
+$citizen = $socrates->getCitizenDataFromId('3860123012', Country::ESTONIA);
 ```
 
-The `Citizen` class stores the extracted citizen data in a consistent format across all countries. It exposes the `getGender()`, `getDateOfBirth()`, `getAge()` and `getPlaceOfBirth()` methods.
-All will return a `string` (for the gender and place of birth), `int`(for age), a `Carbon` instance (for the date of birth) or `null` if the value is empty.
+The `Citizen` class stores the extracted citizen data in a consistent format across all countries.<br>
+It exposes the `getGender()`, `getDateOfBirthNative()`, `getDateOfBirth()`, `getAge()` and `getPlaceOfBirth()` methods.<br><br>
+`getGender` and `getPlaceOfBirth` return a `string`.<br>
+`getAge()` returns an `int`.<br>
+`getDateOfBirthNative()` returns a native `DateTime` and `getDateOfBirth()` returns a `Carbon` instance.<br>
+**It is recommended to use `getDateOfBirthNative()` as Carbon will be removed as a dependency in a future release of Socrates.**
 <p>Using the example above, Estonia only encodes the date of birth and gender of the citizen in their ID. So the above methods will return:</p>
  
 ```php
 echo $citizen->getGender(); // 'Male'
-echo $citizen->getDateOfBirth(); // A Carbon instance with the date '1986-01-23'
-echo $citizen->getAge(); // 34 (as of June 2020)
+echo $citizen->getDateOfBirthNative(); // DateTime instance with the date '1986-01-23'
+echo $citizen->getDateOfBirth(); // DEPRECATED - Carbon instance with the date '1986-01-23'
+echo $citizen->getAge(); // 34
 echo $citizen->getPlaceOfBirth(); // null
 ```
 
@@ -104,7 +102,8 @@ echo $citizen->getPlaceOfBirth(); // null
 
 [Here](COUNTRIES.md) you can see the full list of supported countries and whether they support data extraction.
 
-Four european countries are currently unsupported: Austria 🇦🇹, Belarus 🇧🇾, Cyprus 🇨🇾 and Germany 🇩🇪. This is because we could not find a reliable source for the algorithm, if at all. Help would be appreciated to get these countries supported.
+Four european countries are currently unsupported: Austria 🇦🇹, Belarus 🇧🇾, Cyprus 🇨🇾 and Luxembourg 🇱🇺.
+A number of countries in the Americas are also unsupproted. This is because we could not find a reliable source for the algorithm, if at all. Help would be appreciated to get these countries supported.
 
 ## Testing
 `composer test`

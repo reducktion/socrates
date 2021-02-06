@@ -2,6 +2,7 @@
 
 namespace Reducktion\Socrates\Models;
 
+use DateTime;
 use Carbon\Carbon;
 use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
 
@@ -15,9 +16,9 @@ class Citizen
     private $gender;
 
     /**
-     * The date of birth as a Carbon instance.
+     * The date of birth as a DateTime object.
      *
-     * @var Carbon|null
+     * @var DateTime|null
      */
     private $dateOfBirth;
 
@@ -29,7 +30,7 @@ class Citizen
     private $placeOfBirth;
 
     /**
-     * Get the gender.
+     * Get the citizen's gender as a string.
      *
      * @return  string|null
      */
@@ -39,17 +40,29 @@ class Citizen
     }
 
     /**
-     * Get the date of birth.
+     * Get the citizen's date of birth as a Carbon instance.
      *
+     * @deprecated v1.3.0 This method will be deprecated in the next release of Socrates.
+     *                    Please use getDateOfBirthNative() instead.
      * @return Carbon|null
      */
     public function getDateOfBirth(): ?Carbon
+    {
+        return Carbon::instance($this->dateOfBirth);
+    }
+
+    /**
+     * Get the citizen's date of birth as a DateTime object.
+     *
+     * @return DateTime|null
+     */
+    public function getDateOfBirthNative(): ?DateTime
     {
         return $this->dateOfBirth;
     }
 
     /**
-     * Get the age.
+     * Get the citizen's age as a number or null.
      *
      * @return int|null
      */
@@ -59,11 +72,11 @@ class Citizen
             throw new UnsupportedOperationException('Citizen date of birth is null.');
         }
 
-        return $this->dateOfBirth->age;
+        return (new DateTime())->diff($this->dateOfBirth)->y;
     }
 
     /**
-     * Get the place of birth.
+     * Get the citizen's place of birth as a string or null.
      *
      * @return string|null
      */
@@ -73,7 +86,7 @@ class Citizen
     }
 
     /**
-     * Set the gender.
+     * Set the citizen's gender.
      *
      * @param  string  $gender
      * @return void
@@ -84,18 +97,18 @@ class Citizen
     }
 
     /**
-     * Set the date of birth.
+     * Set the citizen's date of birth.
      *
-     * @param  Carbon  $dateOfBirth
+     * @param  DateTime  $dateOfBirth
      * @return  void
      */
-    public function setDateOfBirth(Carbon $dateOfBirth): void
+    public function setDateOfBirth(DateTime $dateOfBirth): void
     {
         $this->dateOfBirth = $dateOfBirth;
     }
 
     /**
-     * Set the place of birth.
+     * Set the citizen's place of birth.
      *
      * @param  string  $placeOfBirth
      * @return void

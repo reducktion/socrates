@@ -5,13 +5,6 @@ namespace Reducktion\Socrates\Exceptions;
 class InvalidLengthException extends \LogicException
 {
     /**
-     * The name of the National Identification Number.
-     *
-     * @var string
-     */
-    private $designation;
-
-    /**
      * Description of the number of characters the National Identification Number should have.
      *
      * @var string
@@ -28,15 +21,12 @@ class InvalidLengthException extends \LogicException
     /**
      * Create a new InvalidLengthException instance.
      *
-     * @param  string  $designation
-     * @param  string  $requiredCharacters
-     * @param  string  $givenCharacters
-     * @return void
+     * @param string $designation The National Identification Number designation
+     * @param string $requiredCharacters The correct number of characters as string
+     * @param string $givenCharacters The characters that the user has given us
      */
     public function __construct(string $designation, string $requiredCharacters, string $givenCharacters)
     {
-        $this->designation = $designation;
-
         $this->requiredCharacters = $requiredCharacters;
 
         $this->givenCharacters = $givenCharacters;
