@@ -28,7 +28,7 @@ class PeruIdValidator implements IdValidator
 
         $dniDigits = substr($id, 0, -1);
 
-        if (preg_match('/[\D]/', $dniDigits)) {
+        if (preg_match('/\D/', $dniDigits)) {
             return false;
         }
 
@@ -57,7 +57,7 @@ class PeruIdValidator implements IdValidator
 
     private function sanitize(string $id): string
     {
-        $id = preg_replace('/[\W]/', '', $id);
+        $id = preg_replace('/\W/', '', $id);
 
         $idLength = strlen($id);
 

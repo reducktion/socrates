@@ -12,7 +12,7 @@ contribute with a new country from scratch.
 1. Fork the project
 1. Create a new branch
 1. Code, test, commit and push
-1. Open a pull request detailing your changes.
+1. Open a pull request detailing your changes (don't forget to assign yourself to the PR).
 1. Describe what your pull request is (change, bugfix, new country implementation, etc.)
 
 ### Guidelines
@@ -191,22 +191,22 @@ abstract class Countries
         //...
 ```
 
-Let's also add a constant to `Country.php` with our country code for convenience:
+Let's also add an entry to `Country.php` with our country code for convenience:
 
 ```php
 <?php
 
 namespace Reducktion\Socrates\Constants;
 
-abstract class Country
+enum Country: string
 {
     /**
      * European countries
      */
-    public const ALBANIA = 'AL';
+    case Albania = 'AL';
     //...
-    public const SOCRATIA = 'SC';
-    public const SWEDEN = 'SE';
+    case Socratia = 'SC';
+    case Sweden = 'SE';
     // ...
 ```
 
@@ -278,14 +278,13 @@ public function extract(string $id): Citizen
 }
 ```
 
-Let us do each in order. Getting the gender is simple. Because we have already validated the ID we
+Let us do each in order. Getting the gender is simple. We can return the Gender enum. Because we have already validated the ID we
 can be confident that the gender character is safe to check:
 
 ```php
-public function getGender(string $id): string
+public function getGender(string $id): Gender
 {
-    // Use our internal "enum"
-    return $id[0] === 'M' ? Gender::MALE : Gender::FEMALE;
+    return $id[0] === 'M' ? Gender::Male : Gender::Female;
 }
 ```
 
@@ -313,7 +312,7 @@ namespace Reducktion\Socrates\Core\Europe\Socratia;
 
 class SocratiaRegionsList
 {
-    public static $regions = [
+    public static array $regions = [
         'P' => 'Phpilia',
         'J' => 'Javardia',
         'R' => 'Rustaria',
@@ -405,7 +404,7 @@ protected function setUp(): void
     $this->people = [
         'alexandre' => [
             'id' => 'MR-19940916-4',
-            'gender' => Gender::MALE,
+            'gender' => Gender::Male,
             'dob' => new DateTime('1994-09-16'),
             'age' => 26, // as of 2021
             'pob' => 'Rustaria',
@@ -426,17 +425,17 @@ protected function setUp(): void
 }
 ```
 
-Now for each of those two data sets we run our validator and extractor classes and check if all is well:
+Now for each of those two data sets we run our validator and extractor classes and check if all is well.
+Because we are extending our own `TestCase` class, we have access to an instance of Socrates via the `$this->socrates` call:
 
 ```php
 public function test_extract_behaviour(): void
 {
     foreach ($this->people as $person) {
-        $citizen = Socrates::getCitizenDataFromId($person['id'], Country::SOCRATIA);
+        $citizen = $this->socrates->getCitizenDataFromId($person['id'], Country::Socratia);
 
         self::assertEquals($person['gender'], $citizen->getGender());
-        self::assertEquals(Carbon::instance($person['dob']), $citizen->getDateOfBirth());
-        self::assertEquals($person['dob'], $citizen->getDateOfBirthNative());
+        self::assertEquals($person['dob'], $citizen->getDateOfBirth());
         self::assertEquals($person['age'], $citizen->getAge());
         self::assertEquals($person['pob'], $citizen->getPlaceOfBirth());
     }
@@ -444,26 +443,26 @@ public function test_extract_behaviour(): void
     $this->expectException(InvalidIdException::class);
 
     // An invalid ID should not be able to be extracted
-    Socrates::getCitizenDataFromId('OR-19940916-4', 'SC');
+    $this->socrates->getCitizenDataFromId('OR-19940916-4', Country::Socratia);
 }
 
 public function test_validation_behaviour(): void
 {
     foreach ($this->people as $person) {
         self::assertTrue(
-            Socrates::validateId($person['id'], 'SC')
+            $this->socrates->validateId($person['id'], Country::Socratia)
         );
     }
 
     foreach ($this->invalidIds as $fc) {
         self::assertFalse(
-            Socrates::validateId($fc, 'SC')
+            $this->socrates->validateId($fc, Country::Socratia)
         );
     }
 
     $this->expectException(InvalidLengthException::class);
 
-    Socrates::validateId('OR-940916-4', 'SC');
+    $this->socrates->validateId('OR-940916-4', Country::Socratia);
 }
 ```
 

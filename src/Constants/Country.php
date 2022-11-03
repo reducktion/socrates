@@ -2,69 +2,63 @@
 
 namespace Reducktion\Socrates\Constants;
 
-/**
- * Class Country
- *
- * Contains the country codes based on ISO 3166-1 alpha-2 codes: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2.
- *
- * @package Reducktion\Socrates\Constants
- */
-abstract class Country
+enum Country: string
 {
     /**
      * European countries
      */
-    public const ALBANIA = 'AL';
-    public const BELGIUM = 'BE';
-    public const BOSNIA_HERZEGOVINA = 'BA';
-    public const BULGARIA = 'BG';
-    public const CROATIA = 'HR';
-    public const CZECH_REPUBLIC = 'CZ';
-    public const DENMARK = 'DK';
-    public const ESTONIA = 'EE';
-    public const FINLAND = 'FI';
-    public const FRANCE = 'FR';
-    public const GERMANY = 'DE';
-    public const GREECE = 'GR';
-    public const HUNGARY = 'HU';
-    public const ICELAND = 'IS';
-    public const IRELAND = 'IE';
-    public const ITALY = 'IT';
-    public const KOSOVO = 'XK';
-    public const LATVIA = 'LV';
-    public const LITHUANIA = 'LT';
-    public const LUXEMBOURG = 'LU';
-    public const MOLDOVA = 'MD';
-    public const MONTENEGRO = 'ME';
-    public const NETHERLANDS = 'NL';
-    public const NORTH_MACEDONIA = 'MK';
-    public const NORWAY = 'NO';
-    public const POLAND = 'PL';
-    public const PORTUGAL = 'PT';
-    public const ROMANIA = 'RO';
-    public const SERBIA = 'RS';
-    public const SLOVAKIA = 'SK';
-    public const SLOVENIA = 'SI';
-    public const SPAIN = 'ES';
-    public const SWEDEN = 'SE';
-    public const SWITZERLAND = 'CH';
-    public const TURKEY = 'TR';
-    public const UKRAINE = 'UA';
-    public const UNITED_KINGDOM = 'GB';
+    case Albania = 'AL';
+    case Belgium = 'BE';
+    case BosniaHerzegovina = 'BA';
+    case Bulgaria = 'BG';
+    case Croatia = 'HR';
+    case CzechRepublic = 'CZ';
+    case Denmark = 'DK';
+    case Estonia = 'EE';
+    case Finland = 'FI';
+    case France = 'FR';
+    case Germany = 'DE';
+    case Greece = 'GR';
+    case Hungary = 'HU';
+    case Iceland = 'IS';
+    case Ireland = 'IE';
+    case Italy = 'IT';
+    case Kosovo = 'XK';
+    case Latvia = 'LV';
+    case Lithuania = 'LT';
+    case Luxembourg = 'LU';
+    case Moldova = 'MD';
+    case Montenegro = 'ME';
+    case Netherlands = 'NL';
+    case NorthMacedonia = 'MK';
+    case Norway = 'NO';
+    case Poland = 'PL';
+    case Portugal = 'PT';
+    case Romania = 'RO';
+    case Serbia = 'RS';
+    case Slovakia = 'SK';
+    case Slovenia = 'SI';
+    case Spain = 'ES';
+    case Sweden = 'SE';
+    case Switzerland = 'CH';
+    case Turkey = 'TR';
+    case Ukraine = 'UA';
+    case UnitedKingdom = 'GB';
 
     /**
      * North american countries
      */
-    public const CANADA = 'CA';
-    public const MEXICO = 'MX';
-    public const UNITED_STATES = 'US';
+    case Canada = 'CA';
+    case Mexico = 'MX';
+    case UnitedStates = 'US';
 
     /**
      * South american countries
      */
-    public const ARGENTINA = 'AR';
-    public const BRAZIL = 'BR';
-    public const CHILE = 'CL';
-    public const ECUADOR = 'EC';
-    public const URUGUAY = 'UY';
+    case Argentina = 'AR';
+    case Brazil = 'BR';
+    case Chile = 'CL';
+    case Ecuador = 'EC';
+    case Peru = 'PE';
+    case Uruguay = 'UY';
 }

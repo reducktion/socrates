@@ -4,7 +4,7 @@ namespace Reducktion\Socrates\Core\Europe\Yugoslavia;
 
 class YugoslaviaRegions
 {
-    public static $regions = [
+    public static array $regions = [
             '01' => 'foreigner in Bosnia and Herzegovina',
             '02' => 'foreigners in Montenegro',
             '03' => 'foreigners in Croatia',

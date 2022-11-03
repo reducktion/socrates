@@ -97,8 +97,10 @@ class ItalyIdValidator implements IdValidator
             'Y' => 24,
             'Z' => 23
         ];
+
         $idLength = strlen($id);
         $result = 0;
+
         for ($position = 0; $position < $idLength; $position++) {
             if (($position + 1) % 2 === 0) {
                 $result += is_numeric($id[$position]) ?

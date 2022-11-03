@@ -26,15 +26,15 @@ class MexicoCitizenInformationExtractor implements CitizenInformationExtractor
         return $citizen;
     }
 
-    private function getGender(string $id): string
+    private function getGender(string $id): Gender
     {
         $identifier = $id[10];
 
         if ($identifier === 'H') {
-            return Gender::MALE;
+            return Gender::Male;
         }
 
-        return Gender::FEMALE;
+        return Gender::Female;
     }
 
     private function getDateOfBirth(string $id): DateTime

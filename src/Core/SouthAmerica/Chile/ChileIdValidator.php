@@ -24,7 +24,7 @@ class ChileIdValidator implements IdValidator
 
         $sum = 1;
         for ($m = 0; $id != 0; $id /= 10) {
-            $sum = ($sum + $id % 10 * (9 - $m++ % 6)) % 11;
+            $sum = ($sum + ((int) $id % 10) * (9 - $m++ % 6)) % 11;
         }
 
         $checksum = chr($sum ? $sum + 47 : 75);
@@ -34,8 +34,8 @@ class ChileIdValidator implements IdValidator
 
     private function sanitize(string $id): string
     {
-        $lastDigitCharIsK = substr($id, -1) === 'K';
-        $id = preg_replace('/[\D]/', '', $id);
+        $lastDigitCharIsK = str_ends_with($id, 'K');
+        $id = preg_replace('/\D/', '', $id);
 
         if (is_string($id)) {
             $id .= $lastDigitCharIsK ? 'K' : '';

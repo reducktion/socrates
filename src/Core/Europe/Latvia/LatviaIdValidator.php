@@ -11,7 +11,7 @@ class LatviaIdValidator implements IdValidator
     {
         $id = $this->sanitize($id);
 
-        if (substr($id, 0, 2) === '32') {
+        if (str_starts_with($id, '32')) {
             return true;
         }
 

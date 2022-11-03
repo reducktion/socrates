@@ -2,8 +2,8 @@
 
 namespace Reducktion\Socrates\Constants;
 
-abstract class Gender
+enum Gender
 {
-    public const MALE = 'Male';
-    public const FEMALE = 'Female';
+    case Male;
+    case Female;
 }

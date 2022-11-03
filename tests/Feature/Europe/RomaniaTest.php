@@ -2,17 +2,16 @@
 
 namespace Reducktion\Socrates\Tests\Feature\Europe;
 
-use Carbon\Carbon;
 use DateTime;
+use Reducktion\Socrates\Constants\Country;
 use Reducktion\Socrates\Constants\Gender;
-use Reducktion\Socrates\Laravel\Facades\Socrates;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Tests\Feature\FeatureTest;
 
 class RomaniaTest extends FeatureTest
 {
-    private $people;
-    private $invalidIds;
+    private array $people;
+    private array $invalidIds;
 
     public function setUp(): void
     {
@@ -21,35 +20,35 @@ class RomaniaTest extends FeatureTest
         $this->people = [
             'alexandra' => [
                 'cnp' => '2931213173842',
-                'gender' => Gender::FEMALE,
+                'gender' => Gender::Female,
                 'dob' => new DateTime('1993-12-13'),
                 'age' => $this->calculateAge(new DateTime('1993-12-13')),
                 'pob' => 'Galati'
             ],
             'andrei' => [
                 'cnp' => '1941003395747',
-                'gender' => Gender::MALE,
+                'gender' => Gender::Male,
                 'dob' => new DateTime('1994-10-03'),
                 'age' => $this->calculateAge(new DateTime('1994-10-03')),
                 'pob' => 'Vrancea'
             ],
             'elena' => [
                 'cnp' => '2870917211577',
-                'gender' => Gender::FEMALE,
+                'gender' => Gender::Female,
                 'dob' => new DateTime('1987-09-17'),
                 'age' => $this->calculateAge(new DateTime('1987-09-17')),
                 'pob' => 'Ialomita'
             ],
             'florin' => [
                 'cnp' => '1850327466200',
-                'gender' => Gender::MALE,
+                'gender' => Gender::Male,
                 'dob' => new DateTime('1985-03-27'),
                 'age' => $this->calculateAge(new DateTime('1985-03-27')),
                 'pob' => 'Bucuresti Sectorul 6'
             ],
             'mihai' => [
                 'cnp' => '5010318045469',
-                'gender' => Gender::MALE,
+                'gender' => Gender::Male,
                 'dob' => new DateTime('2001-03-18'),
                 'age' => $this->calculateAge(new DateTime('2001-03-18')),
                 'pob' => 'Bacau'
@@ -68,35 +67,34 @@ class RomaniaTest extends FeatureTest
     public function test_extract_behaviour(): void
     {
         foreach ($this->people as $person) {
-            $citizen = Socrates::getCitizenDataFromId($person['cnp'], 'RO');
+            $citizen = $this->socrates->getCitizenDataFromId($person['cnp'], Country::Romania);
             self::assertEquals($person['gender'], $citizen->getGender());
-            self::assertEquals(Carbon::instance($person['dob']), $citizen->getDateOfBirth());
-            self::assertEquals($person['dob'], $citizen->getDateOfBirthNative());
+            self::assertEquals($person['dob'], $citizen->getDateOfBirth());
             self::assertEquals($person['age'], $citizen->getAge());
             self::assertEquals($person['pob'], $citizen->getPlaceOfBirth());
         }
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::getCitizenDataFromId('3050811811', 'RO');
+        $this->socrates->getCitizenDataFromId('3050811811', Country::Romania);
     }
 
     public function test_validation_behaviour(): void
     {
         foreach ($this->people as $person) {
             self::assertTrue(
-                Socrates::validateId($person['cnp'], 'RO')
+                $this->socrates->validateId($person['cnp'], Country::Romania)
             );
         }
 
         foreach ($this->invalidIds as $cnp) {
             self::assertFalse(
-                Socrates::validateId($cnp, 'RO')
+                $this->socrates->validateId($cnp, Country::Romania)
             );
         }
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::validateId('30508118', 'RO');
+        $this->socrates->validateId('30508118', Country::Romania);
     }
 }

@@ -25,14 +25,16 @@ class BelgiumIdValidator implements IdValidator
 
         $checksumFromId = (int) substr($id, -2);
         $after2000 = false;
-        $checksum = $this->calculateChecksum($id, $after2000);
+
+        $checksum = $this->calculateChecksum($id, after2000: false);
 
         if ($checksum !== $checksumFromId) {
             $after2000 = true;
-            $checksum = $this->calculateChecksum($id, $after2000);
-            if ($checksum !== $checksumFromId) {
-                return false;
-            }
+        }
+
+        $checksum = $this->calculateChecksum($id, $after2000);
+        if ($checksum !== $checksumFromId) {
+            return false;
         }
 
         if (! $this->validDateOfBirth($id, $after2000)) {

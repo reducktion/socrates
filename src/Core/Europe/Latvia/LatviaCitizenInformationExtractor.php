@@ -20,7 +20,7 @@ class LatviaCitizenInformationExtractor implements CitizenInformationExtractor
 
         $citizen = new Citizen();
 
-        if (strpos($id, '32') === 0) {
+        if (str_starts_with($id, '32')) {
             throw new UnsupportedOperationException(
                 'Latvia does not support citizen information extraction for PK issued after July 2017.'
             );
@@ -35,9 +35,7 @@ class LatviaCitizenInformationExtractor implements CitizenInformationExtractor
 
     private function sanitize(string $id): string
     {
-        $id = str_replace('-', '', $id);
-
-        return $id;
+        return str_replace('-', '', $id);
     }
 
     private function getDateOfBirth(string $id): DateTime

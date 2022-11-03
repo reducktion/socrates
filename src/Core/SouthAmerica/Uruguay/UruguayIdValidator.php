@@ -22,7 +22,7 @@ class UruguayIdValidator implements IdValidator
 
         $a = 0;
 
-        $baseNumber = "2987634";
+        $baseNumber = '2987634';
         for ($i = 0; $i < 7; $i++) {
             $baseDigit = (int)$baseNumber[$i];
             $ciDigit = (int)$id[$i];
@@ -37,7 +37,7 @@ class UruguayIdValidator implements IdValidator
 
     private function sanitize(string $id): string
     {
-        $id = preg_replace('/[\D]/', '', $id);
+        $id = preg_replace('/\D/', '', $id);
 
         $idLength = strlen($id);
 

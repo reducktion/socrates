@@ -2,18 +2,17 @@
 
 namespace Reducktion\Socrates\Tests\Feature\Europe;
 
-use Carbon\Carbon;
 use DateTime;
-use Reducktion\Socrates\Laravel\Facades\Socrates;
+use Reducktion\Socrates\Constants\Country;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
 use Reducktion\Socrates\Tests\Feature\FeatureTest;
 
 class LatviaTest extends FeatureTest
 {
-    private $supportedExtractionPeople;
-    private $unsupportedExtractionPeople;
-    private $invalidIds;
+    private array $supportedExtractionPeople;
+    private array $unsupportedExtractionPeople;
+    private array $invalidIds;
 
     protected function setUp(): void
     {
@@ -77,38 +76,37 @@ class LatviaTest extends FeatureTest
     public function test_extract_behaviour(): void
     {
         foreach ($this->supportedExtractionPeople as $person) {
-            $citizen = Socrates::getCitizenDataFromId($person['pk'], 'LV');
-            self::assertEquals(Carbon::instance($person['dob']), $citizen->getDateOfBirth());
-            self::assertEquals($person['dob'], $citizen->getDateOfBirthNative());
+            $citizen = $this->socrates->getCitizenDataFromId($person['pk'], Country::Latvia);
+            self::assertEquals($person['dob'], $citizen->getDateOfBirth());
             self::assertEquals($person['age'], $citizen->getAge());
         }
 
         $this->expectException(UnsupportedOperationException::class);
         foreach ($this->unsupportedExtractionPeople as $person) {
-            Socrates::getCitizenDataFromId($person['pk'], 'LV');
+            $this->socrates->getCitizenDataFromId($person['pk'], Country::Latvia);
         }
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::getCitizenDataFromId('326587-981', 'LV');
+        $this->socrates->getCitizenDataFromId('326587-981', Country::Latvia);
     }
 
     public function test_validation_behaviour(): void
     {
         foreach ($this->supportedExtractionPeople as $person) {
             self::assertTrue(
-                Socrates::validateId($person['pk'], 'LV')
+                $this->socrates->validateId($person['pk'], Country::Latvia)
             );
         }
 
         foreach ($this->invalidIds as $pk) {
             self::assertFalse(
-                Socrates::validateId($pk, 'LV')
+                $this->socrates->validateId($pk, Country::Latvia)
             );
         }
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::validateId('171210-2073', 'LV');
+        $this->socrates->validateId('171210-2073', Country::Latvia);
     }
 }

@@ -2,17 +2,16 @@
 
 namespace Reducktion\Socrates\Tests\Feature\Europe;
 
-use Carbon\Carbon;
 use DateTime;
+use Reducktion\Socrates\Constants\Country;
 use Reducktion\Socrates\Constants\Gender;
-use Reducktion\Socrates\Laravel\Facades\Socrates;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Tests\Feature\FeatureTest;
 
 class SlovakiaTest extends FeatureTest
 {
-    private $people;
-    private $invalidIds;
+    private array $people;
+    private array $invalidIds;
 
     protected function setUp(): void
     {
@@ -21,31 +20,31 @@ class SlovakiaTest extends FeatureTest
         $this->people = [
             'Boris' => [
                 'rc' => '931027/3951',
-                'gender' => Gender::MALE,
+                'gender' => Gender::Male,
                 'dob' => new DateTime('1993-10-27'),
                 'age' => $this->calculateAge(new DateTime('1993-10-27')),
             ],
             'Miroslav' => [
                 'rc' => '000816/9733',
-                'gender' => Gender::MALE,
+                'gender' => Gender::Male,
                 'dob' => new DateTime('2000-08-16'),
                 'age' => $this->calculateAge(new DateTime('2000-08-16')),
             ],
             'Natalia' => [
                 'rc' => '015612/5552',
-                'gender' => Gender::FEMALE,
+                'gender' => Gender::Female,
                 'dob' => new DateTime('2001-06-12'),
                 'age' => $this->calculateAge(new DateTime('2001-06-12')),
             ],
             'Victoria' => [
                 'rc' => '935103/6189',
-                'gender' => Gender::FEMALE,
+                'gender' => Gender::Female,
                 'dob' => new DateTime('1993-01-03'),
                 'age' => $this->calculateAge(new DateTime('1993-01-03')),
             ],
             'Jožko' => [
                 'rc' => '010722/4634',
-                'gender' => Gender::MALE,
+                'gender' => Gender::Male,
                 'dob' => new DateTime('2001-07-22'),
                 'age' => $this->calculateAge(new DateTime('2001-07-22')),
             ],
@@ -63,35 +62,34 @@ class SlovakiaTest extends FeatureTest
     public function test_extract_behaviour(): void
     {
         foreach ($this->people as $person) {
-            $citizen = Socrates::getCitizenDataFromId($person['rc'], 'SK');
+            $citizen = $this->socrates->getCitizenDataFromId($person['rc'], Country::Slovakia);
 
             self::assertEquals($person['gender'], $citizen->getGender());
-            self::assertEquals(Carbon::instance($person['dob']), $citizen->getDateOfBirth());
-            self::assertEquals($person['dob'], $citizen->getDateOfBirthNative());
+            self::assertEquals($person['dob'], $citizen->getDateOfBirth());
             self::assertEquals($person['age'], $citizen->getAge());
         }
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::validateId('88606/875', 'SK');
+        $this->socrates->validateId('88606/875', Country::Slovakia);
     }
 
     public function test_validation_behaviour(): void
     {
         foreach ($this->people as $person) {
             self::assertTrue(
-                Socrates::validateId($person['rc'], 'SK')
+                $this->socrates->validateId($person['rc'], Country::Slovakia)
             );
         }
 
         foreach ($this->invalidIds as $rc) {
             self::assertFalse(
-                Socrates::validateId($rc, 'SK')
+                $this->socrates->validateId($rc, Country::Slovakia)
             );
         }
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::validateId('88606/875', 'SK');
+        $this->socrates->validateId('88606/875', Country::Slovakia);
     }
 }

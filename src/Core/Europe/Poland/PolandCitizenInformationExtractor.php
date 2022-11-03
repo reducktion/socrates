@@ -26,9 +26,9 @@ class PolandCitizenInformationExtractor implements CitizenInformationExtractor
         return $citizen;
     }
 
-    private function getGender($id): string
+    private function getGender($id): Gender
     {
-        return ($id[9] % 2) ? Gender::MALE : Gender::FEMALE;
+        return ($id[9] % 2) ? Gender::Male : Gender::Female;
     }
 
     private function getDateOfBirth($id): DateTime

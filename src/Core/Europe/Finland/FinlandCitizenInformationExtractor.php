@@ -27,9 +27,9 @@ class FinlandCitizenInformationExtractor implements CitizenInformationExtractor
         return $citizen;
     }
 
-    private function getGender(string $id): string
+    private function getGender(string $id): Gender
     {
-        return (substr($id, 7, 3) % 2) ? Gender::MALE : Gender::FEMALE;
+        return (substr($id, 7, 3) % 2) ? Gender::Male : Gender::Female;
     }
 
     private function getDateOfBirth(string $id): DateTime
@@ -39,19 +39,12 @@ class FinlandCitizenInformationExtractor implements CitizenInformationExtractor
 
         $century = $id[6];
 
-        switch ($century) {
-            case '+':
-                $year += 1800;
-                break;
-            case '-':
-                $year += 1900;
-                break;
-            case 'A':
-                $year += 2000;
-                break;
-            default:
-                throw new InvalidArgumentException("Unrecognised character $century in ID.");
-        }
+        $year += match ($century) {
+            '+' => 1800,
+            '-' => 1900,
+            'A' => 2000,
+            default => throw new InvalidArgumentException("Unrecognised character $century in ID."),
+        };
 
         return new DateTime("$year-$month-$day");
     }

@@ -28,9 +28,9 @@ class YugoslaviaCitizenInformationExtractor
         return $citizen;
     }
 
-    private static function getGender(string $id): string
+    private static function getGender(string $id): Gender
     {
-        return ((int) substr($id, 9, 3)) < 500 ? Gender::MALE : Gender::FEMALE;
+        return ((int) substr($id, 9, 3)) < 500 ? Gender::Male : Gender::Female;
     }
 
     private static function getDateOfBirth(string $id): DateTime

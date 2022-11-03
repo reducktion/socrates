@@ -2,9 +2,17 @@
 
 namespace Reducktion\Socrates\Config;
 
+use Reducktion\Socrates\Contracts\CitizenInformationExtractor;
+use Reducktion\Socrates\Contracts\IdValidator;
+
 abstract class Countries
 {
-    public static $all = [
+    /**
+     * All country ISO 3166-2 codes.
+     *
+     * @var string[]
+     */
+    public static array $all = [
         'AF',
         'AX',
         'AL',
@@ -257,7 +265,12 @@ abstract class Countries
         'ZW',
     ];
 
-    public static $validators = [
+    /**
+     * List of validators for all countries.
+     *
+     * @var array<string, IdValidator>
+     */
+    public static array $validators = [
         /**
          * Validators for european countries.
          */
@@ -316,7 +329,12 @@ abstract class Countries
         'UY' => \Reducktion\Socrates\Core\SouthAmerica\Uruguay\UruguayIdValidator::class,
     ];
 
-    public static $extractors = [
+    /**
+     * List of extractors for all countries.
+     *
+     * @var array<string, CitizenInformationExtractor>
+     */
+    public static array $extractors = [
         /**
          * Extractors for european countries.
          */

@@ -60,9 +60,9 @@ class SwedenCitizenInformationExtractor implements CitizenInformationExtractor
         return $id;
     }
 
-    private function getGender(string $id): string
+    private function getGender(string $id): Gender
     {
-        return $id[8] % 2 === 0 ? Gender::FEMALE : Gender::MALE;
+        return $id[8] % 2 === 0 ? Gender::Female : Gender::Male;
     }
 
     private function getDateOfBirth(string $id, bool $isOverOneHundredYearsOld): DateTime

@@ -2,15 +2,15 @@
 
 namespace Reducktion\Socrates\Tests\Feature\Europe;
 
+use Reducktion\Socrates\Constants\Country;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
-use Reducktion\Socrates\Laravel\Facades\Socrates;
 use Reducktion\Socrates\Tests\Feature\FeatureTest;
 
 class GermanyTest extends FeatureTest
 {
-    private $validIds;
-    private $invalidIds;
+    private array $validIds;
+    private array $invalidIds;
 
     protected function setUp(): void
     {
@@ -37,25 +37,25 @@ class GermanyTest extends FeatureTest
     {
         $this->expectException(UnsupportedOperationException::class);
 
-        Socrates::getCitizenDataFromId('81872495633', 'DE');
+        $this->socrates->getCitizenDataFromId('81872495633', Country::Germany);
     }
 
     public function test_validation_behaviour(): void
     {
         foreach ($this->validIds as $id) {
             self::assertTrue(
-                Socrates::validateId($id, 'DE')
+                $this->socrates->validateId($id, Country::Germany)
             );
         }
 
         foreach ($this->invalidIds as $invalidId) {
             self::assertFalse(
-                Socrates::validateId($invalidId, 'DE')
+                $this->socrates->validateId($invalidId, Country::Germany)
             );
         }
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::validateId('0123456789', 'DE');
+        $this->socrates->validateId('0123456789', Country::Germany);
     }
 }
