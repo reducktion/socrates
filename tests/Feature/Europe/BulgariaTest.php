@@ -3,16 +3,15 @@
 namespace Reducktion\Socrates\Tests\Feature\Europe;
 
 use DateTime;
-use Carbon\Carbon;
+use Reducktion\Socrates\Constants\Country;
 use Reducktion\Socrates\Constants\Gender;
-use Reducktion\Socrates\Laravel\Facades\Socrates;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Tests\Feature\FeatureTest;
 
 class BulgariaTest extends FeatureTest
 {
-    private $people;
-    private $invalidIds;
+    private array $people;
+    private array $invalidIds;
 
     protected function setUp(): void
     {
@@ -21,37 +20,37 @@ class BulgariaTest extends FeatureTest
         $this->people = [
             'Andrei' => [
                 'egn' => '7523169263',
-                'gender' => Gender::MALE,
+                'gender' => Gender::Male,
                 'dob' => new DateTime('1875-03-16'),
                 'age' => $this->calculateAge(new DateTime('1875-03-16')),
             ],
             'Lyuben' => [
                 'egn' => '8032056031',
-                'gender' => Gender::MALE,
+                'gender' => Gender::Male,
                 'dob' => new DateTime('1880-12-05'),
                 'age' => $this->calculateAge(new DateTime('1880-12-05')),
             ],
             'Bilyana' => [
                 'egn' => '8001010008',
-                'gender' => Gender::FEMALE,
+                'gender' => Gender::Female,
                 'dob' => new DateTime('1980-01-01'),
                 'age' => $this->calculateAge(new DateTime('1980-01-01')),
             ],
             'Kalina' => [
                 'egn' => '7501020018',
-                'gender' => Gender::FEMALE,
+                'gender' => Gender::Female,
                 'dob' => new DateTime('1975-01-02'),
                 'age' => $this->calculateAge(new DateTime('1975-01-02')),
             ],
             'Nedyalko' => [
                 'egn' => '7552010005',
-                'gender' => Gender::MALE,
+                'gender' => Gender::Male,
                 'dob' => new DateTime('2075-12-01'),
                 'age' => $this->calculateAge(new DateTime('2075-12-01')),
             ],
             'Tsveta' => [
                 'egn' => '7542011030',
-                'gender' => Gender::FEMALE,
+                'gender' => Gender::Female,
                 'dob' => new DateTime('2075-02-01'),
                 'age' => $this->calculateAge(new DateTime('2075-02-01')),
             ]
@@ -69,34 +68,33 @@ class BulgariaTest extends FeatureTest
     public function test_extract_behaviour(): void
     {
         foreach ($this->people as $person) {
-            $citizen = Socrates::getCitizenDataFromId($person['egn'], 'BG');
+            $citizen = $this->socrates->getCitizenDataFromId($person['egn'], Country::Bulgaria);
             self::assertEquals($person['gender'], $citizen->getGender());
-            self::assertEquals(Carbon::instance($person['dob']), $citizen->getDateOfBirth());
-            self::assertEquals($person['dob'], $citizen->getDateOfBirthNative());
+            self::assertEquals($person['dob'], $citizen->getDateOfBirth());
             self::assertEquals($person['age'], $citizen->getAge());
         }
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::getCitizenDataFromId('754201103', 'BG');
+        $this->socrates->getCitizenDataFromId('754201103', Country::Bulgaria);
     }
 
     public function test_validation_behaviour(): void
     {
         foreach ($this->people as $person) {
             self::assertTrue(
-                Socrates::validateId($person['egn'], 'BG')
+                $this->socrates->validateId($person['egn'], Country::Bulgaria)
             );
         }
 
         foreach ($this->invalidIds as $egn) {
             self::assertFalse(
-                Socrates::validateId($egn, 'BG')
+                $this->socrates->validateId($egn, Country::Bulgaria)
             );
         }
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::validateId('754201103', 'BG');
+        $this->socrates->validateId('754201103', Country::Bulgaria);
     }
 }

@@ -28,9 +28,9 @@ class NorwayCitizenInformationExtractor implements CitizenInformationExtractor
         return $citizen;
     }
 
-    private function getGender(int $individualNumber): string
+    private function getGender(int $individualNumber): Gender
     {
-        return ($individualNumber % 2) ? Gender::MALE : Gender::FEMALE;
+        return ($individualNumber % 2) ? Gender::Male : Gender::Female;
     }
 
     private function getDateOfBirth(string $id): DateTime

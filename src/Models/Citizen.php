@@ -3,52 +3,40 @@
 namespace Reducktion\Socrates\Models;
 
 use DateTime;
-use Carbon\Carbon;
+use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
 
 class Citizen
 {
     /**
-     * The gender as a string.
+     * The gender as an enum.
      *
-     * @var string|null
+     * @var Gender|null
      */
-    private $gender;
+    private ?Gender $gender;
 
     /**
      * The date of birth as a DateTime object.
      *
      * @var DateTime|null
      */
-    private $dateOfBirth;
+    private ?DateTime $dateOfBirth;
 
     /**
      * The place of birth as a string.
      *
      * @var string|null
      */
-    private $placeOfBirth;
+    private ?string $placeOfBirth;
 
     /**
-     * Get the citizen's gender as a string.
+     * Get the citizen's gender.
      *
-     * @return  string|null
+     * @return Gender|null
      */
-    public function getGender(): ?string
+    public function getGender(): ?Gender
     {
         return $this->gender;
-    }
-
-    /**
-     * Get the citizen's date of birth as a Carbon instance.
-     *
-     * @deprecated v1.3.0 This method will be deprecated in the next release of Socrates.
-     *                    Please use getDateOfBirthNative() instead.
-     * @return Carbon|null
-     */
-    public function getDateOfBirth(): ?Carbon
-    {
-        return Carbon::instance($this->dateOfBirth);
     }
 
     /**
@@ -56,7 +44,7 @@ class Citizen
      *
      * @return DateTime|null
      */
-    public function getDateOfBirthNative(): ?DateTime
+    public function getDateOfBirth(): ?DateTime
     {
         return $this->dateOfBirth;
     }
@@ -88,10 +76,10 @@ class Citizen
     /**
      * Set the citizen's gender.
      *
-     * @param  string  $gender
+     * @param Gender $gender
      * @return void
      */
-    public function setGender(string $gender): void
+    public function setGender(Gender $gender): void
     {
         $this->gender = $gender;
     }

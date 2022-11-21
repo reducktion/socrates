@@ -2,15 +2,15 @@
 
 namespace Reducktion\Socrates\Tests\Feature\SouthAmerica;
 
-use Reducktion\Socrates\Laravel\Facades\Socrates;
+use Reducktion\Socrates\Constants\Country;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
 use Reducktion\Socrates\Tests\Feature\FeatureTest;
 
 class EcuadorTest extends FeatureTest
 {
-    private $validIds;
-    private $invalidIds;
+    private array $validIds;
+    private array $invalidIds;
 
     protected function setUp(): void
     {
@@ -38,26 +38,26 @@ class EcuadorTest extends FeatureTest
     {
         $this->expectException(UnsupportedOperationException::class);
 
-        Socrates::getCitizenDataFromId('', 'EC');
+        $this->socrates->getCitizenDataFromId('', Country::Ecuador);
     }
 
     public function test_validation_behaviour(): void
     {
         foreach ($this->validIds as $id) {
             self::assertTrue(
-                Socrates::validateId($id, 'EC'),
+                $this->socrates->validateId($id, Country::Ecuador),
                 $id
             );
         }
 
         foreach ($this->invalidIds as $id) {
             self::assertFalse(
-                Socrates::validateId($id, 'EC')
+                $this->socrates->validateId($id, Country::Ecuador)
             );
         }
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::validateId('123456789', 'EC');
+        $this->socrates->validateId('123456789', Country::Ecuador);
     }
 }

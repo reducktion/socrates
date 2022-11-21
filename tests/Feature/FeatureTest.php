@@ -3,10 +3,20 @@
 namespace Reducktion\Socrates\Tests\Feature;
 
 use DateTime;
-use Reducktion\Socrates\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
+use Reducktion\Socrates\Socrates;
 
 abstract class FeatureTest extends TestCase
 {
+    public Socrates $socrates;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->socrates = new Socrates();
+    }
+
     abstract public function test_extract_behaviour(): void;
 
     abstract public function test_validation_behaviour(): void;

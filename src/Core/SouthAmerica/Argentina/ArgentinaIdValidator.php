@@ -31,7 +31,7 @@ class ArgentinaIdValidator implements IdValidator
 
     private function sanitize(string $id): string
     {
-        $id = preg_replace('/[\D]/', '', $id);
+        $id = preg_replace('/\D/', '', $id);
 
         $idLength = strlen($id);
 

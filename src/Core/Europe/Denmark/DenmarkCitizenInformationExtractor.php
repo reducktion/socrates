@@ -30,14 +30,12 @@ class DenmarkCitizenInformationExtractor implements CitizenInformationExtractor
 
     private function sanitize(string $id): string
     {
-        $id = str_replace('-', '', $id);
-
-        return $id;
+        return str_replace('-', '', $id);
     }
 
-    private function getGender(int $cpr): string
+    private function getGender(int $cpr): Gender
     {
-        return ($cpr % 2) ? Gender::MALE : Gender::FEMALE;
+        return ($cpr % 2) ? Gender::Male : Gender::Female;
     }
 
     private function getDateOfBirth(string $cpr): DateTime

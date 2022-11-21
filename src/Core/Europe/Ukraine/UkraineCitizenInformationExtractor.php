@@ -28,9 +28,9 @@ class UkraineCitizenInformationExtractor implements CitizenInformationExtractor
         return $citizen;
     }
 
-    private function getGender(int $genderDigit): string
+    private function getGender(int $genderDigit): Gender
     {
-        return $genderDigit % 2 ? Gender::MALE : Gender::FEMALE;
+        return $genderDigit % 2 ? Gender::Male : Gender::Female;
     }
 
     private function getDateOfBirth(string $id): DateTime

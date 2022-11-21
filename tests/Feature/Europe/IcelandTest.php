@@ -2,16 +2,15 @@
 
 namespace Reducktion\Socrates\Tests\Feature\Europe;
 
-use Carbon\Carbon;
 use DateTime;
+use Reducktion\Socrates\Constants\Country;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
-use Reducktion\Socrates\Laravel\Facades\Socrates;
 use Reducktion\Socrates\Tests\Feature\FeatureTest;
 
 class IcelandTest extends FeatureTest
 {
-    private $people;
-    private $invalidIds;
+    private array $people;
+    private array $invalidIds;
 
     protected function setUp(): void
     {
@@ -57,34 +56,33 @@ class IcelandTest extends FeatureTest
     public function test_extract_behaviour(): void
     {
         foreach ($this->people as $person) {
-            $citizen = Socrates::getCitizenDataFromId($person['kt'], 'IS');
+            $citizen = $this->socrates->getCitizenDataFromId($person['kt'], Country::Iceland);
 
-            self::assertEquals(Carbon::instance($person['dob']), $citizen->getDateOfBirth());
-            self::assertEquals($person['dob'], $citizen->getDateOfBirthNative());
+            self::assertEquals($person['dob'], $citizen->getDateOfBirth());
             self::assertEquals($person['age'], $citizen->getAge());
         }
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::getCitizenDataFromId('324432-343', 'IS');
+        $this->socrates->getCitizenDataFromId('324432-343', Country::Iceland);
     }
 
     public function test_validation_behaviour(): void
     {
         foreach ($this->people as $person) {
             self::assertTrue(
-                Socrates::validateId($person['kt'], 'IS')
+                $this->socrates->validateId($person['kt'], Country::Iceland)
             );
         }
 
         foreach ($this->invalidIds as $kt) {
             self::assertFalse(
-                Socrates::validateId($kt, 'IS')
+                $this->socrates->validateId($kt, Country::Iceland)
             );
         }
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::validateId('21442411', 'IS');
+        $this->socrates->validateId('21442411', Country::Iceland);
     }
 }

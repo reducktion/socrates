@@ -11,7 +11,7 @@ namespace Reducktion\Socrates\Core\NorthAmerica\Mexico;
  */
 class MexicoStatesList
 {
-    public static $states = [
+    public static array $states = [
         'AS' => "AGUASCALIENTES",
         'BS' => "BAJA CALIFORNIA SUR",
         'CL' => "COAHUILA",

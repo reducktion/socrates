@@ -4,7 +4,7 @@ namespace Reducktion\Socrates\Core\Europe\Romania;
 
 class RomaniaRegionsList
 {
-    public static $regions = [
+    public static array $regions = [
         '01' => 'Alba',
         '02' => 'Arad',
         '03' => 'Arges',
@@ -52,6 +52,6 @@ class RomaniaRegionsList
         '45' => 'Bucuresti Sectorul 5',
         '46' => 'Bucuresti Sectorul 6',
         '51' => 'Calarasi',
-        '52' => 'Giurgiu'
+        '52' => 'Giurgiu',
     ];
 }

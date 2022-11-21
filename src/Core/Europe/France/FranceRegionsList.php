@@ -4,7 +4,7 @@ namespace Reducktion\Socrates\Core\Europe\France;
 
 class FranceRegionsList
 {
-    public static $departments = [
+    public static array $departments = [
         '01' => 'Ain',
         '02' => 'Aisne',
         '03' => 'Allier',

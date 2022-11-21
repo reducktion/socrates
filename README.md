@@ -1,15 +1,15 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/AlexOlival/socrates/master/docs/logo.png" alt="Socrates logo" width="480">
+    <img src="./art/socrates.svg" alt="Socrates logo" width="480">
 </p>
 <p align="center">
-    <img src="https://raw.githubusercontent.com/AlexOlival/socrates/master/docs/example.png" alt="Usage example" width="800">
+    <img src="./art/carbon.svg" alt="Usage example" width="800">
 </p>
 <p align="center">
     <img  alt="Badge" src="https://github.com/AlexOlival/socrates/workflows/Build/badge.svg">
     <img alt="Total Downloads" src="https://img.shields.io/packagist/dt/reducktion/socrates">
     <img alt="Latest Version" src="https://img.shields.io/packagist/v/reducktion/socrates">
     <img alt="License" src="https://img.shields.io/github/license/reducktion/socrates">
-    <img alt="StyleCI" src="https://github.styleci.io/repos/238900350/shield?branch=master">
+    <img alt="StyleCI" src="https://github.styleci.io/repos/238900350/shield?branch=main">
     <img alt="Contributors" src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square">
 </p>
 
@@ -17,13 +17,11 @@
 ## Introduction
 >I am a **Citizen of the World**, and my Nationality is Goodwill.
 
-<i>You can now read [a blog post](https://medium.com/@alex.olival/road-to-mastery-building-an-open-source-package-3936f57aed81) about how this package was created and its goals.</i>
-
 **Socrates** is a PHP Package that allows you to validate and retrieve personal data from [National Identification Numbers](https://en.wikipedia.org/wiki/National_identification_number).
-Most countries in Europe are supported as well as some American ones, but the goal is to eventually support as many countries in the world as possible.
+Most countries in Europe are supported as well as some North and South American ones, with the goal to support as many countries in the world as possible.
 <p>Some countries also encode personal information of the citizen, such as gender or the place of birth. This package allows you to extract that information in a consistent way.</p>
-<p>A Facade and Validation Rule is also available for Laravel (see below).</p>
-<p>This package can be useful for many things, such as validating a user's ID for finance related applications or verifying a user's age without asking for it explicitly. However, we recommend you review your country's data protection laws before storing any information.</p>
+
+<p>This package can be useful for many things such as validating a user's ID for finance related applications or verifying a user's age without asking for it explicitly. We recommend you review your country's data processing and protection laws before storing any information.</p>
 
 [Ports](https://github.com/reducktion/socrates#ports) of this package to other languages are currently in progress. Check further below for which ones are currently available.
 
@@ -31,42 +29,22 @@ Most countries in Europe are supported as well as some American ones, but the go
 `composer require reducktion/socrates`
 
 ## Usage
-Socrates provides two methods: `validateId` and `getCitizenDataFromId`. Both receive the ID and the country code in [ISO 3166-2 format](https://en.wikipedia.org/wiki/ISO_3166-2)  as the first and second parameters respectively. Simply instantiate the class and call the method you wish:
+Socrates provides two methods: `validateId` and `getCitizenDataFromId`. Both receive an ID and the country code as a backed enum with the [ISO 3166-2 format](https://en.wikipedia.org/wiki/ISO_3166-2)  as the first and second parameters respectively. Simply instantiate the class and call the method you wish:
 
 ```php
 use Reducktion\Socrates\Socrates;
 use Reducktion\Socrates\Constants\Country;
 
 $socrates = new Socrates();
-$socrates->validateId('14349483 0 ZV3', Country::PORTUGAL);
-// or
-$socrates->validateId('14349483 0 ZV3', 'PT');
-```
-
-If you're using Laravel a facade is also available for your convenience:
-
-```php
-use Reducktion\Socrates\Laravel\Facades\Socrates;
-use Reducktion\Socrates\Constants\Country;
-
-Socrates::getCitizenDataFromId('550309-6447', Country::SWEDEN);
-```
-
-Still in Laravel you can use the `national_id:[COUNTRY CODE]` request validation rule.
-Here is an example checking if a request parameter is a valid latvian ID:
-
-```php
-$request->validate([
-    'national_id' => 'required|string|national_id:lv',
-]);
+$socrates->validateId('14349483 0 ZV3', Country::Portugal);
 ```
 
 ### validateId
 This method will return true or false.
-In case the ID has the wrong character length, an `InvalidLengthException` will be thrown.
+In case the ID has a wrong character length an `InvalidLengthException` will be thrown.
 
 ```php
-if ($socrates->validateId('719102091', Country::NETHERLANDS)) {
+if ($socrates->validateId('719102091', Country::Netherlands)) {
     echo 'Valid ID.';
 } else {
     echo 'Invalid ID.';
@@ -79,23 +57,22 @@ If the ID is invalid, an `InvalidIdException` will be thrown.<br>
 If the country does not support data extraction, an `UnsupportedOperationException` will be thrown.
 
 ```php
-$citizen = $socrates->getCitizenDataFromId('3860123012', Country::ESTONIA);
+$citizen = $socrates->getCitizenDataFromId('3860123012', Country::Estonia);
 ```
 
 The `Citizen` class stores the extracted citizen data in a consistent format across all countries.<br>
-It exposes the `getGender()`, `getDateOfBirthNative()`, `getDateOfBirth()`, `getAge()` and `getPlaceOfBirth()` methods.<br><br>
-`getGender` and `getPlaceOfBirth` return a `string`.<br>
-`getAge()` returns an `int`.<br>
-`getDateOfBirthNative()` returns a native `DateTime` and `getDateOfBirth()` returns a `Carbon` instance.<br>
-**It is recommended to use `getDateOfBirthNative()` as Carbon will be removed as a dependency in a future release of Socrates.**
+It exposes the `getGender()`, `getDateOfBirth()`, `getAge()` and `getPlaceOfBirth()` methods.<br><br>
+`getGender` will return an instance of the `Gender` enum.<br> 
+`getPlaceOfBirth` will return a city or region name as a `string`.<br>
+`getAge()` returns the age of the citizen as an `int`.<br>
+`getDateOfBirth()` returns a `DateTime` instance.<br>
 <p>Using the example above, Estonia only encodes the date of birth and gender of the citizen in their ID. So the above methods will return:</p>
  
 ```php
-echo $citizen->getGender(); // 'Male'
-echo $citizen->getDateOfBirthNative(); // DateTime instance with the date '1986-01-23'
-echo $citizen->getDateOfBirth(); // DEPRECATED - Carbon instance with the date '1986-01-23'
-echo $citizen->getAge(); // 34
-echo $citizen->getPlaceOfBirth(); // null
+echo $citizen->getGender(); // 'Gender::Male'
+echo $citizen->getDateOfBirth(); // DateTime instance with the date '1986-01-23'
+echo $citizen->getAge(); // (The current age as a number)
+echo $citizen->getPlaceOfBirth(); // null - Estonia does not encode place of birth on its ID numbers
 ```
 
 ## Supported and Unsupported Countries
@@ -103,7 +80,7 @@ echo $citizen->getPlaceOfBirth(); // null
 [Here](COUNTRIES.md) you can see the full list of supported countries and whether they support data extraction.
 
 Four european countries are currently unsupported: Austria 🇦🇹, Belarus 🇧🇾, Cyprus 🇨🇾 and Luxembourg 🇱🇺.
-A number of countries in the Americas are also unsupproted. This is because we could not find a reliable source for the algorithm, if at all. Help would be appreciated to get these countries supported.
+A number of countries in the Americas are also unsupported. This is because we could not find a reliable source for the algorithm, if at all. Help would be appreciated to get these countries supported.
 
 ## Testing
 `composer test`
@@ -132,7 +109,7 @@ Socrates was made with 💖 by [Alexandre Olival](https://github.com/AlexOlival)
 We are Reducktion.
 We hope to make someone's life easier after all the hard work compiling, researching, reverse-engineering and agonizing over ID validation algorithms - many of which were very obscure and hard to find.
 
-## Special thanks
+## Special Thanks
 A big thanks goes to these people who helped us either test with real life IDs or guide us in finding the algorithm for their countries:
 * Alexandra from 🇷🇴
 * Berilay from 🇹🇷

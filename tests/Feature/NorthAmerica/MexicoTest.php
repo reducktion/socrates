@@ -2,18 +2,17 @@
 
 namespace Reducktion\Socrates\Tests\Feature\NorthAmerica;
 
-use Carbon\Carbon;
 use DateTime;
 use Reducktion\Socrates\Constants\Gender;
-use Reducktion\Socrates\Laravel\Facades\Socrates;
+use Reducktion\Socrates\Constants\Country;
 use Reducktion\Socrates\Tests\Feature\FeatureTest;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
 class MexicoTest extends FeatureTest
 {
-    private $validIds;
-    private $invalidIds;
-    private $people;
+    private array $validIds;
+    private array $invalidIds;
+    private array $people;
 
     protected function setUp(): void
     {
@@ -22,25 +21,25 @@ class MexicoTest extends FeatureTest
         $this->people = [
             'juan' => [
                 'curp' => 'MAAR790213HMNRLF03',
-                'gender' => Gender::MALE,
+                'gender' => Gender::Male,
                 'dob' => new DateTime('1979-2-13'),
                 'age' => $this->calculateAge(new DateTime('1979-2-13')),
             ],
             'letitia' => [
                 'curp' => 'HEGG560427MVZRRL04',
-                'gender' => Gender::FEMALE,
+                'gender' => Gender::Female,
                 'dob' => new DateTime('1956-4-27'),
                 'age' => $this->calculateAge(new DateTime('1956-4-27')),
             ],
             'augustin' => [
                 'curp' => 'BOXW010820HNERXNA1',
-                'gender' => Gender::MALE,
+                'gender' => Gender::Male,
                 'dob' => new DateTime('2001-8-20'),
                 'age' => $this->calculateAge(new DateTime('2001-8-20')),
             ],
             'diego' => [
                 'curp' => 'TUAZ080213HMNRLFA3',
-                'gender' => Gender::MALE,
+                'gender' => Gender::Male,
                 'dob' => new DateTime('2008-2-13'),
                 'age' => $this->calculateAge(new DateTime('2008-2-13')),
             ],
@@ -81,35 +80,34 @@ class MexicoTest extends FeatureTest
     public function test_extract_behaviour(): void
     {
         foreach ($this->people as $person) {
-            $citizen = Socrates::getCitizenDataFromId($person['curp'], 'MX');
+            $citizen = $this->socrates->getCitizenDataFromId($person['curp'], Country::Mexico);
 
             self::assertEquals($person['gender'], $citizen->getGender());
-            self::assertEquals(Carbon::instance($person['dob']), $citizen->getDateOfBirth());
-            self::assertEquals($person['dob'], $citizen->getDateOfBirthNative());
+            self::assertEquals($person['dob'], $citizen->getDateOfBirth());
             self::assertEquals($person['age'], $citizen->getAge());
         }
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::getCitizenDataFromId('69218938062', 'MX');
+        $this->socrates->getCitizenDataFromId('69218938062', Country::Mexico);
     }
 
     public function test_validation_behaviour(): void
     {
         foreach ($this->validIds as $id) {
             self::assertTrue(
-                Socrates::validateId($id, 'MX')
+                $this->socrates->validateId($id, Country::Mexico)
             );
         }
 
         foreach ($this->invalidIds as $invalidId) {
             self::assertFalse(
-                Socrates::validateId($invalidId, 'MX')
+                $this->socrates->validateId($invalidId, Country::Mexico)
             );
         }
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::validateId('1621543419643', 'MX');
+        $this->socrates->validateId('1621543419643', Country::Mexico);
     }
 }

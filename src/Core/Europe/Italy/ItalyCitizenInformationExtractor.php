@@ -38,10 +38,10 @@ class ItalyCitizenInformationExtractor implements CitizenInformationExtractor
         return $citizen;
     }
 
-    private function getGender(string $id): string
+    private function getGender(string $id): Gender
     {
         $dayOfBirth = (int) substr($id, 9, 2);
-        return $dayOfBirth > 31 ? Gender::FEMALE : Gender::MALE;
+        return $dayOfBirth > 31 ? Gender::Female : Gender::Male;
     }
 
     private function getDateOfBirth(string $id): DateTime

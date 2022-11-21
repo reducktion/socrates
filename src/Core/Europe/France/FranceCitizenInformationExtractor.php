@@ -38,9 +38,9 @@ class FranceCitizenInformationExtractor implements CitizenInformationExtractor
         return $id;
     }
 
-    private function getGender(string $id): string
+    private function getGender(string $id): Gender
     {
-        return ((int) $id[0]) === 1 ? Gender::MALE : Gender::FEMALE;
+        return ((int) $id[0]) === 1 ? Gender::Male : Gender::Female;
     }
 
     private function getDateOfBirth(string $id): DateTime

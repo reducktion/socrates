@@ -12,7 +12,7 @@ class AlbaniaCitizenInformationExtractor implements CitizenInformationExtractor
 {
     public function extract(string $id): Citizen
     {
-        if (!(new AlbaniaIdValidator())->validate($id)) {
+        if (! (new AlbaniaIdValidator())->validate($id)) {
             throw new InvalidIdException();
         }
 
@@ -26,19 +26,19 @@ class AlbaniaCitizenInformationExtractor implements CitizenInformationExtractor
         return $citizen;
     }
 
-    private function getGender(string $id): string
+    private function getGender(string $id): Gender
     {
         $identifier = (int) $id[2];
 
         if ($identifier === 0 || $identifier === 1) {
-            return Gender::MALE;
+            return Gender::Male;
         }
 
         if ($identifier === 5 || $identifier === 6) {
-            return Gender::FEMALE;
+            return Gender::Female;
         }
 
-        return Gender::FEMALE;
+        return Gender::Female;
     }
 
     private function getDateOfBirth(string $id): DateTime
@@ -82,14 +82,14 @@ class AlbaniaCitizenInformationExtractor implements CitizenInformationExtractor
 
         [$yearCodeLetter, $yearCodeDigit] = str_split($yearCode, 1);
 
-        $yearCodeDigit = (int)$yearCodeDigit;
+        $yearCodeDigit = (int) $yearCodeDigit;
 
         return $yearCodeLetterMap[$yearCodeLetter] + $yearCodeDigit;
     }
 
-    private function getMonthFromDigits(int $monthDigits, string $gender): int
+    private function getMonthFromDigits(int $monthDigits, Gender $gender): int
     {
-        return $gender === Gender::FEMALE
+        return $gender === Gender::Female
             ? $monthDigits - 50
             : $monthDigits;
     }

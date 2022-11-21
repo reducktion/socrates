@@ -26,9 +26,9 @@ class BulgariaCitizenInformationExtractor implements CitizenInformationExtractor
         return $citizen;
     }
 
-    private function getGender(string $id): string
+    private function getGender(string $id): Gender
     {
-        return ($id % 2) ? Gender::MALE : Gender::FEMALE;
+        return ($id % 2) ? Gender::Male : Gender::Female;
     }
 
     private function getDateOfBirth(string $id): DateTime

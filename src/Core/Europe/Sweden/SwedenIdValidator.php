@@ -76,8 +76,7 @@ class SwedenIdValidator implements IdValidator
             }
         }
 
-        $id = $tenDigitId;
-        return $id;
+        return $tenDigitId;
     }
 
     private function validateDate(string $dateString): bool

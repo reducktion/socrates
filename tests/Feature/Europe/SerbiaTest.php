@@ -2,17 +2,16 @@
 
 namespace Reducktion\Socrates\Tests\Feature\Europe;
 
-use Carbon\Carbon;
 use DateTime;
+use Reducktion\Socrates\Constants\Country;
 use Reducktion\Socrates\Constants\Gender;
-use Reducktion\Socrates\Laravel\Facades\Socrates;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Tests\Feature\FeatureTest;
 
 class SerbiaTest extends FeatureTest
 {
-    private $people;
-    private $invalidIds;
+    private array $people;
+    private array $invalidIds;
 
     protected function setUp(): void
     {
@@ -21,35 +20,35 @@ class SerbiaTest extends FeatureTest
         $this->people = [
             'Nikola' => [
                 'jmbg' => '0101100710006',
-                'gender' => Gender::MALE,
+                'gender' => Gender::Male,
                 'dob' => new DateTime('2100-01-01'),
                 'age' => $this->calculateAge(new DateTime('2100-01-01')),
                 'pob' => 'Belgrade region (City of Belgrade) - Central Serbia',
             ],
             'Miloje' => [
                 'jmbg' => '0110951074616',
-                'gender' => Gender::MALE,
+                'gender' => Gender::Male,
                 'dob' => new DateTime('1951-10-01'),
                 'age' => $this->calculateAge(new DateTime('1951-10-01')),
                 'pob' => 'foreigners in Serbian province of Vojvodina',
             ],
             'Teodora' => [
                 'jmbg' => '2702937737434',
-                'gender' => Gender::FEMALE,
+                'gender' => Gender::Female,
                 'dob' => new DateTime('1937-02-27'),
                 'age' => $this->calculateAge(new DateTime('1937-02-27')),
                 'pob' => 'Niš region (Nišava District, Pirot District and Toplica District) - Central Serbia',
             ],
             'Jana' => [
                 'jmbg' => '2606936778324',
-                'gender' => Gender::FEMALE,
+                'gender' => Gender::Female,
                 'dob' => new DateTime('1936-06-26'),
                 'age' => $this->calculateAge(new DateTime('1936-06-26')),
                 'pob' => 'Podrinje and Kolubara regions (Mačva District and Kolubara District) - Central Serbia',
             ],
             'Petra' => [
                 'jmbg' => '1209992745266',
-                'gender' => Gender::FEMALE,
+                'gender' => Gender::Female,
                 'dob' => new DateTime('1992-09-12'),
                 'age' => $this->calculateAge(new DateTime('1992-09-12')),
                 'pob' => 'Southern Morava region (Jablanica District and Pčinja District) - Central Serbia',
@@ -68,36 +67,35 @@ class SerbiaTest extends FeatureTest
     public function test_extract_behaviour(): void
     {
         foreach ($this->people as $person) {
-            $citizen = Socrates::getCitizenDataFromId($person['jmbg'], 'RS');
+            $citizen = $this->socrates->getCitizenDataFromId($person['jmbg'], Country::Serbia);
 
             self::assertEquals($person['gender'], $citizen->getGender());
             self::assertEquals($person['dob'], $citizen->getDateOfBirth());
-            self::assertEquals($person['dob'], $citizen->getDateOfBirthNative());
             self::assertEquals($person['age'], $citizen->getAge());
             self::assertEquals($person['pob'], $citizen->getPlaceOfBirth());
         }
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::getCitizenDataFromId('010597850041', 'RS');
+        $this->socrates->getCitizenDataFromId('010597850041', Country::Serbia);
     }
 
     public function test_validation_behaviour(): void
     {
         foreach ($this->people as $person) {
             self::assertTrue(
-                Socrates::validateId($person['jmbg'], 'RS')
+                $this->socrates->validateId($person['jmbg'], Country::Serbia)
             );
         }
 
         foreach ($this->invalidIds as $jmbg) {
             self::assertFalse(
-                Socrates::validateId($jmbg, 'RS')
+                $this->socrates->validateId($jmbg, Country::Serbia)
             );
         }
 
         $this->expectException(InvalidLengthException::class);
 
-        Socrates::getCitizenDataFromId('010597850041', 'RS');
+        $this->socrates->getCitizenDataFromId('010597850041', Country::Serbia);
     }
 }

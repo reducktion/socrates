@@ -27,10 +27,10 @@ class CzechoslovakiaCitizenInformationExtractor
         return $citizen;
     }
 
-    private static function getGender(string $id): string
+    private static function getGender(string $id): Gender
     {
         $monthDigits = (int) substr($id, 2, 2);
-        return ($monthDigits < 13) ? Gender::MALE : Gender::FEMALE;
+        return ($monthDigits < 13) ? Gender::Male : Gender::Female;
     }
 
     private static function getDateOfBirth(string $id): DateTime

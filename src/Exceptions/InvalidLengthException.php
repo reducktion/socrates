@@ -9,14 +9,14 @@ class InvalidLengthException extends \LogicException
      *
      * @var string
      */
-    private $requiredCharacters;
+    private string $requiredCharacters;
 
     /**
      * Description of the numbers of characters that were passed.
      *
      * @var string
      */
-    private $givenCharacters;
+    private string $givenCharacters;
 
     /**
      * Create a new InvalidLengthException instance.

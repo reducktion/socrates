@@ -69,7 +69,7 @@ class MexicoIdValidator implements IdValidator
 
     private function validateRegex(string $id): bool
     {
-        return preg_match('/^[A-Z]{4}\d{6}[A-Z]{6}[0-9A-Z]\d$/', $id, $matches);
+        return preg_match('/^[A-Z]{4}\d{6}[A-Z]{6}[0-9A-Z]\d$/', $id);
     }
 
     private function validateNames(string $names): bool

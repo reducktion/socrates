@@ -61,7 +61,7 @@ class UnitedKingdomIdValidator implements IdValidator
             || $firstTwoCharacters === 'ZZ');
     }
 
-    private function sanitize(string $id)
+    private function sanitize(string $id): string
     {
         $id = str_replace(' ', '', $id);
 
@@ -71,8 +71,6 @@ class UnitedKingdomIdValidator implements IdValidator
             throw new InvalidLengthException('British NINO', '9', $idLength);
         }
 
-        $id = strtoupper($id);
-
-        return $id;
+        return strtoupper($id);
     }
 }
