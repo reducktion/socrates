@@ -25,6 +25,9 @@ Most countries in Europe are supported as well as some North and South American 
 
 [Ports](https://github.com/reducktion/socrates#ports) of this package to other languages are currently in progress. Check further below for which ones are currently available.
 
+## PHP Version
+<p>PHP 8.1 is the minimum required version. If you are using an older version you should pull in the 1.3.0 version of this package. We highly recommend you upgrade though!</p>
+
 ## Installation
 `composer require reducktion/socrates`
 
