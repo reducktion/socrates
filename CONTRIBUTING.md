@@ -28,7 +28,7 @@ Clone your fork, then install the dev dependencies:
 composer install
 ```
 
-It is advised to run a Laravel/Vanilla PHP application locally, and pull in your local fork of the package to test.
+It is advised to run a PHP application locally, and pull in your local fork of the package to test.
 Check [this post](https://johnbraun.blog/posts/creating-a-laravel-package-1) for a guide on how to do it.
 
 ## How to implement a country from scratch
