@@ -12,7 +12,7 @@ contribute with a new country from scratch.
 1. Fork the project
 1. Create a new branch
 1. Code, test, commit and push
-1. Open a pull request detailing your changes (don't forget to assign yourself to the PR).
+1. Open a pull request detailing your changes (do not forget to assign yourself to the PR).
 1. Describe what your pull request is (change, bugfix, new country implementation, etc.)
 
 ### Guidelines
