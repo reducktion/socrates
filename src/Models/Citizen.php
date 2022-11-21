@@ -9,7 +9,7 @@ use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
 class Citizen
 {
     /**
-     * The gender as a string.
+     * The gender as an enum.
      *
      * @var Gender|null
      */
