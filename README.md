@@ -5,7 +5,7 @@
     <img src="./art/carbon.svg" alt="Usage example" width="800">
 </p>
 <p align="center">
-    <img  alt="Badge" src="https://github.com/AlexOlival/socrates/workflows/Build/badge.svg">
+    <img alt="Badge" src="https://github.com/reducktion/socrates/actions/workflows/php.yml/badge.svg">
     <img alt="Total Downloads" src="https://img.shields.io/packagist/dt/reducktion/socrates">
     <img alt="Latest Version" src="https://img.shields.io/packagist/v/reducktion/socrates">
     <img alt="License" src="https://img.shields.io/github/license/reducktion/socrates">
