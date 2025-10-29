@@ -48,15 +48,20 @@ class ItalyCitizenInformationExtractor implements CitizenInformationExtractor
     {
         $dayDigits = substr($id, 9, 2);
         $monthChar = $id[8];
-        $yearDigits = substr($id, 6, 2);
+        $yearDigits = (int)substr($id, 6, 2);
+
         $months = 'ABCDEHLMPRST';
-        $currentYear = (int) (new DateTime())->format('y');
-
-        $day = (int) $dayDigits > 31 ? (int) $dayDigits - 40 : (int) $dayDigits;
         $month = strpos($months, $monthChar) + 1;
-        $year = (int) $yearDigits > $currentYear ? (int) $yearDigits + 1900 : (int) $yearDigits + 2000;
 
-        return new DateTime("$year-$month-$day");
+        $day = $dayDigits > 31 ? $dayDigits - 40 : $dayDigits;
+
+        if ($yearDigits <= 21) {
+            $year = 2000 + $yearDigits;
+        } else {
+            $year = 1900 + $yearDigits;
+        }
+
+        return new DateTime(sprintf('%04d-%02d-%02d', $year, $month, $day));
     }
 
     private function getPlaceOfBirth(string $id): string
