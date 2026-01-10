@@ -6,9 +6,9 @@ use DateTime;
 use Reducktion\Socrates\Constants\Country;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
-use Reducktion\Socrates\Tests\Feature\FeatureTest;
+use Reducktion\Socrates\Tests\Feature\FeatureTestCase;
 
-class FinlandTest extends FeatureTest
+class FinlandTest extends FeatureTestCase
 {
     private array $people;
     private array $invalidIds;

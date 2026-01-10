@@ -5,10 +5,10 @@ namespace Reducktion\Socrates\Tests\Feature\NorthAmerica;
 use DateTime;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Constants\Country;
-use Reducktion\Socrates\Tests\Feature\FeatureTest;
+use Reducktion\Socrates\Tests\Feature\FeatureTestCase;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 
-class MexicoTest extends FeatureTest
+class MexicoTest extends FeatureTestCase
 {
     private array $validIds;
     private array $invalidIds;

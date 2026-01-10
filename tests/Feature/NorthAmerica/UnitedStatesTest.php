@@ -5,9 +5,9 @@ namespace Reducktion\Socrates\Tests\Feature\NorthAmerica;
 use Reducktion\Socrates\Constants\Country;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
-use Reducktion\Socrates\Tests\Feature\FeatureTest;
+use Reducktion\Socrates\Tests\Feature\FeatureTestCase;
 
-class UnitedStatesTest extends FeatureTest
+class UnitedStatesTest extends FeatureTestCase
 {
     private array $validIds;
     private array $invalidIds;

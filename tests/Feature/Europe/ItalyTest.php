@@ -7,9 +7,9 @@ use Reducktion\Socrates\Constants\Country;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Exceptions\InvalidIdException;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
-use Reducktion\Socrates\Tests\Feature\FeatureTest;
+use Reducktion\Socrates\Tests\Feature\FeatureTestCase;
 
-class ItalyTest extends FeatureTest
+class ItalyTest extends FeatureTestCase
 {
     private array $people;
     private array $invalidIds;
@@ -22,8 +22,8 @@ class ItalyTest extends FeatureTest
             'matteo moretti' => [
                 'fc' => 'MRTMTT25D09F205Z',
                 'gender' => Gender::Male,
-                'dob' => new DateTime('1925-04-09'),
-                'age' => $this->calculateAge(new DateTime('1925-04-09')),
+                'dob' => new DateTime('2025-04-09'),
+                'age' => $this->calculateAge(new DateTime('2025-04-09')),
                 'pob' => 'MILANO (MI)'
             ],
             'samantha miller' => [

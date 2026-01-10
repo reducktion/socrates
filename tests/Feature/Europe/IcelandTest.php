@@ -5,9 +5,9 @@ namespace Reducktion\Socrates\Tests\Feature\Europe;
 use DateTime;
 use Reducktion\Socrates\Constants\Country;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
-use Reducktion\Socrates\Tests\Feature\FeatureTest;
+use Reducktion\Socrates\Tests\Feature\FeatureTestCase;
 
-class IcelandTest extends FeatureTest
+class IcelandTest extends FeatureTestCase
 {
     private array $people;
     private array $invalidIds;

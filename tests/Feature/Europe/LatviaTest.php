@@ -6,9 +6,9 @@ use DateTime;
 use Reducktion\Socrates\Constants\Country;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
 use Reducktion\Socrates\Exceptions\UnsupportedOperationException;
-use Reducktion\Socrates\Tests\Feature\FeatureTest;
+use Reducktion\Socrates\Tests\Feature\FeatureTestCase;
 
-class LatviaTest extends FeatureTest
+class LatviaTest extends FeatureTestCase
 {
     private array $supportedExtractionPeople;
     private array $unsupportedExtractionPeople;

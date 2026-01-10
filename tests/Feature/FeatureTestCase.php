@@ -6,7 +6,7 @@ use DateTime;
 use PHPUnit\Framework\TestCase;
 use Reducktion\Socrates\Socrates;
 
-abstract class FeatureTest extends TestCase
+abstract class FeatureTestCase extends TestCase
 {
     public Socrates $socrates;
 

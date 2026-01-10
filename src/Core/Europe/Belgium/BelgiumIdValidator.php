@@ -84,6 +84,13 @@ class BelgiumIdValidator implements IdValidator
         $month = (int) $month;
         $day = (int) $day;
 
+        // BIS numbers have 20 or 40 added to the month
+        if ($month >= 40) {
+            $month -= 40;
+        } elseif ($month >= 20) {
+            $month -= 20;
+        }
+
         $month = $month === 0 ? 1 : $month;
         $day = $day === 0 ? 1 : $day;
 
