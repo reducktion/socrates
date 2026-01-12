@@ -15,7 +15,7 @@ class FranceCitizenInformationExtractor implements CitizenInformationExtractor
     {
         $id = $this->sanitize($id);
 
-        if (! (new FranceIdValidator())->validate($id)) {
+        if (! new FranceIdValidator()->validate($id)) {
             throw new InvalidIdException();
         }
 
@@ -47,7 +47,7 @@ class FranceCitizenInformationExtractor implements CitizenInformationExtractor
     {
         $dateDigits = substr($id, 1, 4);
         [$year, $month] = str_split($dateDigits, 2);
-        $currentYear = (int) (new DateTime())->format('y');
+        $currentYear = (int) new DateTime()->format('y');
 
 
         $year = $year > $currentYear ? $year + 1900 : $year + 2000;

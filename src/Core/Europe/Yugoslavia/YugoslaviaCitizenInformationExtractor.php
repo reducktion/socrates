@@ -12,7 +12,7 @@ class YugoslaviaCitizenInformationExtractor
 {
     public static function extract(string $id): Citizen
     {
-        if (! (new YugoslaviaIdValidator())::validate($id)) {
+        if (! new YugoslaviaIdValidator()::validate($id)) {
             throw new InvalidIdException();
         }
 
@@ -39,7 +39,7 @@ class YugoslaviaCitizenInformationExtractor
         $month = substr($id, 2, 2);
         $year = (int) substr($id, 4, 3);
 
-        $currentYear = (int) (new DateTime())->format('Y');
+        $currentYear = (int) new DateTime()->format('Y');
 
         if ($year + 1000 < $currentYear && $year + 1000 > 1900) {
             $year += 1000;

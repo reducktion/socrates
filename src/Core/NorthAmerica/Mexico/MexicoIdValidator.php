@@ -14,9 +14,9 @@ use Reducktion\Socrates\Exceptions\InvalidLengthException;
  */
 class MexicoIdValidator implements IdValidator
 {
-    private const VOWELS = ['A', 'E', 'I', 'O', 'U'];
-    private const GENDERS = ['H', 'M'];
-    private const BLACKLISTED_NAMES = [
+    private const array VOWELS = ['A', 'E', 'I', 'O', 'U'];
+    private const array GENDERS = ['H', 'M'];
+    private const array BLACKLISTED_NAMES = [
         'BACA', 'BAKA', 'BUEI', 'BUEY', 'CACA', 'CACO', 'CAGA', 'CAGO', 'CAKA', 'CAKO', 'COGE', 'COGI', 'COJA', 'COJE',
         'COJI', 'COJO', 'COLA', 'CULO', 'FALO', 'FETO', 'GETA', 'GUEI', 'GUEY', 'JETA', 'JOTO', 'KACA', 'KACO', 'KAGA',
         'KAGO', 'KAKA', 'KAKO', 'KOGE', 'KOGI', 'KOJA', 'KOJE', 'KOJI', 'KOJO', 'KOLA', 'KULO', 'LILO', 'LOCA', 'LOCO',

@@ -2,6 +2,8 @@
 
 namespace Reducktion\Socrates\Exceptions;
 
-class InvalidCountryCodeException extends \LogicException
+use LogicException;
+
+class InvalidCountryCodeException extends LogicException
 {
 }

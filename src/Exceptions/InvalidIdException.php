@@ -2,7 +2,9 @@
 
 namespace Reducktion\Socrates\Exceptions;
 
-class InvalidIdException extends \LogicException
+use LogicException;
+
+class InvalidIdException extends LogicException
 {
     /**
      * InvalidIdException constructor.

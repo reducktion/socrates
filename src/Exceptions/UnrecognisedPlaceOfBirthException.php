@@ -2,6 +2,8 @@
 
 namespace Reducktion\Socrates\Exceptions;
 
-class UnrecognisedPlaceOfBirthException extends \LogicException
+use LogicException;
+
+class UnrecognisedPlaceOfBirthException extends LogicException
 {
 }

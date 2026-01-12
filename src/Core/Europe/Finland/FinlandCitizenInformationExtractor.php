@@ -13,7 +13,7 @@ class FinlandCitizenInformationExtractor implements CitizenInformationExtractor
 {
     public function extract(string $id): Citizen
     {
-        if (! (new FinlandIdValidator())->validate($id)) {
+        if (! new FinlandIdValidator()->validate($id)) {
             throw new InvalidIdException();
         }
 

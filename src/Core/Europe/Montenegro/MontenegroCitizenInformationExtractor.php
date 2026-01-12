@@ -12,14 +12,14 @@ class MontenegroCitizenInformationExtractor implements CitizenInformationExtract
 {
     public function extract(string $id): Citizen
     {
-        if (! (new MontenegroIdValidator())->validate($id)) {
+        if (! new MontenegroIdValidator()->validate($id)) {
             throw new InvalidIdException();
         }
 
         try {
             $citizen = YugoslaviaCitizenInformationExtractor::extract($id);
         } catch (InvalidLengthException $e) {
-            throw new InvalidLengthException('Montenegrin JMBG', $e->getRequiredCharacters(), $e->getGivenCharacters());
+            throw new InvalidLengthException('Montenegrin JMBG', $e->requiredCharacters, $e->givenCharacters);
         }
 
         return $citizen;

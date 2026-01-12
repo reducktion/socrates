@@ -12,7 +12,7 @@ class SwedenCitizenInformationExtractor implements CitizenInformationExtractor
 {
     public function extract(string $id): Citizen
     {
-        if (! (new SwedenIdValidator())->validate($id)) {
+        if (! new SwedenIdValidator()->validate($id)) {
             throw new InvalidIdException();
         }
 
@@ -73,7 +73,7 @@ class SwedenCitizenInformationExtractor implements CitizenInformationExtractor
         if ($isOverOneHundredYearsOld) {
             $year = DateTime::createFromFormat('Y', "19$twoDigitYear")->format('Y');
         } else {
-            $presentTwoDigitYear = (int) (new DateTime())->format('y');
+            $presentTwoDigitYear = (int) new DateTime()->format('y');
 
             $year = $twoDigitYear < $presentTwoDigitYear
                 ? DateTime::createFromFormat('y', (string) $twoDigitYear)->format('Y')

@@ -6,7 +6,7 @@ use DateTime;
 use PHPUnit\Framework\TestCase;
 use Reducktion\Socrates\Socrates;
 
-abstract class FeatureTest extends TestCase
+abstract class FeatureTestCase extends TestCase
 {
     public Socrates $socrates;
 
@@ -23,6 +23,6 @@ abstract class FeatureTest extends TestCase
 
     public function calculateAge(DateTime $dateOfBirth): int
     {
-        return (new DateTime())->diff($dateOfBirth)->y;
+        return new DateTime()->diff($dateOfBirth)->y;
     }
 }

@@ -13,7 +13,7 @@ class SloveniaIdValidator implements IdValidator
         try {
             $result = YugoslaviaIdValidator::validate($id);
         } catch (InvalidLengthException $e) {
-            throw new InvalidLengthException('Slovenian EMSO', $e->getRequiredCharacters(), $e->getGivenCharacters());
+            throw new InvalidLengthException('Slovenian EMSO', $e->requiredCharacters, $e->givenCharacters);
         }
 
         $regionDigits = (int) substr($id, 7, 2);

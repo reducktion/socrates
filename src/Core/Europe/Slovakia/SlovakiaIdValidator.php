@@ -13,7 +13,7 @@ class SlovakiaIdValidator implements IdValidator
         try {
             $result = CzechoslovakiaIdValidator::validate($id);
         } catch (InvalidLengthException $e) {
-            throw new InvalidLengthException('Slovakian RC', $e->getRequiredCharacters(), $e->getGivenCharacters());
+            throw new InvalidLengthException('Slovakian RC', $e->requiredCharacters, $e->givenCharacters);
         }
 
         return $result;

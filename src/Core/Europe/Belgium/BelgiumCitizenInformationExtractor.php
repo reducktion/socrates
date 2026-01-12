@@ -12,6 +12,7 @@ use Reducktion\Socrates\Models\Citizen;
  * Class BelgiumCitizenInformationExtractor
  *
  * Algorithm adapted from: http://www.ibz.rrn.fgov.be/fileadmin/user_upload/nl/rr/instructies/IT-lijst/IT000_Rijksregisternummer.pdf.
+ * Foreign workers have a BIS number. More information about these types of numbers can be found here: https://testdatagenerator.bignited.be/.
  *
  * @package Reducktion\Socrates\Core\Belgium
  */
@@ -21,16 +22,22 @@ class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
     {
         $id = $this->sanitize($id);
 
-        if (! (new BelgiumIdValidator())->validate($id)) {
+        if (! new BelgiumIdValidator()->validate($id)) {
             throw new InvalidIdException();
         }
 
-        $gender = $this->getGender($id);
-        $dateOfBirth = $this->getDateOfBirth($id);
-
         $citizen = new Citizen();
-        $citizen->setGender($gender);
-        $citizen->setDateOfBirth($dateOfBirth);
+
+        // BIS numbers: month + 20 = gender unknown, month + 40 = gender known
+        // Regular NRN: always has gender
+        if (!$this->isBisNumber($id) || $this->isBisGenderKnown($id)) {
+            $citizen->setGender($this->getGender($id));
+        }
+
+        // Extract DOB if birthdate is known (month is not 00, 20, or 40)
+        if (!$this->isBirthdateUnknown($id)) {
+            $citizen->setDateOfBirth($this->getDateOfBirth($id));
+        }
 
         return $citizen;
     }
@@ -40,7 +47,31 @@ class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
         return str_replace(['-', ' ', '.'], '', $id);
     }
 
-    private function getGender(int $id): Gender
+    private function isBisNumber(string $id): bool
+    {
+        $month = (int) substr($id, 2, 2);
+
+        return $month > 12;
+    }
+
+    private function isBisGenderKnown(string $id): bool
+    {
+        $month = (int) substr($id, 2, 2);
+
+        // Month + 40 means gender is known, month + 20 means gender is unknown
+        return $month >= 40;
+    }
+
+    private function isBirthdateUnknown(string $id): bool
+    {
+        $month = (int) substr($id, 2, 2);
+
+        // For BIS numbers only: month 20 or 40 means birthdate is unknown
+        // Regular NRN with month 00 still extracts DOB (defaults to January)
+        return $month === 20 || $month === 40;
+    }
+
+    private function getGender(string $id): Gender
     {
         return (substr($id, 6, 3) % 2) ? Gender::Male : Gender::Female;
     }
@@ -53,6 +84,13 @@ class BelgiumCitizenInformationExtractor implements CitizenInformationExtractor
         $year = (int) $year;
         $month = (int) $month;
         $day = (int) $day;
+
+        // BIS numbers have 20 or 40 added to the month
+        if ($month >= 40) {
+            $month -= 40;
+        } elseif ($month >= 20) {
+            $month -= 20;
+        }
 
         // use first day or month if unknown
         $month = $month === 0 ? 1 : $month;

@@ -14,7 +14,7 @@ class DenmarkCitizenInformationExtractor implements CitizenInformationExtractor
     {
         $id = $this->sanitize($id);
 
-        if (! (new DenmarkIdValidator())->validate($id)) {
+        if (! new DenmarkIdValidator()->validate($id)) {
             throw new InvalidIdException();
         }
 

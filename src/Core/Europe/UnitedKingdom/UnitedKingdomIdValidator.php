@@ -17,10 +17,8 @@ class UnitedKingdomIdValidator implements IdValidator
 
         $thirdToEightCharacterArray = str_split(substr($id, 2, 6));
 
-        foreach ($thirdToEightCharacterArray as $character) {
-            if (!is_numeric($character)) {
-                return false;
-            }
+        if (array_any($thirdToEightCharacterArray, fn($character) => !is_numeric($character))) {
+            return false;
         }
 
         if ($id[8] !== 'A' && $id[8] !== 'B' && $id[8] !== 'C' && $id[8] !== 'D') {

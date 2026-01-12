@@ -13,7 +13,7 @@ class CzechoslovakiaCitizenInformationExtractor
     {
         $id = str_replace('/', '', $id);
 
-        if (! (new CzechoslovakiaIdValidator())::validate($id)) {
+        if (! new CzechoslovakiaIdValidator()::validate($id)) {
             throw new InvalidIdException();
         }
 

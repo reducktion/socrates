@@ -13,14 +13,14 @@ class SlovakiaCitizenInformationExtractor implements CitizenInformationExtractor
 {
     public function extract(string $id): Citizen
     {
-        if (! (new CzechRepublicIdValidator())->validate($id)) {
+        if (! new CzechRepublicIdValidator()->validate($id)) {
             throw new InvalidIdException();
         }
 
         try {
             $result = CzechoslovakiaCitizenInformationExtractor::extract($id);
         } catch (InvalidLengthException $e) {
-            throw new InvalidLengthException('Slovakian RC', $e->getRequiredCharacters(), $e->getGivenCharacters());
+            throw new InvalidLengthException('Slovakian RC', $e->requiredCharacters, $e->givenCharacters);
         }
 
         return $result;

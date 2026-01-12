@@ -12,7 +12,7 @@ class AlbaniaCitizenInformationExtractor implements CitizenInformationExtractor
 {
     public function extract(string $id): Citizen
     {
-        if (! (new AlbaniaIdValidator())->validate($id)) {
+        if (! new AlbaniaIdValidator()->validate($id)) {
             throw new InvalidIdException();
         }
 
@@ -34,11 +34,8 @@ class AlbaniaCitizenInformationExtractor implements CitizenInformationExtractor
             return Gender::Male;
         }
 
-        if ($identifier === 5 || $identifier === 6) {
-            return Gender::Female;
-        }
-
         return Gender::Female;
+
     }
 
     private function getDateOfBirth(string $id): DateTime

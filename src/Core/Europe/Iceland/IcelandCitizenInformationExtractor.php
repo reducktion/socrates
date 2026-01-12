@@ -13,7 +13,7 @@ class IcelandCitizenInformationExtractor implements CitizenInformationExtractor
     {
         $id = $this->sanitize($id);
 
-        if (! (new IcelandIdValidator())->validate($id)) {
+        if (! new IcelandIdValidator()->validate($id)) {
             throw new InvalidIdException();
         }
 

@@ -260,7 +260,7 @@ public function extract(string $id): Citizen
 {
     $id = $this->sanitize($id);
 
-    if (! (new SocratiaIdValidator())->validate($id)) {
+    if (! new SocratiaIdValidator()->validate($id)) {
         // Throw one of our internal exceptions
         throw new InvalidIdException();
     }
@@ -373,9 +373,9 @@ abstract class:
 
 namespace Reducktion\Socrates\Tests\Feature\Europe;
 
-use Reducktion\Socrates\Tests\Feature\FeatureTest;
+use Reducktion\Socrates\Tests\Feature\FeatureTestCase;
 
-class SocratiaTest extends FeatureTest
+class SocratiaTest extends FeatureTestCase
 {
     public function test_extract_behaviour(): void
     {

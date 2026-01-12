@@ -14,7 +14,7 @@ class HungaryCitizenInformationExtractor implements CitizenInformationExtractor
     {
         $id = $this->sanitize($id);
 
-        if (! (new HungaryIdValidator())->validate($id)) {
+        if (! new HungaryIdValidator()->validate($id)) {
             throw new InvalidIdException();
         }
 

@@ -13,21 +13,21 @@ class Citizen
      *
      * @var Gender|null
      */
-    private ?Gender $gender;
+    private ?Gender $gender = null;
 
     /**
      * The date of birth as a DateTime object.
      *
      * @var DateTime|null
      */
-    private ?DateTime $dateOfBirth;
+    private ?DateTime $dateOfBirth = null;
 
     /**
      * The place of birth as a string.
      *
      * @var string|null
      */
-    private ?string $placeOfBirth;
+    private ?string $placeOfBirth = null;
 
     /**
      * Get the citizen's gender.
@@ -60,7 +60,7 @@ class Citizen
             throw new UnsupportedOperationException('Citizen date of birth is null.');
         }
 
-        return (new DateTime())->diff($this->dateOfBirth)->y;
+        return new DateTime()->diff($this->dateOfBirth)->y;
     }
 
     /**

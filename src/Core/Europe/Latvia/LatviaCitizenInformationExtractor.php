@@ -14,7 +14,7 @@ class LatviaCitizenInformationExtractor implements CitizenInformationExtractor
     {
         $id = $this->sanitize($id);
 
-        if (! (new LatviaIdValidator())->validate($id)) {
+        if (! new LatviaIdValidator()->validate($id)) {
             throw new InvalidIdException();
         }
 
