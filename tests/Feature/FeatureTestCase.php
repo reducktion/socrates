@@ -17,12 +17,16 @@ abstract class FeatureTestCase extends TestCase
         $this->socrates = new Socrates();
     }
 
-    abstract public function test_extract_behaviour(): void;
+    abstract public function test_extract_behaviour(array $person): void;
 
-    abstract public function test_validation_behaviour(): void;
+    abstract public function test_validation_with_valid_ids_passes(array $person): void;
 
-    public function calculateAge(DateTime $dateOfBirth): int
+    abstract public function test_validation_with_invalid_ids_fails(string $invalidId): void;
+
+    abstract public function test_validation_using_ids_with_invalid_length_throw_exception(): void;
+
+    public static function calculateAge(DateTime $dateOfBirth): int
     {
-        return (new DateTime())->diff($dateOfBirth)->y;
+        return new DateTime()->diff($dateOfBirth)->y;
     }
 }
