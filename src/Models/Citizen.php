@@ -56,11 +56,7 @@ class Citizen
      */
     public function getAge(): ?int
     {
-        if (!$this->dateOfBirth) {
-            throw new UnsupportedOperationException('Citizen date of birth is null.');
-        }
-
-        return (new DateTime())->diff($this->dateOfBirth)->y;
+        return $this->dateOfBirth ? new DateTime()->diff($this->dateOfBirth)->y : null;
     }
 
     /**
