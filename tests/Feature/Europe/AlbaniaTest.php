@@ -75,26 +75,18 @@ class AlbaniaTest extends FeatureTestCase
         self::assertEquals($person['gender'], $citizen->getGender());
         self::assertEquals($person['dob'], $citizen->getDateOfBirth());
         self::assertEquals($person['age'], $citizen->getAge());
-
-        $this->expectException(InvalidLengthException::class);
-
-        $this->socrates->getCitizenDataFromId('I051019992I', Country::Albania);
     }
 
     #[DataProvider('peopleDataProvider')]
     public function test_validation_with_valid_ids_passes(array $person): void
     {
-        self::assertTrue(
-            $this->socrates->validateId($person['nid'], Country::Albania)
-        );
+        self::assertTrue($this->socrates->validateId($person['nid'], Country::Albania));
     }
 
     #[DataProvider('invalidIdsDataProvider')]
     public function test_validation_with_invalid_ids_fails(string $invalidId): void
     {
-        self::assertFalse(
-            $this->socrates->validateId($invalidId, Country::Albania)
-        );
+        self::assertFalse($this->socrates->validateId($invalidId, Country::Albania));
     }
 
     public function test_validation_using_ids_with_invalid_length_throw_exception(): void
