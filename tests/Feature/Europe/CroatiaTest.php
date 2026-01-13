@@ -3,6 +3,7 @@
 namespace Reducktion\Socrates\Tests\Feature\Europe;
 
 use DateTime;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Reducktion\Socrates\Constants\Country;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
@@ -10,109 +11,122 @@ use Reducktion\Socrates\Tests\Feature\FeatureTestCase;
 
 class CroatiaTest extends FeatureTestCase
 {
-    private array $people;
-    private array $validIds;
-    private array $invalidIds;
-
-    protected function setUp(): void
+    public static function peopleDataProvider(): array
     {
-        parent::setUp();
-
-        $this->validIds = [
-            '34562345678',
-            '12286373446',
-            '97230458182',
-            '08214881054',
-            '27446063711'
-        ];
-
-        $this->people = [
+        return [
             'Ivana' => [
-                'jmbg' => '1809988305313',
-                'gender' => Gender::Female,
-                'dob' => new DateTime('1988-09-18'),
-                'age' => $this->calculateAge(new DateTime('1988-09-18')),
-                'pob' => 'Osijek, Slavonia region - Croatia'
+                'person' => [
+                    'jmbg' => '1809988305313',
+                    'gender' => Gender::Female,
+                    'dob' => new DateTime('1988-09-18'),
+                    'age' => self::calculateAge(new DateTime('1988-09-18')),
+                    'pob' => 'Osijek, Slavonia region - Croatia'
+                ],
             ],
             'Ana' => [
-                'jmbg' => '0808928315425',
-                'gender' => Gender::Female,
-                'dob' => new DateTime('1928-08-08'),
-                'age' => $this->calculateAge(new DateTime('1928-08-08')),
-                'pob' => 'Bjelovar, Virovitica, Koprivnica, Pakrac, Podravina region - Croatia'
+                'person' => [
+                    'jmbg' => '0808928315425',
+                    'gender' => Gender::Female,
+                    'dob' => new DateTime('1928-08-08'),
+                    'age' => self::calculateAge(new DateTime('1928-08-08')),
+                    'pob' => 'Bjelovar, Virovitica, Koprivnica, Pakrac, Podravina region - Croatia'
+                ],
             ],
             'Marija' => [
-                'jmbg' => '1106961359224',
-                'gender' => Gender::Female,
-                'dob' => new DateTime('1961-06-11'),
-                'age' => $this->calculateAge(new DateTime('1961-06-11')),
-                'pob' => 'Gospić, Lika region - Croatia'
+                'person' => [
+                    'jmbg' => '1106961359224',
+                    'gender' => Gender::Female,
+                    'dob' => new DateTime('1961-06-11'),
+                    'age' => self::calculateAge(new DateTime('1961-06-11')),
+                    'pob' => 'Gospić, Lika region - Croatia'
+                ],
             ],
             'Stjepan' => [
-                'jmbg' => '1105951323209',
-                'gender' => Gender::Male,
-                'dob' => new DateTime('1951-05-11'),
-                'age' => $this->calculateAge(new DateTime('1951-05-11')),
-                'pob' => 'Varaždin, Međimurje region - Croatia'
+                'person' => [
+                    'jmbg' => '1105951323209',
+                    'gender' => Gender::Male,
+                    'dob' => new DateTime('1951-05-11'),
+                    'age' => self::calculateAge(new DateTime('1951-05-11')),
+                    'pob' => 'Varaždin, Međimurje region - Croatia'
+                ],
             ],
             'Ivan' => [
-                'jmbg' => '2109971352638',
-                'gender' => Gender::Male,
-                'dob' => new DateTime('1971-09-21'),
-                'age' => $this->calculateAge(new DateTime('1971-09-21')),
-                'pob' => 'Gospić, Lika region - Croatia'
+                'person' => [
+                    'jmbg' => '2109971352638',
+                    'gender' => Gender::Male,
+                    'dob' => new DateTime('1971-09-21'),
+                    'age' => self::calculateAge(new DateTime('1971-09-21')),
+                    'pob' => 'Gospić, Lika region - Croatia'
+                ],
             ],
-        ];
-
-        $this->invalidIds = [
-            '2182791212638',
-            '27446182112',
-            '27446062711',
-            '1181818993013',
-            '1821992971638'
+            'unknown1' => [
+                'person' => [
+                    'oib' => '34562345678',
+                ],
+            ],
+            'unknown2' => [
+                'person' => [
+                    'oib' => '12286373446',
+                ],
+            ],
+            'unknown3' => [
+                'person' => [
+                    'oib' => '97230458182',
+                ],
+            ],
+            'unknown4' => [
+                'person' => [
+                    'oib' => '08214881054',
+                ],
+            ],
+            'unknown5' => [
+                'person' => [
+                    'oib' => '27446063711',
+                ]
+            ]
         ];
     }
 
-    public function test_extract_behaviour(): void
+    public static function invalidIdsDataProvider(): array
     {
-        foreach ($this->people as $person) {
-            $citizen = $this->socrates->getCitizenDataFromId($person['jmbg'], Country::Croatia);
+        return [
+            ['2182791212638'],
+            ['27446182112'],
+            ['27446062711'],
+            ['1181818993013'],
+            ['1821992971638'],
+        ];
+    }
 
+    #[DataProvider('peopleDataProvider')]
+    public function test_extract_behaviour(array $person): void
+    {
+        if (isset($person['jmbg'])) {
+            $citizen = $this->socrates->getCitizenDataFromId($person['jmbg'], Country::Croatia);
             self::assertEquals($person['gender'], $citizen->getGender());
             self::assertEquals($person['dob'], $citizen->getDateOfBirth());
             self::assertEquals($person['age'], $citizen->getAge());
             self::assertEquals($person['pob'], $citizen->getPlaceOfBirth());
+        } else {
+            $this->expectException(InvalidLengthException::class);
+            $citizen = $this->socrates->getCitizenDataFromId($person['oib'], Country::Croatia);
         }
-
-        $this->expectException(InvalidLengthException::class);
-
-        foreach ($this->validIds as $person) {
-            $this->socrates->getCitizenDataFromId($person, Country::Croatia);
-        }
-
-        $this->socrates->getCitizenDataFromId('1821992971', Country::Croatia);
     }
 
-    public function test_validation_behaviour(): void
+    #[DataProvider('peopleDataProvider')]
+    public function test_validation_with_valid_ids_passes(array $person): void
     {
-        foreach ($this->validIds as $oib) {
-            self::assertTrue(
-                $this->socrates->validateId($oib, Country::Croatia)
-            );
-        }
+        self::assertTrue($this->socrates->validateId($person['jmbg'] ?? $person['oib'], Country::Croatia));
+    }
 
-        foreach ($this->people as $person) {
-            self::assertTrue(
-                $this->socrates->validateId($person['jmbg'], Country::Croatia)
-            );
-        }
+    #[DataProvider('invalidIdsDataProvider')]
+    public function test_validation_with_invalid_ids_fails(string $invalidId): void
+    {
+        self::assertFalse($this->socrates->validateId($invalidId, Country::Croatia));
+    }
 
-        foreach ($this->invalidIds as $jmbg) {
-            self::assertFalse(
-                $this->socrates->validateId($jmbg, Country::Croatia)
-            );
-        }
-
+    public function test_validation_using_ids_with_invalid_length_throw_exception(): void
+    {
         $this->expectException(InvalidLengthException::class);
 
         $this->socrates->validateId('010597850', Country::Croatia);

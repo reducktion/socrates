@@ -3,6 +3,7 @@
 namespace Reducktion\Socrates\Tests\Feature\Europe;
 
 use DateTime;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Reducktion\Socrates\Constants\Country;
 use Reducktion\Socrates\Constants\Gender;
 use Reducktion\Socrates\Exceptions\InvalidLengthException;
@@ -10,89 +11,94 @@ use Reducktion\Socrates\Tests\Feature\FeatureTestCase;
 
 class BulgariaTest extends FeatureTestCase
 {
-    private array $people;
-    private array $invalidIds;
-
-    protected function setUp(): void
+    public static function peopleDataProvider(): array
     {
-        parent::setUp();
-
-        $this->people = [
+        return [
             'Andrei' => [
-                'egn' => '7523169263',
-                'gender' => Gender::Male,
-                'dob' => new DateTime('1875-03-16'),
-                'age' => $this->calculateAge(new DateTime('1875-03-16')),
+                'person' => [
+                    'egn' => '7523169263',
+                    'gender' => Gender::Male,
+                    'dob' => new DateTime('1875-03-16'),
+                    'age' => self::calculateAge(new DateTime('1875-03-16')),
+                ],
             ],
             'Lyuben' => [
-                'egn' => '8032056031',
-                'gender' => Gender::Male,
-                'dob' => new DateTime('1880-12-05'),
-                'age' => $this->calculateAge(new DateTime('1880-12-05')),
+                'person' => [
+                    'egn' => '8032056031',
+                    'gender' => Gender::Male,
+                    'dob' => new DateTime('1880-12-05'),
+                    'age' => self::calculateAge(new DateTime('1880-12-05')),
+                ],
             ],
             'Bilyana' => [
-                'egn' => '8001010008',
-                'gender' => Gender::Female,
-                'dob' => new DateTime('1980-01-01'),
-                'age' => $this->calculateAge(new DateTime('1980-01-01')),
+                'person' => [
+                    'egn' => '8001010008',
+                    'gender' => Gender::Female,
+                    'dob' => new DateTime('1980-01-01'),
+                    'age' => self::calculateAge(new DateTime('1980-01-01')),
+                ],
             ],
             'Kalina' => [
-                'egn' => '7501020018',
-                'gender' => Gender::Female,
-                'dob' => new DateTime('1975-01-02'),
-                'age' => $this->calculateAge(new DateTime('1975-01-02')),
+                'person' => [
+                    'egn' => '7501020018',
+                    'gender' => Gender::Female,
+                    'dob' => new DateTime('1975-01-02'),
+                    'age' => self::calculateAge(new DateTime('1975-01-02')),
+                ],
             ],
             'Nedyalko' => [
-                'egn' => '7552010005',
-                'gender' => Gender::Male,
-                'dob' => new DateTime('2075-12-01'),
-                'age' => $this->calculateAge(new DateTime('2075-12-01')),
+                'person' => [
+                    'egn' => '7552010005',
+                    'gender' => Gender::Male,
+                    'dob' => new DateTime('2075-12-01'),
+                    'age' => self::calculateAge(new DateTime('2075-12-01')),
+                ],
             ],
             'Tsveta' => [
-                'egn' => '7542011030',
-                'gender' => Gender::Female,
-                'dob' => new DateTime('2075-02-01'),
-                'age' => $this->calculateAge(new DateTime('2075-02-01')),
+                'person' => [
+                    'egn' => '7542011030',
+                    'gender' => Gender::Female,
+                    'dob' => new DateTime('2075-02-01'),
+                    'age' => self::calculateAge(new DateTime('2075-02-01')),
+                ],
             ]
         ];
+    }
 
-        $this->invalidIds = [
-            '7542021030',
-            '8002560008',
-            '3542027033',
-            '6002567498',
-            '7542039611',
+    public static function invalidIdsDataProvider(): array
+    {
+        return [
+            ['7542021030'],
+            ['8002560008'],
+            ['3542027033'],
+            ['6002567498'],
+            ['7542039611'],
         ];
     }
 
-    public function test_extract_behaviour(): void
+    #[DataProvider('peopleDataProvider')]
+    public function test_extract_behaviour(array $person): void
     {
-        foreach ($this->people as $person) {
-            $citizen = $this->socrates->getCitizenDataFromId($person['egn'], Country::Bulgaria);
-            self::assertEquals($person['gender'], $citizen->getGender());
-            self::assertEquals($person['dob'], $citizen->getDateOfBirth());
-            self::assertEquals($person['age'], $citizen->getAge());
-        }
-
-        $this->expectException(InvalidLengthException::class);
-
-        $this->socrates->getCitizenDataFromId('754201103', Country::Bulgaria);
+        $citizen = $this->socrates->getCitizenDataFromId($person['egn'], Country::Bulgaria);
+        self::assertEquals($person['gender'], $citizen->getGender());
+        self::assertEquals($person['dob'], $citizen->getDateOfBirth());
+        self::assertEquals($person['age'], $citizen->getAge());
     }
 
-    public function test_validation_behaviour(): void
+    #[DataProvider('peopleDataProvider')]
+    public function test_validation_with_valid_ids_passes(array $person): void
     {
-        foreach ($this->people as $person) {
-            self::assertTrue(
-                $this->socrates->validateId($person['egn'], Country::Bulgaria)
-            );
-        }
+        self::assertTrue($this->socrates->validateId($person['egn'], Country::Bulgaria));
+    }
 
-        foreach ($this->invalidIds as $egn) {
-            self::assertFalse(
-                $this->socrates->validateId($egn, Country::Bulgaria)
-            );
-        }
+    #[DataProvider('invalidIdsDataProvider')]
+    public function test_validation_with_invalid_ids_fails(string $invalidId): void
+    {
+        self::assertFalse($this->socrates->validateId($invalidId, Country::Bulgaria));
+    }
 
+    public function test_validation_using_ids_with_invalid_length_throw_exception(): void
+    {
         $this->expectException(InvalidLengthException::class);
 
         $this->socrates->validateId('754201103', Country::Bulgaria);
