@@ -37,14 +37,16 @@ class FinlandCitizenInformationExtractor implements CitizenInformationExtractor
         $dateDigits = substr($id, 0, 6);
         [$day, $month, $year] = str_split($dateDigits, 2);
 
-        $century = $id[6];
+        $separator = $id[6];
 
-        $year += match ($century) {
+        $century = match ($separator) {
             '+' => 1800,
-            '-' => 1900,
-            'A' => 2000,
-            default => throw new InvalidArgumentException("Unrecognised character $century in ID."),
+            '-', 'Y', 'X', 'W', 'V', 'U' => 1900,
+            'A', 'B', 'C', 'D', 'E', 'F' => 2000,
+            default => throw new InvalidArgumentException("Unrecognised character $separator in ID."),
         };
+
+        $year += $century;
 
         return new DateTime("$year-$month-$day");
     }

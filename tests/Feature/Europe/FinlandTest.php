@@ -47,7 +47,19 @@ class FinlandTest extends FeatureTestCase
                 'gender' => Gender::Male,
                 'dob' => new DateTime('2003-04-04'),
                 'age' => $this->calculateAge(new DateTime('2003-04-04')),
-            ]
+            ],
+            'enni' => [
+                'hetu' => '250581X948M',
+                'gender' => Gender::Female,
+                'dob' => new DateTime('1981-05-25'),
+                'age' => $this->calculateAge(new DateTime('1981-05-25')),
+            ],
+            'kalle' => [
+                'hetu' => '311005F9511',
+                'gender' => Gender::Male,
+                'dob' => new DateTime('2005-10-31'),
+                'age' => $this->calculateAge(new DateTime('2005-10-31')),
+            ],
         ];
 
         $this->invalidIds = [
